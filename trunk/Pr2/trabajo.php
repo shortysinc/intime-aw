@@ -60,6 +60,7 @@
 			<div class="comentarios">				<!--comentarios ejemplo-->
 				<h2>Comentarios</h2>
 				<div class ="comentario-ej">
+					<a href="perfil.php"><h4>Perfil del usuario</h4></a>
 					<div class="coment-foto">
 						<img src="images/team2.jpg">
 					</div>
@@ -71,6 +72,7 @@
 					</div>
 				</div>
 				<div class ="comentario-ej">
+					<a href="perfil.php"><h4>Perfil del usuario</h4></a>
 					<div class="coment-foto">
 						<img src="images/team2.jpg">
 					</div>
