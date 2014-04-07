@@ -7,16 +7,16 @@
 	<div class="navigation">
 		<ul class="main-menu">
 			<li class="services">
-				<a href="servicios.html">servicios</a>
+				<a href="servicios.php">servicios</a>
 			</li>
 			<li class="about">
-				<a href="sobrenosotros.html">sobre nosotros</a>
+				<a href="sobrenosotros.php">sobre nosotros</a>
 			</li>
 			<li class="contact">
-				<a href="contacto.html">contacto</a>
+				<a href="contacto.php">contacto</a>
 			</li>
 			<li class="portfolio">
-				<a href="identificacion.html">identificacion</a>
+				<a href="identificacion.php">identificacion</a>
 			</li>
 		</ul>
 	</div>

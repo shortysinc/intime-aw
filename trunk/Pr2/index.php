@@ -23,8 +23,7 @@
 					<div class="flexslider">
 						<div class="bienvenida">
 							<div class="box-login">
-								<form method="post" action="perfil.html" accept-charset="utf-8">
-
+								<form method="post" action="perfil.php" accept-charset="utf-8">
 									<label>Usuario</label>
 									<input type="text" />
 									<label>Contraseña</label>
