@@ -41,6 +41,8 @@
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
+			<p>Categorias:</p>
 		</div>
 		<!-- /#main-content-->
+		
 	</body>
