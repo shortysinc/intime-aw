@@ -42,6 +42,64 @@
 			</div>
 			<!-- /#templatemo"-->
 			<p>Categorias:</p>
+		
+			<nav>
+				
+				<li class="parent">
+					<a href="#">Categoria 1</a>
+					<ul>
+						<li>
+							<a href="#">Servicio1</a>
+						</li>
+						<li>
+							<a href="#">Servicio2</a>
+						</li>
+						<li>
+							<a href="#">Servicio3</a>
+						</li>
+						<li >
+							<a href="#">Servicio4</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="parent">
+					<a href="#">Categoria 2</a>
+					<ul>
+						<li>
+							<a href="#">Servicio1</a>
+						</li>
+						<li>
+							<a href="#">Servicio2</a>
+						</li>
+						<li>
+							<a href="#">Servicio3</a>
+						</li>
+						<li >
+							<a href="#">Servicio4</a>
+						</li>
+					</ul>
+				</li>
+				
+				<li class="parent">
+					<a href="#">Categoria 3</a>
+					<ul>
+						<li>
+							<a href="#">Servicio1</a>
+						</li>
+						<li>
+							<a href="#">Servicio2</a>
+						</li>
+						<li>
+							<a href="#">Servicio3</a>
+						</li>
+						<li >
+							<a href="#">Servicio4</a>
+						</li>
+					</ul>
+				</li>
+				
+			</nav>
 		</div>
 		<!-- /#main-content-->
 		
