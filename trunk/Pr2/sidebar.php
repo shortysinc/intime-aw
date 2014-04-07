@@ -12,7 +12,7 @@
 			<li class="about">
 				<a href="sobrenosotros.php">sobre nosotros</a>
 			</li>
-			<li class="contact">
+			<li class="contact"> 
 				<a href="contacto.php">contacto</a>
 			</li>
 			<li class="portfolio">

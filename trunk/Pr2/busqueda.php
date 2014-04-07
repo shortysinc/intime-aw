@@ -15,35 +15,49 @@
 	</head>
 	<body>
 
-		<?php include "sidebar.php"
+		<?php include "sidebarlogueado.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
-				<div class="busqueda">
-					<form method="post" action="busqueda.php" accept-charset="utf-8">
-						<form action="" method="get" accept-charset="utf-8">
-						<label>Buscar</label>
-						<input type="text" size="50">
-						<button type="submit" name="submit" value="Enviar">Enviar</button>
-					</form>
+				<div class="section-content">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<div class="buscador">
+									<form method="post" action="busqueda.php" accept-charset="utf-8">
+										<form action="" method="get" accept-charset="utf-8">
+											<label>Buscar</label>
+											<input type="text" size="50">
+											<button type="submit" name="submit" value="Enviar">
+												Enviar
+											</button>
+										</form>
+										<div class="avanzada">
+											<form method="post" action="busqueda.php" accept-charset="utf-8">
+												<label>Busqueda por confianza: </label>
+												<input type="radio" name="consulta" value="propia" checked="checked" />
+												Busca por confianza propia.
+												<input type="radio" name="consulta" value="red" />
+												Busca por red de confianza
+												<select name="menu">
+													<option value="5" selected>5</option>
+													<option value="6">6</option>
+													<option value="7">7</option>
+													<option value="8">8</option>
+													<option value="9">9</option>
+													<option value="10">10</option>
+												</select>
+												<button type="submit" value="Entrar">
+													Entrar
+												</button>
+											</form>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="avanzada">
-					<form method="post" action="busqueda.php" accept-charset="utf-8">
-						<label>Busqueda por confianza: </label> 
-						<input type="radio" name="consulta" value="propia" checked="checked" /> Busca por confianza propia.
-						<input type="radio" name="consulta" value="red" /> Busca por red de confianza
-						<select name="menu">
-						<option value="5" selected>5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						</select>
-						<button type="submit" value="Entrar">Entrar</button>
-					</form>
-				</div>	
-				<div class="lista">	
+				<div class="lista">
 					<div class ="busq-ej">
 						<a href="trabajo.php"><h3>Nombre del servicio</h3></a>
 						<a href="perfil.php"><h4>Perfil del usuario</h4></a>
@@ -51,14 +65,18 @@
 							<img src="images/team1.jpg">
 						</div>
 						<div class="busq-nota">
-							<p>Nota: 5,4</p>
+							<p>
+								Nota: 5,4
+							</p>
 						</div>
 						<div class="busq-desc">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.</p>
+							<p>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
+							</p>
 						</div>
 					</div>
 				</div>
-			
+
 			</div>
 			<!-- /.templatemo -->
 

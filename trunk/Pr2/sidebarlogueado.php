@@ -6,7 +6,7 @@
 	<div class="navigation">
 		<ul class="main-menu">
 			<li >
-				<a href="">Mi perfil</a>
+				<a href="perfil.php">Mi perfil</a>
 			</li>
 			<li>
 				<a href="">Crear trabajo</a>

@@ -22,9 +22,8 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="section-title">
-								<h2>Usuario</h2>
 								<div class="buscador">
-									<form class="buscador-form" method="get" accept-charset="utf-8">
+									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
 										<input type="text" size="50">
 										<button type="submit" name="submit" value="Enviar">
