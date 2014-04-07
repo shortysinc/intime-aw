@@ -15,10 +15,8 @@
 	</head>
 	<body>
 
-		<div id="main-sidebar" class="hidden-xs hidden-sm">
-			<?php include ("sidebar.php");?>
-		</div><!-- /#main-sidebar -->
-
+		<?php include "sidebar.php"
+		?>
 		<div id="main-content">
 			<div id="templatemo">
 				<div class="main-slider">
