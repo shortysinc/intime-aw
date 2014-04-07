@@ -3,19 +3,22 @@
 		<a href="index.php"><img src="images/logo.png" /></a>
 	</div>
 	<!-- /.logo -->
+
 	<div class="navigation">
 		<ul class="main-menu">
-			<li >
-				<a href="">Mi perfil</a>
+			<li class="services">
+				<a href="servicios.php">servicios</a>
 			</li>
-			<li>
-				<a href="">Crear trabajo</a>
+			<li class="about">
+				<a href="sobrenosotros.php">sobre nosotros</a>
 			</li>
-			<li>
-				<a href="">Salir</a>
+			<li class="contact">
+				<a href="contacto.php">contacto</a>
+			</li>
+			<li class="portfolio">
+				<a href="identificacion.php">identificacion</a>
 			</li>
 		</ul>
 	</div>
 </div>
 <!-- /.navigation -->
-

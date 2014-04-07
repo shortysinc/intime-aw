@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 	<body>
-		<?php include "sidebar.php"
+		<?php include "sidebarlogueado.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
