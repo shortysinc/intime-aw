@@ -209,7 +209,7 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .encabezado img{height:400px;width: 100%;}
 
 .autor  {padding-left: 45px;} 
-.autor img{border: 1px solid black; border-radius: 400px;padding-left:50px;height: 200px;width: 200px;}
+.autor img{border: 1px solid black; border-radius: 400px;height: 200px;width: 200px;}
 
 .descripcion h2{padding-left:40%;}
 .descripcion p{padding-left:10px;}
