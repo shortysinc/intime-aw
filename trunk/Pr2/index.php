@@ -23,18 +23,21 @@
 					<div class="flexslider">
 						<div class="bienvenida">
 							<div class="box-login">
-								<form method="post" action="perfil.php" accept-charset="utf-8">
+								<form method="post" action="perfilusuario.php" accept-charset="utf-8">
 									<label>Usuario</label>
 									<input type="text" />
 									<label>Contraseña</label>
 									<input type="password"/>
-									<button type="submit" value="Entrar">
+									<button type="submit" name="entrar">
 										Entrar
 									</button>
 								</form>
 								<p>
 									<a id="crear-cuenta" href="crearcuenta.php">Crear cuenta</a>
 									<a id="olvidada" href="">¿Contraseña olvidada?</a>
+									<button type="submit" id="button-entrar-admin" onclick=""> <!--boton que da acceso al administrador. Esto con php se eliminaría-->
+										Entrar admin
+									</button>
 								</p>
 							</div>
 

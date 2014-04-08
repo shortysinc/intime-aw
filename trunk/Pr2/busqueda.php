@@ -15,7 +15,7 @@
 	</head>
 	<body>
 
-		<?php include "sidebarlogueado.php"
+		<?php include "sidebarusuario.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">

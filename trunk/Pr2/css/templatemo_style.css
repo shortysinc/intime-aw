@@ -50,6 +50,7 @@ div.buscador{position: relative; float: right; width: 75%; margin-top: 15px;}
 
 .largeButton.contactBgColor { border-color: #9f164d; }
 
+#button-entrar-admin {margin-left: 9px;}
 
 #main-sidebar { float: left; width: 20%; height: 100%; position: fixed; background-color: #495054; color: white; }
 

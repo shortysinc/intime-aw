@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 	<body>
-		<?php include "sidebarlogueado.php"
+		<?php include "sidebarusuario.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
@@ -26,7 +26,7 @@
 									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
 										<input type="text" size="50">
-										<button type="submit" name="submit" value="Enviar">
+										<button type="submit" name="submit">
 											Enviar
 										</button>
 										<a href="">Búsqueda avanzada</a>
