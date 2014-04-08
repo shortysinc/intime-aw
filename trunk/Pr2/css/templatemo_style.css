@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-s
 
 *, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-#main-content, .full-width-slider { float: right; width: 80%; }
+#main-content, .full-width-slider { float: right; width: 85%; }
 
 .section-content { padding: 0 7%; margin-bottom: 100px; }
 
@@ -52,7 +52,7 @@ div.buscador{position: relative; float: right; width: 75%; margin-top: 15px;}
 
 #button-entrar-admin {margin-left: 9px;}
 
-#main-sidebar { float: left; width: 20%; height: 100%; position: fixed; background-color: #495054; color: white; }
+#main-sidebar { float: left; width: 15%; height: 100%; position: fixed; background-color: #495054; color: white; }
 
 .logo { margin: 100px 0; background-color: #38a9e3; padding: 25px 40px; }
 .logo a { color: white; }
