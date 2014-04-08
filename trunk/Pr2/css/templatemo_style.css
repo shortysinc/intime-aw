@@ -14,7 +14,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-s
 
 .section-title { border-top: 4px solid; margin-bottom: 80px; }
 .section-title h2 {display: inline-block; padding: 20px 51px; color: white; text-transform: uppercase; font-weight: 300; margin: 0; font-size: 20px; }
-div.buscador{position: relative; float: right; width: 75%; margin-top: 15px;}
+div.buscador{position: relative; float: right; width: 80%; margin-top: 15px;}
 
 .container-pass{position: relative; width: 80%;}
 #crear-cuenta-form{margin-top: 0px;}

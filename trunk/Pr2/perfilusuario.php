@@ -34,6 +34,7 @@
 								</div>
 							</div>
 						</div>
+						<h1>Bienvenido usuario</h2>
 					</div>
 				</div>
 				<!-- /#services -->

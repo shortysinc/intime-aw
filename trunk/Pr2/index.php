@@ -35,8 +35,9 @@
 								<p>
 									<a id="crear-cuenta" href="crearcuenta.php">Crear cuenta</a>
 									<a id="olvidada" href="">¿Contraseña olvidada?</a>
-									<button type="submit" id="button-entrar-admin" onclick=""> <!--boton que da acceso al administrador. Esto con php se eliminaría-->
-										Entrar admin
+									<button id="button-entrar-admin" >
+										<!--boton que da acceso al administrador. Esto con php se eliminaría-->
+										<a href="admin.php">Entrar admin</a>
 									</button>
 								</p>
 							</div>
