@@ -19,7 +19,7 @@
 		<div id="main-content">
 
 			<div id="templatemo">
-				<div id="about" class="sobrenosotros">
+				<div id="about" class="section-content">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="section-title">
@@ -27,46 +27,47 @@
 
 							</div>
 						</div>
+						<div class="sobrenos">
+					<div class="contacto">
+				<img src="images/team1.jpg" >
+				<div class="nombrecorreo">
+						<h1>Emilio Chico Muñoz</h1>
+						<p>emichico@estumail.ucm.es</p>
 					</div>
-					<div class="sobrenos">
-						<div class="contacto">
-							<img src="images/team1.jpg" >
-							<div class="nombrecorreo">
-								<h1>Emilio Chico Muñoz</h1>
-								<p>emichico@estumail.ucm.es</p>
-								</div>
-						</div>
-						<div class="contacto">
-							<img src="images/team1.jpg" >
-							<div class="nombrecorreo">
-								<h1>Jorge Cordova Rivas</h1>
-								<p>jrcordova@estumail.ucm.es</p>
-							</div>
-						</div>
-						<div class="contacto">
-							<img src="images/team1.jpg" >
-							<div class="nombrecorreo">
-								<h1>Héctor Gálvez Bernal</h1>
-								<p>hegalvez@estumail.ucm.es</p>
-							</div>
-						</div>
-						<div class="contacto">
-							<img src="images/team1.jpg" >
-							<div class="nombrecorreo">
-								<h1>Antonio Nuñez Guerrero</h1>
-								<p>anguerrero@estumail.ucm.es</p>
-							</div>
-						</div>
-						<div class="contacto">
-							<img src="images/team1.jpg" >
-							<div class="nombrecorreo">
-								<h1>Eduardo Pelayo de Sancho</h1>
-								<p>epelayo@estumail.ucm.es</p>
-							</div>
-						</div>
-					</div>
-					<!-- /#about -->
 				</div>
+				<div class="contacto">
+				<img src="images/team1.jpg" >
+				<div class="nombrecorreo">
+						<h1>Jorge Cordova Rivas</h1>
+						<p>jrcordova@estumail.ucm.es</p>
+					</div>
+				</div>
+				<div class="contacto">
+				<img src="images/team1.jpg" >
+				<div class="nombrecorreo">
+						<h1>Héctor Gálvez Bernal</h1>
+						<p>hegalvez@estumail.ucm.es</p>
+					</div>
+					</div>
+				<div class="contacto">
+				<img src="images/team1.jpg" >
+				<div class="nombrecorreo">
+						<h1>Antonio Nuñez Guerrero</h1>
+						<p>anguerrero@estumail.ucm.es</p>
+					</div>
+			</div>
+				<div class="contacto">
+				<img src="images/team1.jpg" >
+				<div class="nombrecorreo">
+						<h1>Eduardo Pelayo de Sancho</h1>
+						<p>epelayo@estumail.ucm.es</p>
+					</div>
+				</div>
+				</div>
+					</div>
+					
+				<!-- /#about -->
+				
 			</div>
 			<!-- /#templatemo"-->
 			<div class="site-footer">
@@ -116,4 +117,3 @@
 		</div>
 		<!-- /#main-content -->
 	</body>
-
