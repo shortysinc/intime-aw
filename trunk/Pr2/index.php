@@ -33,7 +33,7 @@
 									</button>
 								</form>
 								<p>
-									<a id="crear-cuenta" href="">Crear cuenta</a>
+									<a id="crear-cuenta" href="crearcuenta.php">Crear cuenta</a>
 									<a id="olvidada" href="">¿Contraseña olvidada?</a>
 								</p>
 							</div>

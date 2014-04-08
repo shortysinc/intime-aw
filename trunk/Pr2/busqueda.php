@@ -33,7 +33,7 @@
 											</button>
 										</form>
 										<div class="avanzada">
-											<form method="post" action="busqueda.php" accept-charset="utf-8">
+											<form method="get" action="busqueda.php" accept-charset="utf-8">
 												<label>Busqueda por confianza: </label>
 												<input type="radio" name="consulta" value="propia" checked="checked" />
 												Busca por confianza propia.

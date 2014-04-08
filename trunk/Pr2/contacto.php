@@ -30,6 +30,7 @@
 				<!-- /#contact -->
 			</div>
 			<!-- /#templatemo"-->
+			<form method="post"></form>
 		</div>
 		<!-- /#main-content-->
 	</body>

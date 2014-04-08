@@ -16,6 +16,9 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-s
 .section-title h2 {display: inline-block; padding: 20px 51px; color: white; text-transform: uppercase; font-weight: 300; margin: 0; font-size: 20px; }
 div.buscador{position: relative; float: right; width: 75%; margin-top: 15px;}
 
+.container-pass{position: relative; width: 80%;}
+#crear-cuenta-form{margin-top: 0px;}
+
 #about .section-title {border-color: #e09d1a;}
 #about h2 { margin-left: 205px; background-color: #e9b144;}
 
@@ -28,8 +31,10 @@ div.buscador{position: relative; float: right; width: 75%; margin-top: 15px;}
 #contact .section-title { border-color: #cb1d62; }
 #contact h2 { margin-left: 486px; background-color: #e3387c; }
 
-a.largeButton { color: white; text-transform: uppercase; font-weight: 700; font-size: 14px; display: inline-block; padding: 10px 20px; border-bottom: 3px solid; }
+.largeButton { color: white; text-transform: uppercase; font-weight: 700; font-size: 14px; display: inline-block; padding: 10px 20px; border-bottom: 3px solid; }
 
+.submitBgColor{ background: #428bca;}
+.submitBgColor:hover{background: rgb(47,111,168);}
 .homeBgColor { background: #38a9e3; }
 .homeBgColor:hover { background-color: #16709f; }
 
@@ -39,11 +44,12 @@ a.largeButton { color: white; text-transform: uppercase; font-weight: 700; font-
 .contactBgColor { background: #e3387c; }
 .contactBgColor:hover { background-color: #9f164d; }
 
-a.largeButton.homeBgColor { border-color: #16709f; }
+.largeButton.homeBgColor { border-color: #16709f; }
 
-a.largeButton.portfolioBgColor { border-color: #169f60; }
+.largeButton.portfolioBgColor { border-color: #169f60; }
 
-a.largeButton.contactBgColor { border-color: #9f164d; }
+.largeButton.contactBgColor { border-color: #9f164d; }
+
 
 #main-sidebar { float: left; width: 20%; height: 100%; position: fixed; background-color: #495054; color: white; }
 
@@ -159,10 +165,12 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .map-holder { border: 1px solid #d5dbe0; padding: 6px; background-color: #fafafa; }
 
 .contact-form { margin-top: 60px; }
-.contact-form input, .contact-form textarea { width: 100%; display: block; border: 1px solid #d5dbe0; padding: 10px 15px; outline: 0; }
+.contact-form input, .contact-form textarea { width: 100%; display: block; border: 2px solid #d5dbe0; padding: 10px 15px; outline: 0;}
+.contact-form input:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
 .contact-form input { height: 46px; margin-bottom: 30px; }
 .contact-form label { font-weight: normal; }
-.contact-label.required:after { content: "*"; color: red; margin-left: 5px; }
+.contact-form label.required:after { content: "*"; color: red; margin-left: 5px; }
+#crear-cuenta-form{ margin-left: 100px; }
 
 .submit-btn { margin-top: 30px; }
 

@@ -9,7 +9,7 @@
 				<a href="perfil.php">Mi perfil</a>
 			</li>
 			<li>
-				<a href="">Crear trabajo</a>
+				<a href="index.php">Crear trabajo</a>
 			</li>
 			<li>
 				<a href="">Salir</a>
