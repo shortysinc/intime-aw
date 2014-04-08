@@ -1,4 +1,4 @@
-<div id="main-sidebar" class="hidden-xs hidden-sm">
+<div id="main-sidebar" >
 	<div class="logo">
 		<a href="index.php"><img src="images/logo.png" /></a>
 	</div>

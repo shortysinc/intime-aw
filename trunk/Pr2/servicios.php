@@ -41,15 +41,13 @@
 							</div>
 						</div>
 					</div>
+					<div class="cuerpo"></div>
 				</div>
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
-			<p>Categorias:</p>
-			
-			<!--NUEVO -->
-			
-			
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content-->
 		

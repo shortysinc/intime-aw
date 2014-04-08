@@ -36,10 +36,13 @@
 						</div>
 						<h1>Bienvenido usuario</h2>
 					</div>
+					<div class="cuerpo"></div>
 				</div>
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content-->
 	</body>

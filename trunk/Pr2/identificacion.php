@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 	<body>
-		<?php include "sidebarusuario.php"
+		<?php include "sidebar.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
@@ -26,10 +26,13 @@
 							</div>
 						</div>
 					</div>
+					<div class="cuerpo"></div>
 				</div>
 				<!-- /#portfolio -->
 			</div>
 			<!-- /#templatemo"-->
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content-->
 	</body>

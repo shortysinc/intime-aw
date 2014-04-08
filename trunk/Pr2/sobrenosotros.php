@@ -17,103 +17,68 @@
 		<?php include "sidebar.php"
 		?>
 		<div id="main-content">
-
 			<div id="templatemo">
-				<div id="about" class="section-content">
+				<div id="about" class="sobrenosotros">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="section-title">
 								<h2>Sobre nosotros</h2>
-
 							</div>
 						</div>
-						<div class="sobrenos">
-					<div class="contacto">
-				<img src="images/team1.jpg" >
-				<div class="nombrecorreo">
-						<h1>Emilio Chico Muñoz</h1>
-						<p>emichico@estumail.ucm.es</p>
 					</div>
-				</div>
-				<div class="contacto">
-				<img src="images/team1.jpg" >
-				<div class="nombrecorreo">
-						<h1>Jorge Cordova Rivas</h1>
-						<p>jrcordova@estumail.ucm.es</p>
-					</div>
-				</div>
-				<div class="contacto">
-				<img src="images/team1.jpg" >
-				<div class="nombrecorreo">
-						<h1>Héctor Gálvez Bernal</h1>
-						<p>hegalvez@estumail.ucm.es</p>
-					</div>
-					</div>
-				<div class="contacto">
-				<img src="images/team1.jpg" >
-				<div class="nombrecorreo">
-						<h1>Antonio Nuñez Guerrero</h1>
-						<p>anguerrero@estumail.ucm.es</p>
-					</div>
-			</div>
-				<div class="contacto">
-				<img src="images/team1.jpg" >
-				<div class="nombrecorreo">
-						<h1>Eduardo Pelayo de Sancho</h1>
-						<p>epelayo@estumail.ucm.es</p>
-					</div>
-				</div>
-				</div>
-					</div>
-					
-				<!-- /#about -->
-				
-			</div>
-			<!-- /#templatemo"-->
-			<div class="site-footer">
-				<div class="first-footer">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="social-footer">
-									<ul>
-										<li>
-											<a href="#" class="fa fa-facebook"> </a>
-										</li>
-										<li>
-											<a href="#" class="fa fa-twitter"> </a>
-										</li>
-										<li>
-											<a href="#" class="fa fa-rss"> </a>
-										</li>
-									</ul>
-								</div>
-								<!-- /.social-footer -->
-							</div>
-							<!-- /.col-md-12 -->
-						</div>
-						<!-- /.row -->
-					</div>
-					<!-- /.container-fluid -->
-				</div>
-				<!-- /.first-footer -->
-				<div class="bottom-footer">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-6">
-								<p class="copyright">
-									Copyright � 2014 <a href="#">inTime</a>
+					<div class="cuerpo">
+						<div class="contacto">
+							<img src="images/team1.jpg" >
+							<div class="nombrecorreo">
+								<h1>Emilio Chico Muñoz</h1>
+								<p>
+									emichico@estumail.ucm.es
 								</p>
 							</div>
-							<!-- /.col-md-6 -->
 						</div>
-						<!-- /.row -->
+						<div class="contacto">
+							<img src="images/team1.jpg" >
+							<div class="nombrecorreo">
+								<h1>Jorge Cordova Rivas</h1>
+								<p>
+									jrcordova@estumail.ucm.es
+								</p>
+							</div>
+						</div>
+						<div class="contacto">
+							<img src="images/team1.jpg" >
+							<div class="nombrecorreo">
+								<h1>Héctor Gálvez Bernal</h1>
+								<p>
+									hegalvez@estumail.ucm.es
+								</p>
+							</div>
+						</div>
+						<div class="contacto">
+							<img src="images/team1.jpg" >
+							<div class="nombrecorreo">
+								<h1>Antonio Nuñez Guerrero</h1>
+								<p>
+									anguerrero@estumail.ucm.es
+								</p>
+							</div>
+						</div>
+						<div class="contacto">
+							<img src="images/team1.jpg" >
+							<div class="nombrecorreo">
+								<h1>Eduardo Pelayo de Sancho</h1>
+								<p>
+									epelayo@estumail.ucm.es
+								</p>
+							</div>
+						</div>
 					</div>
-					<!-- /.container-fluid -->
+					<!-- /#about -->
 				</div>
-				<!-- /.bottom-footer -->
 			</div>
-			<!-- /.site-footer -->
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content -->
 	</body>
+

@@ -36,81 +36,41 @@
 						</div>
 					</div>
 				</div>
-				
+
 				<div class="perfil">
 					<h1>Nombre del Usuario</h1>
 					<img src="images/team1.jpg" >
 					<div class="infouser">
-						<p>fake1@mail.com</p>
-						<p>Nota media de sus servicios: 7,1</p>
+						<p>
+							fake1@mail.com
+						</p>
+						<p>
+							Nota media de sus servicios: 7,1
+						</p>
 					</div>
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
-							<div class="servicio-ej">
-								<a href="trabajo.php"><h4>Nombre del servicio</h4></a>
-								<div class="serv-nota">
-									<p>
-										Nota: 5,4
-									</p>
-								</div>
-								<div class="serv-desc">
-									<p>
-										Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
-									</p>
-								</div>
+						<div class="servicio-ej">
+							<a href="trabajo.php"><h4>Nombre del servicio</h4></a>
+							<div class="serv-nota">
+								<p>
+									Nota: 5,4
+								</p>
 							</div>
+							<div class="serv-desc">
+								<p>
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
+								</p>
+							</div>
+						</div>
 					</div>
 				</div>
-				
+
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
-						<div class="site-footer">
-				<div class="first-footer">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-12">
-								<div class="social-footer">
-									<ul>
-										<li>
-											<a href="#" class="fa fa-facebook"> </a>
-										</li>
-										<li>
-											<a href="#" class="fa fa-twitter"> </a>
-										</li>
-										<li>
-											<a href="#" class="fa fa-rss"> </a>
-										</li>
-									</ul>
-								</div>
-								<!-- /.social-footer -->
-							</div>
-							<!-- /.col-md-12 -->
-						</div>
-						<!-- /.row -->
-					</div>
-					<!-- /.container-fluid -->
-				</div>
-				<!-- /.first-footer -->
-				<div class="bottom-footer">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-6">
-								<p class="copyright">
-									Copyright � 2014 <a href="#">inTime</a>
-								</p>
-							</div>
-							<!-- /.col-md-6 -->
-						</div>
-						<!-- /.row -->
-					</div>
-					<!-- /.container-fluid -->
-				</div>
-				<!-- /.bottom-footer -->
-			</div>
-			<!-- /.site-footer -->
-			
-			
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content-->
 	</body>

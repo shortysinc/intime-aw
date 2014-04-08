@@ -26,39 +26,44 @@
 							</div>
 						</div>
 						<div class="formulario">
-				<form action="send.php" method="post"" name="contacto" id ="contacto" > 
-					Nombre completo <input name="nombre" type="text" id="nombre completo"size="30" maxlength="100"> 
-						<br> 
-						<br> 
-					Correo electrónico <input name="email" type="text" onBlur="MM_validateForm('email','','NisEmail');return document.MM_returnValue" size="25" maxlength="100" > 
-						<br> 
-						<br> 
-					¿Qué opina de nuestra página?
-						<br> 
-						<input type="radio" name="GrupoOpciones2" value="mucho" >Es excelente.
-						<br> 
-						<input type="radio" name="GrupoOpciones2" value="regular" >No está mal.
-						<br> 
-						<input type="radio" name="GrupoOpciones2" value="mal" >Es horrible
-						<br> 
-						<br> 
-					Danos tu opinión  
-					    <br>
-						<textarea cols="50" rows="5" name="opinion"></textarea> 
-						<br> 
-						<br> 
-						<input type="submit" value="Enviar formulario"> 
-						<input type="Reset" value="Borrar datos"> 
-				</form> 
-				
-			</div>
+							<form action="send.php" method="post" name="contacto" id ="contacto" >
+								Nombre completo
+								<input name="nombre" type="text" id="nombre completo"size="30" maxlength="100">
+								<br>
+								<br>
+								Correo electrónico
+								<input name="email" type="text" onBlur="MM_validateForm('email','','NisEmail');return document.MM_returnValue" size="25" maxlength="100" >
+								<br>
+								<br>
+								¿Qué opina de nuestra página?
+								<br>
+								<input type="radio" name="GrupoOpciones2" value="mucho" >
+								Es excelente.
+								<br>
+								<input type="radio" name="GrupoOpciones2" value="regular" >
+								No está mal.
+								<br>
+								<input type="radio" name="GrupoOpciones2" value="mal" >
+								Es horrible
+								<br>
+								<br>
+								Danos tu opinión
+								<br>
+								<textarea cols="50" rows="5" name="opinion"></textarea>
+								<br>
+								<br>
+								<input type="submit" value="Enviar formulario">
+								<input type="Reset" value="Borrar datos">
+							</form>
+
+						</div>
 					</div>
 				</div>
 				<!-- /#contact -->
-				
 			</div>
 			<!-- /#templatemo"-->
-		
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content-->
 	</body>
