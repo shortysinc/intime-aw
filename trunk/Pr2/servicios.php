@@ -48,60 +48,7 @@
 			<p>Categorias:</p>
 			
 			<!--NUEVO -->
-			<div class="container">
-
-				<ul id="nav">
-					<li>
-						<a href="#">-Categoria 1</a>
-					</li>
-					<li>
-						<a href="#" class="sub" tabindex="1">-Categoria 2</a>
-						<ul>
-							<li>
-								<a href="#">->Servicio 1</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 2</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 3</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 4</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 5</a>
-							</li>
-						
-						</ul>
-						
-					</li>
-					<li>
-						<a href="#">-Categoria 3</a>
-						<ul>
-							<li>
-								<a href="#">->Servicio 1</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 2</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 3</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 4</a>
-							</li>
-							<li>
-								<a href="#">->Servicio 5</a>
-							</li>
-						
-						</ul>
-					</li>
-					
-					
-				</ul>
-
-			</div>
+			
 			
 		</div>
 		<!-- /#main-content-->
