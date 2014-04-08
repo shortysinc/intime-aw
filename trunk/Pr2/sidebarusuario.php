@@ -22,7 +22,7 @@
 		<img src="images/team1.jpg" >
 		<p>Nombre de Usuario</p>
 			<li class="profile">
-				<a href="trabajo.php">Mi Perfil</a>
+				<a href="perfil.php">Mi Perfil</a>
 			</li>
 			<li class="new-job">
 				<a href="trabajo.php">Crear Trabajo</a>
