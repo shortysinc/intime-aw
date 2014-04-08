@@ -208,13 +208,15 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .encabezado h2{padding-left:40%;}
 .encabezado img{height:400px;width: 100%;}
 
-.autor img{padding-left:50px;height: 200px;width: 250px;}
+.autor  {padding-left: 45px;} 
+.autor img{border: 1px solid black; border-radius: 400px;padding-left:50px;height: 200px;width: 250px;}
+
 .descripcion h2{padding-left:40%;}
 .descripcion p{padding-left:10px;}
 .valoraciones{margin-top:-90px;padding-left:60%;font-size:40px;}
 
 .comentarios h2{padding-left:5px;}
-.comentarios img{height:100px;width:100px;}
+.comentarios img{border: 1px solid black; border-radius: 80px;height:90px;width:90px;}
 .comentario-ej{margin-bottom:30px;}
 .coment-foto{float:left;padding-left:10px;height:80px;}
 .coment{padding-left:15px;width:80%;margin:auto;}
