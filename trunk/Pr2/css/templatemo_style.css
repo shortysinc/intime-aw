@@ -241,3 +241,13 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .contacto {float: left; width: 50%; height: 175px;}
 .contacto img {float: left;border: 1px solid black; border-radius: 80px; height: 150px; width: 150px;}
 .nombrecorreo {float: initial; padding-left: 155px;}
+
+.perfil img{width:350px;padding-left:50px;}
+.perfil h1,h3{padding-left:25px;}
+.perfil h4{padding-left:50px;}
+.infouser {float:right;padding-right:25%;font-size:30px;}
+.perfil{margin-bottom:50px;min-height:600px;}
+.serv-nota{float:right;}
+.serv-desc{padding-left:50px;}
+.servicio-ej{margin-bottom:50px;}
+
