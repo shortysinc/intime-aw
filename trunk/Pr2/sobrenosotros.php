@@ -28,7 +28,7 @@
 					</div>
 					<div class="cuerpo">
 						<div class="contacto">
-							<img src="images/team1.jpg" >
+							<img src="images/us/emilio.jpg" >
 							<div class="nombrecorreo">
 								<h1>Emilio Chico Muñoz</h1>
 								<p>
@@ -37,7 +37,7 @@
 							</div>
 						</div>
 						<div class="contacto">
-							<img src="images/team1.jpg" >
+							<img src="images/us/jorge.jpg" >
 							<div class="nombrecorreo">
 								<h1>Jorge Rivas Cordova</h1>
 								<p>
@@ -46,7 +46,7 @@
 							</div>
 						</div>
 						<div class="contacto">
-							<img src="images/team1.jpg" >
+							<img src="images/us/hector.jpg" >
 							<div class="nombrecorreo">
 								<h1>Héctor Gálvez Bernal</h1>
 								<p>
@@ -55,7 +55,7 @@
 							</div>
 						</div>
 						<div class="contacto">
-							<img src="images/team1.jpg" >
+							<img src="images/us/antonio.jpg" >
 							<div class="nombrecorreo">
 								<h1>Antonio Nuñez Guerrero</h1>
 								<p>
@@ -64,7 +64,7 @@
 							</div>
 						</div>
 						<div class="contacto">
-							<img src="images/team1.jpg" >
+							<img src="images/us/eduardo.jpg" >
 							<div class="nombrecorreo">
 								<h1>Eduardo Pelayo de Sancho</h1>
 								<p>
