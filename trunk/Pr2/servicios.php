@@ -38,16 +38,65 @@
 										<a href="">Búsqueda avanzada</a>
 									</form>
 								</div>
+								
 							</div>
+							
+							
+							<!--NUEVO!! -->
+							<p>Categorías:</p>
+							<table>
+								<tr>
+									<td><b> Categorias </b></td><td><b>Servicios</b></td>
+								</tr>
+
+								<tr>
+									<td>Categoria 1</td> 
+									<td> 
+										<ul>
+											<li>Servicio 1</li>
+											<li>Servicio 2</li>
+											<li>Servicio 3</li>
+										</ul>
+									
+									</td> 
+														 
+								</tr>
+
+								<tr>
+									<td>Categoria 2</td>
+									<td>
+										<ul>
+											<li>Servicio 1</li>
+											<li>Servicio 2</li>
+											<li>Servicio 3</li>
+										</ul>
+									</td>
+								</tr>
+
+								<tr>
+									<td>Categoria 3</td><td>Servicio 1</td>
+								</tr>
+
+								<tr>
+									<td>Categoria 4</td><td>Servicio 1</td>
+								</tr>
+
+								</table>
+
+								
+							
+
 						</div>
 					</div>
 					<div class="cuerpo"></div>
+					
 				</div>
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
 			<?php include 'footer.php'
 			?>
+			
 		</div>
 		<!-- /#main-content-->
 		
