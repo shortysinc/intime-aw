@@ -115,11 +115,11 @@
 											<tr>
 												<th>Categoria 3</th>
 												<td>
-													<!--<ul>
+													<ul>
+														<!--<li><a href="#">Servicio1</a></li>
+														<li><a href="#">Servicio2</a></li>-->
 														<li><a href="#">Servicio1</a></li>
-														<li><a href="#">Servicio2</a></li>
-														<li><a href="#">Servicio3</a></li>
-													</ul>-->
+													</ul>
 												</td>
 											</tr>
 										</tbody>
