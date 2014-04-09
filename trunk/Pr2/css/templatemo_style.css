@@ -259,5 +259,5 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .panel-servicios {position: relative; margin-bottom:50px;min-height:700px;}
 .descripcion-servicios { float: right;margin-bottom:50px;min-height:700px; padding-right: 5%; min-width: 600px; max-width: 600px; padding-left: 5%; text-align: left;}
 
-.descripcion-servicios img {float: left;border: 0px solid black; border-radius: 80px; height: 150px; width: 150px;}
+.descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px;}
 
