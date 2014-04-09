@@ -115,7 +115,7 @@
 										</tbody>
 									</table>
 									
-									<p> Descripcion del servicio 1 </p>
+									
 								</div>
 							</div>
 						</div>
