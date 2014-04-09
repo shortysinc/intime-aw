@@ -8,14 +8,13 @@
 		<meta name="viewport" content="initial-scale=1">
 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-		
+
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 		<link rel="stylesheet" href="css/menu.css">
-		
-		
+
 	</head>
 	<body>
 		<?php include "sidebar.php"
@@ -38,66 +37,107 @@
 										<a href="">Búsqueda avanzada</a>
 									</form>
 								</div>
-								
+
 							</div>
-							
-							
+
 							<!--NUEVO!! -->
-							<p>Categorías:</p>
+							<!--<p>Categorías:</p>
 							<table>
-								<tr>
-									<td><b> Categorias </b></td><td><b>Servicios</b></td>
-								</tr>
+							<tr>
+							<td><b> Categorias </b></td><td><b>Servicios</b></td>
+							</tr>
 
-								<tr>
-									<td>Categoria 1</td> 
-									<td> 
-										<ul>
-											<li>Servicio 1</li>
-											<li>Servicio 2</li>
-											<li>Servicio 3</li>
-										</ul>
+							<tr>
+							<td>Categoria 1</td>
+							<td>
+							<ul>
+							<li>Servicio 1</li>
+							<li>Servicio 2</li>
+							<li>Servicio 3</li>
+							</ul>
+
+							</td>
+
+							</tr>
+
+							<tr>
+							<td>Categoria 2</td>
+							<td>
+							<ul>
+							<li>Servicio 1</li>
+							<li>Servicio 2</li>
+							<li>Servicio 3</li>
+							</ul>
+							</td>
+							</tr>
+
+							<tr>
+							<td>Categoria 3</td><td>Servicio 1</td>
+							</tr>
+
+							<tr>
+							<td>Categoria 4</td><td>Servicio 1</td>
+							</tr>
+
+							</table>-->
+
+							<div class="panel-servicios">
+								<div class="lista-servicios">
+									<table>
+										<caption>
+											<strong>Servicios que ofrecemos!!</strong> 
+										</caption>
+										<thead>
+											<th>Categorias</th>
+											<th>Servicios</th>
+										</thead>
+										<tbody>
+											<tr>
+												<th>Categoria 1</th>
+												<td>
+													<ul>
+														<li><a href="#">Servicio1</a></li>
+														<li><a href="#">Servicio2</a></li>
+														<li><a href="#">Servicio3</a></li>
+													</ul>
+												</td>
+											</tr>
+											<tr>
+												<th>Categoria 2</th>
+												<td>
+													<ul>
+														<li><a href="#">Servicio1</a></li>
+														<li><a href="#">Servicio2</a></li>
+														<li><a href="#">Servicio3</a></li>
+													</ul>
+												</td>
+											</tr>
+											<tr>
+												<th>Categoria 3</th>
+												<td>
+													<!--<ul>
+														<li><a href="#">Servicio1</a></li>
+														<li><a href="#">Servicio2</a></li>
+														<li><a href="#">Servicio3</a></li>
+													</ul>-->
+												</td>
+											</tr>
+										</tbody>
+									</table>
 									
-									</td> 
-														 
-								</tr>
 
-								<tr>
-									<td>Categoria 2</td>
-									<td>
-										<ul>
-											<li>Servicio 1</li>
-											<li>Servicio 2</li>
-											<li>Servicio 3</li>
-										</ul>
-									</td>
-								</tr>
-
-								<tr>
-									<td>Categoria 3</td><td>Servicio 1</td>
-								</tr>
-
-								<tr>
-									<td>Categoria 4</td><td>Servicio 1</td>
-								</tr>
-
-								</table>
-
-								
-							
-
+								</div>
+							</div>
 						</div>
+						<div class="cuerpo"></div>
+
 					</div>
-					<div class="cuerpo"></div>
-					
+					<!-- /#services -->
 				</div>
-				<!-- /#services -->
+				<!-- /#templatemo"-->
+				<?php include 'footer.php'
+				?>
 			</div>
-			<!-- /#templatemo"-->
-			<?php include 'footer.php'
-			?>
-			
-		</div>
-		<!-- /#main-content-->
-		
+			<!-- /#main-content-->
+
 	</body>

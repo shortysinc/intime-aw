@@ -254,4 +254,5 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .serv-nota{float:right;}
 .serv-desc{padding-left:50px;}
 .servicio-ej{margin-bottom:50px;}
-
+.lista-servicios {padding-left:50px;}
+.panel-servicios {position: relative; margin-bottom:50px;min-height:700px; }
