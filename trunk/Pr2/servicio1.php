@@ -14,6 +14,7 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 		<link rel="stylesheet" href="css/menu.css">
+		<link rel="stylesheet" href="css/rating.css">
 
 	</head>
 	<body>
@@ -41,7 +42,20 @@
 							</div>
 
 							<!--NUEVO!! -->
-							
+							<div class="descripcion-servicios"> 
+								<p><strong>Descripción del Servicio 1:</strong> </p>
+								<div class="descripcion-servicios">
+									<img src="images/piano.jpg" alt="Aqui iria una imagen"/>
+									<p>
+										Este servicio nos ofrece clases de piano. Para todas las edades
+										y las horas que sean necesarias.
+									</p>	
+									<div class="rating">
+										<p>Valoracion:</p><span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+									</div>
+								</div>
+								
+							</div> <!--descripcion-servicios -->
 							<div class="panel-servicios">
 								<div class="lista-servicios">
 									<table>
