@@ -35,6 +35,9 @@
 				<div class="servicio">
 					<div class="autor">
 						<img src="images/team1.jpg" >
+						<div class="nombretrabajo">
+							<a href="perfil.php"><h3>Nombre del usuario</h3></a>
+						</div>
 						<div class="valoraciones">
 							<p>
 								42 valoraciones.
@@ -49,6 +52,15 @@
 						<p>
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla sed augue pretium dignissim. Praesent consectetur ante sit amet elementum fringilla. Curabitur vitae neque justo. Ut luctus, tortor sed ultrices porta, arcu neque vestibulum sapien, sit amet venenatis quam eros eu neque. Nulla quis ligula ultricies, dapibus libero ac, laoreet est. Sed condimentum id mauris id congue. Nulla dictum massa sit amet porttitor rhoncus. Curabitur eu ultricies lorem. Donec diam leo, accumsan id tincidunt ut, lacinia id dolor. Nunc eget imperdiet dui, a elementum eros. Cras arcu eros, viverra nec fermentum et, dignissim et metus. Pellentesque at laoreet nibh. Quisque vitae felis massa. Nam lacus arcu, consequat sed ultrices sed, elementum sed leo
 						</p>
+					</div>
+					<div class="solicitud">
+						<form action="mailto:fake1@mail.com "method="get" accept-charset="utf-8">
+							<label>Solicitar servicio</label>
+							<p><textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea></p>
+							<button type="submit" name="submit" value="Enviar">
+								Enviar
+							</button>	
+						</form>
 					</div>
 				</div>
 				<div class="comentarios">
@@ -70,28 +82,21 @@
 							</p>
 						</div>
 					</div>
-					<div class ="comentario-ej">
-						<a href="perfilusuario.php"><h4>Perfil del usuario</h4></a>
-						<div class="coment-foto">
-							<img src="images/team2.jpg">
-						</div>
-						<div class="coment-nota">
-							<p>
-								Nota: 3,1
-							</p>
-						</div>
-						<div class="coment">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
-							</p>
-						</div>
+					<div class="comment-form">
+						<form action="" method="get" accept-charset="utf-8">
+							<label>Enviar comentario</label>
+							<p><textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea></p>
+							<button type="submit" name="submit" value="Enviar">
+								Enviar
+							</button>	
+						</form>
 					</div>
 				</div>
 				<!--comentarios ejemplo-->
-
 			</div> <!-- /#sTop -->
 			<?php include 'footer.php'
 			?>
 		</div>
 		<!-- /#main-content -->
 	</body>
+</html>

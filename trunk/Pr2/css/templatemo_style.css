@@ -211,10 +211,11 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .autor  {padding-left: 45px;} 
 .autor img{border: 1px solid black; border-radius: 400px;height: 200px;width: 200px;}
 
+.nombretrabajo{margin-left:-30px}
 .descripcion h2{padding-left:40%;}
 .descripcion p{padding-left:10px;}
 .valoraciones{margin-top:-90px;padding-left:60%;font-size:40px;}
-
+.solicitud{padding-left:35%;}
 .comentarios h2{padding-left:5px;}
 .comentarios img{border: 1px solid black; border-radius: 80px;height:90px;width:90px;}
 .comentario-ej{margin-bottom:30px;}
@@ -222,6 +223,7 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .coment{padding-left:15px;width:80%;margin:auto;}
 .coment-nota{float:right;font-size:20px;}
 .comment-ej h4{padding-left:10px;}
+.comment-form{padding-left:35%;}
 
 .lista{height:800px;}
 .lista h3,h4{padding-left:10px;}
