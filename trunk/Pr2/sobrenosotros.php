@@ -39,7 +39,7 @@
 						<div class="contacto">
 							<img src="images/team1.jpg" >
 							<div class="nombrecorreo">
-								<h1>Jorge Cordova Rivas</h1>
+								<h1>Jorge Rivas Cordova</h1>
 								<p>
 									jrcordova@estumail.ucm.es
 								</p>

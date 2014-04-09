@@ -1,6 +1,6 @@
-.main-menu, .responsive-menu ul, .social-member, .progess-bars, .first-footer .social-footer ul { padding: 0; margin: 0; list-style: none; }
+.main-menu, .responsive-menu ul, .social-member, .progess-bars, .first-footer .social-footer ul { padding: 0%; margin: 0%; list-style: none; }
 
-body { font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif; color: #777777; font-weight: 300; font-style: normal; -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */ -webkit-text-size-adjust: 100%; }
+body { font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif; color: #777777; font-weight: 300px; font-style: normal; -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */ -webkit-text-size-adjust: 100%; }
 
 a, a:hover, a:focus { text-decoration: none; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
 
@@ -52,13 +52,13 @@ div.buscador{position: relative; width: 80%; margin-top: 15px;}
 
 #button-entrar-admin {margin-left: 9px;}
 
-#main-sidebar {position: fixed; width: 15%; height: 100%; background-color: #495054; color: white; margin-right: 0px; }
+#main-sidebar {position: fixed; float: left;  width: 15%; height: 100%; background-color: #495054; color: white; margin-right: 0px; }
 
-.logo { margin: 100px 0; background-color: #38a9e3; padding: 25px 40px; }
+.logo { margin-top: 100px; background-color: #38a9e3; padding: 25px 40px; }
 .logo a { color: white; }
 .logo a h1 { text-transform: uppercase; font-size: 30px; margin: 0; font-weight: 800; }
 .logo span { color: #bee3f6; font-size: 13px; }
-.logo a img {width: 100%; height: 100%}
+.logo a img {width: 100%; height: 100%;}
 
 a#crear-cuenta {margin-left: 90px;}
 a#olvidada {margin-left: 130px}
@@ -179,11 +179,12 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 
 .contact-form { margin-top: 60px; }
 .contact-form input, .contact-form textarea { width: 100%; display: block; border: 2px solid #d5dbe0; padding: 10px 15px; outline: 0;}
+.contact-form textarea:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
 .contact-form input:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
 .contact-form input { height: 46px; margin-bottom: 30px; }
 .contact-form label { font-weight: normal; }
 .contact-form label.required:after { content: "*"; color: red; margin-left: 5px; }
-#crear-cuenta-form{ margin-left: 100px; }
+
 
 .submit-btn { margin-top: 30px; }
 
@@ -195,7 +196,7 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .bottom-footer a { color: white; }
 .bottom-footer .credits { text-align: right; }
 
- #main-content { float: left; width: 90%; height: 100%; margin-left: 15%;}
+ #main-content { float: left; width: 85%; height: 100%; margin-left: 15%;}
   .first-footer { border-left: 0; }
   .flexslider .slides, .flexslider, .main-slider { height: auto; }
   .service-item { margin-bottom: 30px; }

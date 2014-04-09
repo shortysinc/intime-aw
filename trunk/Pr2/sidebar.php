@@ -1,6 +1,6 @@
 <div id="main-sidebar" >
 
-	<div class="navigation">
+	<asside class="navigation">
 		<div class="logo">
 			<a href="index.php"><img src="images/logo.png" /></a>
 		</div>
@@ -20,5 +20,5 @@
 			</li>
 		</ul>
 	</div>
-</div>
+</asside>
 <!-- /.navigation -->
