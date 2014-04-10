@@ -44,6 +44,16 @@
 										</button>
 									</div>
 								</form>
+								<div class="main-buscador">
+									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
+										<label>Buscar</label>
+										<input type="text" size="50">
+										<button type="submit" name="submit">
+											Enviar
+										</button>
+										<a href="">Búsqueda avanzada</a>
+									</form>
+								</div>
 							</div>
 
 							<!--<form class="buscador-form" method="get" accept-charset="utf-8">
@@ -56,12 +66,6 @@
 							<div class="container-fluid" id="welcome">
 								<div class="row">
 									<div class="col-md-12">
-										<div class="welcome-text">
-											<h2>Bienvenido a inTime</h2>
-											<p>
-												Sonic is provided by templatemo website for everyone. Credit goes to <a href="http://flexslider.woothemes.com" rel="nofollow">FlexSlider</a>. Maecenas adipiscing pellentesque elit eu volutpat. Integer vitae <a href="#">pulvinar magna</a>. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent auctor mi metus, nec sagittis purus ultrices id.
-											</p>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -70,7 +74,13 @@
 						<!-- /.busqueda -->
 					</div>
 					<!-- /.flexslider -->
+				</div
+				<!-- /.WELCOME -->
+				<div class="welcome-text">
+					<h2>Bienvenido a inTime</h2>
+					<p>Tu Banco de Tiempo</p>
 				</div>
+				<!-- /.WELCOME -->
 				<!-- /.main-slider -->
 			</div>
 			<!-- /.templatemo -->
