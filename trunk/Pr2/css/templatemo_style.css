@@ -92,6 +92,12 @@ li.new-job a.active { color: #99FF99; }
 li.log-out a { border-color: #FFFF66; }
 li.log-out.active { color: #FFFF66; }
 
+li.user-list a { border-color: #00FF99; }
+li.user-list a.active { color: #00FF99; }
+
+li.service-list a { border-color: #A347FF; }
+li.service-list.active { color: #A347FF; }
+
 a.menu-toggle-btn { width: 100%; height: 60px; background-color: #38a9e3; text-align: center; line-height: 60px; display: block; color: white; }
 a.menu-toggle-btn i { line-height: 60px; }
 
