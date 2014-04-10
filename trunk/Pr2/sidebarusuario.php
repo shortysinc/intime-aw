@@ -5,6 +5,9 @@
 	<!-- /.logo -->
 	<div class="navigation-log-in">
 		<ul class="main-menu">
+			<div class="circle-text">
+				<div>8 Horas</div>
+			</div>
 		<img src="images/team1.jpg" >
 		<p>Nombre de Usuario</p>
 			<li class="profile">
