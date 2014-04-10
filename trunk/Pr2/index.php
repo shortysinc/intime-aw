@@ -38,10 +38,8 @@
 										<button type="submit" name="entrar">
 											Entrar
 										</button>
-										<button id="button-entrar-admin" >
-											<!--boton que da acceso al administrador. Esto con php se eliminaría-->
-											<a href="admin.php">Entrar admin</a>
-										</button>
+											<!--link que da acceso al administrador. Esto con php se eliminaría-->
+											<a href="perfiladmin.php">Entrar admin</a>
 									</div>
 								</form>
 								<div class="main-buscador">
