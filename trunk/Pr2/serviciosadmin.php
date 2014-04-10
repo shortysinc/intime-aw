@@ -40,7 +40,7 @@
 						<div class="lista-admin">
 							<table>
 								<caption>
-									Lista de servicios
+									<h1>Lista de servicios</h1>
 								</caption>
 								<thead>
 									<th>Id</th>
@@ -88,6 +88,8 @@
 					</div>
 				</div>
 			</div>
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content -->
 	</body>
