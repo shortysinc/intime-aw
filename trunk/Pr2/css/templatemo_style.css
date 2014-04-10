@@ -8,7 +8,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-s
 
 *, *:before, *:after { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-#main-content, .full-width-slider { width: 85%; }
+#main-content, .full-width-slider { width: 83%; }
 
 .section-content { padding: 0 7%; margin-bottom: 100px; height: 200%;}
 
@@ -26,7 +26,7 @@ div.buscador{position: relative; width: 78%; margin-top: 15px;}
 #services h2 { background-color: #974dea; margin-right: 0px}
 
 #portfolio .section-title { border-color: #1dcb7c; }
-#portfolio h2 { margin-left: 679px; background-color: #38e395; }
+#portfolio h2 { margin-left: 656px; background-color: #38e395; }
 
 #contact .section-title { border-color: #cb1d62; }
 #contact h2 { margin-left: 486px; background-color: #e3387c; }
@@ -123,7 +123,7 @@ a.menu-toggle-btn i { line-height: 60px; }
 
 div.box-login{position: absolute; z-index: 9; width: 100%;}
 div.u-login {float: left; width: 25%;}
-div.p-login {float: left; width: 25%;}
+div.p-login {float: left; width: 30%;}
 a#crear-cuenta {margin-left: 35%;}
 a#olvidada {margin-left: 35%;}
 div.container-fluid#welcome{position: absolute; z-index: 8;}
@@ -204,7 +204,7 @@ textarea .mensaje { position: relative;}
 .bottom-footer a { color: white; }
 .bottom-footer .credits { text-align: right; }
 
- #main-content { float: left; width: 85%; height: 100%; margin-left: 17%; overflow: hidden;}
+ #main-content { float: left; width: 83%; height: 100%; margin-left: 17%; overflow: hidden;}
   .first-footer { border-left: 0; }
   .flexslider .slides, .flexslider, .main-slider { height: auto; }
   .service-item { margin-bottom: 30px; }
