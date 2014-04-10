@@ -24,8 +24,7 @@
 							<div class="section-title">
 								<h2>Sobre nosotros</h2>
 							</div>
-						</div>
-						<div class="cuerpo">
+							<div class="cuerpo">
 						<div class="contacto">
 							<img src="images/us/emilio.jpg" >
 							<div class="nombrecorreo">
@@ -72,7 +71,9 @@
 							</div>
 						</div>
 					</div>
-				</div>
+						</div>
+					</div>
+					
 					<!-- /#about -->
 				</div>
 			</div>
