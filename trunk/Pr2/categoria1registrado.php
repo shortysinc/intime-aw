@@ -18,7 +18,7 @@
 
 	</head>
 	<body>
-		<?php include "sidebarusuario"
+		<?php include "sidebarusuario.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
