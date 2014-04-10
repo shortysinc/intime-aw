@@ -47,7 +47,9 @@
 												
 							<div class="panel-servicios">
 								<div class="lista-servicios">
-									<table>
+									
+									
+									<table id="tabla_categorias">
 										<caption>
 											<strong>Servicios que ofrecemos!!</strong> 
 										</caption>
@@ -85,7 +87,7 @@
 												</td>
 											</tr>
 										</tbody>
-									</table>
+									</table> 
 									
 
 								</div>

@@ -45,35 +45,14 @@
 							
 							
 							
-							<div class="descripcion-servicios"> 
-								<p><strong>Descripción del Servicio 1:</strong> </p>
-								<div class="descripcion-servicios">
-									<img src="images/piano.jpg" alt="Aqui iria una imagen"/>
-									<p>
-										Este servicio nos ofrece clases de piano. Para todas las edades
-										y las horas que sean necesarias.
-									</p>	
-									<fieldset class="rating">
-										<legend>
-											Valoración:
-										</legend>
-										<input type="radio" id="star5" name="rating" value="5" />
-										<label for="star5" title="Rocks!">5 stars</label>
-										<input type="radio" id="star4" name="rating" value="4" />
-										<label for="star4" title="Pretty good">4 stars</label>
-										<input type="radio" id="star3" name="rating" value="3" />
-										<label for="star3" title="Meh">3 stars</label>
-										<input type="radio" id="star2" name="rating" value="2" />
-										<label for="star2" title="Kinda bad">2 stars</label>
-										<input type="radio" id="star1" name="rating" value="1" />
-										<label for="star1" title="Sucks big time">1 star</label>
-									</fieldset>
-								</div>
-								
-							</div> <!--descripcion-servicios -->
 							<div class="panel-servicios">
-								<div class="lista-servicios">
-									<table>
+								
+								<table id="tabla_general">
+									<tr>
+										<td valign="top">
+											
+											<div class="lista-servicios">
+									<table id="tabla_categorias">
 										<caption>
 											<strong>Servicios que ofrecemos!!</strong> 
 										</caption>
@@ -123,6 +102,69 @@
 						
 					</div>
 					<!-- /#services -->
+					
+											
+										</td>
+										
+									
+										<td>
+											<div class="descripcion-servicios"> 
+								<p><strong>Descripción del Servicio 1:</strong> </p>
+								<div class="descripcion-servicios">
+									<table id="tabla_servicios">
+										<tr>
+											<td>
+												<img src="images/piano.jpg" alt="Aqui iria una imagen"/>
+											</td>
+											
+											<td id="columna_servicios">
+												<p>
+										Este servicio nos ofrece clases de piano. Para todas las edades y las horas que sean necesarias.
+									</p>	
+									<fieldset class="rating">
+										<legend>
+											Valoración:
+										</legend>
+										<input type="radio" id="star5" name="rating" value="5" />
+										<label for="star5" title="Rocks!">5 stars</label>
+										<input type="radio" id="star4" name="rating" value="4" />
+										<label for="star4" title="Pretty good">4 stars</label>
+										<input type="radio" id="star3" name="rating" value="3" />
+										<label for="star3" title="Meh">3 stars</label>
+										<input type="radio" id="star2" name="rating" value="2" />
+										<label for="star2" title="Kinda bad">2 stars</label>
+										<input type="radio" id="star1" name="rating" value="1" />
+										<label for="star1" title="Sucks big time">1 star</label>
+									</fieldset>
+												
+											</td>
+											
+										</tr>
+										
+										
+									</table>
+									
+									
+								</div>
+								
+							</div> <!--descripcion-servicios -->
+										</td>
+									</tr>
+									
+									
+								</table>
+								
+								
+								
+								
+								
+								
+								
+					
+						
+							
+							
+							
 				</div>
 				<!-- /#templatemo"-->
 				<?php include 'footer.php'

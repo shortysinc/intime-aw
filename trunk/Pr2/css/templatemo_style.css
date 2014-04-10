@@ -235,7 +235,10 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .busq-desc{padding-left:15px;width:80%;margin:auto;}
 .busq-nota{float:right;font-size:20px;}
 
-.lista-users table,th,td{border: 1px solid black;text-align:center;}
+.lista-users table,th,td{text-align:center;}
+#tabla_categorias, #tabla_categorias td, #tabla_categorias tr{
+	border: 1px solid black;
+}
 .lista-admin {padding-left:50px;}
 .panel-admin{position: relative; margin-bottom:50px;min-height:700px;}
 /*Nuevo*/
@@ -256,8 +259,24 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .serv-desc{padding-left:50px;}
 .servicio-ej{margin-bottom:50px;}
 .lista-servicios {padding-left:50px;}
-.panel-servicios {position: relative; margin-bottom:50px;min-height:700px;}
-.descripcion-servicios { float: right;margin-bottom:50px;min-height:700px; padding-right: 5%; min-width: 600px; max-width: 600px; padding-left: 5%; text-align: left;}
+.panel-servicios {position: relative; margin-bottom:50px;min-height:300px;}
+.descripcion-servicios { margin-bottom:50px;min-height:700px; padding-right: 5%; min-width: 600px; max-width: 600px; padding-left: 5%; text-align: left; }
 
 .descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px;}
 
+
+
+#tabla_general td{
+	padding: 10px;
+	
+}
+
+#tabla_servicios{
+	margin-left: -30px;
+	
+}
+
+#columna_servicios{
+	text-align: justify;
+	
+}
