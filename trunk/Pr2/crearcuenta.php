@@ -33,7 +33,7 @@
 						<div class="contact-form" id="form">
 							<form action="index.php" method="post" accept-charset="utf-8">
 								<div class="col-md-4">
-									<label for="nombre" class="required">Name:</label>
+									<label for="nombre" class="required">Nombre:</label>
 									<input name="nombre" type="text" id="nombre" maxlength="40" required/>
 								</div>
 								<div class="col-md-4">

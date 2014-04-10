@@ -24,22 +24,26 @@
 						<div class="bienvenida">
 							<div class="box-login">
 								<form method="post" action="perfilusuario.php" accept-charset="utf-8">
-									<label>Usuario</label>
-									<input type="text" />
-									<label>Contraseña</label>
-									<input type="password"/>
-									<button type="submit" name="entrar">
-										Entrar
-									</button>
+									<div class="u-login">
+										<label>Usuario</label>
+										<input type="text" />
+										<a id="crear-cuenta" href="crearcuenta.php">Crear cuenta</a>
+									</div>
+									<div class="p-login">
+										<label>Contraseña</label>
+										<input type="password"/>
+										<a id="olvidada" href="">¿Contraseña olvidada?</a>
+									</div>
+									<div>
+										<button type="submit" name="entrar">
+											Entrar
+										</button>
+										<button id="button-entrar-admin" >
+											<!--boton que da acceso al administrador. Esto con php se eliminaría-->
+											<a href="admin.php">Entrar admin</a>
+										</button>
+									</div>
 								</form>
-								<p>
-									<a id="crear-cuenta" href="crearcuenta.php">Crear cuenta</a>
-									<a id="olvidada" href="">¿Contraseña olvidada?</a>
-									<button id="button-entrar-admin" >
-										<!--boton que da acceso al administrador. Esto con php se eliminaría-->
-										<a href="admin.php">Entrar admin</a>
-									</button>
-								</p>
 							</div>
 
 							<!--<form class="buscador-form" method="get" accept-charset="utf-8">

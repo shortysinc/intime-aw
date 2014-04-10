@@ -1,5 +1,4 @@
 <div id="main-sidebar" >
-
 	<asside class="navigation">
 		<div class="logo">
 			<a href="index.php"><img src="images/logo.png" /></a>

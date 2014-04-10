@@ -55,29 +55,41 @@
 							<input type="submit" value="Enviar formulario">
 							<input type="Reset" value="Borrar datos">
 							</form>-->
+							<p>
+								¿Tienes sugerencia o has encontrado un fallo? ¿Quieres anunciarte en inTime?
+							</p>
 							<div class="contact-form" id="form">
 								<form action="index.php" method="post" accept-charset="utf-8">
-									<div class="col-md-4">
-										<label for="nombre" class="required">Name:</label>
-										<input name="nombre" type="text" id="nombre" maxlength="40" required/>
-									</div>
-									<div class="col-md-4">
-										<label for="apellidos">Apellidos:</label>
-										<input name="apellidos" type="text" id="apellidos" maxlength="40"/>
-									</div>
-									<!-- /.col-md-4 -->
-									<div class="col-md-8">
-										<label for="email" class="required">Correo electrónico:</label>
-										<input name="email" type="text" id="email" maxlength="40" required/>
-									</div>
-									<!- /.col-md-12 -->
-									<div class="col-md-12">
+									<div class="form-left">
+										<div class="col-md-8">
+											<label for="nombre" class="required">Nombre:</label>
+											<input name="nombre" type="text" id="nombre" maxlength="40" required/>
+										</div>
+										<!-- /.col-md-4 -->
+										<div class="col-md-8">
+											<label for="email" class="required">Correo electrónico:</label>
+											<input name="email" type="text" id="email" maxlength="40" required/>
+										</div>
+										<!-- /.col-md-4 -->
+										<div class="col-md-8">
+											<label for="ausnto" class="required">Asunto:</label>
+											<input name="asunto" type="text" id="asunto" maxlength="40" required/>
+										</div>
+										<div class="col-md-8">
 										<!--<a ="#" class="largeButton contactBgColor">Send Message</a>-->
 										<button class="largeButton submitBgColor" type="submit" value="Enviar">
 											Enviar
 										</button>
 									</div>
-									<!-- /.col-md-12 -->
+									<!-- /.col-md-8 -->
+									</div>
+									<div class="form-right">
+										<div class="col-md-12">
+											<label for="mensaje" class="required">Mensaje:</label>
+											<textarea class="mensaje" rows="10"></textarea>
+										</div>
+									</div>
+									<!-- /.col-md-8 -->
 								</form>
 							</div>
 							<!-- /.contatc-form -->

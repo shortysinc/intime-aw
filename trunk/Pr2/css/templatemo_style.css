@@ -50,9 +50,10 @@ div.buscador{position: relative; width: 80%; margin-top: 15px;}
 
 .largeButton.contactBgColor { border-color: #9f164d; }
 
-#button-entrar-admin {margin-left: 9px;}
+#button-entrar-admin {margin-left: 2.5%;}
 
-#main-sidebar {position: fixed; float: left;  width: 15%; height: 100%; background-color: #495054; color: white; margin-right: 0px; overflow:auto;}
+#main-sidebar {position: fixed; float: left;  width: 15%; height: 100%; background-color: #495054; color: white; margin-right: 0px; 
+				overflow: auto;}
 
 .logo { margin-top: 100px; background-color: #38a9e3; padding: 25px 40px; }
 .logo a { color: white; }
@@ -60,8 +61,7 @@ div.buscador{position: relative; width: 80%; margin-top: 15px;}
 .logo span { color: #bee3f6; font-size: 13px; }
 .logo a img {width: 100%; height: 100%;}
 
-a#crear-cuenta {margin-left: 90px;}
-a#olvidada {margin-left: 130px}
+
 
 .main-menu { text-align: center; }
 .main-menu li { margin-bottom: 1px; }
@@ -121,7 +121,11 @@ a.menu-toggle-btn i { line-height: 60px; }
 .flex-control-paging li a:hover { opacity: 1; background: white; }
 .flex-control-paging li a.flex-active { opacity: 1; background: white; }
 
-div.box-login{position: absolute; z-index: 9;}
+div.box-login{position: absolute; z-index: 9; width: 100%;}
+div.u-login {float: left; width: 25%;}
+div.p-login {float: left; width: 25%;}
+a#crear-cuenta {margin-left: 35%;}
+a#olvidada {margin-left: 35%;}
 div.container-fluid#welcome{position: absolute; z-index: 8;}
 /*div.slider-caption#welcome{position: abdolute;}*/
 
@@ -177,14 +181,18 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 
 .map-holder { border: 1px solid #d5dbe0; padding: 6px; background-color: #fafafa; }
 
-.contact-form { margin-top: 60px; }
+.contact-form { }
 .contact-form input, .contact-form textarea { width: 100%; display: block; border: 2px solid #d5dbe0; padding: 10px 15px; outline: 0;}
 .contact-form textarea:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
 .contact-form input:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
 .contact-form input { height: 46px; margin-bottom: 30px; }
 .contact-form label { font-weight: normal; }
 .contact-form label.required:after { content: "*"; color: red; margin-left: 5px; }
-
+textarea .mensaje { position: relative;}
+.contact-form .form-left { float: left; width: 50%; }
+.contact-form .form-left .col-md-4 { position: relative; width: 50%;}
+.contact-form .form-right { float: right; width: 50%; }
+.contact-form .form-left .col-md-8 { position: relative; width: 100%;}
 
 .submit-btn { margin-top: 30px; }
 
@@ -196,7 +204,7 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .bottom-footer a { color: white; }
 .bottom-footer .credits { text-align: right; }
 
- #main-content { float: left; width: 85%; height: 100%; margin-left: 15%;}
+ #main-content { float: left; width: 85%; height: 100%; margin-left: 15%; overflow: hidden;}
   .first-footer { border-left: 0; }
   .flexslider .slides, .flexslider, .main-slider { height: auto; }
   .service-item { margin-bottom: 30px; }
@@ -243,9 +251,9 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 .panel-admin{position: relative; margin-bottom:50px;min-height:700px;}
 /*Nuevo*/
 
-.cuerpo {padding-left: 10px; min-height: 350px; }
-.contacto {float: left; width: 50%; height: 180px;}
-.contacto img {float: left;border: 1px solid black; border-radius: 80px; height: 150px; width: 150px;}
+.cuerpo {padding-left: 5px; min-height: 350px;}
+.contacto {float: left; width: 50%; height: 175px;}
+.contacto img {float: left;border: 0px solid black; border-radius: 80px; height: 150px; width: 150px;}
 .nombrecorreo {float: initial; padding-left: 155px;}
 .sobrenosotros{height:700px;}
 
@@ -279,33 +287,4 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 #columna_servicios{
 	text-align: justify;
 	
-}
-
-.circle-text {
-	position: absolute;	
-	width: 40%;	
-	margin-left: 58%;
-	margin-top: 30%;
-}
-.circle-text:after {
-    content: "";
-    display: block;
-    width: 100%;
-    height:0;
-    padding-bottom: 100%;
-    background: #38a9e3; 
-    -moz-border-radius: 50%; 
-    -webkit-border-radius: 50%; 
-    border-radius: 50%;
-	border: 1px solid black;
-}
-.circle-text div {
-	position:absolute;
-    float:left;
-    width:100%;
-    padding-top:50%;
-    line-height:1em;
-    margin-top:-0.5em;
-    text-align:center;
-    color:white;
 }

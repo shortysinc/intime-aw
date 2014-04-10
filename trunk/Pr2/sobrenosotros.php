@@ -55,7 +55,7 @@
 						<div class="contacto">
 							<img src="images/us/antonio.jpg" >
 							<div class="nombrecorreo">
-								<h1>Antonio Nuñez Guerrero</h1>
+								<h1>Antonio Núñez Guerrero</h1>
 								<p>
 									anguerrero@estumail.ucm.es
 								</p>
