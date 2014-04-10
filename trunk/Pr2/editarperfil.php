@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="section-title">
-								<h1>Únete a inTime</h2>
+								<h1>Edita tu perfil</h2>
 							</div>
 							<!-- section-title -->
 						</div>

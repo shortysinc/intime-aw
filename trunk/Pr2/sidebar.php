@@ -14,9 +14,6 @@
 			<li class="contact">
 				<a href="contacto.php">contacto</a>
 			</li>
-			<li class="portfolio">
-				<a href="identificacion.php">identificacion</a>
-			</li>
 		</ul>
 	</div>
 </asside>

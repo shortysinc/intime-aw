@@ -22,7 +22,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<div class="section-title">
-								<h1>Crear servicio</h2>
+								<h1>Editar servicio</h2>
 							</div>
 							<!-- section-title -->
 						</div>
