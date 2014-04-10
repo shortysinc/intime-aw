@@ -18,13 +18,14 @@
 		?>
 		<div id="main-content">
 			<div id="templatemo">
-				<div id="about" class="sobrenosotros">
+				<div id="about" class="section-content">
 					<div class="row">
 						<div class="col-md-12">
 							<div class="section-title">
 								<h2>Sobre nosotros</h2>
 							</div>
-							<div class="cuerpo">
+						</div>
+						<div class="cuerpo">
 						<div class="contacto">
 							<img src="images/us/emilio.jpg" >
 							<div class="nombrecorreo">
@@ -71,7 +72,6 @@
 							</div>
 						</div>
 					</div>
-						</div>
 					</div>
 					
 					<!-- /#about -->
