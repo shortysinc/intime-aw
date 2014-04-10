@@ -6,7 +6,8 @@
 	<div class="navigation-log-in">
 		<ul class="main-menu">
 			<div class="circle-text">
-				<div>8 Horas</div>
+				<div class="contador">8</div>
+				<p>Horas</p>
 			</div>
 		<img src="images/team1.jpg" >
 		<p>Nombre de Usuario</p>
