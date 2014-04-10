@@ -34,7 +34,7 @@
 										<button type="submit" name="submit" value="Enviar">
 											Enviar
 										</button>
-										<a href="">Búsqueda avanzada</a>
+										<a href="busqueda.php">Búsqueda avanzada</a>
 									</form>
 								</div>
 

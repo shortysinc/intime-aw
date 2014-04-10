@@ -53,9 +53,6 @@
 										<td>18-3-2014</td>
 										<td>Personal trainer</td>
 										<td>9,8</td>
-										<td><button type="submit" name="submit" value="Editar Servicio">
-										Editar Servicio
-										</button></td>
 										<td><button type="submit" name="submit" value="Eliminar Servicio">
 										Eliminar Servicio
 										</button></td>	
@@ -65,9 +62,6 @@
 										<td>18-3-2014</td>
 										<td>Personal Assistant</td>
 										<td>7,7</td>
-										<td><button type="submit" name="submit" value="Editar Servicio">
-										Editar Servicio
-										</button></td>
 										<td><button type="submit" name="submit" value="Eliminar Servicio">
 										Eliminar Servicio
 										</button></td>	
@@ -77,9 +71,6 @@
 										<td>18-3-2014</td>
 										<td>Coach</td>
 										<td>5</td>
-										<td><button type="submit" name="submit" value="Editar Servicio">
-										Editar Servicio
-										</button></td>
 										<td><button type="submit" name="submit" value="Eliminar Servicio">
 										Eliminar Servicio
 										</button></td>	

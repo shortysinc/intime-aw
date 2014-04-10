@@ -19,13 +19,13 @@
 		<div id="main-content">
 			<div id="templatemo">
 				<div class="busqueda">
-					<form action="" method="get" accept-charset="utf-8">
+					<form action="busqueda.php" method="get" accept-charset="utf-8">
 						<label>Buscar</label>
 						<input type="text" size="50">
 						<button type="submit" name="submit" value="Enviar">
 							Enviar
 						</button>
-						<a href="">Busqueda avanzada</a>
+						<a href="busqueda.php">Busqueda avanzada</a>
 					</form>
 				</div>
 				<div class="encabezado">
