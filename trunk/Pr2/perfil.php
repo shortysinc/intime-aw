@@ -47,6 +47,7 @@
 						<p>
 							Nota media de sus servicios: 7,1
 						</p>
+						<a href="editarperfil.php"><h5>Editar perfil</h5></a>
 					</div>
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
