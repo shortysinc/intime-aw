@@ -26,35 +26,6 @@
 							</div>
 						</div>
 						<div class="cuerpo">
-							<!--<form action="send.php" method="post" name="contacto" id ="contacto" >
-							Nombre completo
-							<input name="nombre" type="text" id="nombre completo"size="30" maxlength="100">
-							<br>
-							<br>
-							Correo electrónico
-							<input name="email" type="text" onBlur="MM_validateForm('email','','NisEmail');return document.MM_returnValue" size="25" maxlength="100" >
-							<br>
-							<br>
-							¿Qué opina de nuestra página?
-							<br>
-							<input type="radio" name="GrupoOpciones2" value="mucho" >
-							Es excelente.
-							<br>
-							<input type="radio" name="GrupoOpciones2" value="regular" >
-							No está mal.
-							<br>
-							<input type="radio" name="GrupoOpciones2" value="mal" >
-							Es horrible
-							<br>
-							<br>
-							Danos tu opinión
-							<br>
-							<textarea cols="50" rows="5" name="opinion"></textarea>
-							<br>
-							<br>
-							<input type="submit" value="Enviar formulario">
-							<input type="Reset" value="Borrar datos">
-							</form>-->
 							<p>
 								¿Tienes sugerencia o has encontrado un fallo? ¿Quieres anunciarte en inTime?
 							</p>
@@ -62,8 +33,8 @@
 								<form action="index.php" method="post" accept-charset="utf-8">
 									<div class="form-left">
 										<div class="col-md-8">
-											<label for="nombre" class="required">Nombre:</label>
-											<input name="nombre" type="text" id="nombre" maxlength="40" required/>
+											<label for="nombre" >Nombre:</label>
+											<input name="nombre" type="text" id="nombre" maxlength="40"/>
 										</div>
 										<!-- /.col-md-4 -->
 										<div class="col-md-8">
@@ -72,8 +43,8 @@
 										</div>
 										<!-- /.col-md-4 -->
 										<div class="col-md-8">
-											<label for="ausnto" class="required">Asunto:</label>
-											<input name="asunto" type="text" id="asunto" maxlength="40" required/>
+											<label for="ausnto" >Asunto:</label>
+											<input name="asunto" type="text" id="asunto" maxlength="40"/>
 										</div>
 										<div class="col-md-8">
 										<!--<a ="#" class="largeButton contactBgColor">Send Message</a>-->

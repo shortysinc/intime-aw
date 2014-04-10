@@ -1,6 +1,6 @@
 <aside id="main-sidebar" >
 	<div class="logo">
-		<a href="index.php"><img src="images/logo.png" /></a>
+		<a href="perfilusuario.php"><img src="images/logo.png" /></a>
 	</div>
 	<!-- /.logo -->
 	<div class="navigation-log-in">
@@ -12,10 +12,10 @@
 		<img src="images/team1.jpg" >
 		<p>Nombre de Usuario</p>
 			<li class="requests">
-				<a href="solicitudes.php">Solicitudes</a>
+				<a href="categoria1registrado.php">Solicitudes</a>
 			</li>
 			<li class="services">
-				<a href="servicios.php">servicios</a>
+				<a href="categoria1.php">servicios</a>
 			</li>
 			<li class="profile">
 				<a href="perfil.php">Mi Perfil</a>

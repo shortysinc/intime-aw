@@ -6,7 +6,7 @@
 		<!-- /.logo -->
 		<ul class="main-menu">
 			<li class="services">
-				<a href="servicios.php">servicios</a>
+				<a href="categoria1.php">servicios</a>
 			</li>
 			<li class="about">
 				<a href="sobrenosotros.php">sobre nosotros</a>
@@ -15,6 +15,5 @@
 				<a href="contacto.php">contacto</a>
 			</li>
 		</ul>
-	</div>
-</asside>
+</div>
 <!-- /.navigation -->

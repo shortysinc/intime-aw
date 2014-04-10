@@ -44,9 +44,12 @@
 						<p>
 							fake1@mail.com
 						</p>
-						<p>
-							Nota media de sus servicios: 7,1
-						</p>
+						<ul
+						<li>
+							<p>
+								Nota media de sus servicios: 7,1
+							</p>
+						</li>
 						<a href="editarperfil.php"><h5>Editar perfil</h5></a>
 					</div>
 					<div class="lista-serv">

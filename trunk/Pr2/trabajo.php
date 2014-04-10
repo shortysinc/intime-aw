@@ -51,16 +51,24 @@
 					<div class="descripcion">
 						<h2>Descripción</h2>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla sed augue pretium dignissim. Praesent consectetur ante sit amet elementum fringilla. Curabitur vitae neque justo. Ut luctus, tortor sed ultrices porta, arcu neque vestibulum sapien, sit amet venenatis quam eros eu neque. Nulla quis ligula ultricies, dapibus libero ac, laoreet est. Sed condimentum id mauris id congue. Nulla dictum massa sit amet porttitor rhoncus. Curabitur eu ultricies lorem. Donec diam leo, accumsan id tincidunt ut, lacinia id dolor. Nunc eget imperdiet dui, a elementum eros. Cras arcu eros, viverra nec fermentum et, dignissim et metus. Pellentesque at laoreet nibh. Quisque vitae felis massa. Nam lacus arcu, consequat sed ultrices sed, elementum sed leo
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla sed augue pretium dignissim.
+							Praesent consectetur ante sit amet elementum fringilla. Curabitur vitae neque justo. Ut luctus, tortor sed
+							ultrices porta, arcu neque vestibulum sapien, sit amet venenatis quam eros eu neque. Nulla quis ligula ultricies,
+							dapibus libero ac, laoreet est. Sed condimentum id mauris id congue. Nulla dictum massa sit amet porttitor
+							rhoncus. Curabitur eu ultricies lorem. Donec diam leo, accumsan id tincidunt ut, lacinia id dolor. Nunc eget
+							imperdiet dui, a elementum eros. Cras arcu eros, viverra nec fermentum et, dignissim et metus. Pellentesque at
+							laoreet nibh. Quisque vitae felis massa. Nam lacus arcu, consequat sed ultrices sed, elementum sed leo
 						</p>
 					</div>
 					<div class="solicitud">
 						<form action=""method="get" accept-charset="utf-8">
 							<label>Solicitar servicio</label>
-							<p><textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea></p>
+							<p>
+								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>
+							</p>
 							<button type="submit" name="submit" value="Enviar">
 								Enviar
-							</button>	
+							</button>
 						</form>
 					</div>
 				</div>
@@ -86,7 +94,9 @@
 					<div class="comment-form">
 						<form action="" method="get" accept-charset="utf-8">
 							<label>Enviar comentario y/o valoracion</label>
-							<p><textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea></p>
+							<p>
+								<textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
+							</p>
 							<p>
 								<label>Valorar servicio:</label>
 								<select name="valoracion">
@@ -105,7 +115,7 @@
 							</p>
 							<button type="submit" name="submit" value="Enviar">
 								Enviar
-							</button>	
+							</button>
 						</form>
 					</div>
 				</div>

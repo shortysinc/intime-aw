@@ -135,7 +135,7 @@ div.box-login{position: absolute; z-index: 9; width: 100%;}
 div.u-login {float: left; width: 25%;}
 div.p-login {float: left; width: 30%;}
 a#crear-cuenta {margin-left: 35%;}
-a#olvidada {margin-left: 35%;}
+a#olvidada {margin-left: 30%;}
 div.container-fluid#welcome{position: absolute; z-index: 8;}
 /*div.slider-caption#welcome{position: abdolute;}*/
 
@@ -279,21 +279,30 @@ textarea .mensaje { position: relative;}
 .serv-nota{float:right;}
 .serv-desc{padding-left:50px;}
 .servicio-ej{margin-bottom:50px;}
-.lista-servicios {padding-left:50px;}
-.panel-servicios {position: relative; margin-bottom:50px;min-height:300px;}
-.descripcion-servicios { margin-bottom:50px;min-height:700px; padding-right: 5%; min-width: 600px; max-width: 600px; padding-left: 5%; text-align: left; }
 
+.panel-servicios {position: relative; margin-bottom:50px;min-height:300px; width: 100%; }
+
+
+.descripcion-servicios { margin-left: 5%; text-align: left; }
 .descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px;}
 
+td.columna-servicios{width: 15%;}
 
+
+div.lista-categorias p a {width: 120%; padding: 6%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%;}
+div.lista-categorias p span#azul-oscuro a { background-color: #285E8E;}
+
+div.lista-categorias p a:hover { text-decoration: underline;}
+
+.panel-servicios{padding-left: 10%;}
 
 #tabla_general td{
 	padding: 10px;
-	
 }
 
 #tabla_servicios{
 	margin-left: -30px;
+	margin-bottom: 5%;
 	
 }
 
