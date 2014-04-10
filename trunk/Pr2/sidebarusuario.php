@@ -11,6 +11,9 @@
 			</div>
 		<img src="images/team1.jpg" >
 		<p>Nombre de Usuario</p>
+			<li class="requests">
+				<a href="solicitudes.php">Solicitudes</a>
+			</li>
 			<li class="services">
 				<a href="servicios.php">servicios</a>
 			</li>
