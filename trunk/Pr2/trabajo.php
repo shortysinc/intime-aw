@@ -65,7 +65,7 @@
 				</div>
 				<div class="comentarios">
 					<!--comentarios ejemplo-->
-					<h2>Comentarios</h2>
+					<h2>Comentarios y valoraciones</h2>
 					<div class ="comentario-ej">
 						<a href="perfilusuario.php"><h4>Perfil del usuario</h4></a>
 						<div class="coment-foto">
@@ -84,8 +84,24 @@
 					</div>
 					<div class="comment-form">
 						<form action="" method="get" accept-charset="utf-8">
-							<label>Enviar comentario</label>
+							<label>Enviar comentario y/o valoracion</label>
 							<p><textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea></p>
+							<p>
+								<label>Valorar servicio:</label>
+								<select name="valoracion">
+									<option value="6">0</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5" selected>5</option>
+									<option value="6">6</option>
+									<option value="7">7</option>
+									<option value="8">8</option>
+									<option value="9">9</option>
+									<option value="10">10</option>
+								</select>
+							</p>
 							<button type="submit" name="submit" value="Enviar">
 								Enviar
 							</button>	

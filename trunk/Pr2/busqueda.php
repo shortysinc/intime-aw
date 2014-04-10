@@ -39,7 +39,7 @@
 												Busca por confianza propia.
 												<input type="radio" name="consulta" value="red" />
 												Busca por red de confianza
-												<select name="menu">
+												<select name="valbusq">
 													<option value="5" selected>5</option>
 													<option value="6">6</option>
 													<option value="7">7</option>
