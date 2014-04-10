@@ -1,4 +1,4 @@
-<asside id="main-sidebar" >
+<aside id="main-sidebar" >
 	<div class="logo">
 		<a href="index.php"><img src="images/logo.png" /></a>
 	</div>
@@ -25,4 +25,4 @@
 			</li>
 		</ul>
 	</div>
-</asside>
+</aside>
