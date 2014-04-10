@@ -54,7 +54,7 @@
 						</p>
 					</div>
 					<div class="solicitud">
-						<form action="mailto:fake1@mail.com "method="get" accept-charset="utf-8">
+						<form action=""method="get" accept-charset="utf-8">
 							<label>Solicitar servicio</label>
 							<p><textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea></p>
 							<button type="submit" name="submit" value="Enviar">
