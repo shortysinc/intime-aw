@@ -45,6 +45,7 @@
 							<p>
 								Nota media: 4,51
 							</p>
+							<a href="editarservicio.php"><h5>Editar</h5></a>
 						</div>
 					</div>
 					<div class="descripcion">
