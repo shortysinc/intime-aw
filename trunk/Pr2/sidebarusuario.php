@@ -12,7 +12,7 @@
 		<img src="images/team1.jpg" >
 		<p>Nombre de Usuario</p>
 			<li class="requests">
-				<a href="categoria1registrado.php">Solicitudes</a>
+				<a href="solicitudes.php">Solicitudes</a>
 			</li>
 			<li class="services">
 				<a href="categoria1.php">servicios</a>

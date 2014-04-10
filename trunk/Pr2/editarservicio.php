@@ -31,7 +31,7 @@
 					<!-- /#row -->
 					<div class="cuerpo">
 						<div class="contact-form" id="crear-cuenta-form">
-							<form action="index.php" method="post" accept-charset="utf-8">
+							<form action="trabajo.php" method="post" accept-charset="utf-8">
 								<div class="col-md-4">
 									<label for="nombreserv" class="required">Nuevo nombre del servicio:</label>
 									<input name="nombreserv" type="text" id="nombreserv" maxlength="40" />
