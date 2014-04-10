@@ -36,7 +36,10 @@
 						</div>
 						<h1>Bienvenido usuario</h2>
 					</div>
-					<div class="cuerpo"></div>
+					<div class="cuerpo">
+						<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>
+						<h3>2 usuarios han respondido a tu peticion de servicio</h3>
+					</div>
 				</div>
 				<!-- /#services -->
 			</div>
