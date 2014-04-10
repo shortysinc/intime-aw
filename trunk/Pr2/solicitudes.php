@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>inTime</title>
+		<title>inTime - Servicios</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
 		<meta name="description" content="Sonic is one-page responsive free template using Bootstrap. This layout is suitable for creative portfolio showcase." />
 		<meta charset="utf-8">
@@ -18,8 +18,25 @@
 		?>
 		<div id="main-content">
 			<div id="templatemo">
-				<h1>Solicitudes</h1>
-				<div class="sol-rec")>
+				<div class="section-content">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<div class="buscador">
+									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
+										<label>Buscar</label>
+										<input type="text" size="50">
+										<button type="submit" name="submit">
+											Enviar
+										</button>
+										<a href="">Búsqueda avanzada</a>
+									</form>
+								</div>
+							</div>
+						</div>
+						<h1>Solicitudes</h2>
+					</div>
+					<div class="cuerpo"><div class="sol-rec")>
 					<h2>Recibidas</h2>
 					<div class="solicitud">
 						<a href="trabajo.php"><h5>Nombre del servicio solicitado</h5></a>
@@ -43,11 +60,13 @@
 						<p>Informacion has dado en la solicitud</p>
 						<p>Estado de la peticion: Pendiente</p>
 					</div>
+				</div></div>
 				</div>
-			</div> <!-- /#sTop -->
+				<!-- /#services -->
+			</div>
+			<!-- /#templatemo"-->
 			<?php include 'footer.php'
 			?>
 		</div>
-		<!-- /#main-content -->
+		<!-- /#main-content-->
 	</body>
-</html>
