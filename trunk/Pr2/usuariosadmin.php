@@ -40,7 +40,7 @@
 						<div class="lista-admin">
 							<table>
 								<caption>
-									Lista de usuarios
+									<h1>Lista de usuarios</h1>
 								</caption>
 								<thead>
 									<th>Nick del usuario</th>
@@ -51,9 +51,6 @@
 										<th><a href="perfil.php">User1</a></th>
 										<td>17-3-2014</td>
 										<td>fake1@mail.com</td>
-										<td><button type="submit" name="submit" value="Editar Usuario">
-										Editar Usuario
-										</button></td>
 										<td><button type="submit" name="submit" value="Eliminar Usuario">
 										Eliminar Usuario
 										</button></td>	
@@ -62,9 +59,6 @@
 										<th><a href="perfil.php">User2</a></th>
 										<td>17-3-2014</td>
 										<td>fake2@mail.com</td>
-										<td><button type="submit" name="submit" value="Editar Usuario">
-										Editar Usuario
-										</button></td>
 										<td><button type="submit" name="submit" value="Eliminar Usuario">
 										Eliminar Usuario
 										</button></td>	
@@ -73,9 +67,6 @@
 										<th><a href="perfil.php">User3</a></th>
 										<td>17-3-2014</td>
 										<td>fake3@mail.com</td>
-										<td><button type="submit" name="submit" value="Editar Usuario">
-										Editar Usuario
-										</button></td>
 										<td><button type="submit" name="submit" value="Eliminar Usuario">
 										Eliminar Usuario
 										</button></td>	
@@ -84,6 +75,8 @@
 					</div>
 				</div>
 			</div>
+			<?php include 'footer.php'
+			?>
 		</div>
 		<!-- /#main-content -->
 	</body>

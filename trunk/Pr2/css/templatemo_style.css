@@ -255,6 +255,9 @@ textarea .mensaje { position: relative;}
 }
 .lista-admin {padding-left:50px;}
 .panel-admin{position: relative; margin-bottom:50px;min-height:700px;}
+.lista-admin table,td,th{border: 1px solid black;}
+.lista-admin table{width:100%;}
+.lista-admin th{height:50px;}
 /*Nuevo*/
 
 .cuerpo {padding-left: 5px; min-height: 350px;}
