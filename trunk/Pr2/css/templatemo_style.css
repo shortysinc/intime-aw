@@ -20,16 +20,16 @@ div.buscador{position: relative; width: 78%; margin-top: 15px;}
 #crear-cuenta-form{margin-top: 0px;}
 
 #about .section-title {border-color: #e09d1a;}
-#about h2 { margin-left: 205px; background-color: #e9b144;}
+#about h2 { margin-left: 25%; background-color: #e9b144;}
 
 #services .section-title { border-color: #7c1fe5; }
-#services h2 { background-color: #974dea; margin-right: 0px}
+#services h2 { background-color: #974dea; margin-right: 0%}
 
 #portfolio .section-title { border-color: #1dcb7c; }
-#portfolio h2 { margin-left: 668px; background-color: #38e395; }
+#portfolio h2 { margin-left: 73%; background-color: #38e395; }
 
 #contact .section-title { border-color: #cb1d62; }
-#contact h2 { margin-left: 486px; background-color: #e3387c; }
+#contact h2 { margin-left: 50%; background-color: #e3387c; }
 
 .largeButton { color: white; text-transform: uppercase; font-weight: 700; font-size: 14px; display: inline-block; padding: 10px 20px; border-bottom: 3px solid; }
 
