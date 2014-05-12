@@ -1,6 +1,6 @@
 <aside id="main-sidebar" >
 	<div class="logo">
-		<a href="index.php"><img src="images/logo.png" /></a>
+		<a href="index.php"><img src="../images/logo.png" /></a>
 	</div>
 	<!-- /.logo -->
 	<div class="navigation-log-in">
@@ -9,7 +9,7 @@
 				<div class="contador">-</div>
 				<p>Horas</p>
 			</div>
-		<img src="images/admin.jpg" >
+		<img src="../images/admin.jpg" >
 		<p>Nombre de Usuario</p>
 			<li class="user-list">
 				<a href="usuariosadmin.php">Lista Usuarios</a>

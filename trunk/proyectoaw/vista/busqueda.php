@@ -8,10 +8,10 @@
 		<meta name="viewport" content="initial-scale=1">
 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/templatemo_misc.css">
-		<link rel="stylesheet" href="css/templatemo_style.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<link rel="stylesheet" href="../css/templatemo_misc.css">
+		<link rel="stylesheet" href="../css/templatemo_style.css">
 	</head>
 	<body>
 
@@ -62,7 +62,7 @@
 						<a href="trabajo.php"><h3>Nombre del servicio</h3></a>
 						<a href="perfil.php"><h4>Perfil del usuario</h4></a>
 						<div class="busq-foto">
-							<img src="images/team1.jpg">
+							<img src="../images/team1.jpg">
 						</div>
 						<div class="busq-nota">
 							<p>

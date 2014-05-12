@@ -9,12 +9,12 @@
 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/templatemo_misc.css">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/templatemo_style.css">
-		<link rel="stylesheet" href="css/menu.css">
-		<link rel="stylesheet" href="css/rating.css">
+		<link rel="stylesheet" href="../css/font-awesome.min.css">
+		<link rel="stylesheet" href="../css/templatemo_misc.css">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
+		<link rel="stylesheet" href="../css/templatemo_style.css">
+		<link rel="stylesheet" href="../css/menu.css">
+		<link rel="stylesheet" href="../css/rating.css">
 
 	</head>
 	<body>
@@ -114,7 +114,7 @@
 									<table id="tabla_servicios">
 										<tr>
 											<td>
-												<img src="images/piano.jpg" alt="Aqui iria una imagen"/>
+												<img src="../images/piano.jpg" alt="Aqui iria una imagen"/>
 											</td>
 											
 											<td id="columna_servicios">

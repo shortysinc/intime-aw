@@ -1,6 +1,6 @@
 <table id="tabla_servicios">
 	<tr>
-		<td><a href="trabajo.php"><img src="images/slide3.jpg" alt="Aqui iria una imagen"/></a></td>
+		<td><a href="trabajo.php"><img src="../images/slide3.jpg" alt="Aqui iria una imagen"/></a></td>
 
 		<td id="columna_servicios">
 		<p>
