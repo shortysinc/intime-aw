@@ -131,7 +131,7 @@ a.menu-toggle-btn i { line-height: 60px; }
 .flex-control-paging li a:hover { opacity: 1; background: white; }
 .flex-control-paging li a.flex-active { opacity: 1; background: white; }
 
-div.box-login{position: absolute; z-index: 9; width: 100%;}
+div.box-login{position: absolute; float: left; z-index: 9; width: 100%;}
 div.u-login {float: left; width: 25%;}
 div.p-login {float: left; width: 30%;}
 a#crear-cuenta {margin-left: 35%;}
