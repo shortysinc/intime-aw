@@ -6,10 +6,10 @@ $n = count($array);
 <div id="main-sidebar" >
 	<asside class="navigation">
 		<?php
-		if($array[$n-1] == "index.php"){
+		if($array[$n-1] == "index.php" || $array[$n-1] == ""){
 		?>
 		<div class="logo">
-			<a href="../index.php"><img src="vista/images/logo.png"/></a>
+			<a href="index.php"><img src="vista/images/logo.png"/></a>
 		</div>
 		<!-- /.logo -->
 		<ul class="main-menu">

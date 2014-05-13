@@ -23,7 +23,7 @@
 					<div class="flexslider">
 						<div class="bienvenida">
 							<div class="box-login">
-								<form method="post" action="perfilusuario.php" accept-charset="utf-8">
+								<form method="post" action="vista/perfilusuario.php" accept-charset="utf-8">
 									<div class="u-login">
 										<label>Usuario</label>
 										<input type="text" />
@@ -43,7 +43,7 @@
 									</div>
 								</form>
 								<div class="main-buscador">
-									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
+									<form class="buscador-form" method="get" action="vista/busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
 										<input type="text" size="50">
 										<button type="submit" name="submit">
