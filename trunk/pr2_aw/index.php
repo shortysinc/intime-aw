@@ -8,14 +8,14 @@
 		<meta name="viewport" content="initial-scale=1">
 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/templatemo_misc.css">
-		<link rel="stylesheet" href="css/templatemo_style.css">
+		<link rel="stylesheet" href="vista/css/bootstrap.min.css">
+		<link rel="stylesheet" href="vista/css/font-awesome.min.css">
+		<link rel="stylesheet" href="vista/css/templatemo_misc.css">
+		<link rel="stylesheet" href="vista/css/templatemo_style.css">
 	</head>
 	<body>
 
-		<?php include "sidebar.php"
+		<?php include "vista/sidebar.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
@@ -27,7 +27,7 @@
 									<div class="u-login">
 										<label>Usuario</label>
 										<input type="text" />
-										<a id="crear-cuenta" href="crearcuenta.php">Crear cuenta</a>
+										<a id="crear-cuenta" href="vista/crearcuenta.php">Crear cuenta</a>
 									</div>
 									<div class="p-login">
 										<label>Contraseña</label>
@@ -39,7 +39,7 @@
 											Entrar
 										</button>
 											<!--link que da acceso al administrador. Esto con php se eliminaría-->
-											<a href="perfiladmin.php">Entrar admin</a>
+											<a href="vista/perfiladmin.php">Entrar admin</a>
 									</div>
 								</form>
 								<div class="main-buscador">
@@ -49,7 +49,7 @@
 										<button type="submit" name="submit">
 											Enviar
 										</button>
-										<a href="busqueda.php">Búsqueda avanzada</a>
+										<a href="vista/busqueda.php">Búsqueda avanzada</a>
 									</form>
 								</div>
 							</div>
@@ -67,7 +67,7 @@
 									</div>
 								</div>
 							</div>
-							<img src="images/slide1.jpg" alt="Slide1">
+							<img src="vista/images/slide1.jpg" alt="Slide1">
 						</div>
 						<!-- /.busqueda -->
 					</div>
@@ -82,7 +82,7 @@
 				<!-- /.main-slider -->
 			</div>
 			<!-- /.templatemo -->
-			<?php include 'footer.php'
+			<?php include 'vista/footer.php'
 			?>
 		</div>
 		<!-- /#main-content -->
