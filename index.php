@@ -27,7 +27,7 @@
 									<div class="u-login">
 										<label>Usuario</label>
 										<input type="text" />
-										<a id="crear-cuenta" href="vista/crearcuenta.php">Crear cuenta</a>
+										<a id="crear-cuenta" href="vista/crear_cuenta.php">Crear cuenta</a>
 									</div>
 									<div class="p-login">
 										<label>Contraseña</label>

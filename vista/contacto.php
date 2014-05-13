@@ -39,7 +39,7 @@
 										<!-- /.col-md-4 -->
 										<div class="col-md-8">
 											<label for="email" class="required">Correo electrónico:</label>
-											<input name="email" type="text" id="email" maxlength="40" required/>
+											<input name="email" type="text" id="email-cont" maxlength="40" required/>
 										</div>
 										<!-- /.col-md-4 -->
 										<div class="col-md-8">
