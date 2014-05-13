@@ -1,4 +1,5 @@
-.main-menu, .responsive-menu ul, .social-member, .progess-bars, .first-footer .social-footer ul { padding: 0%; margin: 0%; list-style: none; }
+.main-menu, .responsive-menu ul, .social-member, .progess-bars, .first-footer .social-footer ul {padding: 0%; margin: 0%; list-style: none; }
+
 
 body { font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif; color: #777777; font-weight: 300px; font-style: normal; -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */ -webkit-text-size-adjust: 100%; }
 
@@ -191,7 +192,6 @@ div.container-fluid#welcome{position: absolute; z-index: 8;}
 
 .map-holder { border: 1px solid #d5dbe0; padding: 6px; background-color: #fafafa; }
 
-.contact-form { }
 .contact-form input, .contact-form textarea { width: 100%; display: block; border: 2px solid #d5dbe0; padding: 10px 15px; outline: 0;}
 .contact-form textarea:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
 .contact-form input:focus {outline: thin dotted; outline: 5px auto -webkit-focus-ring-color; outline-offset: -2px}
@@ -203,6 +203,14 @@ textarea .mensaje { position: relative;}
 .contact-form .form-left .col-md-4 { position: relative; width: 50%;}
 .contact-form .form-right { float: right; width: 50%; }
 .contact-form .form-left .col-md-8 { position: relative; width: 100%;}
+
+.contact-form span.birth select {height: 40px;}
+.contact-form span.birth select#dia {width: 50px}
+.contact-form span.birth select#mes {width: 50px}
+.contact-form span.birth select#anio {width: 100px}
+.contact-form #enviar-usr {margin-top: 8%;}
+
+
 
 .submit-btn { margin-top: 30px; }
 

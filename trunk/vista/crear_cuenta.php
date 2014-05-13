@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -31,7 +34,7 @@
 					<!-- /#row -->
 					<div class="cuerpo">
 						<div class="contact-form" id="form">
-							<form action="" method="post" accept-charset="utf-8">
+							<form action="../controlador/procesar_crear_cuenta.php" method="post" accept-charset="utf-8">
 								<div class="col-md-4">
 									<label for="nombre" class="required">Nombre:</label>
 									<input name="nombre" type="text" id="nombre" maxlength="40" required/>
@@ -47,7 +50,7 @@
 								<!-- /.col-md-4 -->
 								<div class="col-md-8">
 									<label for="email" class="required">Correo electrónico:</label>
-									<input name="email" type="text" id="email" maxlength="40" required/>
+									<input name="email" type="email" id="email" maxlength="40" required/>
 								</div>
 								<!-- /.col-md-4 -->
 								<div class="col-md-4" id="pass">
@@ -59,10 +62,18 @@
 									<label for="repass" class="required">Repite la contraseña:</label>
 									<input name="repass" type="password" id="repass" maxlength="60" required/>
 								</div>
+								<div class="col-md-6">
+									<!--<p><label for="birth">Fecha de nacimiento:</label></p>
+									<span class="birth">
+										<select id="dia"></select>
+										<select id="mes"></select>
+										<select id="anio"></select>
+									</span>-->
+								</div>
 								<!-- /.col-md-12 -->
-								<div class="col-md-12">
+								<div class="col-md-4">
 										<!--<a ="#" class="largeButton contactBgColor">Send Message</a>-->
-										<button class="largeButton submitBgColor" type="submit" value="Enviar">
+										<button class="largeButton submitBgColor" id="enviar-usr" type="submit" value="Enviar">
 											Enviar
 										</button>
 								</div>
@@ -80,4 +91,16 @@
 		</div>
 		<!-- /#main-content-->
 	</body>
+	<?php
+			if(isset($_SESSION["error"])){
+		?>
+				<script>			
+					alert("<?php echo $_SESSION['error']?>");
+				</script>
+				
+		<?php
+				unset($_SESSION["error"]);
+				
+			}
+		?>
 </html>
