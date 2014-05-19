@@ -15,17 +15,16 @@
 	}else {
 		$BDD = new Mysql();
 		$row = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass);
-		
-		if($row){
+		if($row == false ){
+			$_SESSION["error"] = "El correo introducido ya existe.";
+			$_SESSION["login"] = false;
+			header('Location: ../vista/crear_cuenta.php');
+			
+		}else {
 			//insertar usuario en la sesion
 			$_SESSION["login"] = true;
 			$_SESSION["mensaje"] = "Te has registrado con éxito";
 			header("Location: ../vista/perfil_usuario.php");
-		}else {
-			$_SESSION["error"] = "El correo introducido ya existe.";
-			$_SESSION["login"] = false;
-			header('Location: ../vista/crear_cuenta.php');
 		}
-	}
-?>
+	}	
 
