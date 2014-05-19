@@ -53,7 +53,7 @@ class Mysql{
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
 		$result = mysqli_query($con,"SELECT * FROM usuario");
-		
+		//PRUEBA
 		while($row = mysqli_fetch_array($result)) {
 		  echo $row['id_usuario'] . " " . $row['nombre'];
 		  echo "<br>";
