@@ -46,6 +46,21 @@ class Mysql{
 		return $resultado;
 	}
 	
+	public function mostrar_usuarios(){
+		$this->conectar();
+		// Check connection
+		if (mysqli_connect_errno()) {
+		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
+		$result = mysqli_query($con,"SELECT * FROM usuario");
+		
+		while($row = mysqli_fetch_array($result)) {
+		  echo $row['id_usuario'] . " " . $row['nombre'];
+		  echo "<br>";
+		}
+		
+		mysqli_close($con);
+	} 
 	
 }
 
