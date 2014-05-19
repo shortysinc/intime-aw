@@ -1,3 +1,7 @@
+<?php 
+	session_start(); 
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -13,6 +17,12 @@
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
+<?php
+	if(!isset($_SESSION["login"]) || !$_SESSION["login"]){
+		$_SESSION["mensaje"] = "Tienes que iniciar sessión";
+		header('Location: ../index.php');
+	}else{
+?>
 	<body>
 		<?php include "sidebarusuario.php"
 		?>
@@ -50,3 +60,7 @@
 		<!-- /#main-content-->
 	</body>
 </html>
+
+<?php 
+	}
+?>

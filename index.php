@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -23,7 +26,7 @@
 					<div class="flexslider">
 						<div class="bienvenida">
 							<div class="box-login">
-								<form method="post" action="vista/perfilusuario.php" accept-charset="utf-8">
+								<form method="post" action="vista/login.php" accept-charset="utf-8">
 									<div class="u-login">
 										<label>Usuario</label>
 										<input type="text" />
@@ -38,8 +41,8 @@
 										<button type="submit" name="entrar">
 											Entrar
 										</button>
-											<!--link que da acceso al administrador. Esto con php se eliminaría-->
-											<a href="vista/perfiladmin.php">Entrar admin</a>
+										<!--link que da acceso al administrador. Esto con php se eliminaría-->
+										<a href="vista/perfiladmin.php">Entrar admin</a>
 									</div>
 								</form>
 								<div class="main-buscador">
@@ -63,8 +66,7 @@
 							<button id="registrarse">Registrarse</button>-->
 							<div class="container-fluid" id="welcome">
 								<div class="row">
-									<div class="col-md-12">
-									</div>
+									<div class="col-md-12"></div>
 								</div>
 							</div>
 							<img src="vista/images/slide1.jpg" alt="Slide1">
@@ -76,7 +78,9 @@
 				<!-- /.WELCOME -->
 				<div class="welcome-text">
 					<h2>Bienvenido a inTime</h2>
-					<p>Tu Banco de Tiempo</p>
+					<p>
+						Tu Banco de Tiempo
+					</p>
 				</div>
 				<!-- /.WELCOME -->
 				<!-- /.main-slider -->
@@ -86,5 +90,23 @@
 			?>
 		</div>
 		<!-- /#main-content -->
+		<?php
+		if(isset($_SESSION["mensaje"])){
+		?>
+			<script>
+				alert("<?php echo $_SESSION['mensaje'] ?>");
+			</script>
+		<?php
+			unset($_SESSION["mensaje"]);
+		}
+		
+		if(isset($_SESSION["error"])){
+		?>
+			<script>
+				alert("<?php echo $_SESSION['error'] ?> ");
+			</script>
+		<?php	
+		}
+		?>
 	</body>
 </html>

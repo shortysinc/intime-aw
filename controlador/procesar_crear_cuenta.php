@@ -14,17 +14,13 @@
 		header('Location: ../vista/crear_cuenta.php');
 	}else {
 		$BDD = new Mysql();
-		//Crea una salt al azar
-		$random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-		//Crea una contraseña en salt
-		$password = hash('sha512', $pass.$random_salt);
-		
-		$row = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass, $random_salt);
+		$row = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass);
 		
 		if($row){
 			//insertar usuario en la sesion
 			$_SESSION["login"] = true;
-			header("Location: ../index.php");
+			$_SESSION["mensaje"] = "Te has registrado con éxito";
+			header("Location: ../vista/perfil_usuario.php");
 		}else {
 			$_SESSION["error"] = "El correo introducido ya existe.";
 			$_SESSION["login"] = false;
