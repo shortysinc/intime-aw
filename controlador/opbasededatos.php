@@ -16,7 +16,15 @@ class Mysql{
         @mysql_close($this->conexion);
     }
 	
+	public static function escapaBd() {
+		$numargs = func_num_args();
+		for($i=0; $i < $numargs; $i++){
+			
+		}
+	}
+	
 	public function insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass) {
+		//Mysql::escapaBd($correo, )	
 		$this->conectar();
 		$correo =  $this->conexion->real_escape_string($correo);
 		$nombre =  $this->conexion->real_escape_string($nombre);
@@ -29,22 +37,26 @@ class Mysql{
 		//Crea una contraseña en salt
 		$pass = hash('sha512', $pass.$salt);
 		
-		$pst = "insert into usuario (correo, nombre, apellidos, direccion, pass, salt) values 
-		(?, '?', '?', '?', '?', '?')";
-		$pst->bind_result($correo);
-		$pst->bind_result($nombre);
-		$pst->bind_result($apellidos);
-		$pst->bind_result($direccion);
-		$pst->bind_result($pass);
-		$pst->bind_result($salt);
-		$pst->fetch();
+		$pst =  $this->conexion->prepare("insert into usuario (correo, nombre, apellidos, direccion, pass, salt) values 
+		(?, ?, ?, ?, ?, ?)");
+		
+		$colCorreo = "correo";
+		$colNombre = "nombre";
+		$colApellidos = "apellidos";
+		$colDireccion = "direccion";
+		$colPass = "pass";
+		$colSalt = "salt";
+		
+		$pst->bind_param("ssssss", $correo, $nombre, $apellidos, $direccion, $pass, $salt);
+		$pst->execute();
+		$resultado = $pst->fetch();
+		
 		$pst->close();
-		//$resultado = mysqli_query($this->conexion,$consulta);
 		$this->cerrar();
-		unset($consulta);
 		
 		return $resultado;
 	}
+
 	
 	public function mostrar_todos_usuarios(){
 		$this->conectar();
@@ -78,5 +90,3 @@ class Mysql{
 		mysqli_close($con);
 	} 
 }
-
-?>
