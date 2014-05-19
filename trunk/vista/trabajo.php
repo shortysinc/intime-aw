@@ -76,7 +76,7 @@
 					<!--comentarios ejemplo-->
 					<h2>Comentarios y valoraciones</h2>
 					<div class ="comentario-ej">
-						<a href="perfilusuario.php"><h4>Perfil del usuario</h4></a>
+						<a href="perfil_usuario.php"><h4>Perfil del usuario</h4></a>
 						<div class="coment-foto">
 							<img src="images/team2.jpg">
 						</div>

@@ -1,6 +1,6 @@
 <aside id="main-sidebar" >
 	<div class="logo">
-		<a href="perfilusuario.php"><img src="images/logo.png" /></a>
+		<a href="perfil_usuario.php"><img src="images/logo.png" /></a>
 	</div>
 	<!-- /.logo -->
 	<div class="navigation-log-in">
@@ -24,7 +24,7 @@
 				<a href="crearservicio.php">Crear Servicio</a>
 			</li>
 			<li class="log-out">
-				<a href="index.php">Salir</a>
+				<a href="../controlador/logout.php">Salir</a>
 			</li>
 		</ul>
 	</div>
