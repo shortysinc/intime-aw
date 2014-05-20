@@ -6,6 +6,7 @@ class Mysql{
     private $bd="intime";
     private $conexion;  
     private $sql;
+	const ERR_DUP_KEY = 1062;
 	
 	public function conectar(){
         $this->conexion=mysqli_connect($this->host,$this->user,$this->clave);
@@ -16,45 +17,42 @@ class Mysql{
         @mysql_close($this->conexion);
     }
 	
-	public static function escapaBd() {
-		$numargs = func_num_args();
-		for($i=0; $i < $numargs; $i++){
-			
+	/**
+	 * @param $args: array con todos los elementos que se quieren escapar pasado por referencia.
+	 */
+	private function escapaBd(&$args) {
+		$numElems = count($args);
+	
+		for($i=0; $i < $numElems; $i++){
+			$args[$i] = mysqli_real_escape_string($this->conexion, $args[$i]);
 		}
 	}
-	
+		
 	public function insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass) {
-		//Mysql::escapaBd($correo, )	
 		$this->conectar();
-		$correo =  $this->conexion->real_escape_string($correo);
-		$nombre =  $this->conexion->real_escape_string($nombre);
-		$apellidos =  $this->conexion->real_escape_string($apellidos);
-		$direccion =  $this->conexion->real_escape_string($direccion);
-		$pass =  $this->conexion->real_escape_string($pass);
+		$args = array($correo, $nombre, $apellidos, $direccion, $pass);
+		//Escapamos los datos obtenidos del formulario
+		$this->escapaBd($args);
 		
 		//Crea una salt al azar
 		$salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-		//Crea una contraseña en salt
+		$pass = $args[4]; // Para hacer el hash con la pass escapada
+		//Crea una contraseña a partir del hash con salt
 		$pass = hash('sha512', $pass.$salt);
 		
 		$pst =  $this->conexion->prepare("insert into usuario (correo, nombre, apellidos, direccion, pass, salt) values 
 		(?, ?, ?, ?, ?, ?)");
 		
-		$colCorreo = "correo";
-		$colNombre = "nombre";
-		$colApellidos = "apellidos";
-		$colDireccion = "direccion";
-		$colPass = "pass";
-		$colSalt = "salt";
-		
-		$pst->bind_param("ssssss", $correo, $nombre, $apellidos, $direccion, $pass, $salt);
+		//Los dos ultimos parámetros generados a partir de $pass inicial una vez escapada
+		$pst->bind_param("ssssss", $args[0], $args[1], $args[2], $args[3], $pass, $salt);
 		$pst->execute();
-		$resultado = $pst->fetch();
+		$error = $pst->errno;
+		//printf("Num error: %d. Error message: %s\n", $error, mysqli_error($this->conexion));
 		
 		$pst->close();
 		$this->cerrar();
 		
-		return $resultado;
+		return $error;
 	}
 
 	

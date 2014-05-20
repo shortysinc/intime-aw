@@ -14,17 +14,23 @@
 		header('Location: ../vista/crear_cuenta.php');
 	}else {
 		$BDD = new Mysql();
-		$row = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass);
-		if($row == false ){
-			$_SESSION["error"] = "El correo introducido ya existe.";
-			$_SESSION["login"] = false;
-			header('Location: ../vista/crear_cuenta.php');
-			
-		}else {
+		$error = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass);
+		/*if($error === 0 ){
 			//insertar usuario en la sesion
 			$_SESSION["login"] = true;
 			$_SESSION["mensaje"] = "Te has registrado con éxito";
 			header("Location: ../vista/perfil_usuario.php");
-		}
-	}	
+
+		}else if($error == Mysql::ERR_DUP_KEY){//numero de error en caso de querer insertar una clave que ya exisite en la BDD
+			$_SESSION["login"] = false;
+			$_SESSION["error"] = "El correo que has introducido ya existe";
+			header('Location: ../vista/crear_cuenta.php');
+			
+		}else {
+			$_SESSION["login"] = false;
+			$_SESSION["error"] = "Ha habido un error durante el proceso de crear la cuenta.";
+			header('Location: ../vista/crear_cuenta.php');
+			
+		}*/
+	}
 
