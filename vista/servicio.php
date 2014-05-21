@@ -13,6 +13,18 @@
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
+	
+	<!--NUEVO -->
+	<!--<?php 
+		require_once '../controlador/opbasededatos.php';
+		
+		$BDD = new Mysql();
+		$resultadoServicio = $BDD->conseguirServicio();
+		
+	?>-->
+	
+	<!-- FIN -->
+	
 	<body>
 		<?php include "sidebarusuario.php"
 		?>
