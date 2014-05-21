@@ -110,19 +110,16 @@ class Mysql{
 	}
 	
 	public function mostrar_todos_usuarios(){
-		$this->conectar();
+		$enlace = mysqli_connect("localhost", "root", "", "intime");
 		// Check connection
 		if (mysqli_connect_errno()) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-		$result = mysqli_query($con,"SELECT * FROM usuario");
-		//PRUEBA
-		while($row = mysqli_fetch_array($result)) {
-		  echo $row['id_usuario'] . " " . $row['nombre'];
-		  echo "<br>";
-		}
-		
-		mysqli_close($con);
+		$consulta = "SELECT id_usuario, nombre, apellidos, correo, direccion, horas_usuario FROM usuario";
+		$resultado = mysqli_query($enlace, $consulta);					
+		/* cerrar la conexión */
+		mysqli_close($enlace);
+		return $resultado;
 	} 
 	
 	public function mostrar_todos_servicios(){
