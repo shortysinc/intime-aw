@@ -67,8 +67,22 @@ class Mysql{
 		$this->conectar();
 		$pst = $this->conexion->prepare("select * from categoria order by categoria");
 		$pst->execute();
-		$resultado =  $pst->get_result();
+		$resultado = $pst->get_result();
+		$pst->close();
+		$this->cerrar();
 		
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene un servicio con el  id.
+	 * @return el servicio dela base de datos.
+	 */
+	public function conseguirServicio() {
+		$this->conectar();
+		$pst = $this->conexion->prepare("select * from servicio order by nombre_servicio");
+		$pst->execute();
+		$resultado = $pst->get_result();
 		$pst->close();
 		$this->cerrar();
 		
