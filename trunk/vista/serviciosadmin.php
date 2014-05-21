@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once '../controlador/opbasededatos.php';
+?>
 <html lang="es">
 	<head>
 		<title>inTime</title>
@@ -39,17 +42,20 @@
 					<div class="panel-admin">
 						<div class="lista-admin">
 							<table>
-								<tr>
-								<td>ID</td>
-								<td>Titulo</td>
-								</tr>
 								<?php
-								require_once '../controlador/opbasededatos.php';
 								$BDD = new Mysql();
 								$resultado = $BDD->mostrar_todos_servicios();
-								while ($obj = mysqli_fetch_object($resultado)) {
-								printf ("<tr><td>%s</td><td>%s</td></tr>\n", $obj->id_servicio, $obj->nombre_servicio);}
-								mysqli_free_result($resultado);  
+								echo "LISTA DE USUARIOS";
+								echo "<table border='1' cellpadding='2' cellspacing='2'";
+								echo "<tr><td>ID</td><td>Nombre del Ofertante</td><td>Nombre del Servicio</td>";
+								while ($row = mysqli_fetch_array($resultado)) {
+							        echo "<tr>";
+							        echo "<td>".$row["id_servicio"]."</td>";
+							        echo "<td>".$row["nombre_usuario"]."</td>";
+							        echo "<td>".$row["nombre_servicio"]."</td>";
+							        echo "</tr>";
+								}
+								$resultado->free(); 
 								?>
 								</table>
 					</div>
