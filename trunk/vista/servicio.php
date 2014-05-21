@@ -15,17 +15,19 @@
 	</head>
 	
 	<!--NUEVO -->
-	<!--<?php 
+	<?php
 		require_once '../controlador/opbasededatos.php';
-		
+
 		$BDD = new Mysql();
-		$resultadoServicio = $BDD->conseguirServicio();
+	  	$resultadoServicio = $BDD -> conseguirServicio(2);
 		
-	?>-->
+	?>
 	
 	<!-- FIN -->
 	
 	<body>
+		
+	
 		<?php include "sidebarusuario.php"
 		?>
 		<div id="main-content">
@@ -41,7 +43,8 @@
 					</form>
 				</div>
 				<div class="encabezado">
-					<h2>Titulo del servicio</h2>
+					<h2><?php echo $resultadoServicio['nombre_servicio'] ?></h2>
+					
 					<img src="images/slide3.jpg" >
 				</div>
 				<div class="servicio">
