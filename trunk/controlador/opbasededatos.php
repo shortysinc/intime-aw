@@ -58,7 +58,29 @@ class Mysql{
 		
 		return $error;
 	}
-	
+	public function loginuser($correo,$pass){
+		$this->conectar();
+		$args = array($correo, $pass);
+		//Escapamos los datos obtenidos del formulario
+		$this->escapaBd($args);
+		$pst =  $this->conexion->prepare("select * from usuario where correo=?");
+		$pst->bind_param("s", $correo);
+		$pst->execute();
+		$pst->bind_result($id,$correo,$nombre,$apellidos,$direccion,$horas,$foto,$hash, $salt);
+		$pst->fetch();
+		$_SESSION["error"]=$id;
+		$pst->close();
+		$pass1 = hash('sha512', $args[1].$salt);
+		if ($hash==$pass1){
+			$_SESSION["id"]=$id;
+			$_SESSION["login"]=true;
+			$_SESSION["correo"]=$correo;
+			$_SESSION["nombre"]=$nombre;
+			$_SESSION["apellidos"]=$apellidos;
+			$_SESSION["horas"]=$horas;
+			$_SESSION["foto"]=$fotos;
+		}
+	}
 	/**
 	 * Obtiene todas las categorías de la bdd.
 	 * @return todas las categorías de la bdd.

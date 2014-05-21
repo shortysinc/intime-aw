@@ -29,12 +29,12 @@ session_start();
 								<form method="post" action="vista/login.php" accept-charset="utf-8">
 									<div class="u-login">
 										<label>Usuario</label>
-										<input type="text" />
+										<input type="text" name="correo"/>
 										<a id="crear-cuenta" href="vista/crear_cuenta.php">Crear cuenta</a>
 									</div>
 									<div class="p-login">
 										<label>Contraseña</label>
-										<input type="password"/>
+										<input type="password" name="pass"/>
 										<a id="olvidada" href="">¿Contraseña olvidada?</a>
 									</div>
 									<div>
