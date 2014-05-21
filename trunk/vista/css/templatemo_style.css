@@ -262,9 +262,7 @@ textarea .mensaje { position: relative;}
 .busq-nota{float:right;font-size:20px;}
 
 .lista-users table,th,td{text-align:center;}
-#tabla_categorias, #tabla_categorias td, #tabla_categorias tr{
-	border: 1px solid black;
-}
+
 .lista-admin {padding-left:50px;}
 .panel-admin{position: relative; margin-bottom:50px;min-height:700px;}
 .lista-admin table,td,th{border: 1px solid black;}
@@ -273,6 +271,7 @@ textarea .mensaje { position: relative;}
 /*Nuevo*/
 
 .cuerpo {padding-left: 5px; min-height: 350px;}
+.cuerpo#servicios{float: left; text-align: center; width: 100%}
 .contacto {float: left; width: 50%; height: 175px;}
 .contacto img {float: left;border: 0px solid black; border-radius: 80px; height: 150px; width: 150px;}
 .nombrecorreo {float: initial; padding-left: 155px;}
@@ -297,23 +296,16 @@ textarea .mensaje { position: relative;}
 td.columna-servicios{width: 15%;}
 
 
-div.lista-categorias p a {width: 120%; padding: 6%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%;}
-div.lista-categorias p span#azul-oscuro a { background-color: #285E8E;}
+span.lista-categorias a {width: 120%; padding: 1%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%;}
+/*div.lista-categorias p span#azul-oscuro a { background-color: #285E8E;}*/
 
-div.lista-categorias p a:hover { text-decoration: underline;}
+span#azul-oscuro a { background-color: #285E8E;}
+
+span.lista-categorias a:hover { text-decoration: underline;}
 
 .panel-servicios{padding-left: 10%;}
 
-#tabla_general td{
-	padding: 10px;
-}
 
-#tabla_servicios{
-	margin-left: -30px;
-	margin-bottom: 5%;
-	max-width: 100%;
-	
-}
 
 #columna_servicios{
 	text-align: justify;

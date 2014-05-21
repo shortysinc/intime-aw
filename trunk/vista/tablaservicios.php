@@ -35,6 +35,7 @@ require_once '../controlador/opbasededatos.php';
 if(isset($_GET['categoria'])){
 	$categoria = $_GET['categoria'];
 	$BDD = new Mysql();
+	echo $categoria;
 	$resultadoServicios = $BDD->conseguirServiciosCategoria($categoria);
 	//$BDD->conseguirTodasLasCategorias();
 }
