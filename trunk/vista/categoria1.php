@@ -46,15 +46,29 @@
 								</div>
 
 							</div>
-							<!--NUEVO!! -->
+							<script>
+								function mostrarServicios(categoria){
+									console.log(categoria);
+									$("#lista-servicios").load("cargar_servicios.php?categoria="+categoria);
+								}
+							</script>
 							<div class="cuerpo" id="servicios">
 								<?php 
 									while($row = $resultadoCategorias->fetch_assoc()){
 								?>
-										<span class="lista-categorias"><a href=""><?php echo $row['categoria'] ?></a></span>
+										<ul class = "lista-categorias">
+											<li id="elem-categoria">
+												<span class="lista-categorias">
+													<a href="#" onclick="mostrarServicios(<?php echo "'".$row['categoria']."'"?>)"><?php echo $row['categoria'] ?></a>
+												</span>
+											</li>	
+										</ul>
 								<?php	
 									}
 								?>
+								<ul id = "lista-servicios">
+									<!--<li></li>-->
+								</ul>
 							</div>
 						</div>
 					</div>

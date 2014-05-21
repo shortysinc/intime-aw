@@ -121,7 +121,7 @@ class Mysql{
 	public function conseguirServiciosCategoria($categoria) {
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT * FROM servicio natural join categoria WHERE categoria = ?");
-		$pst->bind_param("i", $categoria);
+		$pst->bind_param("s", $categoria);
 		$pst->execute();
 		$resultado =  $pst->get_result();
 		
