@@ -39,38 +39,21 @@
 					<div class="panel-admin">
 						<div class="lista-admin">
 							<table>
-								<caption>
-									<h1>Lista de usuarios</h1>
-								</caption>
-								<thead>
-									<th>Nick del usuario</th>
-									<th>Fecha de registro</th>
-									<th>E-mail</th>
-								</thead>
-									<tr>
-										<th><a href="perfil.php">User1</a></th>
-										<td>17-3-2014</td>
-										<td>fake1@mail.com</td>
-										<td><button type="submit" name="submit" value="Eliminar Usuario">
-										Eliminar Usuario
-										</button></td>	
-									</tr>
-									<tr>
-										<th><a href="perfil.php">User2</a></th>
-										<td>17-3-2014</td>
-										<td>fake2@mail.com</td>
-										<td><button type="submit" name="submit" value="Eliminar Usuario">
-										Eliminar Usuario
-										</button></td>	
-									</tr>
-									<tr>
-										<th><a href="perfil.php">User3</a></th>
-										<td>17-3-2014</td>
-										<td>fake3@mail.com</td>
-										<td><button type="submit" name="submit" value="Eliminar Usuario">
-										Eliminar Usuario
-										</button></td>	
-									</tr>
+							<tr>
+							<td>ID Usuario</td>
+							<td>Nombre</td>
+							<td>Correo</td>
+							<td>Direccion</td>
+							<td>Horas</td>
+							</tr>
+							<?php
+							require_once '../controlador/opbasededatos.php';
+							$BDD = new Mysql();
+							$resultado = $BDD->mostrar_todos_usuarios();
+							while ($obj = mysqli_fetch_object($resultado)) {
+							printf ("<tr><td>%s</td><td>%s %s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", $obj->id_usuario, $obj->nombre, $obj->apellidos, $obj->correo, $obj->direccion, $obj->horas_usuario);}
+							mysqli_free_result($resultado);  
+							?>
 							</table>
 					</div>
 				</div>
