@@ -80,7 +80,7 @@ class Mysql{
 	 */
 	public function conseguirServicio($id) {
 		$this->conectar();
-		$pst = $this->conexion->prepare("select * from servicio where id=?");
+		$pst = $this->conexion->prepare("select * from servicio where id_servicio=?");
 		$pst = bind_param("i", $id);
 		$pst->execute();
 		$resultado = $pst->get_result();
