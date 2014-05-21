@@ -145,18 +145,15 @@ class Mysql{
 	} 
 	
 	public function mostrar_todos_servicios(){
-		$this->conectar();
+		$enlace = mysqli_connect("localhost", "root", "", "intime");
 		// Check connection
 		if (mysqli_connect_errno()) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 		}
-		$result = mysqli_query($con,"SELECT * FROM servicio");
-		//PRUEBA
-		while($row = mysqli_fetch_array($result)) {
-		  echo $row['id_servicio'] . " " . $row['id_usuario'] . " " . $row['nombre_servicio'];
-		  echo "<br>";
-		}
-		
-		mysqli_close($con);
+		$consulta = "SELECT id_servicio, nombre_servicio FROM servicio";
+		$resultado = mysqli_query($enlace, $consulta);					
+		/* cerrar la conexión */
+		mysqli_close($enlace);
+		return $resultado;
 	} 
 }

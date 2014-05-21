@@ -39,43 +39,19 @@
 					<div class="panel-admin">
 						<div class="lista-admin">
 							<table>
-								<caption>
-									<h1>Lista de servicios</h1>
-								</caption>
-								<thead>
-									<th>Id</th>
-									<th>Fecha de creacion</th>
-									<th>Titulo</th>
-									<th>Nota media</th>
-								</thead>
-									<tr>
-										<th><a href="trabajo.php">1</a></th>
-										<td>18-3-2014</td>
-										<td>Personal trainer</td>
-										<td>9,8</td>
-										<td><button type="submit" name="submit" value="Eliminar Servicio">
-										Eliminar Servicio
-										</button></td>	
-									</tr>
-									<tr>
-										<th><a href="trabajo.php">2</a></th>
-										<td>18-3-2014</td>
-										<td>Personal Assistant</td>
-										<td>7,7</td>
-										<td><button type="submit" name="submit" value="Eliminar Servicio">
-										Eliminar Servicio
-										</button></td>	
-									</tr>
-									<tr>
-										<th><a href="trabajo.php">3</a></th>
-										<td>18-3-2014</td>
-										<td>Coach</td>
-										<td>5</td>
-										<td><button type="submit" name="submit" value="Eliminar Servicio">
-										Eliminar Servicio
-										</button></td>	
-									</tr>
-							</table>
+								<tr>
+								<td>ID</td>
+								<td>Titulo</td>
+								</tr>
+								<?php
+								require_once '../controlador/opbasededatos.php';
+								$BDD = new Mysql();
+								$resultado = $BDD->mostrar_todos_servicios();
+								while ($obj = mysqli_fetch_object($resultado)) {
+								printf ("<tr><td>%s</td><td>%s</td></tr>\n", $obj->id_servicio, $obj->nombre_servicio);}
+								mysqli_free_result($resultado);  
+								?>
+								</table>
 					</div>
 				</div>
 			</div>
