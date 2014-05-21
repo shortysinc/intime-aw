@@ -19,7 +19,7 @@
 		require_once '../controlador/opbasededatos.php';
 
 		$BDD = new Mysql();
-	  	$resultadoServicio = $BDD -> conseguirServicio(2);
+	  	$resultadoServicio = $BDD -> conseguirServicio("2");
 		
 	?>
 	
