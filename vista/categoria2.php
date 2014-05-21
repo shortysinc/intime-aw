@@ -60,7 +60,6 @@
 													<p>
 														<a href="categoria3.php">Categoría 3</a>
 													</p>
-													</ul>
 												</div>
 											</table>
 										</div>

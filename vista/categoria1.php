@@ -15,8 +15,15 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 		<link rel="stylesheet" href="css/menu.css">
 		<link rel="stylesheet" href="css/rating.css">
-
+		<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 	</head>
+	<?php 
+		require_once '../controlador/opbasededatos.php';
+		
+		$BDD = new Mysql();
+		$resultadoCategorias = $BDD->conseguirTodasLasCategorias();
+		
+	?>
 	<body>
 		<?php include "sidebar.php"
 		?>
@@ -42,15 +49,31 @@
 							</div>
 
 							<!--NUEVO!! -->
-
 							<div class="cuerpo">
 								<table id="tabla_general">
 									<tr>
 										<td class="columna-servicios" valign="top">
 										<div class="lista-servicios">
 											<table id="tabla_categorias">
+												<script>
+													var cargaServicios = function(categoria) {
+														//console.log("entrada");
+														$('#tabla_servicios').load('tablaservicios.php?categoria='+encodeURIComponent(categoria));
+													}
+												</script>
 												<div class="lista-categorias">
-													<p>
+													<?php
+														while($row = $resultadoCategorias->fetch_assoc()){
+													?>
+														<p>
+															<a href="#" onclick="cargaServicios(<?php echo "'".$row['categoria']."'"?>)">
+																<?php echo $row['categoria'] ?></a>
+														</p>
+														
+													<?php	
+														}
+													?>
+													<!--<p>
 														<span id="azul-oscuro"><a href="categoria1.php">Categoría 1</a></span>
 													</p>
 													<p>
@@ -59,7 +82,7 @@
 													<p>
 														<a href="categoria3.php">Categoría 3</a>
 													</p>
-													</ul>
+												</ul>-->
 												</div>
 											</table>
 										</div>
@@ -72,13 +95,7 @@
 
 					<td valign="top">
 					<div class="descripcion-servicios">
-						<p>
-							<strong>Lista de servicios para la categoría 1:</strong>
-						</p>
-						<?php include "tablaservicios.php"
-						?>
-						<?php include "tablaservicios.php"
-						?>
+						<?php include 'tablaservicios.php' ?>
 					</div><!--descripcion-servicios --></td>
 					</tr>
 					</table>

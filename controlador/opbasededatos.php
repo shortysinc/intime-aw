@@ -27,7 +27,11 @@ class Mysql{
 			$args[$i] = mysqli_real_escape_string($this->conexion, $args[$i]);
 		}
 	}
-		
+	
+	/**
+	 * Inserta un usuario en la bdd. 
+	 * @return El número de error al intentar introducir el usuario. 0 si no hay error.
+	 */
 	public function insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass) {
 		$this->conectar();
 		$args = array($correo, $nombre, $apellidos, $direccion, $pass);
@@ -54,7 +58,40 @@ class Mysql{
 		
 		return $error;
 	}
-
+	
+	/**
+	 * Obtiene todas las categorías de la bdd.
+	 * @return todas las categorías de la bdd.
+	 */
+	public function conseguirTodasLasCategorias() {
+		$this->conectar();
+		$pst = $this->conexion->prepare("select * from categoria order by categoria");
+		$pst->execute();
+		$resultado =  $pst->get_result();
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene todos los servicios de la categoría pasada por parámentro
+	 * @param $categoria
+	 * @return todos los servicios de una categoría
+	 */
+	public function conseguirServiciosCategoria($categoria) {
+		$this->conectar();
+		$pst = $this->conexion->prepare("SELECT * FROM servicio natural join categoria WHERE categoria = ?");
+		$pst->bind_param("s", $categoria);
+		$pst->execute();
+		$resultado =  $pst->get_result();
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $resultado;
+	}
 	
 	public function mostrar_todos_usuarios(){
 		$this->conectar();

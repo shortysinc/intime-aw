@@ -60,7 +60,6 @@
 													<p>
 														<span id="azul-oscuro"><a href="categoria3.php">Categoría 3</a></span>
 													</p>
-													</ul>
 												</div>
 											</table>
 										</div>
