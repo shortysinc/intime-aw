@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+require_once '../controlador/opbasededatos.php';
+?>
 <html lang="es">
 	<head>
 		<title>inTime</title>
@@ -39,20 +42,22 @@
 					<div class="panel-admin">
 						<div class="lista-admin">
 							<table>
-							<tr>
-							<td>ID Usuario</td>
-							<td>Nombre</td>
-							<td>Correo</td>
-							<td>Direccion</td>
-							<td>Horas</td>
-							</tr>
 							<?php
-							require_once '../controlador/opbasededatos.php';
 							$BDD = new Mysql();
 							$resultado = $BDD->mostrar_todos_usuarios();
-							while ($obj = mysqli_fetch_object($resultado)) {
-							printf ("<tr><td>%s</td><td>%s %s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", $obj->id_usuario, $obj->nombre, $obj->apellidos, $obj->correo, $obj->direccion, $obj->horas_usuario);}
-							mysqli_free_result($resultado);  
+							echo "LISTA DE USUARIOS";
+							echo "<table border='1' cellpadding='2' cellspacing='2'";
+							echo "<tr><td>ID</td><td>Nombre</td><td>Correo</td><td>Direccion</td><td>Horas</td>";
+							while ($row = mysqli_fetch_array($resultado)) {
+							        echo "<tr>";
+							        echo "<td>".$row["id_usuario"]."</td>";
+							        echo "<td>".$row["nombre"]."</td>";
+							        echo "<td>".$row["correo"]."</td>";
+							        echo "<td>".$row["direccion"]."</td>";
+							        echo "<td>".$row["horas_usuario"]."</td>";
+							        echo "</tr>";
+							}
+							$resultado->free();
 							?>
 							</table>
 					</div>

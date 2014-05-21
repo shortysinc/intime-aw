@@ -133,26 +133,16 @@ class Mysql{
 	
 	public function mostrar_todos_usuarios(){
 		$enlace = mysqli_connect("localhost", "root", "", "intime");
-		// Check connection
-		if (mysqli_connect_errno()) {
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
-		$consulta = "SELECT id_usuario, nombre, apellidos, correo, direccion, horas_usuario FROM usuario";
-		$resultado = mysqli_query($enlace, $consulta);					
-		/* cerrar la conexión */
+		$consulta = "SELECT id_usuario, nombre, correo, direccion, horas_usuario  FROM usuario";
+		$resultado = mysqli_query($enlace, $consulta);
 		mysqli_close($enlace);
 		return $resultado;
 	} 
 	
 	public function mostrar_todos_servicios(){
 		$enlace = mysqli_connect("localhost", "root", "", "intime");
-		// Check connection
-		if (mysqli_connect_errno()) {
-		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-		}
 		$consulta = "SELECT id_servicio, nombre_servicio FROM servicio";
-		$resultado = mysqli_query($enlace, $consulta);					
-		/* cerrar la conexión */
+		$resultado = mysqli_query($enlace, $consulta);		
 		mysqli_close($enlace);
 		return $resultado;
 	} 
