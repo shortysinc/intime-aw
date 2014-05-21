@@ -78,11 +78,13 @@ class Mysql{
 	 * Obtiene un servicio con el  id.
 	 * @return el servicio dela base de datos.
 	 */
-	public function conseguirServicio() {
+	public function conseguirServicio($id) {
 		$this->conectar();
-		$pst = $this->conexion->prepare("select * from servicio order by nombre_servicio");
+		$pst = $this->conexion->prepare("select * from servicio where id=?");
+		$pst = bind_param("i", $id);
 		$pst->execute();
 		$resultado = $pst->get_result();
+		
 		$pst->close();
 		$this->cerrar();
 		
@@ -97,7 +99,7 @@ class Mysql{
 	public function conseguirServiciosCategoria($categoria) {
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT * FROM servicio natural join categoria WHERE categoria = ?");
-		$pst->bind_param("s", $categoria);
+		$pst->bind_param("i", $categoria);
 		$pst->execute();
 		$resultado =  $pst->get_result();
 		
