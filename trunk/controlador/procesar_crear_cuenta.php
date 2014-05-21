@@ -15,7 +15,7 @@
 	}else {
 		$BDD = new Mysql();
 		$error = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass);
-		/*if($error === 0 ){
+		if($error === 0 ){
 			//insertar usuario en la sesion
 			$_SESSION["login"] = true;
 			$_SESSION["mensaje"] = "Te has registrado con éxito";
@@ -31,6 +31,6 @@
 			$_SESSION["error"] = "Ha habido un error durante el proceso de crear la cuenta.";
 			header('Location: ../vista/crear_cuenta.php');
 			
-		}*/
+		}
 	}
 

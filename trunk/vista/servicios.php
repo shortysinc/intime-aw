@@ -16,6 +16,11 @@
 		<link rel="stylesheet" href="css/menu.css">
 
 	</head>
+	<?php 
+		require_once '../controlador/opbasededatos.php'; 
+		$BDD = new Mysql();
+		$resultadoCategorias = $BDD->conseguirTodasLasCategorias();
+	?>
 	<body>
 		<?php include "sidebar.php"
 		?>
@@ -39,12 +44,8 @@
 								</div>
 
 							</div>
-
 							<!--NUEVO!! -->
-					
-							
-					
-												
+									
 							<div class="panel-servicios">
 								<div class="lista-servicios">
 									
@@ -59,7 +60,8 @@
 										</thead>
 										<tbody>
 											<tr>
-												<th>Categoria 1</th>
+												s
+												<!--<th>Categoria 1</th>
 												<td>
 													<ul>
 														<li><a href="servicio1.php">Servicio1</a></li>
@@ -85,7 +87,7 @@
 														<li><a href="#">Servicio1</a></li>
 													</ul>
 												</td>
-											</tr>
+											</tr>-->
 										</tbody>
 									</table> 
 									
