@@ -99,20 +99,21 @@ class Mysql{
 	/**
 	 * Obtiene un servicio con el  id.
 	 * @return el servicio dela base de datos.
-	 */
-	public function conseguirServicio($id) {
+	 */ 
+	 public function conseguirServicio($id) {
+
 		$this->conectar();
 		$pst = $this->conexion->prepare("select * from servicio where id_servicio=?");
-		$pst = bind_param("i", $id);
+		$pst->bind_param("i", $id);
 		$pst->execute();
-		$resultado = $pst->get_result();
-		
+		$resultado =  $pst->get_result();
+	
 		$pst->close();
 		$this->cerrar();
-		
-		return $resultado;
-	}
 	
+		return $resultado;
+
+	}
 	/**
 	 * Obtiene todos los servicios de la categoría pasada por parámentro
 	 * @param $categoria

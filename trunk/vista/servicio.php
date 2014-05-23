@@ -19,8 +19,8 @@
 		require_once '../controlador/opbasededatos.php';
 
 		$BDD = new Mysql();
-	  	$resultadoServicio = $BDD -> conseguirServicio("2");
-		
+	  	$resultadoServicio = $BDD -> conseguirServicio("1");
+	
 	?>
 	
 	<!-- FIN -->
@@ -43,9 +43,12 @@
 					</form>
 				</div>
 				<div class="encabezado">
-					<h2><?php echo $resultadoServicio['nombre_servicio'] ?></h2>
+					<!--<h2><?php echo $resultadoServicio['nombre_servicio'] ?></h2>-->
 					
-					<img src="images/slide3.jpg" >
+					
+					 <img src="images/slide3.jpg" > 
+					<!--Foto servicio -->
+					<img src="<?php  ?>" > 
 				</div>
 				<div class="servicio">
 					<div class="autor">
