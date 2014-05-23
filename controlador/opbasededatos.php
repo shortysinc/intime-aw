@@ -68,7 +68,6 @@ class Mysql{
 		$pst->execute();
 		$pst->bind_result($id,$correo,$nombre,$apellidos,$direccion,$horas,$foto,$hash, $salt);
 		$pst->fetch();
-		$_SESSION["error"]=$id;
 		$pst->close();
 		$pass1 = hash('sha512', $args[1].$salt);
 		if ($hash==$pass1){
@@ -131,7 +130,6 @@ class Mysql{
 		
 		return $resultado;
 	}
-	
 	public function mostrar_todos_usuarios(){
 		$enlace = mysqli_connect("localhost", "root", "", "intime");
 		$consulta = "SELECT id_usuario, nombre, correo, direccion, horas_usuario  FROM usuario";
@@ -147,4 +145,34 @@ class Mysql{
 		mysqli_close($enlace);
 		return $resultado;
 	} 
+	public function notamedia($idservicio){
+		$this->conectar();
+		$pst=$this->conexion->prepare("SELECT avg(nota) from valoracion_servicio,servicio where servicio.id_servicio=? and servicio.id_servicio=valoracion_servicio.id_servicio");
+		$pst->bind_param("s",$idservicio);
+		$pst->execute();
+		$pst->bind_result($nota);
+		$pst->fetch();
+		$pst->close();
+		return $nota;
+	}
+	public function busqueda($nombre){
+		$this->conectar();
+		$args = array($nombre);
+		$ret = array();
+		$i=0;
+		//Escapamos los datos obtenidos del formulario
+		$this->escapaBd($args);
+		$args[0]="%".$args[0]."%";
+		$pst =  $this->conexion->prepare("select nombre,apellidos,usuario.foto,nombre_servicio,descripcion,usuario.id_usuario,servicio.id_servicio from usuario,servicio where nombre_servicio like ? and usuario.id_usuario=servicio.id_usuario ");
+		$pst->bind_param("s", $args[0]);
+		$pst->execute();
+		$pst->bind_result($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio);
+		while($pst->fetch()){
+			$info = array($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio);
+			$ret[$i]=$info;
+			$i=$i+1;
+		}
+		$pst->close();
+		return $ret;
+	}
 }

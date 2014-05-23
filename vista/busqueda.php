@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+	$nbusq = $_POST["nombrebusq"];
+?>
 <html lang="es">
 	<head>
 		<title>inTime</title>
@@ -27,7 +30,7 @@
 									<form method="post" action="busqueda.php" accept-charset="utf-8">
 										<form action="" method="get" accept-charset="utf-8">
 											<label>Buscar</label>
-											<input type="text" size="50">
+											<input type="text" name="nombrebusq" size="50">
 											<button type="submit" name="submit" value="Enviar">
 												Enviar
 											</button>
@@ -58,25 +61,8 @@
 					</div>
 				</div>
 				<div class="lista">
-					<div class ="busq-ej">
-						<a href="trabajo.php"><h3>Nombre del servicio</h3></a>
-						<a href="perfil.php"><h4>Perfil del usuario</h4></a>
-						<div class="busq-foto">
-							<img src="images/team1.jpg">
-						</div>
-						<div class="busq-nota">
-							<p>
-								Nota: 5,4
-							</p>
-						</div>
-						<div class="busq-desc">
-							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
-							</p>
-						</div>
-					</div>
+					<?php include "../controlador/busquedanormal.php"?>
 				</div>
-
 			</div>
 			<!-- /.templatemo -->
 			<?php include 'footer.php'
