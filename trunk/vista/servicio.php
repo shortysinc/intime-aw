@@ -19,7 +19,7 @@
 		require_once '../controlador/opbasededatos.php';
 
 		$BDD = new Mysql();
-	  	$resultadoServicio = $BDD -> conseguirServicio("1");
+	  	$resultadoServicio = $BDD -> conseguirTodasLasCategorias();
 	
 	?>
 	
@@ -44,7 +44,21 @@
 				</div>
 				<div class="encabezado">
 					<!--<h2><?php echo $resultadoServicio['nombre_servicio'] ?></h2>-->
+					<script>
+						function mostrarNombreServicio(servicio) {
+							console.log(servicio);
+							$("#lista-servicios").load("cargar_nombre_servicio.php?servicio=" + servicio);
+						}
+					</script>
 					
+					<?php 
+						while($row = $resultadoServicio->fetch_assoc()){
+
+					?>
+						<a href="#" onclick="mostrarNombreServicio(<?php echo "'".$row['servicio']."'"?>)"><?php echo $row['servicio'] ?></a>
+					<?php	
+						}
+					?>
 					
 					 <img src="images/slide3.jpg" > 
 					<!--Foto servicio -->
