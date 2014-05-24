@@ -63,21 +63,23 @@ class Mysql{
 		$args = array($correo, $pass);
 		//Escapamos los datos obtenidos del formulario
 		$this->escapaBd($args);
-		$pst =  $this->conexion->prepare("select * from usuario where correo=?");
+		$pst =  $this->conexion->prepare("select * from usuario where correo = ?");
 		$pst->bind_param("s", $correo);
 		$pst->execute();
-		$pst->bind_result($id,$correo,$nombre,$apellidos,$direccion,$horas,$foto,$hash, $salt);
-		$pst->fetch();
+		$resultado = $pst->get_result();
 		$pst->close();
-		$pass1 = hash('sha512', $args[1].$salt);
-		if ($hash==$pass1){
-			$_SESSION["id"]=$id;
-			$_SESSION["login"]=true;
-			$_SESSION["correo"]=$correo;
-			$_SESSION["nombre"]=$nombre;
-			$_SESSION["apellidos"]=$apellidos;
-			$_SESSION["horas"]=$horas;
-			$_SESSION["foto"]=$fotos;
+		$this->cerrar();
+		
+		$row = $resultado->fetch_assoc();
+		
+		$pass = hash('sha512', $args[1].$row['salt']);
+		$password = $row['pass'];
+		
+		if ($password === $pass){
+			return $row;
+			
+		}else {
+			return NULL;
 		}
 	}
 	/**
@@ -113,6 +115,7 @@ class Mysql{
 		return $resultado;
 
 	}
+	
 	/**
 	 * Obtiene todos los servicios de la categoría pasada por parámentro
 	 * @param $categoria

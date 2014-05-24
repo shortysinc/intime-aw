@@ -107,6 +107,7 @@ session_start();
 			</script>
 		<?php	
 		}
+				unset($_SESSION["error"]);
 		?>
 	</body>
 </html>
