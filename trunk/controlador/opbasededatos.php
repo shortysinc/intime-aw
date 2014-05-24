@@ -217,4 +217,25 @@ class Mysql{
 		$pst->close();
 		return $ret;
 	}
+	
+		public function busquedaavanzada($corte,$id){
+		$this->conectar();
+		$ret = array();
+		$i=0;
+		
+		//Escapamos los datos obtenidos del formulario
+		$pst =  $this->conexion->prepare("select distinct nombre,apellidos,usuario.foto,nombre_servicio,descripcion,usuario.id_usuario,servicio.id_servicio,nota from usuario,servicio,valoracion_servicio where usuario.id_usuario=servicio.id_usuario and valoracion_servicio.id_servicio=servicio.id_servicio and servicio.id_usuario<>? and valoracion_servicio.id_usuario=? and nota>=? ");
+		$pst->bind_param("sss",$id,$id,$corte);
+		$pst->execute();
+		$pst->bind_result($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio,$nota);
+		echo"<p>".$nomservicio."</p>";
+		while($pst->fetch()){
+			$info = array($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio,$nota);
+			$ret[$i]=$info;
+			$i=$i+1;
+		}
+		$pst->close();
+		return $ret;
+	
+	}
 }
