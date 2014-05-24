@@ -1,6 +1,6 @@
 <?php
 	require_once '../controlador/opbasededatos.php';
-	if (!empty($_POST["nombrebusq"])){
+	if (isset($_POST["nombrebusq"]) && $_POST["nombrebusq"]!=""){
 	$nbusq = $_POST["nombrebusq"];
 		$ret=array();
 		$BDD = new Mysql();
