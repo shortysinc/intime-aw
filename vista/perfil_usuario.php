@@ -52,7 +52,25 @@
 						<h1><?php echo"Bienvenido ".$_SESSION['usuario']->getNombre(); ?></h1>
 					</div>
 					<div class="cuerpo">
-						<h3><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes de usuarios requiriendo tus servicios"?></h3>
+						<h3 id="solicitud">
+						<?php
+							if($num_solicitudes == 0){
+						?>
+								<?php echo "No tienes ninguna solicitud pendiente"?>
+								
+						<?php
+							}else if($num_solicitudes == 1){
+						?>
+								<a><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
+						<?php
+							}else {
+						?>
+								<a><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
+						<?php	
+							}
+						?>
+						</h3>
+						
 						<!--<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>-->
 						<h3>2 usuarios han respondido a tu peticion de servicio</h3>
 						<?php 
