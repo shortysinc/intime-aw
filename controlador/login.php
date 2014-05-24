@@ -14,13 +14,11 @@
 				$resultado['direccion'], $resultado['horas_usuario'], $resultado['foto'], $resultado['pass'], $resultado['salt']);
 		$_SESSION['usuario'] = $usuario;
 		
-		$_SESSION['usuario']->getCorreo();
 		//echo $_SESSION['usuario']->getNombre();
 		header('Location: ../vista/perfil_usuario.php');
 		
  	}else{
  		$_SESSION['error'] = "Usuario o contraseña incorrectos";
  		header('Location: ../index.php');
-		
 	}
 ?>
