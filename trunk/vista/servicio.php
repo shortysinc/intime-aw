@@ -35,7 +35,7 @@
 				<div class="busqueda">
 					<form action="busqueda.php" method="get" accept-charset="utf-8">
 						<label>Buscar</label>
-						<input type="text" size="50">
+						<input type="text" name="nombrebusq" size="50">
 						<button type="submit" name="submit" value="Enviar">
 							Enviar
 						</button>
