@@ -5,8 +5,9 @@
 	if(isset($categoria)){
 		$BDD = new Mysql();
 		$servicios = $BDD->conseguirServiciosCategoria($categoria);
-
+		
 		while($row = $servicios->fetch_assoc()){
+			echo "entro en el bucle";
 ?>			
 			<tr class "tabla-servicios">
 			 	<td class="columna-foto">

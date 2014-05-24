@@ -41,8 +41,6 @@ session_start();
 										<button type="submit" name="entrar">
 											Entrar
 										</button>
-										<!--link que da acceso al administrador. Esto con php se eliminaría-->
-										<a href="vista/perfiladmin.php">Entrar admin</a>
 									</div>
 								</form>
 								<div class="main-buscador">

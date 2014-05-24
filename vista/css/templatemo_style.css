@@ -291,14 +291,14 @@ textarea .mensaje { position: relative;}
 
 
 .descripcion-servicios { margin-left: 5%; text-align: left; }
-.descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px;}
+.descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px; margin-right: 25px}
 
-td.columna-servicios{width: 15%;}
-
-
-span.lista-categorias a {width: 120%; padding: 1%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%;}
-ul.lista-categorias {list-style:none;}
-li#elem-categoria {margin-top: 2%;}
+td.columna-foto{width: 15%;  vertical-align: middle;}
+td.columna-servicios{ vertical-align: middle; border-left:0px}
+ul.lista-categorias {display:block; float:left; list-style:none;  width: 20%; margin-right: 5%;}
+li#elem-categoria {width: 100%; margin-top: 5%;}
+li#elem-categoria a {width: 100%; padding: 1%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%; font-size: 22px; 
+/*-webkit-text-stroke-color: black; -webkit-text-stroke-width: 1px;*/}
 /*div.lista-categorias p span#azul-oscuro a { background-color: #285E8E;}*/
 
 span#azul-oscuro a { background-color: #285E8E;}
