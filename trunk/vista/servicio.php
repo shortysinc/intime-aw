@@ -19,7 +19,9 @@
 		require_once '../controlador/opbasededatos.php';
 
 		$BDD = new Mysql();
-	  	$resultadoServicio = $BDD -> conseguirServicio(1);
+		//$resultadoServicio = $BDD -> conseguirServicio($id);
+	  	$resultadoServicio = $BDD -> conseguirServicio(2);
+		$resultadoUsuarioServicio = $BDD -> conseguirUsuarioServicio(27);
 	
 	?>
 	
@@ -58,7 +60,13 @@
 					<div class="autor">
 						<img src="images/team1.jpg" >
 						<div class="nombretrabajo">
-							<a href="perfil.php"><h3>Nombre del usuario</h3></a>
+							<a href="perfil.php">
+								<h3>
+									<?php 
+										$row=$resultadoUsuarioServicio->fetch_array(MYSQLI_ASSOC);
+										printf ("%s \n", $row["nombre"]);
+									?>				
+								</h3></a>
 						</div>
 						<div class="valoraciones">
 							<p>

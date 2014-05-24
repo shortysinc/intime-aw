@@ -116,6 +116,23 @@ class Mysql{
 		return $resultado;
 
 	}
+	/**
+	 * Obtiene el usuario que ofrece el servicio
+	 * @return el usuario de la base de datos.
+	 */ public function conseguirUsuarioServicio($id_usuario) {
+
+		$this->conectar();
+		$pst= $this->conexion->prepare("SELECT DISTINCT nombre FROM usuario WHERE id_usuario = ?");
+		$pst->bind_param("i", $id_usuario);
+		$pst->execute();
+		$resultado = $pst->get_result();
+	
+		$pst->close();
+		$this->cerrar();
+	
+		return $resultado;
+
+	}
 	
 	/**
 	 * Obtiene todos los servicios de la categoría pasada por parámentro
