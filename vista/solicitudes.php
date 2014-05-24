@@ -25,8 +25,8 @@
 								<div class="buscador">
 									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
-										<input type="text" size="50">
-										<button type="submit" name="submit">
+										<input type="text" name="nombrebusq" size="50">
+										<button type="submit"  name="submit">
 											Enviar
 										</button>
 										<a href="busqueda.php">Búsqueda avanzada</a>
