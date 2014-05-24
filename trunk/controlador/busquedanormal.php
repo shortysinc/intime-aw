@@ -9,8 +9,8 @@
 		for ($i=0;$i<$lenght;$i=$i+1){?>
 				<div class ="busq-ej">
 					<?php
-						echo"<a href=trabajo.php><h3>".$ret[$i][3]."</h3></a>";
-						echo"<a href=perfil.php><h4>".$ret[$i][0]." ".$ret[$i][1]."</h4></a>";
+						echo'<a href=trabajo.php?id='.$ret[$i][6].'><h3>'.$ret[$i][3].'</h3></a>';
+						echo'<a href=perfil.php?id='.$ret[$i][5].'><h4>'.$ret[$i][0]." ".$ret[$i][1].'</h4></a>';
 					?>
 					<div class="busq-foto">
 						<?php
