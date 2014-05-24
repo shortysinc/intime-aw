@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-	$nbusq = $_POST["nombrebusq"];
-?>
 <html lang="es">
 	<head>
 		<title>inTime</title>
