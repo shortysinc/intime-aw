@@ -11,6 +11,7 @@ class Mysql{
 	public function conectar(){
         $this->conexion=mysqli_connect($this->host,$this->user,$this->clave);
         mysqli_select_db($this->conexion, $this->bd);
+		$this->conexion->set_charset("utf8");
     }
 	
 	 public function cerrar () {
