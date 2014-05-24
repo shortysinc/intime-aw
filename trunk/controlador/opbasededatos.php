@@ -108,7 +108,7 @@ class Mysql{
 		$pst = $this->conexion->prepare("select * from servicio where id_servicio = ?");
 		$pst->bind_param("i", $id);
 		$pst->execute();
-		$resultado =  mysqli_stmt_fetch($pst);
+		$resultado = $pst->get_result();
 	
 		$pst->close();
 		$this->cerrar();

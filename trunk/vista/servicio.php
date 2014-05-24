@@ -43,7 +43,11 @@
 					</form>
 				</div>
 				<div class="encabezado">
-					<h2><?php echo $resultadoServicio['nombre_servicio'] ?></h2>
+					<h2><?php 
+							$row=$resultadoServicio->fetch_array(MYSQLI_ASSOC);
+							printf ("%s \n", $row["nombre_servicio"]);
+						
+						?></h2>
 					
 					
 					 <img src="images/slide3.jpg" > 
