@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 <?php
-	if(!isset($_SESSION["login"]) || !$_SESSION["login"]){
+	if(!isset($_SESSION["login_usuario"]) || $_SESSION["login_usuario"] == false){
 		$_SESSION["mensaje"] = "Tienes que iniciar sessión";
 		header('Location: ../index.php');
 	}else{
