@@ -135,7 +135,7 @@ class Mysql{
 		return $resultado;
 	}
 	public function mostrar_todos_usuarios(){
-		$enlace = mysqli_connect("localhost", "root", "", "intime");
+		$enlace = $this->conectar();
 		$consulta = "SELECT id_usuario, nombre, correo, direccion, horas_usuario  FROM usuario";
 		$resultado = mysqli_query($enlace, $consulta);
 		mysqli_close($enlace);
@@ -143,7 +143,7 @@ class Mysql{
 	} 
 	
 	public function mostrar_todos_servicios(){
-		$enlace = mysqli_connect("localhost", "root", "", "intime");
+		$enlace = $this->conectar();
 		$consulta = "SELECT id_servicio, nombre_servicio FROM servicio";
 		$resultado = mysqli_query($enlace, $consulta);		
 		mysqli_close($enlace);
@@ -159,6 +159,27 @@ class Mysql{
 		$pst->close();
 		return $nota;
 	}
+	
+	/**
+	 * Obtiene todas las solicitudes que le han hecho al usuario pasado por parámetro
+	 * @param $id_usuario 
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudes($id_usuario){
+		$this->conectar();
+		$pst = $this->conexion->prepare("SELECT * FROM usuario_solicita_servicio join servicio where servicio.id_usuario = ? 
+		and usuario_solicita_servicio.id_servicio = servicio.id_servicio");
+		$pst->bind_param("i", $id_usuario);
+		$pst->execute();
+		$resultado =  $pst->get_result();
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $resultado;
+		
+	}
+	
 	public function busqueda($nombre){
 		$this->conectar();
 		$args = array($nombre);
