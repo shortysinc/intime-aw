@@ -1,5 +1,6 @@
 <?php 
-	session_start(); 
+	require_once '../modelo/usuario.php';
+	session_start();
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@
 								</div>
 							</div>
 						</div>
-						<h1>Bienvenido usuario</h2>
+						<h1><?php echo"Bienvenido ".$_SESSION['usuario']->getNombre(); ?></h1>
 					</div>
 					<div class="cuerpo">
 						<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>
