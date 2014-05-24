@@ -1,4 +1,5 @@
 <?php 
+	require_once '../controlador/opbasededatos.php';
 	require_once '../modelo/usuario.php';
 	session_start();
 ?>
@@ -23,6 +24,9 @@
 		$_SESSION["mensaje"] = "Tienes que iniciar sessión";
 		header('Location: ../index.php');
 	}else{
+		$BDD = new Mysql();
+		$resultadoSolicitudes = $BDD->conseguirSolicitudes($_SESSION["usuario"]->getId());
+		$num_solicitudes = $resultadoSolicitudes->num_rows;
 ?>
 	<body>
 		<?php include "sidebarusuario.php"
@@ -48,8 +52,17 @@
 						<h1><?php echo"Bienvenido ".$_SESSION['usuario']->getNombre(); ?></h1>
 					</div>
 					<div class="cuerpo">
-						<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>
+						<h3><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes de usuarios requiriendo tus servicios"?></h3>
+						<!--<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>-->
 						<h3>2 usuarios han respondido a tu peticion de servicio</h3>
+						<?php 
+							while($row = $resultadoSolicitudes->fetch_assoc()){
+						?>
+								<h3><?php echo $row['comentario'] ?></h3>
+						<?php
+							}
+						?>
+						
 					</div>
 				</div>
 				<!-- /#services -->
