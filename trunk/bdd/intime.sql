@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-05-2014 a las 12:48:32
+-- Tiempo de generación: 24-05-2014 a las 16:31:08
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `intime`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `admin`
+--
+
+CREATE TABLE IF NOT EXISTS `admin` (
+  `id_admin` int(11) NOT NULL AUTO_INCREMENT,
+  `correo_admin` varchar(40) NOT NULL,
+  `pass_admin` char(128) NOT NULL,
+  `salt_admin` char(128) NOT NULL,
+  PRIMARY KEY (`id_admin`),
+  UNIQUE KEY `correo_admin` (`correo_admin`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -94,9 +109,9 @@ CREATE TABLE IF NOT EXISTS `servicio` (
 --
 
 INSERT INTO `servicio` (`id_servicio`, `id_usuario`, `nombre_servicio`, `descripcion`, `horas`, `foto`, `id_categoria`) VALUES
-(1, 24, 'Corto el césped del jardín', 'Me ofrezco para cortar el césped de su jardín.Me ofrezco para cortar el césped de su jardín.Me ofrezco para cortar el césped de su jardín.Me ofrezco para cortar el césped de su jardín.Me ofrezco para cortar el césped de su jardín.Me ofrezco para cortar el césped de su jardín.Me ofrezco para cortar el césped de su jardín.', 1, NULL, 1),
-(2, 24, 'Clases de inglés', 'Doy clases de inglés.', 1, NULL, 2),
-(3, 24, 'Pilates', 'Doy clases de pilates', 1, NULL, 3);
+(1, 27, 'Clase de alemán', 'Doy clases de alemán.', 1, NULL, 2),
+(2, 27, 'Clases de pilates', 'Doy clases de pilates', 1, NULL, 3),
+(3, 27, 'Corto césped', 'Corto el césped de tu jardín', 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -116,16 +131,14 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `salt` char(128) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `correo`, `nombre`, `apellidos`, `direccion`, `horas_usuario`, `foto`, `pass`, `salt`) VALUES
-(24, 'usr@gmail.com', 'usuario', '', 'calle usuario', 0, NULL, '4a9ce39cccfb77e781d290412fed0b77ce3495658ef88a760f2bd36a2c4089511f5c86b5851bbf2c6c6ce695235a6119634a5037f79245151fbdafdeaa6f1736', '6f9674f08bd82cd8d207ae04554912b1c1f7a804eac56779362939fd78f56f8c2a27bcd25a58c3dc7da2e9d0d491235004bdb8128ba86d30b1e730d5a81f091a'),
-(25, '', '', '', '', 0, NULL, 'a25f2713731b559be7d47f2c27a13dbeb248844731fb61ea31cb48e3a278947df913218154e30ab72357be32c9b693d8dbd68b0c1f5d0ed48114b0b10d510b9a', '4addc934e224e15ba4bdd394185b85ebfb1393af495a0157536260587cc8a651ad2df3d9429eed13ffe64c21d329338ccaee087ded457442873891f76b37b247'),
-(26, 'hola@a.com', 'aaa', '', '\\''antonio', 0, NULL, 'cf2df337770f6c72a7d9fbc556fa60281c6548864f06d94e8d9451b8898d0bab34ac3557d3e504a430925b9ff766844eed3a4e398513f7a85e3666c9daea6e53', '1fcbfb25ddded4e2d5afcde52dc72d8608349124d746a254cf556640ef750ab0f2d33bb53cdf4ae546302f468346604508d5456a0da8b2f5ff29d8a9513e72fb');
+(27, 'usuario@usr.com', 'Pepe', '', 'domicilio', 0, NULL, '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00');
 
 -- --------------------------------------------------------
 
