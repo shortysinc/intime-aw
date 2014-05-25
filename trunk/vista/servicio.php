@@ -19,10 +19,13 @@
 		require_once '../controlador/opbasededatos.php';
 
 		$BDD = new Mysql();
+		$id_user= 27;
+		$id_servicio=2;
 		//$resultadoServicio = $BDD -> conseguirServicio($id);
-	  	$resultadoServicio = $BDD -> conseguirServicio(2);
-		$resultadoUsuarioServicio = $BDD -> conseguirUsuarioServicio(27);
-	
+	  	$resultadoServicio = $BDD -> conseguirServicio($id_servicio);
+		$resultadoUsuarioServicio = $BDD -> conseguirUsuarioServicio($id_user);
+		$resultadoValoracion= $BDD->conseguirValoracion($id_user, $id_servicio);
+		$resultadoMedia= $BDD->notamedia($idservicio);
 	?>
 	
 	<!-- FIN -->
@@ -70,10 +73,13 @@
 						</div>
 						<div class="valoraciones">
 							<p>
-								42 valoraciones.
+								<?php 
+									$row=$resultadoValoracion->fetch_array(MYSQLI_ASSOC);
+									printf ("%s \n", $row["nota"]);
+								?>
 							</p>
 							<p>
-								Nota media: 4,51
+								Nota Media : 4,3
 							</p>
 							<a href="editarservicio.php"><h5>Editar</h5></a>
 						</div>
