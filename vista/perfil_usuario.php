@@ -61,11 +61,11 @@
 						<?php
 							}else if($num_solicitudes == 1){
 						?>
-								<a><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
+								<a href=""><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
 						<?php
 							}else {
 						?>
-								<a><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
+								<a href=""><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
 						<?php	
 							}
 						?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-05-2014 a las 20:33:00
+-- Tiempo de generación: 25-05-2014 a las 21:43:54
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -33,7 +33,14 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `salt` char(128) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `correo_admin` (`correo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Volcado de datos para la tabla `admin`
+--
+
+INSERT INTO `admin` (`id`, `correo`, `pass`, `salt`) VALUES
+(1, 'admin@admin.com', 'cffcede585c94a629ba29a5ce9be9de3728d413747fa0e333e353bd1fe09dea964a31cae7f99021db65e0f4f3df80c4c7ecbfc6a14117ef1bc2325adb236d42f', '438aff7512921a23f3a97d0705d62dc08758e5240568bf1d097eaa147ce7f6a0f7e788eac68178ea2f64962d4ef7ae36fa1cc780fe73c011380b0d5f680a7d5d');
 
 -- --------------------------------------------------------
 
@@ -102,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `servicio` (
   PRIMARY KEY (`id_servicio`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -132,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `salt` char(128) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
