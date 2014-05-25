@@ -116,13 +116,33 @@ class Mysql{
 		return $resultado;
 
 	}
+	 
+	 /**
+	 * Obtiene un servicio con el  id.
+	 * @return el servicio dela base de datos.
+	 */ 
+	 public function conseguirValoracion($id_user, $id_servicio) {
+
+		$this->conectar();
+		$pst = $this->conexion->prepare(" SELECT * FROM `valoracion_servicio` WHERE id_usuario= ? and id_servicio=?");
+		$pst->bind_param("ii", $id_user, $id_servicio);
+		$pst->execute();
+		$resultado = $pst->get_result();
+	
+		$pst->close();
+		$this->cerrar();
+	
+		return $resultado;
+
+	}
+	 
 	/**
 	 * Obtiene el usuario que ofrece el servicio
 	 * @return el usuario de la base de datos.
 	 */ public function conseguirUsuarioServicio($id_usuario) {
 
 		$this->conectar();
-		$pst= $this->conexion->prepare("SELECT DISTINCT nombre FROM usuario WHERE id_usuario = ?");
+		$pst= $this->conexion->prepare("SELECT DISTINCT nombre FROM usuario,servicio WHERE usuario.id_usuario = servicio.id_usuario and usuario.id_usuario=? ");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
 		$resultado = $pst->get_result();
