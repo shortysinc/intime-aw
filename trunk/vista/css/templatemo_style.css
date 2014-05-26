@@ -252,7 +252,7 @@ textarea .mensaje { position: relative;}
 .comment-ej h4{padding-left:10px;}
 .comment-form{padding-left:35%;}
 
-.lista{height:800px;margin-top:-200px;}
+.lista{min-height:800px;margin-top:-200px;}
 .lista h3,h4{padding-left:10px;}
 .nombrebusqueda{padding-left:10px;font-size:20px;}
 .lista img{height:100px;width:100px;}

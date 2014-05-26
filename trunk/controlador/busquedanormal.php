@@ -17,6 +17,7 @@
 			$BDD = new Mysql();
 			$ret=$BDD->busquedaavanzada($corte,$usuario->getId());
 			if ($_POST["consulta"]=="red"){
+				if (isset($ret[0][5])){
 					$iteracionarray=array();
 					$sumaarray=array();
 					$sumaarray=$BDD->busquedaavanzada($corte,$ret[0][5]);
@@ -26,6 +27,7 @@
 					}
 					$ret=array();
 					$ret=$sumaarray;
+				}
 			}
 		}
 		$lenght=count($ret);
