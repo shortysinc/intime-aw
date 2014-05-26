@@ -17,7 +17,7 @@ require_once '../controlador/opbasededatos.php';
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 	<body>
-		<?php include "sidebar.php"
+		<?php include "sidebaradmin.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
@@ -49,12 +49,14 @@ require_once '../controlador/opbasededatos.php';
 							echo "<table border='1' cellpadding='2' cellspacing='2'";
 							echo "<tr><td>ID</td><td>Nombre</td><td>Correo</td><td>Direccion</td><td>Horas</td>";
 							while ($row = mysqli_fetch_array($resultado)) {
+							$id = $row['id_usuario'];
 							        echo "<tr>";
 							        echo "<td>".$row["id_usuario"]."</td>";
 							        echo "<td>".$row["nombre"]."</td>";
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
+									echo  "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
