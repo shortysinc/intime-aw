@@ -38,7 +38,7 @@
 		<div id="main-content">
 			<div id="templatemo">
 				<div class="busqueda">
-					<form action="busqueda.php" method="get" accept-charset="utf-8">
+					<form method="post" action="busqueda.php" accept-charset="utf-8">
 						<label>Buscar</label>
 						<input type="text" name="nombrebusq" size="50">
 						<button type="submit" name="submit" value="Enviar">
