@@ -35,7 +35,7 @@
 
 								<h2>Servicios</h2>
 								<div class="buscador">
-									<form class="buscador-form" method="get" accept-charset="utf-8">
+									<form method="post" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
 										<input type="text" size="50">
 										<button type="submit" name="submit" value="Enviar">

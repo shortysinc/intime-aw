@@ -26,7 +26,7 @@ require_once '../controlador/opbasededatos.php';
 						<div class="col-md-12">
 							<div class="section-title">
 								<div class="buscador">
-									<form class="buscador-form" method="get" action="busqueda.php" accept-charset="utf-8">
+									<form method="post" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
 										<input type="text" name="nombrebusq" size="50">
 										<button type="submit" name="submit">
