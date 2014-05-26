@@ -44,13 +44,13 @@ session_start();
 									</div>
 								</form>
 								<div class="main-buscador">
-									<form class="buscador-form" method="get" action="vista/busqueda.php" accept-charset="utf-8">
+									<form method="post" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
 										<input type="text" name="nombrebusq" size="50">
-										<button type="submit" name="submit">
+										<button type="submit" name="submit" value="Enviar">
 											Enviar
 										</button>
-										<a href="vista/busqueda.php">Búsqueda avanzada</a>
+										<a href="busqueda.php">Búsqueda avanzada</a>
 									</form>
 								</div>
 							</div>
