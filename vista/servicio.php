@@ -33,7 +33,7 @@
 	<body>
 		
 	
-		<?php include "sidebarusuario.php"
+		<?php include "sidebar.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
