@@ -172,7 +172,7 @@ class Mysql{
 		return $resultado;
 	}
 	public function mostrar_todos_usuarios(){
-		$enlace = $this->conectar();
+		$enlace = mysqli_connect('localhost', 'root', '', 'intime');
 		$consulta = "SELECT id_usuario, nombre, correo, direccion, horas_usuario  FROM usuario";
 		$resultado = mysqli_query($enlace, $consulta);
 		mysqli_close($enlace);
@@ -180,7 +180,7 @@ class Mysql{
 	} 
 	
 	public function mostrar_todos_servicios(){
-		$enlace = $this->conectar();
+		$enlace = mysqli_connect('localhost', 'root', '', 'intime');
 		$consulta = "SELECT id_servicio, nombre_servicio FROM servicio";
 		$resultado = mysqli_query($enlace, $consulta);		
 		mysqli_close($enlace);
