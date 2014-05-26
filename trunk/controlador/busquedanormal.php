@@ -9,7 +9,6 @@
 			$ret=$BDD->busqueda($nbusq);
 		}
 		if (isset($_POST["consulta"])){
-			session_start();
 			$usuario=$_SESSION['usuario'];
 			$consulta = $_POST["consulta"];
 			$corte = $_POST["valbusq"];
