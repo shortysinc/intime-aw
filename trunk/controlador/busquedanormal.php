@@ -1,6 +1,4 @@
 <?php
-	require_once '../controlador/opbasededatos.php';
-	require_once '../modelo/usuario.php';
 	if ((isset($_POST["nombrebusq"]) && $_POST["nombrebusq"]!="") || (isset($_POST["consulta"]))){
 		if (isset($_POST["nombrebusq"])){
 			$nbusq = $_POST["nombrebusq"];
