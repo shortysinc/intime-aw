@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-require_once '../controlador/opbasededatos.php';
+	require_once '../controlador/opbasededatos.php';
 ?>
 <html lang="es">
 	<head>
@@ -64,7 +64,7 @@ require_once '../controlador/opbasededatos.php';
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
 							        echo '<td><input type="button" onclick="javascript:ConfirmDelete("$id->ID")" value="DELETE ACCOUNT"></td>';
-									echo "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
+									echo "<td><a href='../controlador/deleteuser.php?id=ID'>Borrar Usuario</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
