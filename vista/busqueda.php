@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+	<?php
+		require_once '../controlador/opbasededatos.php';
+		require_once '../modelo/usuario.php';
+		session_start();
+	?>
 	<head>
 		<title>inTime</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
