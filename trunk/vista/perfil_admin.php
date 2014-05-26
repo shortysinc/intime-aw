@@ -1,3 +1,8 @@
+<?php 
+	require_once '../controlador/opbasededatos.php';
+	require_once '../modelo/admin.php';
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -13,8 +18,14 @@
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
+	<?php
+		if(!isset($_SESSION['login_admin']) || !$_SESSION['login_admin']){
+			$_SESSION["mensaje"] = "No tienes suficientes permisos";
+			header('Location: ../index.php');
+		}
+	?>
 	<body>
-		<?php include "sidebaradmin.php"
+		<?php include "sidebar.php"
 		?>
 		<div id="main-content">
 			<div id="templatemo">
