@@ -26,7 +26,7 @@ session_start();
 					<div class="flexslider">
 						<div class="bienvenida">
 							<div class="box-login">
-								<form method="post" action="busqueda.php" accept-charset="utf-8">
+								<form method="post" action="controlador/login.php" accept-charset="utf-8">
 									<div class="u-login">
 										<label>Usuario</label>
 										<input type="text" name="correo"/>
