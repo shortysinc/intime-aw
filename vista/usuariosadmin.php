@@ -63,7 +63,7 @@ require_once '../controlador/opbasededatos.php';
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
-							        echo '<td><input type="button" onclick="javascript:ConfirmDelete('$id->ID')" value="DELETE ACCOUNT"></td>';
+							        echo '<td><input type="button" onclick="javascript:ConfirmDelete("$id->ID")" value="DELETE ACCOUNT"></td>';
 									echo "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
 							        echo "</tr>";
 							}
