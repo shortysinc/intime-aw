@@ -2,7 +2,7 @@
 class Mysql{
 	private $host="localhost";
 	private $user="root";
-    private $clave="shortys7467897";
+    private $clave="";
     private $bd="intime";
     private $conexion;  
     private $sql;
