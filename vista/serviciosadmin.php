@@ -47,12 +47,12 @@ require_once '../controlador/opbasededatos.php';
 								$resultado = $BDD->mostrar_todos_servicios();
 								echo "LISTA DE USUARIOS";
 								echo "<table border='1' cellpadding='2' cellspacing='2'";
-								echo "<tr><td>ID</td><td>Nombre del Ofertante</td><td>Nombre del Servicio</td>";
+								echo "<tr><td>ID Servicio</td><td>ID Usuario Ofertante</td><td>Nombre del Servicio</td>";
 								while ($row = mysqli_fetch_array($resultado)) {
 								$id = $row['id_servicio'];
 							        echo "<tr>";
 							        echo "<td>".$row["id_servicio"]."</td>";
-							        echo "<td>".$row["nombre_usuario"]."</td>";
+							        echo "<td>".$row["id_usuario"]."</td>";
 							        echo "<td>".$row["nombre_servicio"]."</td>";
 									echo  "<td><a href='../controlador/deleteservice.php?id=$id'>Borrar Servicio</a></td>";
 							        echo "</tr>";

@@ -15,6 +15,7 @@ require_once '../controlador/opbasededatos.php';
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
+		
 	</head>
 	<body>
 		<?php include "sidebaradmin.php"
@@ -56,7 +57,7 @@ require_once '../controlador/opbasededatos.php';
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
-									echo  "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
+									echo  "<td><a href='../controlador/deleteuser.php?id=$id'onClick='return confirm('Delete This account?')>Borrar Usuario</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
