@@ -15,7 +15,13 @@ require_once '../controlador/opbasededatos.php';
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
-		
+		<script type="text/javascript">
+ 	     function ConfirmDelete(ID)
+  		    {
+        	    if (confirm("Delete Account?"))
+       	          location.href='../controlador/deleteuser.php?id=' + ID;
+  		    }
+		  </script>
 	</head>
 	<body>
 		<?php include "sidebaradmin.php"
@@ -57,7 +63,8 @@ require_once '../controlador/opbasededatos.php';
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
-									echo  "<td><a href='../controlador/deleteuser.php?id=$id'onClick='return confirm('Delete This account?')>Borrar Usuario</a></td>";
+							        echo '<td><input type="button" onclick="javascript:ConfirmDelete('$id->ID')" value="DELETE ACCOUNT"></td>';
+									echo "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
