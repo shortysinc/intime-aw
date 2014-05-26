@@ -15,6 +15,13 @@ require_once '../controlador/opbasededatos.php';
 		<link rel="stylesheet" href="css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
+		<script type="text/javascript">
+ 	     function ConfirmDelete(ID)
+  		    {
+        	    if (confirm("¿Seguro que desea borrar el Servicio " + ID +" ?"))
+       	          location.href='../controlador/deleteservice.php?id=' + ID;
+  		    }
+		  </script>
 	</head>
 	<body>
 		<?php include "sidebaradmin.php"
@@ -54,7 +61,7 @@ require_once '../controlador/opbasededatos.php';
 							        echo "<td>".$row["id_servicio"]."</td>";
 							        echo "<td>".$row["id_usuario"]."</td>";
 							        echo "<td>".$row["nombre_servicio"]."</td>";
-									echo  "<td><a href='../controlador/deleteservice.php?id=$id'>Borrar Servicio</a></td>";
+									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar Servicio</a></td>";
 							        echo "</tr>";
 								}
 								$resultado->free(); 
