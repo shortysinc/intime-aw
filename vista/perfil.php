@@ -1,5 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
+	<?php
+		require_once '../controlador/opbasededatos.php';
+		require_once '../modelo/usuario.php';
+		session_start();
+		
+		if (isset($_SESSION['usuario'])){
+			$login=$_SESSION['usuario'];
+		}
+		if (isset($_REQUEST['id'])){
+			$id=$_REQUEST['id'];
+		}
+		$BDD = new Mysql();
+		$user=$BDD->conseguirUsuarioById($id);                //[0]$id_usuario,[1]$correo,[2]$nombre,[3]$apellidos,[4]$foto
+		$services=$BDD->conseguirServiciosByUserId($id);	  //[0]$id,[1]$nombre,[2]$descripcion
+	?>
 	<head>
 		<title>inTime</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
@@ -36,37 +51,47 @@
 						</div>
 					</div>
 				</div>
-
+				<!-------------------------------------------PERFIL----------------------------------------->
 				<div class="perfil">
-					<h1>Nombre del Usuario</h1>
-					<img src="images/team1.jpg" >
+					<?php
+						echo'<h1>'.$user[2]." ".$user[3].'</h1>';
+						if (!empty($user[4])){
+								echo '<img src="data:image/png;base64,' . base64_encode($user[4]) . '"/>';
+							}else
+								echo '<img src="images/user.png">';
+					?>
 					<div class="infouser">
-						<p>
-							fake1@mail.com
-						</p>
-						<ul
-						<li>
-							<p>
-								Nota media de sus servicios: 7,1
-							</p>
-						</li>
-						<a href="editarperfil.php"><h5>Editar perfil</h5></a>
+						<?php
+							echo"<p>".$user[1]."</p>";
+							if (($user[0]==$login->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)))
+								echo'<a href="editarperfil.php?id='.$user[0].'"><h5>Editar perfil</h5></a>';
+						?>
 					</div>
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
-						<div class="servicio-ej">
-							<a href="trabajo.php"><h4>Nombre del servicio</h4></a>
-							<div class="serv-nota">
-								<p>
-									Nota: 5,4
-								</p>
-							</div>
-							<div class="serv-desc">
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
-								</p>
-							</div>
-						</div>
+						<?php
+							$lenght=count($services);
+							for ($i=0;$i<$lenght;$i=$i+1){?>
+								<div class="servicio-ej">
+									<?php 
+										echo '<a href="trabajo.php"><h4>'.$services[$i][1].'</h4></a>';
+									?>
+									<div class="serv-nota">
+									<?php
+										$nota=$BDD->notamedia($services[$i][0]);
+										if (!empty($nota))
+											echo"<p>Nota: ".$nota."</p>";
+										else
+											echo"<p>No valorado</p>";
+									?>
+									</div>
+									<div class="serv-desc">
+									<?php
+										echo"<p>".$services[$i][2]."</p>";
+									?>
+									</div>
+								</div>
+						<?php } ?>
 					</div>
 				</div>
 

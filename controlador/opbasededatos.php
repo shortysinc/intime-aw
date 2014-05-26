@@ -289,7 +289,35 @@ class Mysql{
 			return NULL;
 		}
 	}
+		public function conseguirUsuarioById($id){
+		$this->conectar();
+		$pst = $this->conexion->prepare("select id_usuario,correo,nombre,apellidos,foto from usuario where id_usuario=? ");
+		$pst->bind_param("s", $id);
+		$pst->execute();
+		$pst->bind_result($id_usuario,$correo,$nombre,$apellidos,$foto);
+		$pst->fetch();
+		$result=array($id_usuario,$correo,$nombre,$apellidos,$foto);
+		$pst->close();
+		return $result;
+	}
 	
+	public function conseguirServiciosByUserId($id){
+		$this->conectar();
+		$i=0;
+		$ret=array();
+		$pst = $this->conexion->prepare("select id_servicio,nombre_servicio,descripcion from servicio where id_usuario= ?");
+		$pst->bind_param("s", $id);
+		$pst->execute();
+		$pst->bind_result($id,$nombre,$descripcion);
+		while($pst->fetch()){
+			$info = array($id,$nombre,$descripcion);
+			$ret[$i]=$info;
+			$i=$i+1;
+			//
+		}
+		$pst->close();
+		return $ret;
+	}
 	
 	
 }
