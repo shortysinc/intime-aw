@@ -74,7 +74,7 @@
 							for ($i=0;$i<$lenght;$i=$i+1){?>
 								<div class="servicio-ej">
 									<?php 
-										echo '<a href="trabajo.php"><h4>'.$services[$i][1].'</h4></a>';
+										echo '<a href="trabajo.php?id='.$services[$i][0].'"><h4>'.$services[$i][1].'</h4></a>';
 									?>
 									<div class="serv-nota">
 									<?php
