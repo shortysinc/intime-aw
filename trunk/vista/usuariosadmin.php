@@ -63,8 +63,10 @@
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
-							        echo '<td><input type="button" onclick="javascript:ConfirmDelete("$id")" value="Borrar Usuario"></td>';
-									echo "<td><a href='../controlador/deleteuser.php?id=ID'>Borrar Usuario</a></td>";
+							        //echo '<td><input type="button" onclick="javascript:ConfirmDelete($id)" value="Borrar Usuario"></td>';
+									//echo  "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
+									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar User</a></td>"; 
+									echo "<td><a href='../controlador/deleteuser.php?id=$id'>Borrar Usuario</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
