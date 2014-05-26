@@ -172,18 +172,24 @@ class Mysql{
 		return $resultado;
 	}
 	public function mostrar_todos_usuarios(){
-		$enlace = mysqli_connect('localhost', 'root', '', 'intime');
-		$consulta = "SELECT id_usuario, nombre, correo, direccion, horas_usuario  FROM usuario";
-		$resultado = mysqli_query($enlace, $consulta);
-		mysqli_close($enlace);
+		$this->conectar();
+		$pst = $this->conexion->prepare("select * from usuario");
+		$pst->execute();
+		$resultado = $pst->get_result();
+		$pst->close();
+		$this->cerrar();
+		
 		return $resultado;
 	} 
 	
 	public function mostrar_todos_servicios(){
-		$enlace = mysqli_connect('localhost', 'root', '', 'intime');
-		$consulta = "SELECT id_servicio, nombre_servicio FROM servicio";
-		$resultado = mysqli_query($enlace, $consulta);		
-		mysqli_close($enlace);
+		$this->conectar();
+		$pst = $this->conexion->prepare("select * from servicio");
+		$pst->execute();
+		$resultado = $pst->get_result();
+		$pst->close();
+		$this->cerrar();
+		
 		return $resultado;
 	} 
 	public function notamedia($idservicio){
