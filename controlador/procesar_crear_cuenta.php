@@ -1,6 +1,7 @@
 <?php 
 	session_start();
-	require_once '../controlador/opbasededatos.php';
+	require_once '../controlador/op_base_datos.php';
+	require_once '../controlador/op_base_datos_usuario.php';
 	require_once '../modelo/usuario.php';
 	
 	$nombre = $_POST["nombre"];
@@ -14,7 +15,7 @@
 		$_SESSION["error"] = "Las contraseñas no coinciden";
 		header('Location: ../vista/crear_cuenta.php');
 	}else {
-		$BDD = new Mysql();
+		$BDD = new MysqlUsuario();
 		$error = $BDD->insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass);
 		if($error === 0 ){ //Si no ha habido ningún error
 			//insertar usuario en la sesion

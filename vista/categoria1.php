@@ -1,3 +1,7 @@
+<?php 
+require_once '../modelo/usuario.php';
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
