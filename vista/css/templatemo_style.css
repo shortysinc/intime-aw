@@ -289,20 +289,22 @@ textarea .mensaje { position: relative;}
 
 .panel-servicios {position: relative; margin-bottom:50px;min-height:300px; width: 100%; }
 
+.descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px; margin: 15px}
+td.columna-foto{width: 15%;  vertical-align: middle; border-right: 0px; background-color: #E1E1E1}
+td.columna-servicios{ vertical-align: middle, border-left: 0px; background-color: #E1E1E1}
+td.columna-servicios h3 {padding-left: 0px;}
+ul.lista-categorias {display:block; float:left; list-style:none;  width: 20%; margin-right: 5%; margin-bottom: 5%;}
+span#nota-servicio { display: block; text-align: left; margin-left: 15px;}
+span#horas-servicio { display: block; text-align: right; margin-right: 15px;}
+span#negrita {font-weight: bold;}
 
-.descripcion-servicios { margin-left: 5%; text-align: left; }
-.descripcion-servicios img {float: left;border-style: hidden; border-radius: 80px; height: 150px; width: 150px; margin-right: 25px}
 
-td.columna-foto{width: 15%;  vertical-align: middle;}
-td.columna-servicios{ vertical-align: middle; border-left:0px}
-ul.lista-categorias {display:block; float:left; list-style:none;  width: 20%; margin-right: 5%;}
 li#elem-categoria {width: 100%; margin-top: 5%;}
 li#elem-categoria a {width: 100%; padding: 1%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%; font-size: 22px; 
 /*-webkit-text-stroke-color: black; -webkit-text-stroke-width: 1px;*/}
 /*div.lista-categorias p span#azul-oscuro a { background-color: #285E8E;}*/
 
 span#azul-oscuro a { background-color: #285E8E;}
-
 span.lista-categorias a:hover { text-decoration: underline;}
 
 .panel-servicios{padding-left: 10%;}
