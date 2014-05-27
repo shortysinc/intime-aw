@@ -59,6 +59,7 @@ class Mysql{
 		
 		return $error;
 	}
+	
 	public function loginuser($correo,$pass){
 		$this->conectar();
 		$args = array($correo, $pass);
