@@ -2,6 +2,7 @@
 	session_start();
 	require_once '../controlador/op_base_datos.php';
 	require_once '../controlador/op_base_datos_usuario.php';
+	require_once '../controlador/op_base_datos_admin.php';
 	require_once '../modelo/usuario.php';
 	require_once '../modelo/admin.php';
 	
@@ -21,6 +22,7 @@
 		header('Location: ../vista/perfil_usuario.php');
 		
  	}else{
+ 		$BDD = new MysqlAdmin();
  		$resultado = $BDD->loginAdmin($correo, $pass);
 		if(isset($resultado)){
 			$_SESSION['login_admin'] = true;
