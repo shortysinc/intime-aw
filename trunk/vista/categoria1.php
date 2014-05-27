@@ -56,7 +56,7 @@ session_start();
 								}
 							</script>
 							<div class="cuerpo" id="servicios">
-									<ul class = "lista-categorias">
+								<ul class = "lista-categorias">
 									<?php 
 										while($row = $resultadoCategorias->fetch_assoc()){
 									?>	
@@ -66,10 +66,8 @@ session_start();
 									<?php	
 										}
 									?>
-									</ul>
-								<ul id = "lista-servicios">
-									<!--<li></li>-->
 								</ul>
+								<div id="lista-servicios"></div>
 							</div>
 						</div>
 					</div>
