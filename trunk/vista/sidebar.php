@@ -3,7 +3,7 @@ $dir = $_SERVER["REQUEST_URI"];
 $array = split("/", $dir);
 $n = count($array);
 ?>
-	<asside id="main-sidebar">
+	<div id="main-sidebar">
 		<!-- /.logo -->
 		<?php
 		//SIDEBAR PARA EL INDEX
@@ -110,5 +110,5 @@ $n = count($array);
 		<?php
 		}
 		?>
-	</asside>
+	</div> 
 <!-- /.navigation -->
