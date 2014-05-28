@@ -95,6 +95,19 @@
 							laoreet nibh. Quisque vitae felis massa. Nam lacus arcu, consequat sed ultrices sed, elementum sed leo
 						</p>
 					</div>
+					<?php
+						if(isset($_SESSION['login_admin']) && $_SESSION['login_admin'] ) {//Si es admin
+							//No se hace nada
+							
+						} else if ( (!isset($_SESSION['login_usuario']) || !$_SESSION['login_usuario']) ) { //Si no es usuario registrado
+							//No se hace nada
+							
+						// si id del usuario logueado es distinto del id del usuario que ofrece el servicio
+						}else if (($_SESSION['usuario']->getId() == $rowUsuario['id_usuario']))  { 
+							//No hacemos nada
+						}else {
+							
+					?>
 					<div class="solicitud">
 						<form action=""method="get" accept-charset="utf-8">
 							<label>Solicitar servicio</label>
@@ -106,6 +119,9 @@
 							</button>
 						</form>
 					</div>
+					<?php
+					}
+					?>
 				</div>
 				<div class="comentarios">
 					<!--comentarios ejemplo-->
