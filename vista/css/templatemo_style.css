@@ -300,7 +300,7 @@ span#negrita {font-weight: bold;}
 
 
 li#elem-categoria {width: 100%; margin-top: 5%;}
-li#elem-categoria a {width: 100%; padding: 1%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%; font-size: 22px; 
+li#elem-categoria a {width: 100%; min-padding: 0em; 1%; background-color: #38A9E3; color:#FFFFFF; border-bottom: 10%; font-size: 22px; 
 /*-webkit-text-stroke-color: black; -webkit-text-stroke-width: 1px;*/}
 /*div.lista-categorias p span#azul-oscuro a { background-color: #285E8E;}*/
 
