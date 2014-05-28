@@ -15,7 +15,7 @@
 					<a class="descripcion-servicios" href="trabajo.php"><img src="images/slide3.jpg" alt="Aqui iria una imagen"/></a>
 				</td>
 				<td class="columna-servicios">
-					<h3><?php echo $row['nombre_servicio'] ?></h3>
+					<h3><a href="<?php echo "servicio.php?id_servicio=".$row['id_servicio'] ?>"><?php echo $row['nombre_servicio']?></a></h3>
 					<p><?php echo $row['descripcion'] ?></p>
 					<span id="nota-servicio">Nota: <span id="negrita">9.8</span></span>
 					<span id="horas-servicio"><span id="negrita">1 h</span></span>

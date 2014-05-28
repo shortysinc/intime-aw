@@ -22,12 +22,9 @@
 	<!--NUEVO -->
 	<?php
 		$BDD = new Mysql();
-		$id_user= 27;
-		$id_servicio=2;
-		//$resultadoServicio = $BDD -> conseguirServicio($id);
-	  	$resultadoServicio = $BDD -> conseguirServicio($id_servicio);
-		$rowUsuario = $BDD -> conseguirUsuarioServicio($id_servicio);
-		$resultadoValoracion= $BDD->conseguirValoracion($id_user, $id_servicio);
+		$id_servicio = $_GET['id_servicio'];
+		$rowUsuarioServicio = $BDD -> conseguirUsuarioServicio($id_servicio);
+		$resultadoValoracion= $BDD->conseguirValoracion($id_servicio);
 		//$resultadoMedia= $BDD->notamedia($idservicio);
 	?>
 	
@@ -50,8 +47,7 @@
 				</div>
 				<div class="encabezado">
 					<h2><?php 
-							$row=$resultadoServicio->fetch_array(MYSQLI_ASSOC);
-							printf ("%s \n", $row["nombre_servicio"]);
+							printf ("%s \n", $rowUsuarioServicio['nombre_servicio']);
 						
 						?></h2>
 					
@@ -66,7 +62,7 @@
 							<a href="perfil.php">
 								<h3>
 									<?php
-										echo $rowUsuario["nombre"];
+										echo $rowUsuarioServicio["nombre"];
 									?>				
 								</h3></a>
 						</div>
@@ -103,7 +99,7 @@
 							//No se hace nada
 							
 						// si id del usuario logueado es distinto del id del usuario que ofrece el servicio
-						}else if (($_SESSION['usuario']->getId() == $rowUsuario['id_usuario']))  { 
+						}else if (($_SESSION['usuario']->getId() == $rowUsuarioServicio['id_usuario']))  { 
 							//No hacemos nada
 						}else {
 							
@@ -147,7 +143,7 @@
 							//No hacemos nada
 							
 						} else if( (!isset($_SESSION['login_usuario']) || !$_SESSION['login_usuario'])  //Si no es usuario registrado
-							|| ($_SESSION['usuario']->getId() == $rowUsuario['id_usuario']))  { // o el id del usuario logueado es distinto del id del usuario que ofrece el servicio 
+							|| ($_SESSION['usuario']->getId() == $rowUsuarioServicio['id_usuario']))  { // o el id del usuario logueado es distinto del id del usuario que ofrece el servicio 
 					 		//no se hace nada
 							
 						}else { //Mostramos el formulario de valoración

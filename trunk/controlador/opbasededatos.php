@@ -122,11 +122,11 @@ class Mysql{
 	 * Obtiene un servicio con el  id.
 	 * @return el servicio dela base de datos.
 	 */ 
-	 public function conseguirValoracion($id_user, $id_servicio) {
+	 public function conseguirValoracion($id_servicio) {
 
 		$this->conectar();
-		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_usuario= ? and id_servicio=?");
-		$pst->bind_param("ii", $id_user, $id_servicio);
+		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
+		$pst->bind_param("i", $id_servicio);
 		$pst->execute();
 		$resultado = $pst->get_result();
 	
