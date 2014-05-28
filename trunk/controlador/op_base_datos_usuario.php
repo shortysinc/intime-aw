@@ -79,18 +79,18 @@ class MysqlUsuario extends Mysql {
 	/**
 	 * Obtiene el usuario que ofrece el servicio
 	 * @return el usuario de la base de datos.
-	 */ public function conseguirUsuarioServicio($id_usuario) {
+	 */ public function conseguirUsuarioServicio($id_usuario, $id_servicio) {
 
 		$this->conectar();
-		$pst= $this->conexion->prepare("SELECT DISTINCT nombre FROM usuario,servicio WHERE usuario.id_usuario = servicio.id_usuario and usuario.id_usuario=? ");
-		$pst->bind_param("i", $id_usuario);
+		$pst= $this->conexion->prepare("SELECT * FROM servicio WHERE id_usuario = ? and id_servicio=?");
+		$pst->bind_param("ii", $id_usuario, $id_servicio);
 		$pst->execute();
 		$resultado = $pst->get_result();
 	
 		$pst->close();
 		$this->cerrar();
 	
-		return $resultado;
+		return $resultado->fetch_assoc();
 	}
 	 
 	 public function mostrar_todos_usuarios(){

@@ -1,3 +1,8 @@
+<?php
+	require_once '../modelo/usuario.php';
+	require_once '../controlador/opbasededatos.php';
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 	<head>
@@ -16,23 +21,19 @@
 	
 	<!--NUEVO -->
 	<?php
-		require_once '../controlador/opbasededatos.php';
-
 		$BDD = new Mysql();
 		$id_user= 27;
 		$id_servicio=2;
 		//$resultadoServicio = $BDD -> conseguirServicio($id);
 	  	$resultadoServicio = $BDD -> conseguirServicio($id_servicio);
-		$resultadoUsuarioServicio = $BDD -> conseguirUsuarioServicio($id_user);
+		$rowUsuario = $BDD -> conseguirUsuarioServicio($id_servicio);
 		$resultadoValoracion= $BDD->conseguirValoracion($id_user, $id_servicio);
-		$resultadoMedia= $BDD->notamedia($idservicio);
+		//$resultadoMedia= $BDD->notamedia($idservicio);
 	?>
 	
 	<!-- FIN -->
 	
 	<body>
-		
-	
 		<?php include "sidebar.php"
 		?>
 		<div id="main-content">
@@ -57,7 +58,6 @@
 					
 					 <img src="images/slide3.jpg" > 
 					<!--Foto servicio -->
-					<img src="<?php  ?>" > 
 				</div>
 				<div class="servicio">
 					<div class="autor">
@@ -65,9 +65,8 @@
 						<div class="nombretrabajo">
 							<a href="perfil.php">
 								<h3>
-									<?php 
-										$row=$resultadoUsuarioServicio->fetch_array(MYSQLI_ASSOC);
-										printf ("%s \n", $row["nombre"]);
+									<?php
+										echo $rowUsuario["nombre"];
 									?>				
 								</h3></a>
 						</div>
@@ -75,7 +74,7 @@
 							<p>
 								<?php 
 									$row=$resultadoValoracion->fetch_array(MYSQLI_ASSOC);
-									printf ("%s \n", $row["nota"]);
+									echo $row["nota"];
 								?>
 							</p>
 							<p>
@@ -127,6 +126,17 @@
 							</p>
 						</div>
 					</div>
+					<?php
+						if ( isset($_SESSION['login_admin']) && $_SESSION['login_admin'] ) {//Si es admin
+							//No hacemos nada
+							
+						} else if( (!isset($_SESSION['login_usuario']) || !$_SESSION['login_usuario'])  //Si no es usuario registrado
+							|| ($_SESSION['usuario']->getId() == $rowUsuario['id_usuario']))  { // o el id del usuario logueado es distinto del id del usuario que ofrece el servicio 
+					 		//no se hace nada
+							
+						}else { //Mostramos el formulario de valoración
+					 		
+					?>
 					<div class="comment-form">
 						<form action="" method="get" accept-charset="utf-8">
 							<label>Enviar comentario y/o valoracion</label>
@@ -154,6 +164,9 @@
 							</button>
 						</form>
 					</div>
+					<?php
+					}
+					?>
 				</div>
 				<!--comentarios ejemplo-->
 			</div> <!-- /#sTop -->
