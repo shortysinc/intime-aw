@@ -1,4 +1,5 @@
 <?php
+require_once '../controlador/op_base_datos.php';
 /**
  * Para hacer las consultas relativas a la tabla de usuario
  */
@@ -6,14 +7,15 @@ class MysqlUsuario extends Mysql {
 	
 	public function conseguirUsuarioById($id){
 		$this->conectar();
-		$pst = $this->conexion->prepare("select id_usuario,correo,nombre,apellidos,foto from usuario where id_usuario=? ");
+		$pst = $this->conexion->prepare("select * from usuario where id_usuario=? ");
 		$pst->bind_param("s", $id);
 		$pst->execute();
-		$pst->bind_result($id_usuario,$correo,$nombre,$apellidos,$foto);
+		$pst->bind_result($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
 		$pst->fetch();
-		$result=array($id_usuario,$correo,$nombre,$apellidos,$foto);
+		$usuario = new Usuario($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
+		$this->cerrar();
 		$pst->close();
-		return $result;
+		return $usuario;
 	}
 	
 	/**
@@ -59,38 +61,23 @@ class MysqlUsuario extends Mysql {
 		$pst =  $this->conexion->prepare("select * from usuario where correo = ?");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
-		$resultado = $pst->get_result();
+		$pst->bind_result($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto,
+							$pass, $salt);
+		$pst->fetch();
+		$resultado = array('id_usuario'=>$id, 'correo'=>$correo, 'nombre' => $nombre, 'apellidos' => $apellidos,
+			'direccion' => $direccion, 'horas_usuario' => $horas, 'foto_usuario' => $foto, 'pass' => $pass, 'salt'=> $salt);
+		
 		$pst->close();
 		$this->cerrar();
 		
-		$row = $resultado->fetch_assoc();
-		
-		$pass = hash('sha512', $args[1].$row['salt']);
-		$password = $row['pass'];
-		
+		$pass = hash('sha512', $args[1].$resultado['salt']);
+		$password = $resultado['pass'];
 		if ($password === $pass){
-			return $row;
+			return $resultado;
 			
 		}else {
 			return NULL;
 		}
-	}
-	
-	/**
-	 * Obtiene el usuario que ofrece el servicio
-	 * @return el usuario de la base de datos.
-	 */ public function conseguirUsuarioServicio($id_usuario, $id_servicio) {
-
-		$this->conectar();
-		$pst= $this->conexion->prepare("SELECT * FROM servicio WHERE id_usuario = ? and id_servicio=?");
-		$pst->bind_param("ii", $id_usuario, $id_servicio);
-		$pst->execute();
-		$resultado = $pst->get_result();
-	
-		$pst->close();
-		$this->cerrar();
-	
-		return $resultado->fetch_assoc();
 	}
 	 
 	 public function mostrar_todos_usuarios(){
@@ -102,5 +89,47 @@ class MysqlUsuario extends Mysql {
 		$this->cerrar();
 		
 		return $resultado;
-	} 
+	}
+	 /**
+	 * Obtiene todas las solicitudes que le han hecho al usuario pasado por parámetro
+	 * @param $id_usuario 
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudes($id_usuario){
+		$this->conectar();
+		$pst = $this->conexion->prepare("SELECT id_solicitud FROM usuario_solicita_servicio join servicio where servicio.id_usuario = ? 
+			and usuario_solicita_servicio.id_servicio = servicio.id_servicio");
+		$pst->bind_param("i", $id_usuario);
+		$pst->execute();
+		$pst->bind_result($id_servicio);
+		
+		while($pst->fetch()){
+			$resultado[] = array('id_solicitud' => $id_servicio);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene la valoracion de un servicio con el id pasado por parámetro.
+	 * @return el servicio de la base de datos.
+	 */ 
+	 public function conseguirValoraciones($id) {
+
+		$this->conectar();
+		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
+		$pst->bind_param("i", $id);
+		$pst->execute();
+		$pst->bind_result($id_valoracion, $id_servicio, $id_usuario, $nota, $opinion);
+		while($pst->fetch()){
+			$resultado[] = array('id_valoracion' => $id_valoracion, 'id_servicio' => $id_servicio, 'id_usuario' => $id_usuario,
+				'nota' => $nota, 'opinion' => $opinion);
+		}
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+
+	}
 }

@@ -1,6 +1,8 @@
 <?php
 	require_once '../modelo/usuario.php';
-	require_once '../controlador/opbasededatos.php';
+	require_once '../modelo/servicio.php';
+	require_once '../controlador/op_base_datos_servicio.php';
+	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
 ?>
 <!DOCTYPE html>
@@ -21,10 +23,14 @@
 	
 	<!--NUEVO -->
 	<?php
-		$BDD = new Mysql();
-		$id_servicio = $_GET['id_servicio'];
-		$rowUsuarioServicio = $BDD -> conseguirUsuarioServicio($id_servicio);
-		$resultadoValoracion= $BDD->conseguirValoracion($id_servicio);
+		if(isset($_GET['id_servicio'])){
+			$id_servicio = $_GET['id_servicio'];
+			$BDDServicio = new MysqlServicio();
+			$BDDUsuario = new MysqlUsuario();
+			$servicio = $BDDServicio->conseguirServicio($id_servicio);
+			$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdServicio());
+			$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
+		}
 		//$resultadoMedia= $BDD->notamedia($idservicio);
 	?>
 	
@@ -46,12 +52,6 @@
 					</form>
 				</div>
 				<div class="encabezado">
-					<h2><?php 
-							printf ("%s \n", $rowUsuarioServicio['nombre_servicio']);
-						
-						?></h2>
-					
-					
 					 <img src="images/slide3.jpg" > 
 					<!--Foto servicio -->
 				</div>
@@ -62,15 +62,16 @@
 							<a href="perfil.php">
 								<h3>
 									<?php
-										echo $rowUsuarioServicio["nombre"];
+										echo $usuario->getNombre();
 									?>				
 								</h3></a>
 						</div>
 						<div class="valoraciones">
 							<p>
 								<?php 
-									$row=$resultadoValoracion->fetch_array(MYSQLI_ASSOC);
-									echo $row["nota"];
+									foreach ($resultadoValoracion as $row) {
+										echo $row["nota"];									
+									}
 								?>
 							</p>
 							<p>
@@ -99,7 +100,7 @@
 							//No se hace nada
 							
 						// si id del usuario logueado es distinto del id del usuario que ofrece el servicio
-						}else if (($_SESSION['usuario']->getId() == $rowUsuarioServicio['id_usuario']))  { 
+						}else if (($_SESSION['usuario']->getId() == $usuario->getId()))  { 
 							//No hacemos nada
 						}else {
 							
@@ -143,7 +144,7 @@
 							//No hacemos nada
 							
 						} else if( (!isset($_SESSION['login_usuario']) || !$_SESSION['login_usuario'])  //Si no es usuario registrado
-							|| ($_SESSION['usuario']->getId() == $rowUsuarioServicio['id_usuario']))  { // o el id del usuario logueado es distinto del id del usuario que ofrece el servicio 
+							|| ($_SESSION['usuario']->getId() == $usuario->getId()))  { // o el id del usuario logueado es distinto del id del usuario que ofrece el servicio 
 					 		//no se hace nada
 							
 						}else { //Mostramos el formulario de valoración
