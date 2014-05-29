@@ -64,16 +64,18 @@ class MysqlUsuario extends Mysql {
 		$pst->bind_result($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto,
 							$pass, $salt);
 		$pst->fetch();
-		$resultado = array('id_usuario'=>$id, 'correo'=>$correo, 'nombre' => $nombre, 'apellidos' => $apellidos,
-			'direccion' => $direccion, 'horas_usuario' => $horas, 'foto_usuario' => $foto, 'pass' => $pass, 'salt'=> $salt);
+		$usuario = new Usuario($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto,
+							$pass, $salt);
 		
 		$pst->close();
 		$this->cerrar();
 		
-		$pass = hash('sha512', $args[1].$resultado['salt']);
-		$password = $resultado['pass'];
+		$pass = hash('sha512', $args[1].$usuario->getSalt());
+		$password = $usuario->getPass();
+		//var_dump('pass introducida', $pass);
+		//var_dump('pass real', $password);
 		if ($password === $pass){
-			return $resultado;
+			return $usuario;
 			
 		}else {
 			return NULL;
@@ -103,6 +105,7 @@ class MysqlUsuario extends Mysql {
 		$pst->execute();
 		$pst->bind_result($id_servicio);
 		
+		$resultado = NULL;
 		while($pst->fetch()){
 			$resultado[] = array('id_solicitud' => $id_servicio);
 		}
@@ -123,6 +126,7 @@ class MysqlUsuario extends Mysql {
 		$pst->bind_param("i", $id);
 		$pst->execute();
 		$pst->bind_result($id_valoracion, $id_servicio, $id_usuario, $nota, $opinion);
+		$resultado = NULL;
 		while($pst->fetch()){
 			$resultado[] = array('id_valoracion' => $id_valoracion, 'id_servicio' => $id_servicio, 'id_usuario' => $id_usuario,
 				'nota' => $nota, 'opinion' => $opinion);

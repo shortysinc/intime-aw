@@ -3,7 +3,7 @@
 		if (isset($_POST["nombrebusq"])){
 			$nbusq = $_POST["nombrebusq"];
 			$ret=array();
-			$BDD = new Mysql();
+			$BDD = new MysqlServicio();
 			$ret=$BDD->busqueda($nbusq);
 		}
 		if (isset($_POST["consulta"])){
@@ -11,7 +11,7 @@
 			$consulta = $_POST["consulta"];
 			$corte = $_POST["valbusq"];
 			$ret=array();
-			$BDD = new Mysql();
+			$BDD = new MysqlServicio();
 			$ret=$BDD->busquedaavanzada($corte,$usuario->getId());
 			if ($_POST["consulta"]=="red"){
 				if (isset($ret[0][5])){
@@ -19,7 +19,7 @@
 					$sumaarray=array();
 					$sumaarray=$BDD->busquedaavanzada($corte,$ret[0][5]);
 					for ($i=1;$i<count($ret);$i=$i+1){
-						$iteracionarray=$BDD->busquedaavanzada($corte,$ret[$i][5]);
+						$iteracionarray=$BDD->busquedaavanzada($corte,$ret[$i][5]); 
 						$sumaarray=array_merge((array)$sumaarray,(array)$iteracionarray);
 					}
 					$ret=array();

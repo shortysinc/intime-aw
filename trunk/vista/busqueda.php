@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php
-		require_once '../controlador/opbasededatos.php';
+		require_once '../controlador/op_base_datos_servicio.php';
 		require_once '../modelo/usuario.php';
 		session_start();
 	?>

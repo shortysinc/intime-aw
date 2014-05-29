@@ -40,4 +40,12 @@
 			return $this->nombre;
 		}
 		
+		public function getPass(){
+			return $this->pass;
+		}
+		
+		public function getSalt(){
+			return $this->salt;
+		}
+		
 	}

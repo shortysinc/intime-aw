@@ -23,10 +23,7 @@
 				session_start();
 			}
 			$_SESSION["login_usuario"] = true;
-			$resultado = $BDD->loginuser($correo, $pass);
-			$usuario = new Usuario($resultado['id_usuario'] ,$resultado['correo'], $resultado['nombre'], $resultado['apellidos'],
-				$resultado['direccion'], $resultado['horas_usuario'], $resultado['foto'], $resultado['pass'], $resultado['salt']);
-				
+			$usuario = $BDD->loginuser($correo, $pass);
 			$_SESSION['usuario'] = $usuario;
 			
 			header("Location: ../vista/perfil_usuario.php");
