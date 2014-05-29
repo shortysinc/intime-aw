@@ -8,7 +8,7 @@ class Servicio {
 		   $horas, 
 		   $foto;
 		   
-	function __construct($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto) {
+	public function __construct($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto) {
 	    $this->id_servicio = $id_servicio;
 	    $this->id_usuario = $id_usuario;
 	    $this->id_categoria = $id_categoria;
@@ -26,6 +26,10 @@ class Servicio {
 	public function getNombre(){
 			
 		return $this->nombre;
+	}
+	
+	public function getDescripcion() {
+		return $this->descripcion;
 	}
 	
 }

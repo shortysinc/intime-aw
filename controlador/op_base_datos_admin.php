@@ -1,4 +1,6 @@
 <?php
+require_once '../controlador/op_base_datos.php';
+require_once '../modelo/admin.php';
 class MysqlAdmin extends Mysql{
 	
 	public function loginAdmin($correo, $pass){
@@ -9,18 +11,16 @@ class MysqlAdmin extends Mysql{
 		$pst = $this->conexion->prepare("select * from admin where correo = ?");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
-		$resultado =  $pst->get_result();
-		
+		$pst->bind_result($id, $correo, $pass, $salt);
+		$pst->fetch();
+		$admin = new Admin($id, $correo, $pass, $salt);
 		$pst->close();
 		$this->cerrar();
 		
-		$row = $resultado->fetch_assoc();
-		
-		$pass = hash('sha512', $args[1].$row['salt']);
-		$password = $row['pass'];
-		
+		$pass = hash('sha512', $args[1].$admin->getSalt());
+		$password = $admin->getPass();
 		if ($password === $pass){
-			return $row;
+			return $admin;
 			
 		}else {
 			return NULL;

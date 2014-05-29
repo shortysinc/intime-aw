@@ -22,9 +22,9 @@ session_start();
 		<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 	</head>
 	<?php
-	require_once '../controlador/opbasededatos.php';
+	require_once '../controlador/op_base_datos_servicio.php';
 
-	$BDD = new Mysql();
+	$BDD = new MysqlServicio();
 	$resultadoCategorias = $BDD -> conseguirTodasLasCategorias();
 	?>
 	<body>
@@ -52,7 +52,7 @@ session_start();
 							</div>
 							<script>
 								function mostrarServicios(categoria){
-									$("#lista-servicios").load("cargar_servicios.php?categoria="+categoria);
+									$("#lista-servicios").load("cargar_servicios.php?id_categoria="+categoria);
 								}
 							</script>
 							<div class="cuerpo" id="servicios">
@@ -61,7 +61,7 @@ session_start();
 										foreach($resultadoCategorias as $row){
 									?>	
 										<li id="elem-categoria">
-											<a href="#" onclick="mostrarServicios(<?php echo "'".$row['categoria']."'"?>)"><?php echo $row['categoria'] ?></a>
+											<a href="#" onclick="mostrarServicios(<?php echo "'".$row['id_categoria']."'"?>)"><?php echo $row['categoria'] ?></a>
 										</li>		
 									<?php	
 										}
