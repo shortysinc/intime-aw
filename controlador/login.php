@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	require_once '../controlador/op_base_datos.php';
 	require_once '../controlador/op_base_datos_usuario.php';
 	require_once '../controlador/op_base_datos_admin.php';
 	require_once '../modelo/usuario.php';

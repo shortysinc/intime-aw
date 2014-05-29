@@ -1,9 +1,9 @@
 <?php
 class Mysql{
-	private $host="localhost";
-	private $user="root";
-    private $clave="";
-    private $bd="intime";
+	protected $host="localhost";
+	protected $user="root";
+    protected $clave="";
+    protected $bd="intime";
     private $conexion;  
     private $sql;
 	const ERR_DUP_KEY = 1062;
@@ -30,129 +30,24 @@ class Mysql{
 	}
 	
 	/**
-	 * Inserta un usuario en la bdd. 
-	 * @return El número de error al intentar introducir el usuario. 0 si no hay error.
-	 */
-	public function insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass) {
-		$this->conectar();
-		$args = array($correo, $nombre, $apellidos, $direccion, $pass);
-		//Escapamos los datos obtenidos del formulario
-		$this->escapaBd($args);
-		
-		//Crea una salt al azar
-		$salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-		$pass = $args[4]; // Para hacer el hash con la pass escapada
-		//Crea una contraseña a partir del hash con salt
-		$pass = hash('sha512', $pass.$salt);
-		
-		$pst =  $this->conexion->prepare("insert into usuario (correo, nombre, apellidos, direccion, pass, salt) values 
-		(?, ?, ?, ?, ?, ?)");
-		
-		//Los dos ultimos parámetros generados a partir de $pass inicial una vez escapada
-		$pst->bind_param("ssssss", $args[0], $args[1], $args[2], $args[3], $pass, $salt);
-		$pst->execute();
-		$error = $pst->errno;
-		//printf("Num error: %d. Error message: %s\n", $error, mysqli_error($this->conexion));
-		
-		$pst->close();
-		$this->cerrar();
-		
-		return $error;
-	}
-	
-	public function loginuser($correo,$pass){
-		$this->conectar();
-		$args = array($correo, $pass);
-		//Escapamos los datos obtenidos del formulario
-		$this->escapaBd($args);
-		$pst =  $this->conexion->prepare("select * from usuario where correo = ?");
-		$pst->bind_param("s", $args[0]);
-		$pst->execute();
-		$resultado = $pst->get_result();
-		$pst->close();
-		$this->cerrar();
-		
-		$row = $resultado->fetch_assoc();
-		
-		$pass = hash('sha512', $args[1].$row['salt']);
-		$password = $row['pass'];
-		
-		if ($password === $pass){
-			return $row;
-			
-		}else {
-			return NULL;
-		}
-	}
-	/**
 	 * Obtiene todas las categorías de la bdd.
 	 * @return todas las categorías de la bdd.
 	 */
 	public function conseguirTodasLasCategorias() {
 		$this->conectar();
+		//var_dump("conexion", $this->conexion);
 		$pst = $this->conexion->prepare("select * from categoria order by categoria");
+		//var_dump("preparado", $pst);
 		$pst->execute();
-		$resultado = $pst->get_result();
+		//var_dump("ejecutado", $pst);
+		$pst->bind_result($id, $categoria);
+		while ($pst->fetch()) {
+			$resultado[] = array('id'=>$id, 'categoria'=>$categoria);
+		}
 		$pst->close();
 		$this->cerrar();
-		
+		//var_dump("cerrado",$resultado);
 		return $resultado;
-	}
-	
-	/**
-	 * Obtiene un servicio con el  id.
-	 * @return el servicio dela base de datos.
-	 */ 
-	 public function conseguirServicio($id) {
-
-		$this->conectar();
-		$pst = $this->conexion->prepare("select * from servicio where id_servicio = ?");
-		$pst->bind_param("i", $id);
-		$pst->execute();
-		$resultado = $pst->get_result();
-	
-		$pst->close();
-		$this->cerrar();
-	
-		return $resultado;
-
-	}
-	 
-	 /**
-	 * Obtiene un servicio con el  id.
-	 * @return el servicio dela base de datos.
-	 */ 
-	 public function conseguirValoracion($id_servicio) {
-
-		$this->conectar();
-		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
-		$pst->bind_param("i", $id_servicio);
-		$pst->execute();
-		$resultado = $pst->get_result();
-	
-		$pst->close();
-		$this->cerrar();
-	
-		return $resultado;
-
-	}
-	 
-	/**
-	 * Obtiene el usuario que ofrece el servicio
-	 * @return el usuario de la base de datos.
-	 */ public function conseguirUsuarioServicio($id_servicio) {
-
-		$this->conectar();
-		$pst= $this->conexion->prepare("SELECT * FROM usuario natural join servicio WHERE id_servicio = ?");
-		$pst->bind_param("i", $id_servicio);
-		$pst->execute();
-		$resultado = $pst->get_result();
-	
-		$pst->close();
-		$this->cerrar();
-	
-		return $resultado->fetch_assoc();
-
 	}
 	
 	/**
@@ -165,29 +60,19 @@ class Mysql{
 		$pst = $this->conexion->prepare("SELECT * FROM servicio natural join categoria WHERE categoria = ?");
 		$pst->bind_param("s", $categoria);
 		$pst->execute();
-		$resultado =  $pst->get_result();
+		$pst->bind_result($result); $pst->fetch();
 		
 		$pst->close();
 		$this->cerrar();
 		
 		return $resultado;
 	}
-	public function mostrar_todos_usuarios(){
-		$this->conectar();
-		$pst = $this->conexion->prepare("select * from usuario");
-		$pst->execute();
-		$resultado = $pst->get_result();
-		$pst->close();
-		$this->cerrar();
-		
-		return $resultado;
-	} 
 	
 	public function mostrar_todos_servicios(){
 		$this->conectar();
 		$pst = $this->conexion->prepare("select * from servicio");
 		$pst->execute();
-		$resultado = $pst->get_result();
+		$pst->bind_result($result); $pst->fetch();
 		$pst->close();
 		$this->cerrar();
 		
@@ -202,26 +87,6 @@ class Mysql{
 		$pst->fetch();
 		$pst->close();
 		return $nota;
-	}
-	
-	/**
-	 * Obtiene todas las solicitudes que le han hecho al usuario pasado por parámetro
-	 * @param $id_usuario 
-	 * @return las solicitudes obtenidas
-	 */
-	public function conseguirSolicitudes($id_usuario){
-		$this->conectar();
-		$pst = $this->conexion->prepare("SELECT * FROM usuario_solicita_servicio join servicio where servicio.id_usuario = ? 
-		and usuario_solicita_servicio.id_servicio = servicio.id_servicio");
-		$pst->bind_param("i", $id_usuario);
-		$pst->execute();
-		$resultado =  $pst->get_result();
-		
-		$pst->close();
-		$this->cerrar();
-		
-		return $resultado;
-		
 	}
 	
 	public function busqueda($nombre){
@@ -242,6 +107,7 @@ class Mysql{
 			$i=$i+1;
 		}
 		$pst->close();
+		$this->cerrar();
 		return $ret;
 	}
 	
@@ -273,7 +139,7 @@ class Mysql{
 		$pst = $this->conexion->prepare("select * from admin where correo = ?");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
-		$resultado =  $pst->get_result();
+		$pst->bind_result($result); $pst->fetch();
 		
 		$pst->close();
 		$this->cerrar();
@@ -289,17 +155,6 @@ class Mysql{
 		}else {
 			return NULL;
 		}
-	}
-		public function conseguirUsuarioById($id){
-		$this->conectar();
-		$pst = $this->conexion->prepare("select id_usuario,correo,nombre,apellidos,foto from usuario where id_usuario=? ");
-		$pst->bind_param("s", $id);
-		$pst->execute();
-		$pst->bind_result($id_usuario,$correo,$nombre,$apellidos,$foto);
-		$pst->fetch();
-		$result=array($id_usuario,$correo,$nombre,$apellidos,$foto);
-		$pst->close();
-		return $result;
 	}
 	
 	public function conseguirServiciosByUserId($id){

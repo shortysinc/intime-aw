@@ -58,7 +58,7 @@ session_start();
 							<div class="cuerpo" id="servicios">
 								<ul class = "lista-categorias">
 									<?php 
-										while($row = $resultadoCategorias->fetch_assoc()){
+										foreach($resultadoCategorias as $row){
 									?>	
 										<li id="elem-categoria">
 											<a href="#" onclick="mostrarServicios(<?php echo "'".$row['categoria']."'"?>)"><?php echo $row['categoria'] ?></a>
