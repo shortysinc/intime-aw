@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2014 a las 15:39:11
+-- Tiempo de generación: 30-05-2014 a las 19:02:24
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -124,6 +124,32 @@ INSERT INTO `servicio` (`id_servicio`, `id_usuario`, `id_categoria`, `nombre_ser
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `solicitud`
+--
+
+CREATE TABLE IF NOT EXISTS `solicitud` (
+  `id_solicitud` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_servicio` int(11) NOT NULL,
+  `estado` int(11) NOT NULL,
+  `fecha` datetime NOT NULL,
+  `comentario` varchar(500) NOT NULL,
+  PRIMARY KEY (`id_solicitud`),
+  KEY `id_usuario` (`id_usuario`,`id_servicio`),
+  KEY `id_servicio` (`id_servicio`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `solicitud`
+--
+
+INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`) VALUES
+(2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates'),
+(3, 27, 4, 0, '2014-05-21 13:00:00', 'Me interesaría recibir una clase de inglés');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `usuario`
 --
 
@@ -139,7 +165,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `salt` char(128) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -149,33 +175,6 @@ INSERT INTO `usuario` (`id_usuario`, `correo`, `nombre`, `apellidos`, `direccion
 (27, 'pepe@gmail.com', 'Pepe', '', 'domicilio', 0, '27.png', '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00'),
 (40, 'fede@gmail.com', 'Federico', '', 'domicilio', 0, NULL, '9c3e0cc29995e78efb45ccdddc29b58fb96f15c3619147bfbcac15be14b8547c8a22e7e309620e1647e070cdb5afbf8240ad8e994899af320dd1eaa9384170c1', '8a375802e50aae308ae0d539b62b4dcd259be13c8aab825c930511838b1e354c51665059db44d0aa6d0f44adf645c607d4a3da9d89ede539eed8633cde43b681'),
 (42, 'cr7@gmail.com', 'cristiano ronaldo', '', 'Pozuelo', 0, NULL, '29049634bfb7b74f61782ea14e565a7d83439faab9ce5ac89fff416c9c21b143276989a3074acdeea943da9a380992a548781844bbdc29a5be95731e039044d4', '9bcd18417c5e633a30194565c4729f14ef1273a25212d557dd90934a4f6a5af1abbbff661a690505115bc0a8ff0826dab0e2437eb5ef85e6be13b8138768b31d');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario_solicita_servicio`
---
-
-CREATE TABLE IF NOT EXISTS `usuario_solicita_servicio` (
-  `id_solicitud` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_servicio` int(11) NOT NULL,
-  `estado` int(11) NOT NULL,
-  `hora_inicio` datetime NOT NULL,
-  `hora_fin` datetime NOT NULL,
-  `comentario` varchar(500) NOT NULL,
-  PRIMARY KEY (`id_solicitud`),
-  KEY `id_usuario` (`id_usuario`,`id_servicio`),
-  KEY `id_servicio` (`id_servicio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
-
---
--- Volcado de datos para la tabla `usuario_solicita_servicio`
---
-
-INSERT INTO `usuario_solicita_servicio` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `hora_inicio`, `hora_fin`, `comentario`) VALUES
-(2, 40, 2, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Estoy interesado en las clases de pilates'),
-(3, 27, 4, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', 'Me interesaría recibir una clase de inglés');
 
 -- --------------------------------------------------------
 
@@ -226,11 +225,11 @@ ALTER TABLE `servicio`
   ADD CONSTRAINT `servicio_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Filtros para la tabla `usuario_solicita_servicio`
+-- Filtros para la tabla `solicitud`
 --
-ALTER TABLE `usuario_solicita_servicio`
-  ADD CONSTRAINT `usuario_solicita_servicio_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `usuario_solicita_servicio_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `solicitud`
+  ADD CONSTRAINT `solicitud_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `solicitud_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `valoracion_servicio`

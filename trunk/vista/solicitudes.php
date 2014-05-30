@@ -1,5 +1,9 @@
-<?php 
+<?php
+require_once '../controlador/op_base_datos_usuario.php';
+require_once '../controlador/op_base_datos_servicio.php';
+require_once '../modelo/servicio.php';
 require_once '../modelo/usuario.php';
+require_once '../modelo/solicitud.php';
 session_start();
 ?>
 <!DOCTYPE html>
@@ -18,7 +22,12 @@ session_start();
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 	<?php
+		require_once '../controlador/comprobar_login.php';
 		
+		$usuario = $_SESSION['usuario'];
+		$BDDUsuario = new MysqlUsuario();
+		$solicitudes = $BDDUsuario->conseguirSolicitudes($usuario->getId());
+		$BDDServicio = new MysqlServicio();
 	?>
 	<body>
 		<?php include "sidebar.php"
@@ -45,20 +54,28 @@ session_start();
 					</div>
 					<div class="cuerpo"><div class="sol-rec")>
 					<h2>Recibidas</h2>
-					<div class="solicitud">
-						<a href="trabajo.php"><h5>Nombre del servicio solicitado</h5></a>
-						<a href="perfil.php">Nombre del usuario que lo ha solicitado</a>
-						<p>fake2@mail.com</p>
-						<p>Informacion que el usuario ha dado en la solicitud</p>
-						<form action="solicitudes.php" method="get" accept-charset="utf-8">
-							<button type="submit" name="solicitud" value="aceptar">
-								Aceptar
-							</button>
-							<button type="submit" name="solicitud" value="denegar">
-								Denegar
-							</button>
-						</form>
-					</div>
+					<?php 
+						foreach ($solicitudes as $solicitud) {
+							$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
+							$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
+					?>
+						<div class="solicitud">
+							<a href="trabajo.php"><h5><?php echo $servicio->getNombre() ?></h5></a>
+							<a href="perfil.php"><?php echo $usuario->getNombre() ?></a>
+							<p><?php echo $usuario->getCorreo() ?></p>
+							<p><?php echo $solicitud->getComentario() ?></p>
+							<form action="solicitudes.php" method="get" accept-charset="utf-8">
+								<button type="submit" name="solicitud" value="aceptar">
+									Aceptar
+								</button>
+								<button type="submit" name="solicitud" value="denegar">
+									Denegar
+								</button>
+							</form>
+						</div>
+					<?php	
+						}
+					?>
 					<h2>Enviadas</h2>
 					<div class="solicitud">
 						<a href="trabajo.php"><h5>Nombre del servicio que has solicitado</h5></a>
@@ -72,7 +89,7 @@ session_start();
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
-			<?php include 'footer.php'
+			<?php include 'footer.php';
 			?>
 		</div>
 		<!-- /#main-content-->
