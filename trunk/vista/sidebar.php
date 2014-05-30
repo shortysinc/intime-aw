@@ -30,18 +30,25 @@ $n = count($array);
 		<?php
 			if(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario']){
 				//USUARIO REGISTRADO
+				$usuario = $_SESSION['usuario'];
 		?>
 				<div class="logo">
-					<a href="perfil_usuario.php"><img src="images/logo.png"/></a>
+					<a href="perfil_usuario.php">
+						<img src="images/logo.png"/>
+					</a>
 				</div>
 				<div class="navigation-log-in">
 					<ul class="main-menu">
 						<div class="circle-text">
-							<div class="contador">8</div>
+							<div class="contador">
+									<?php echo $usuario->getHoras() ?>
+							</div>
 							<p>Horas</p>
 						</div>
-					<img src="images/team1.jpg" >
-					<p><?php echo $_SESSION['usuario']->getNombre() ?></p>
+						<a href="perfil_usuario.php"><img src="images/team1.jpg"></a>
+						<p>
+							<?php echo $usuario->getNombre() ?>
+						</p>
 						<li class="requests">
 							<a href="solicitudes.php">Solicitudes</a>
 						</li>

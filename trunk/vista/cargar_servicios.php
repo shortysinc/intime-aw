@@ -24,8 +24,7 @@
 					<span id="nota-servicio">Nota: <span id="negrita">9.8</span></span>
 					<span id="horas-servicio"><span id="negrita">1 h</span></span>
 				</td>
-			</tr>
-				
+			</tr>	
 <?php
 		}
 ?>

@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="es">
 	<?php
-		require_once '../controlador/opbasededatos.php';
+		require_once '../controlador/op_base_datos_servicio.php';
+		require_once '../controlador/op_base_datos_usuario.php';
 		require_once '../modelo/usuario.php';
 		session_start();
 		
+		$user;
 		if (isset($_SESSION['usuario'])){
 			$login=$_SESSION['usuario'];
+			$id = $login->getId();
+			
+			$BDD = new MysqlUsuario();
+			$user=$BDD->conseguirUsuarioById($id);
+			$BDD = new MysqlServicio();              			 //[0]$id_usuario,[1]$correo,[2]$nombre,[3]$apellidos,[4]$foto
+			$services=$BDD->conseguirServiciosByUserId($id);
 		}
-		if (isset($_REQUEST['id'])){
-			$id=$_REQUEST['id'];
-		}
-		$BDD = new Mysql();
-		$user=$BDD->conseguirUsuarioById($id);                //[0]$id_usuario,[1]$correo,[2]$nombre,[3]$apellidos,[4]$foto
-		$services=$BDD->conseguirServiciosByUserId($id);	  //[0]$id,[1]$nombre,[2]$descripcion
+			  //[0]$id,[1]$nombre,[2]$descripcion
 	?>
 	<head>
 		<title>inTime</title>
@@ -54,17 +57,17 @@
 				<!-------------------------------------------PERFIL----------------------------------------->
 				<div class="perfil">
 					<?php
-						echo'<h1>'.$user[2]." ".$user[3].'</h1>';
-						if (!empty($user[4])){
-								echo '<img src="data:image/png;base64,' . base64_encode($user[4]) . '"/>';
+						echo'<h1>'.$user->getNombre()." ".$user->getApellidos().'</h1>';
+						if (!empty($user->getFoto())){
+								echo '<img src="data:image/png;base64,' . base64_encode($user->getFoto()) . '"/>';
 							}else
 								echo '<img src="images/user.png">';
 					?>
 					<div class="infouser">
 						<?php
-							echo"<p>".$user[1]."</p>";
-							if (($user[0]==$login->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)))
-								echo'<a href="editarperfil.php?id='.$user[0].'"><h5>Editar perfil</h5></a>';
+							echo"<p>".$user->getCorreo()."</p>";
+							if (($user->getId()==$login->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)))
+								echo'<a href="editarperfil.php?id='.$user->getId().'"><h5>Editar perfil</h5></a>';
 						?>
 					</div>
 					<div class="lista-serv">
