@@ -22,16 +22,14 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 <?php
-	if(!isset($_SESSION["login_usuario"]) || $_SESSION["login_usuario"] == false){
-		$_SESSION["mensaje"] = "Tienes que iniciar sesión";
-		header('Location: ../index.php');
-	}else{
-		$usuario = $_SESSION['usuario'];
-		$BDD = new MysqlUsuario();
-		$resultadoSolicitudes = $BDD->conseguirSolicitudes($_SESSION["usuario"]->getId());
-		$num_solicitudes = count($resultadoSolicitudes);
-		$BDD = new MysqlServicio();
-		$services=$BDD->conseguirServiciosByUserId($usuario->getId());
+	require_once '../controlador/comprobar_login.php';
+	
+	$usuario = $_SESSION['usuario'];
+	$BDD = new MysqlUsuario();
+	$resultadoSolicitudes = $BDD->conseguirSolicitudes($_SESSION["usuario"]->getId());
+	$num_solicitudes = count($resultadoSolicitudes);
+	$BDD = new MysqlServicio();
+	$services=$BDD->conseguirServiciosByUserId($usuario->getId());
 ?>
 	<body>
 		<?php include "sidebar.php"
@@ -115,7 +113,3 @@
 		<!-- /#main-content-->
 	</body>
 </html>
-
-<?php 
-	}
-?>
