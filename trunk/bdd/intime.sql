@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-05-2014 a las 19:02:24
+-- Tiempo de generación: 31-05-2014 a las 01:31:12
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
   PRIMARY KEY (`id_solicitud`),
   KEY `id_usuario` (`id_usuario`,`id_servicio`),
   KEY `id_servicio` (`id_servicio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Volcado de datos para la tabla `solicitud`
@@ -145,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
 
 INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`) VALUES
 (2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates'),
-(3, 27, 4, 0, '2014-05-21 13:00:00', 'Me interesaría recibir una clase de inglés');
+(3, 27, 4, 0, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés'),
+(4, 42, 2, 0, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?');
 
 -- --------------------------------------------------------
 
