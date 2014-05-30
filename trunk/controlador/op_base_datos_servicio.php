@@ -34,13 +34,13 @@ class MysqlServicio extends Mysql {
 		//Escapamos los datos obtenidos del formulario
 		$this->escapaBd($args);
 		$args[0]="%".$args[0]."%";
-		$pst =  $this->conexion->prepare("select nombre,apellidos,usuario.foto_usuario,nombre_servicio,descripcion,usuario.id_usuario,servicio.id_servicio from usuario,servicio where nombre_servicio like ? and usuario.id_usuario=servicio.id_usuario  ");
+		$pst =  $this->conexion->prepare("select * from servicio where nombre_servicio like ? ");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
-		$pst->bind_result($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio);
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto); 
 		while($pst->fetch()){
-			$info = array($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio);
-			$ret[$i]=$info;
+			$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+			$ret[$i]=$servicio;
 			$i=$i+1;
 		}
 		$pst->close();
@@ -52,16 +52,13 @@ class MysqlServicio extends Mysql {
 		$this->conectar();
 		$ret = array();
 		$i=0;
-		
-		//Escapamos los datos obtenidos del formulario
-		$pst =  $this->conexion->prepare("select distinct nombre,apellidos,usuario.foto,nombre_servicio,descripcion,usuario.id_usuario,servicio.id_servicio,nota from usuario,servicio,valoracion_servicio where usuario.id_usuario=servicio.id_usuario and valoracion_servicio.id_servicio=servicio.id_servicio and servicio.id_usuario<>? and valoracion_servicio.id_usuario=? and nota>=? ");
-		$pst->bind_param("sss",$id,$corte);
+		$pst =  $this->conexion->prepare("select distinct servicio.id_servicio,servicio.id_usuario,id_categoria,nombre_servicio,descripcion,horas,foto_servicio from servicio,valoracion_servicio where valoracion_servicio.id_servicio=servicio.id_servicio and servicio.id_usuario<>? and valoracion_servicio.id_usuario=? and nota>=? ");
+		$pst->bind_param("sss",$id,$id,$corte);
 		$pst->execute();
-		$pst->bind_result($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio,$nota);
-		echo"<p>".$nomservicio."</p>";
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		while($pst->fetch()){
-			$info = array($nombre,$apellidos,$foto,$nomservicio,$decripcion,$idusuario,$idservicio,$nota);
-			$ret[$i]=$info;
+			$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+			$ret[$i]=$servicio;
 			$i=$i+1;
 		}
 		$pst->close();
@@ -141,5 +138,16 @@ class MysqlServicio extends Mysql {
 		return $ret;
 	}
 		
+	public function conseguirnota($idservicio,$iduser){
+		$this->conectar();
+		$pst=$this->conexion->prepare("SELECT avg(nota) from valoracion_servicio where valoracion_servicio.id_servicio=? and valoracion_servicio.id_usuario=?");
+		$pst->bind_param("ss",$idservicio,$iduser);
+		$pst->execute();
+		$pst->bind_result($nota);
+		$pst->fetch();
+		$pst->close();
+		$this->cerrar();
+		return $nota;
+	}
 }
 	

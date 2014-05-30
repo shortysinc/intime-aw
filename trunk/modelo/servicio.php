@@ -31,5 +31,7 @@ class Servicio {
 	public function getDescripcion() {
 		return $this->descripcion;
 	}
-	
+	 public function getIdUser(){
+		return $this->id_usuario;
+	 }
 }
