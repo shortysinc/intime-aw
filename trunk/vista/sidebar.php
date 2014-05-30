@@ -46,11 +46,12 @@ $n = count($array);
 							<p>Horas</p>
 						</div>
 						<?php 
-							if(empty($usuario->getFoto())){
+							if($usuario->getFoto() == NULL){
 								echo "<a href='perfil_usuario.php'><img src='images/usuario/user_defect.png'></a>";
 							}else{
-			
-								echo '<img src="data:image/png;base64,' . base64_encode($usuario->getFoto()) . '"/>';
+						?>
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>";
+						<?php
 							}
 						?>
 						<p>
