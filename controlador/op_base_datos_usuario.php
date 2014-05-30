@@ -99,15 +99,15 @@ class MysqlUsuario extends Mysql {
 	 */
 	public function conseguirSolicitudes($id_usuario){
 		$this->conectar();
-		$pst = $this->conexion->prepare("SELECT id_solicitud FROM usuario_solicita_servicio join servicio where servicio.id_usuario = ? 
-			and usuario_solicita_servicio.id_servicio = servicio.id_servicio");
+		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
+			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
+			and solicitud.id_servicio = servicio.id_servicio ");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
-		$pst->bind_result($id_servicio);
-		
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = array('id_solicitud' => $id_servicio);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		
 		$pst->close();
