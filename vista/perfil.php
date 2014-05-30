@@ -58,10 +58,12 @@
 				<div class="perfil">
 					<?php
 						echo'<h1>'.$user->getNombre()." ".$user->getApellidos().'</h1>';
-						if (!empty($user->getFoto())){
-								echo '<img src="data:image/png;base64,' . base64_encode($user->getFoto()) . '"/>';
+						if ($user->getFoto() != NULL){
+					?>
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>";
+					<?php
 							}else
-								echo '<img src="images/user.png">';
+								echo '<img src="images/usuario/user_defect.png">';
 					?>
 					<div class="infouser">
 						<?php

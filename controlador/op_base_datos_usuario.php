@@ -34,11 +34,11 @@ class MysqlUsuario extends Mysql {
 		//Crea una contraseña a partir del hash con salt
 		$pass = hash('sha512', $pass.$salt);
 		
-		$pst =  $this->conexion->prepare("insert into usuario (correo, nombre, apellidos, direccion, pass, salt) values 
-		(?, ?, ?, ?, ?, ?)");
+		$pst =  $this->conexion->prepare("insert into usuario (correo, nombre, apellidos, direccion, horas_usuario, pass, salt) values 
+		(?, ?, ?, ?, ?, ?, ?)");
 		
 		//Los dos ultimos parámetros generados a partir de $pass inicial una vez escapada
-		$pst->bind_param("ssssss", $args[0], $args[1], $args[2], $args[3], $pass, $salt);
+		$pst->bind_param("ssssss", $args[0], $args[1], $args[2], $args[3], 0, $pass, $salt);
 		$pst->execute();
 		$error = $pst->errno;
 		//printf("Num error: %d. Error message: %s\n", $error, mysqli_error($this->conexion));

@@ -45,7 +45,15 @@ $n = count($array);
 							</div>
 							<p>Horas</p>
 						</div>
-						<a href="perfil_usuario.php"><img src="images/team1.jpg"></a>
+						<?php 
+							if($usuario->getFoto() == NULL){
+								echo "<a href='perfil_usuario.php'><img src='images/usuario/user_defect.png'></a>";
+							}else{
+						?>
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>";
+						<?php
+							}
+						?>
 						<p>
 							<?php echo $usuario->getNombre() ?>
 						</p>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2014 a las 16:24:19
+-- Tiempo de generación: 30-05-2014 a las 15:39:11
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -134,20 +134,21 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `apellidos` varchar(40) NOT NULL,
   `direccion` varchar(80) NOT NULL,
   `horas_usuario` int(11) NOT NULL,
-  `foto_usuario` blob,
+  `foto_usuario` varchar(20) DEFAULT NULL,
   `pass` char(128) NOT NULL,
   `salt` char(128) NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=44 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
 INSERT INTO `usuario` (`id_usuario`, `correo`, `nombre`, `apellidos`, `direccion`, `horas_usuario`, `foto_usuario`, `pass`, `salt`) VALUES
-(27, 'pepe@gmail.com', 'Pepe', '', 'domicilio', 0, NULL, '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00'),
-(40, 'fede@gmail.com', 'Federico', '', 'domicilio', 0, NULL, '9c3e0cc29995e78efb45ccdddc29b58fb96f15c3619147bfbcac15be14b8547c8a22e7e309620e1647e070cdb5afbf8240ad8e994899af320dd1eaa9384170c1', '8a375802e50aae308ae0d539b62b4dcd259be13c8aab825c930511838b1e354c51665059db44d0aa6d0f44adf645c607d4a3da9d89ede539eed8633cde43b681');
+(27, 'pepe@gmail.com', 'Pepe', '', 'domicilio', 0, '27.png', '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00'),
+(40, 'fede@gmail.com', 'Federico', '', 'domicilio', 0, NULL, '9c3e0cc29995e78efb45ccdddc29b58fb96f15c3619147bfbcac15be14b8547c8a22e7e309620e1647e070cdb5afbf8240ad8e994899af320dd1eaa9384170c1', '8a375802e50aae308ae0d539b62b4dcd259be13c8aab825c930511838b1e354c51665059db44d0aa6d0f44adf645c607d4a3da9d89ede539eed8633cde43b681'),
+(42, 'cr7@gmail.com', 'cristiano ronaldo', '', 'Pozuelo', 0, NULL, '29049634bfb7b74f61782ea14e565a7d83439faab9ce5ac89fff416c9c21b143276989a3074acdeea943da9a380992a548781844bbdc29a5be95731e039044d4', '9bcd18417c5e633a30194565c4729f14ef1273a25212d557dd90934a4f6a5af1abbbff661a690505115bc0a8ff0826dab0e2437eb5ef85e6be13b8138768b31d');
 
 -- --------------------------------------------------------
 
