@@ -30,7 +30,7 @@ $n = count($array);
 		<?php
 			if(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario']){
 				//USUARIO REGISTRADO
-				$usuario = $_SESSION['usuario'];
+				$user = $_SESSION['usuario'];
 		?>
 				<div class="logo">
 					<a href="perfil_usuario.php">
@@ -41,21 +41,21 @@ $n = count($array);
 					<ul class="main-menu">
 						<div class="circle-text">
 							<div class="contador">
-									<?php echo $usuario->getHoras() ?>
+									<?php echo $user->getHoras() ?>
 							</div>
 							<p>Horas</p>
 						</div>
 						<?php 
-							if($usuario->getFoto() == NULL){
+							if($user->getFoto() == NULL){
 								echo "<a href='perfil_usuario.php'><img src='images/usuario/user_defect.png'></a>";
 							}else{
 						?>
-								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>";
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$user->getFoto() ?>'></a>";
 						<?php
 							}
 						?>
 						<p>
-							<?php echo $usuario->getNombre() ?>
+							<?php echo $user->getNombre() ?>
 						</p>
 						<li class="requests">
 							<a href="solicitudes.php">Solicitudes</a>
@@ -64,7 +64,7 @@ $n = count($array);
 							<a href="categoria1.php">servicios</a>
 						</li>
 						<li class="profile">
-							<a href="perfil.php">Mi Perfil</a>
+							<a href="perfil.php?id_usuario=<?php echo $user->getId() ?>">Mi Perfil</a>
 						</li>
 						<li class="new-job">
 							<a href="crearservicio.php">Crear Servicio</a>
