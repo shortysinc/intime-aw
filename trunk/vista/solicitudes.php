@@ -17,6 +17,9 @@ session_start();
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
+	<?php
+		
+	?>
 	<body>
 		<?php include "sidebar.php"
 		?>

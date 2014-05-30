@@ -13,7 +13,7 @@
 		private $pass;
 		private $salt;
 		
-		function __construct($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt) {
+		public function __construct($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt) {
 			$this->id = $id;
 			$this->correo = $correo;
 			$this->nombre = $nombre;

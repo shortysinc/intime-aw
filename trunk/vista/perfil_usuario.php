@@ -2,6 +2,7 @@
 	require_once '../controlador/op_base_datos_usuario.php';
 	require_once '../controlador/op_base_datos_servicio.php';
 	require_once '../modelo/usuario.php';
+	require_once '../modelo/solicitud.php';
 	session_start();
 ?>
 
@@ -65,18 +66,18 @@
 						<?php
 							}else if($num_solicitudes == 1){
 						?>
-								<a href=""><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
+								<a  href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
 						<?php
 							}else {
 						?>
-								<a href=""><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
+								<a  href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
 						<?php	
 							}
 						?>
 						</h3>
 						
 						<!--<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>-->
-						<h3>2 usuarios han respondido a tu peticion de servicio</h3>
+						<h3><a>2 usuarios han respondido a tu peticion de servicio</a></h3>
 						<div class="lista-serv">
 							<h3>Lista de servicios del usuario:</h3>
 							<?php
