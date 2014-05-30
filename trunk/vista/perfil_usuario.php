@@ -1,5 +1,6 @@
 <?php 
 	require_once '../controlador/op_base_datos_usuario.php';
+	require_once '../controlador/op_base_datos_servicio.php';
 	require_once '../modelo/usuario.php';
 	session_start();
 ?>
@@ -28,6 +29,8 @@
 		$BDD = new MysqlUsuario();
 		$resultadoSolicitudes = $BDD->conseguirSolicitudes($_SESSION["usuario"]->getId());
 		$num_solicitudes = count($resultadoSolicitudes);
+		$BDD = new MysqlServicio();
+		$services=$BDD->conseguirServiciosByUserId($usuario->getId());
 ?>
 	<body>
 		<?php include "sidebar.php"
@@ -74,7 +77,32 @@
 						
 						<!--<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>-->
 						<h3>2 usuarios han respondido a tu peticion de servicio</h3>
-						
+						<div class="lista-serv">
+							<h3>Lista de servicios del usuario:</h3>
+							<?php
+								$lenght=count($services);
+								for ($i=0;$i<$lenght;$i=$i+1){?>
+									<div class="servicio-ej">
+										<?php 
+											echo '<a href="trabajo.php?id='.$services[$i][0].'"><h4>'.$services[$i][1].'</h4></a>';
+										?>
+										<div class="serv-nota">
+										<?php
+											$nota=$BDD->notamedia($services[$i][0]);
+											if (!empty($nota))
+												echo"<p>Nota: ".$nota."</p>";
+											else
+												echo"<p>No valorado</p>";
+										?>
+										</div>
+										<div class="serv-desc">
+										<?php
+											echo"<p>".$services[$i][2]."</p>";
+										?>
+										</div>
+									</div>
+							<?php } ?>
+						</div>
 					</div>
 				</div>
 				<!-- /#services -->

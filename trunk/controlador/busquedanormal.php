@@ -39,7 +39,7 @@
 							if (!empty($ret[$i][2])){
 								echo '<img src="data:image/png;base64,' . base64_encode($ret[$i][2]) . '"/>';
 							}else
-								echo '<img src="images/user.png">';
+								echo '<img src="images/usuario/user_defect.png">';
 						?>
 					</div>
 					<div class="busq-nota">
