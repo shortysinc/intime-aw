@@ -24,6 +24,7 @@
 		$_SESSION["mensaje"] = "Tienes que iniciar sesión";
 		header('Location: ../index.php');
 	}else{
+		$usuario = $_SESSION['usuario'];
 		$BDD = new MysqlUsuario();
 		$resultadoSolicitudes = $BDD->conseguirSolicitudes($_SESSION["usuario"]->getId());
 		$num_solicitudes = count($resultadoSolicitudes);
@@ -49,7 +50,7 @@
 								</div>
 							</div>
 						</div>
-						<h1><?php echo"Bienvenido ".$_SESSION['usuario']->getNombre(); ?></h1>
+						<h1><?php echo $usuario->getNombre()." ".$usuario->getApellidos(); ?></h1>
 					</div>
 					<div class="cuerpo">
 						<h3 id="solicitud">

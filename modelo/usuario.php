@@ -40,6 +40,18 @@
 			return $this->nombre;
 		}
 		
+		public function getApellidos(){
+			return $this->apellidos;
+		}
+		
+		public function getHoras(){
+			return $this->horas;
+		}
+		
+		public function getFoto(){
+			return $this->foto;
+		}
+		
 		public function getPass(){
 			return $this->pass;
 		}
