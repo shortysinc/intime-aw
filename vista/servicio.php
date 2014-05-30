@@ -68,10 +68,13 @@
 						</div>
 						<div class="valoraciones">
 							<p>
-								<?php 
-									foreach ($resultadoValoracion as $row) {
-										echo $row["nota"];									
+								<?php
+									if(isset($resultadoValoracion)){
+										foreach ($resultadoValoracion as $row) {
+											echo $row["nota"];									
+										}
 									}
+									
 								?>
 							</p>
 							<p>

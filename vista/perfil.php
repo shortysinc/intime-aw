@@ -6,17 +6,15 @@
 		require_once '../modelo/usuario.php';
 		session_start();
 		
-		$user;
 		if (isset($_SESSION['usuario'])){
-			$login=$_SESSION['usuario'];
-			$id = $login->getId();
+			$usuario_logueado = $_SESSION['usuario'];
+			$id = $_GET['id_usuario'];
 			
 			$BDD = new MysqlUsuario();
-			$user=$BDD->conseguirUsuarioById($id);
-			$BDD = new MysqlServicio();              			 //[0]$id_usuario,[1]$correo,[2]$nombre,[3]$apellidos,[4]$foto
-			$services=$BDD->conseguirServiciosByUserId($id);
+			$usuario = $BDD->conseguirUsuarioById($id);
+			$BDD = new MysqlServicio();
+			$services = $BDD->conseguirServiciosByUserId($id);
 		}
-			  //[0]$id,[1]$nombre,[2]$descripcion
 	?>
 	<head>
 		<title>inTime</title>
@@ -57,19 +55,20 @@
 				<!-------------------------------------------PERFIL----------------------------------------->
 				<div class="perfil">
 					<?php
-						echo'<h1>'.$user->getNombre()." ".$user->getApellidos().'</h1>';
-						if ($user->getFoto() != NULL){
+						echo'<h1>'.$usuario->getNombre()." ".$usuario->getApellidos().'</h1>';
+						if ($usuario->getFoto() != NULL){
 					?>
-								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>";
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>
 					<?php
 							}else
 								echo '<img src="images/usuario/user_defect.png">';
 					?>
 					<div class="infouser">
 						<?php
-							echo"<p>".$user->getCorreo()."</p>";
-							if (($user->getId()==$login->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)))
-								echo'<a href="editarperfil.php?id='.$user->getId().'"><h5>Editar perfil</h5></a>';
+							if (($usuario->getId()==$usuario_logueado->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
+								echo"<p>".$usuario->getCorreo()."</p>";
+								echo'<a href="editarperfil.php?id='.$usuario->getId().'"><h5>Editar perfil</h5></a>';
+							}
 						?>
 					</div>
 					<div class="lista-serv">
@@ -79,7 +78,7 @@
 							for ($i=0;$i<$lenght;$i=$i+1){?>
 								<div class="servicio-ej">
 									<?php 
-										echo '<a href="trabajo.php?id='.$services[$i][0].'"><h4>'.$services[$i][1].'</h4></a>';
+										echo '<a href="servicio.php?id_servicio='.$services[$i][0].'"><h4>'.$services[$i][1].'</h4></a>';
 									?>
 									<div class="serv-nota">
 									<?php

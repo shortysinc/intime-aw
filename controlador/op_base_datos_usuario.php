@@ -101,7 +101,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
 			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
-			and solicitud.id_servicio = servicio.id_servicio ");
+			and solicitud.id_servicio = servicio.id_servicio order by solicitud.fecha DESC");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
 		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);

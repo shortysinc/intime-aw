@@ -60,8 +60,8 @@ session_start();
 							$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
 					?>
 						<div class="solicitud">
-							<a href="trabajo.php"><h5><?php echo $servicio->getNombre() ?></h5></a>
-							<a href="perfil.php"><?php echo $usuario->getNombre() ?></a>
+							<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>"><h5><?php echo $servicio->getNombre() ?></h5></a>
+							<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
 							<p><?php echo $usuario->getCorreo() ?></p>
 							<p><?php echo $solicitud->getComentario() ?></p>
 							<form action="solicitudes.php" method="get" accept-charset="utf-8">
