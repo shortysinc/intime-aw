@@ -2,59 +2,64 @@
 	if ((isset($_POST["nombrebusq"]) && $_POST["nombrebusq"]!="") || (isset($_POST["consulta"]))){
 		if (isset($_POST["nombrebusq"])){
 			$nbusq = $_POST["nombrebusq"];
-			$ret=array();
-			$BDD = new MysqlServicio();
-			$ret=$BDD->busqueda($nbusq);
+			$servicios=array();
+			$BDDserv = new MysqlServicio();
+			$servicios=$BDDserv->busqueda($nbusq);
 		}
 		if (isset($_POST["consulta"])){
-			$usuario=$_SESSION['usuario'];
+			$login=$_SESSION['usuario'];
 			$consulta = $_POST["consulta"];
 			$corte = $_POST["valbusq"];
-			$ret=array();
-			$BDD = new MysqlServicio();
-			$ret=$BDD->busquedaavanzada($corte,$usuario->getId());
+			$servicios=array();
+			$BDDserv = new MysqlServicio();
+			$servicios=$BDDserv->busquedaavanzada($corte,$login->getId());
 			if ($_POST["consulta"]=="red"){
-				if (isset($ret[0][5])){
+				if (null!=$servicios[0]->getIdUser()){
 					$iteracionarray=array();
 					$sumaarray=array();
-					$sumaarray=$BDD->busquedaavanzada($corte,$ret[0][5]);
-					for ($i=1;$i<count($ret);$i=$i+1){
-						$iteracionarray=$BDD->busquedaavanzada($corte,$ret[$i][5]); 
+					$sumaarray=$BDDserv->busquedaavanzada($corte,$servicios[0]->getIdUser());
+					for ($i=1;$i<count($servicios);$i=$i+1){
+						$iteracionarray=$BDDserv->busquedaavanzada($corte,$servicios[$i]->getIdUser()); 
 						$sumaarray=array_merge((array)$sumaarray,(array)$iteracionarray);
 					}
-					$ret=array();
-					$ret=$sumaarray;
+					$servicios=array();
+					$servicios=$sumaarray;
 				}
 			}
 		}
-		$lenght=count($ret);
-		for ($i=0;$i<$lenght;$i=$i+1){?>
+		$lenght=count($servicios);
+		for ($i=0;$i<$lenght;$i=$i+1){
+			$BDDuser=new MysqlUsuario();
+			$user=$BDDuser->conseguirUsuarioById($servicios[$i]->getIdUser());
+		?>
 				<div class ="busq-ej">
 					<?php
-						echo'<a href=trabajo.php?id='.$ret[$i][6].'><h3>'.$ret[$i][3].'</h3></a>';
-						echo'<a href=perfil.php?id='.$ret[$i][5].'><h4>'.$ret[$i][0]." ".$ret[$i][1].'</h4></a>';
+						echo'<a href=trabajo.php?id='.$servicios[$i]->getIdServicio().'><h3>'.$servicios[$i]->getNombre().'</h3></a>';
+						echo'<a href=perfil.php?id='.$user->getId().'><h4>'.$user->getNombre()." ".$user->getApellidos().'</h4></a>';
 					?>
 					<div class="busq-foto">
 						<?php
-							if (!empty($ret[$i][2])){
-								echo '<img src="data:image/png;base64,' . base64_encode($ret[$i][2]) . '"/>';
+							if (!empty($user->getFoto())){
+								echo '<img src="data:image/png;base64,' . base64_encode($user->getFoto()) . '"/>';
 							}else
 								echo '<img src="images/usuario/user_defect.png">';
 						?>
 					</div>
 					<div class="busq-nota">
 						<?php
-							if (isset($_POST["nombrebusq"])){
-								$nota=$BDD->notamedia($ret[$i][6]);
+							if ((isset($_POST["consulta"]))&&(!$_POST["consulta"]=="red")){
+								$nota=$BDDserv->conseguirnota($servicios[$i]->getIdServicio(),$login->getId());
 								echo"<p>".$nota."</p>";
-							}else{
-								echo"<p>Nota: ".$ret[$i][7]."</p>";
-							}
+							}else
+							{
+								$nota=$BDDserv->notamedia($servicios[$i]->getIdServicio());
+								echo"<p>".$nota."</p>";
+							} 
 						?>
 					</div>
 					<div class="busq-desc">
 						<?php
-						echo"<p>".$ret[$i][4]."</p>";
+						echo"<p>".$servicios[$i]->getDescripcion()."</p>";
 						?>
 					</div>
 				</div>

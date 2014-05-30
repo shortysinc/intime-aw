@@ -3,6 +3,8 @@
 	<?php
 		require_once '../controlador/op_base_datos_servicio.php';
 		require_once '../modelo/usuario.php';
+		require_once '../controlador/op_base_datos_usuario.php';
+		require_once '../modelo/servicio.php';
 		session_start();
 	?>
 	<head>
