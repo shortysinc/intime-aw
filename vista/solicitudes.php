@@ -1,10 +1,7 @@
 <?php
-require_once '../controlador/op_base_datos_usuario.php';
-require_once '../controlador/op_base_datos_servicio.php';
-require_once '../modelo/servicio.php';
 require_once '../modelo/usuario.php';
-require_once '../modelo/solicitud.php';
 session_start();
+require_once '../controlador/comprobar_login.php';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -21,14 +18,7 @@ session_start();
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
-	<?php
-		require_once '../controlador/comprobar_login.php';
-		
-		$usuario = $_SESSION['usuario'];
-		$BDDUsuario = new MysqlUsuario();
-		$solicitudes = $BDDUsuario->conseguirSolicitudes($usuario->getId());
-		$BDDServicio = new MysqlServicio();
-	?>
+	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 	<body>
 		<?php include "sidebar.php"
 		?>
@@ -52,51 +42,33 @@ session_start();
 						</div>
 						<h1>Solicitudes</h2>
 					</div>
-					<div class="cuerpo"><div class="sol-rec")>
-					<h2>Recibidas</h2>
-					<?php
-						if(isset($solicitudes)){
-							foreach ($solicitudes as $solicitud) {
-								$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
-								$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
-					?>
-							<div class="solicitud">
-								<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>"><h5><?php echo $servicio->getNombre() ?></h5></a>
-								<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
-								<p><?php echo $usuario->getCorreo() ?></p>
-								<p><?php echo $solicitud->getComentario() ?></p>
-								<p><?php echo $solicitud->getFechaFormateada() ?></p>
-								<form action="solicitudes.php" method="post" accept-charset="utf-8">
-									<button type="submit" name="solicitud" value="aceptar">
-										Aceptar
-									</button>
-									<button type="submit" name="solicitud" value="denegar">
-										Denegar
-									</button>
-								</form>
+					<div class="cuerpo">
+						<div class="sol-rec">
+							<a href="#" onclick="mostrarSolicitudesRecibidas()">Recibidas</a>
+							<a>|</a>
+							<a href="#" onclick="mostrarSolicitudesEnviadas()"> Enviadas</a>
+							<script>
+								function mostrarSolicitudesRecibidas(){
+									$("#solicitudes").load("mostrar_solicitudes.php?tipo=0");
+								}
+								
+								function mostrarSolicitudesEnviadas(){
+									$("#solicitudes").load("mostrar_solicitudes.php?tipo=1");
+								}
+							</script>
+							<div id="solicitudes">
 							</div>
-					<?php	
-							}
-						}else{
-							echo "<div class='solicitud'>";
-							echo "<h4>Ninguna solicitud recibida<h4>";
-							echo "</div>";
-						}
-					?>
-					<h2>Enviadas</h2>
-					<div class="solicitud">
-						<a href="trabajo.php"><h5>Nombre del servicio que has solicitado</h5></a>
-						<a href="perfil.php">Nombre del usuario que da el servicio</a>
-						<p>fake2@mail.com</p>
-						<p>Informacion has dado en la solicitud</p>
-						<p>Estado de la peticion: Pendiente</p>
+							<script>
+								mostrarSolicitudesRecibidas();
+							</script>
+						</div>
 					</div>
-				</div></div>
 				</div>
 				<!-- /#services -->
 			</div>
 			<!-- /#templatemo"-->
-			<?php include 'footer.php';
+			<?php
+				include 'footer.php';
 			?>
 		</div>
 		<!-- /#main-content-->

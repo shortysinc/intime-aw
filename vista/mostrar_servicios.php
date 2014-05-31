@@ -19,7 +19,6 @@ session_start();
 		<link rel="stylesheet" href="css/templatemo_style.css">
 		<link rel="stylesheet" href="css/menu.css">
 		<link rel="stylesheet" href="css/rating.css">
-		<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 	</head>
 	<?php
 	require_once '../controlador/op_base_datos_servicio.php';
@@ -27,6 +26,7 @@ session_start();
 	$BDD = new MysqlServicio();
 	$resultadoCategorias = $BDD -> conseguirTodasLasCategorias();
 	?>
+	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 	<body>
 		<?php include "sidebar.php"
 		?>

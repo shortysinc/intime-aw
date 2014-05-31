@@ -99,7 +99,7 @@ class MysqlUsuario extends Mysql {
 	 * @param $id_usuario 
 	 * @return las solicitudes obtenidas
 	 */
-	public function conseguirSolicitudes($id_usuario){
+	public function conseguirSolicitudesRecibidas($id_usuario){
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
 			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
@@ -112,6 +112,27 @@ class MysqlUsuario extends Mysql {
 			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene todas las solicitudes enviadas por el usuario cuyo id es el que se pasa por parámetro
+	 * @param $id_usuario: id del usuario del cual se quieren obtener sus solicitudes enviadas
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudesEnviadas($id_usuario){
+		$this->conectar();
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_usuario = ?");
+		$pst->bind_param("i", $id_usuario);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$resultado = NULL;
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		}
+		 
 		$pst->close();
 		$this->cerrar();
 		return $resultado;

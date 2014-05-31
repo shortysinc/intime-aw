@@ -9,8 +9,7 @@
 		<table id = "tabla-servicios">
 <?php
 		if(isset($servicios)){
-			foreach($servicios as $row){
-				$servicio = $row;
+			foreach($servicios as $servicio){
 ?>	
 				<tr class "fila-servicios">
 				 	<td class="columna-foto">
