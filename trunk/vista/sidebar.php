@@ -15,7 +15,7 @@ $n = count($array);
 		</div> 
 		<ul class="main-menu">
 			<li class="services">
-				<a href='vista/categoria1.php'>servicios</a>
+				<a href='vistamostrar_servicios.php'>servicios</a>
 			</li>
 			<li class="about">
 				<a href="vista/sobrenosotros.php">sobre nosotros</a>
@@ -64,7 +64,7 @@ $n = count($array);
 							<a href="solicitudes.php">Solicitudes</a>
 						</li>
 						<li class="services">
-							<a href="categoria1.php">servicios</a>
+							<a href="mostrar_servicios.php">servicios</a>
 						</li>
 						<li class="profile">
 							<a href="perfil.php?id_usuario=<?php echo $user->getId() ?>">Mi Perfil</a>
@@ -112,7 +112,7 @@ $n = count($array);
 				</div> 
 				<ul class="main-menu">
 					<li class="services">
-						<a href='categoria1.php'>servicios</a>
+						<a href='mostrar_servicios.php'>servicios</a>
 					</li>
 					<li class="about">
 						<a href="sobrenosotros.php">sobre nosotros</a>
