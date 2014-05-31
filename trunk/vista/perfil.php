@@ -57,7 +57,7 @@
 				<div class="perfil">
 					<?php
 						echo'<h1>'.$usuario->getNombre()." ".$usuario->getApellidos().'</h1>';
-						if (isset($usuario->getFoto())){
+						if ($usuario->getFoto() != NULL){
 					?>
 								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>
 					<?php
