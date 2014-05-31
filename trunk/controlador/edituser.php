@@ -18,6 +18,28 @@
 		else{
 			$foto=null;
 		}
-		$BDDuser->editarUsuario($id,$email,$foto);
+		if (isset($_REQUEST['nombre'])){
+			$nombre=$_REQUEST['nombre'];	
+		}else{
+			$nombre=null;
+		}
+		if (isset($_REQUEST['apellidos'])){
+			$apellidos=$_REQUEST['apellidos'];	
+		}else{
+			$apellidos=null;
+		}
+		if (isset($_REQUEST['direccion'])){
+			$direccion=$_REQUEST['direccion'];	
+		}else{
+			$direccion=null;
+		}
+		if (isset($_REQUEST['pass'])){
+			$pass=$_REQUEST['pass'];
+			$salt=$usuario->getSalt();
+		}else{
+			$pass=null;
+			$salt=null;
+		}
+		$BDDuser->editarUsuario($id,$email,$foto,$nombre,$apellidos,$direccion,$pass,$salt);
 	}
 	header("Location: ../vista/perfil.php?id_usuario=".$id);
