@@ -23,6 +23,11 @@ class Servicio {
 		return $this->id_servicio;
 	}
 	
+	public function getIdUsuario(){
+		
+		return $this->id_usuario;
+	}
+	
 	public function getNombre(){
 			
 		return $this->nombre;

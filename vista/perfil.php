@@ -56,6 +56,7 @@
 				<!-------------------------------------------PERFIL----------------------------------------->
 				<div class="perfil">
 					<?php
+						if(isset($usuario)) {
 						echo'<h1>'.$usuario->getNombre()." ".$usuario->getApellidos().'</h1>';
 						if ($usuario->getFoto() != NULL){
 					?>
@@ -101,6 +102,9 @@
 							}
 						?>
 					</div>
+					<?php } else{
+						echo "<h1>Usuario inexistente</h1>";
+					}?>
 				</div>
 
 				<!-- /#services -->
