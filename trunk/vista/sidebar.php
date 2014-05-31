@@ -1,5 +1,4 @@
 <?php
-require_once '../controlador/op_base_datos_usuario.php';
 $dir = $_SERVER["REQUEST_URI"];
 $array = split("/", $dir);
 $n = count($array);
@@ -27,13 +26,14 @@ $n = count($array);
 		<?php
 		//SIDEBAR PARA EL RESTO DE VISTAS
 		}else {
-		?>
-		<?php
+			require_once '../controlador/op_base_datos_usuario.php';
+			
 			if(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario']){
 				//USUARIO REGISTRADO
 				$user = $_SESSION['usuario'];
-				$baseDatos = new MysqlUsuario();			
+				$baseDatos = new MysqlUsuario();
 				$user = $baseDatos->conseguirUsuarioById($user->getId());
+				$_SESSION['usuario'] = $user;
 		?>
 				<div class="logo">
 					<a href="perfil_usuario.php">
@@ -53,7 +53,7 @@ $n = count($array);
 								echo "<a href='perfil_usuario.php'><img src='images/usuario/user_defect.png'></a>";
 							}else{
 						?>
-								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$user->getFoto() ?>'></a>";
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$user->getFoto() ?>'></a>
 						<?php
 							}
 						?>

@@ -27,7 +27,7 @@
 	
 	$usuario = $_SESSION['usuario'];
 	$BDD = new MysqlUsuario();
-	$resultadoSolicitudes = $BDD->conseguirSolicitudes($_SESSION["usuario"]->getId());
+	$resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidas($_SESSION["usuario"]->getId());
 	$num_solicitudes = count($resultadoSolicitudes);
 	$BDD = new MysqlServicio();
 	$servicios = $BDD->conseguirServiciosByUserId($usuario->getId());

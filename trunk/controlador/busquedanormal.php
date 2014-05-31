@@ -4,7 +4,7 @@
 			$nbusq = $_POST["nombrebusq"];
 			$servicios=array();
 			$BDDserv = new MysqlServicio();
-			$servicios=$BDDserv->busqueda($nbusq);
+			$servicios=$BDDserv->busqueda($nbusq); 
 		}
 		if (isset($_POST["consulta"])){
 			$login=$_SESSION['usuario'];
