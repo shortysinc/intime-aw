@@ -67,8 +67,8 @@
 					?>
 					<div class="infouser">
 						<?php
+							echo"<p>".$usuario->getCorreo()."</p>";
 							if (($usuario->getId()==$usuario_logueado->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
-								echo"<p>".$usuario->getCorreo()."</p>";
 								echo'<a href="editarperfil.php?id='.$usuario->getId().'"><h5>Editar perfil</h5></a>';
 							}
 						?>

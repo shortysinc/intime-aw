@@ -138,4 +138,23 @@ class MysqlUsuario extends Mysql {
 		return $resultado;
 
 	}
+	 
+	 public function editarUsuario($id,$correo,$foto){
+		$this->conectar();
+		$args = array($correo);
+		$this->escapaBd($args);
+		if ($correo!=null){
+			$pst = $this->conexion->prepare("update usuario set correo=? WHERE id_usuario = ?");
+			$pst->bind_param("ss",$args[0],$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($foto!=null){
+			$pst = $this->conexion->prepare("update usuario set foto_usuario=? WHERE id_usuario = ?");
+			$pst->bind_param("ss",$foto,$id);
+			$pst->execute();
+			$pst->close();
+		}
+		$this->cerrar();
+	}
 }
