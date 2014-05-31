@@ -1,4 +1,5 @@
 <?php
+require_once '../controlador/op_base_datos_usuario.php';
 $dir = $_SERVER["REQUEST_URI"];
 $array = split("/", $dir);
 $n = count($array);
@@ -31,6 +32,8 @@ $n = count($array);
 			if(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario']){
 				//USUARIO REGISTRADO
 				$user = $_SESSION['usuario'];
+				$baseDatos = new MysqlUsuario();			
+				$user = $baseDatos->conseguirUsuarioById($user->getId());
 		?>
 				<div class="logo">
 					<a href="perfil_usuario.php">
