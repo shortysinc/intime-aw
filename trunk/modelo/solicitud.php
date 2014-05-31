@@ -6,6 +6,7 @@ class Solicitud {
 		   $estado,
 		   $fecha,
 		   $comentario;
+	const dateFormat = 'd/m/Y H:i';
 	
 	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario){
 		$this->id_solicitud = $id_solicitud;
@@ -34,8 +35,13 @@ class Solicitud {
 	
 	public function getFecha(){
 		
+		return $this->fecha;
+	}
+	
+	public function getFechaFormateada(){
+		
 		$date = new DateTime($this->fecha);
-		return $date->format('d/m/Y H:i');
+		return $date->format(Solicitud::dateFormat);
 	}
 	
 	public function getComentario(){
