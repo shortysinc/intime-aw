@@ -139,9 +139,9 @@ class MysqlUsuario extends Mysql {
 
 	}
 	 
-	 public function editarUsuario($id,$correo,$foto){
+	 public function editarUsuario($id,$correo,$foto,$nombre,$apellidos,$direccion,$pass,$salt){
 		$this->conectar();
-		$args = array($correo);
+		$args = array($correo,$nombre,$apellidos,$direccion,$pass);
 		$this->escapaBd($args);
 		if ($correo!=null){
 			$pst = $this->conexion->prepare("update usuario set correo=? WHERE id_usuario = ?");
@@ -152,6 +152,31 @@ class MysqlUsuario extends Mysql {
 		if ($foto!=null){
 			$pst = $this->conexion->prepare("update usuario set foto_usuario=? WHERE id_usuario = ?");
 			$pst->bind_param("ss",$foto,$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($nombre!=null){
+			$pst = $this->conexion->prepare("update usuario set nombre=? WHERE id_usuario = ?");
+			$pst->bind_param("ss",$args[1],$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($apellidos!=null){
+			$pst = $this->conexion->prepare("update usuario set apellidos=? WHERE id_usuario = ?");
+			$pst->bind_param("ss",$args[2],$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($direccion!=null){
+			$pst = $this->conexion->prepare("update usuario set direccion=? WHERE id_usuario = ?");
+			$pst->bind_param("ss",$args[3],$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($pass!=null){
+			$pass = hash('sha512', $args[4].$salt);
+			$pst = $this->conexion->prepare("update usuario set pass=? WHERE id_usuario = ?");
+			$pst->bind_param("ss",$pass,$id);
 			$pst->execute();
 			$pst->close();
 		}

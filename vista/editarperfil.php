@@ -7,7 +7,7 @@
 		$usuario=$_SESSION['usuario'];
 	?>
 	<head>
-		<title>inTime / Crear una cuenta</title>
+		<title>inTime / Editar Perfil</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
 		<meta name="description" content="Sonic is one-page responsive free template using Bootstrap. This layout is suitable for creative portfolio showcase." />
 		<meta charset="utf-8">
@@ -47,6 +47,22 @@
 								<div class="col-md-8">
 									<label for="foto" >Nueva imagen de perfil:</label>
 									<input name="foto" type="file" id="foto" maxlength="40"/>
+								</div>
+								<div class="col-md-8">
+									<label for="nombre" >Nuevo nombre:</label>
+									<input name="nombre" type="text" id="nombre" maxlength="40"/>
+								</div>
+								<div class="col-md-8">
+									<label for="apellidos" >Nuevo apellidos:</label>
+									<input name="apellidos" type="text" id="apellidos" maxlength="125"/>
+								</div>
+								<div class="col-md-8">
+									<label for="direccion" >Nueva direccion:</label>
+									<input name="direccion" type="text" id="direccion" maxlength="40"/>
+								</div>
+								<div class="col-md-8">
+									<label for="pass" >Nuevo contraseña:</label>
+									<input name="pass" type="text" id="pass" maxlength="40"/>
 								</div>
 								<!-- /.col-md-12 -->
 								<div class="col-md-12">
