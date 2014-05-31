@@ -40,7 +40,7 @@
 					<div class="busq-foto">
 						<?php
 							if (!empty($user->getFoto())){
-								echo '<img src="data:image/png;base64,' . base64_encode($user->getFoto()) . '"/>';
+								echo '<img src="images/usuario/'.$user->getFoto().'"></a>';
 							}else
 								echo '<img src="images/usuario/user_defect.png">';
 						?>
