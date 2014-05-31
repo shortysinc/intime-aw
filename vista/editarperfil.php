@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
+	<?php
+		require_once '../modelo/usuario.php';
+		require_once '../controlador/op_base_datos_usuario.php';
+		session_start();
+		$usuario=$_SESSION['usuario'];
+	?>
 	<head>
 		<title>inTime / Crear una cuenta</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
@@ -31,7 +37,7 @@
 					<!-- /#row -->
 					<div class="cuerpo">
 						<div class="contact-form" id="form">
-							<form action="perfil.php" method="post" accept-charset="utf-8">
+							<form action=<?php echo '"../controlador/edituser.php?id_usuario='.$usuario->getId().'"'?> method="post" enctype="multipart/form-data" accept-charset="utf-8">
 								
 								<!-- /.col-md-4 -->
 								<div class="col-md-8">
