@@ -48,7 +48,7 @@
 					<div class="busq-nota">
 						<?php
 							if ((isset($_POST["consulta"]))&&(!$_POST["consulta"]=="red")){
-								$nota=$BDDserv->conseguirnota($servicios[$i]->getIdServicio(),$login->getId());
+								$nota=$BDDserv->conseguirNota($servicios[$i]->getIdServicio(),$login->getId());
 								echo"<p>".$nota."</p>";
 							}else
 							{

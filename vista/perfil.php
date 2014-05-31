@@ -4,6 +4,7 @@
 		require_once '../controlador/op_base_datos_servicio.php';
 		require_once '../controlador/op_base_datos_usuario.php';
 		require_once '../modelo/usuario.php';
+		require_once '../modelo/servicio.php';
 		session_start();
 		
 		if (isset($_SESSION['usuario'])){
@@ -13,7 +14,7 @@
 			$BDD = new MysqlUsuario();
 			$usuario = $BDD->conseguirUsuarioById($id);
 			$BDD = new MysqlServicio();
-			$services = $BDD->conseguirServiciosByUserId($id);
+			$servicios = $BDD->conseguirServiciosByUserId($id);
 		}
 	?>
 	<head>
@@ -74,28 +75,31 @@
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
 						<?php
-							$lenght=count($services);
-							for ($i=0;$i<$lenght;$i=$i+1){?>
-								<div class="servicio-ej">
-									<?php 
-										echo '<a href="servicio.php?id_servicio='.$services[$i][0].'"><h4>'.$services[$i][1].'</h4></a>';
-									?>
-									<div class="serv-nota">
-									<?php
-										$nota=$BDD->notamedia($services[$i][0]);
-										if (!empty($nota))
-											echo"<p>Nota: ".$nota."</p>";
-										else
-											echo"<p>No valorado</p>";
-									?>
+							if($servicios != NULL){
+								foreach($servicios as $servicio){?>
+									<div class="servicio-ej">
+										<?php 
+											echo '<a href="servicio.php?id_servicio='.$servicio->getIdServicio().'"><h4>'.$servicio->getNombre().'</h4></a>';
+										?>
+										<div class="serv-nota">
+										<?php
+											$nota=$BDD->notamedia($servicio->getIdServicio());
+											if (!empty($nota))
+												echo"<p>Nota: ".$nota."</p>";
+											else
+												echo"<p>No valorado</p>";
+										?>
+										</div>
+										<div class="serv-desc">
+										<?php
+											echo"<p>".$servicio->getDescripcion()."</p>";
+										?>
+										</div>
 									</div>
-									<div class="serv-desc">
-									<?php
-										echo"<p>".$services[$i][2]."</p>";
-									?>
-									</div>
-								</div>
-						<?php } ?>
+						<?php 
+								} 
+							}
+						?>
 					</div>
 				</div>
 

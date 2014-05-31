@@ -56,13 +56,16 @@ class MysqlServicio extends Mysql {
 		$pst->bind_param("sss",$id,$id,$corte);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		
 		while($pst->fetch()){
 			$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 			$ret[$i]=$servicio;
 			$i=$i+1;
 		}
+		
 		$pst->close();
 		$this->cerrar();
+		
 		return $ret;
 	}
 	 
@@ -73,8 +76,10 @@ class MysqlServicio extends Mysql {
 		$pst->execute();
 		$pst->bind_result($nota);
 		$pst->fetch();
+		
 		$pst->close();
 		$this->cerrar();
+		
 		return $nota;
 	}
 	
@@ -90,12 +95,15 @@ class MysqlServicio extends Mysql {
 		$pst->execute();
 		//var_dump("ejecutado", $pst);
 		$pst->bind_result($id, $categoria);
+		$resultado = NULL;
+		
 		while ($pst->fetch()) {
 			$resultado[] = array('id_categoria'=>$id, 'categoria'=>$categoria);
 		}
+		
 		$pst->close();
 		$this->cerrar();
-		//var_dump("cerrado",$resultado);
+		
 		return $resultado;
 	}
 	
@@ -110,6 +118,7 @@ class MysqlServicio extends Mysql {
 		$pst->bind_param("i", $id);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$resultado = NULL;
 		while($pst->fetch()){
 			$resultado[] = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		}
@@ -120,33 +129,40 @@ class MysqlServicio extends Mysql {
 		return $resultado;
 	}
 	
+	/**
+	 * Obtiene los servicios de un usuario a partir de su id
+	 */
 	public function conseguirServiciosByUserId($id){
 		$this->conectar();
 		$i=0;
 		$ret=array();
-		$pst = $this->conexion->prepare("select id_servicio,nombre_servicio,descripcion from servicio where id_usuario= ?");
-		$pst->bind_param("s", $id);
+		$pst = $this->conexion->prepare("select * from servicio where id_usuario = ?");
+		$pst->bind_param("i", $id);
 		$pst->execute();
-		$pst->bind_result($id,$nombre,$descripcion);
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$resultado = NULL;
+		
 		while($pst->fetch()){
-			$info = array($id,$nombre,$descripcion);
-			$ret[$i]=$info;
-			$i=$i+1;
-			//
+			$resultado[] = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		}
+		
+		$this->cerrar();
 		$pst->close();
-		return $ret;
+		
+		return $resultado;
 	}
 		
-	public function conseguirnota($idservicio,$iduser){
+	public function conseguirNota($idservicio,$iduser){
 		$this->conectar();
 		$pst=$this->conexion->prepare("SELECT avg(nota) from valoracion_servicio where valoracion_servicio.id_servicio=? and valoracion_servicio.id_usuario=?");
 		$pst->bind_param("ss",$idservicio,$iduser);
 		$pst->execute();
 		$pst->bind_result($nota);
 		$pst->fetch();
+		
 		$pst->close();
 		$this->cerrar();
+		
 		return $nota;
 	}
 }
