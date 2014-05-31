@@ -8,7 +8,7 @@
 ?>
 		<table id = "tabla-servicios">
 <?php
-		if($servicios != NULL){
+		if(isset($servicios)){
 			foreach($servicios as $row){
 				$servicio = $row;
 ?>	

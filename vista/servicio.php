@@ -69,7 +69,7 @@
 						<div class="valoraciones">
 							<p>
 								<?php
-									if($resultadoValoracion != NULL){
+									if(isset($resultadoValoracion)){
 										foreach ($resultadoValoracion as $row) {
 											echo $row["nota"];									
 										}

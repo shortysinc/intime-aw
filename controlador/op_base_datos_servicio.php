@@ -37,7 +37,7 @@ class MysqlServicio extends Mysql {
 		$pst =  $this->conexion->prepare("select * from servicio where nombre_servicio like ? ");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto); 
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		while($pst->fetch()){
 			$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 			$ret[$i]=$servicio;

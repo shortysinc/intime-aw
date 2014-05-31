@@ -80,7 +80,7 @@
 						<div class="lista-serv">
 							<h3>Lista de servicios del usuario:</h3>
 							<?php
-								if($servicios != NULL){
+								if(isset($servicios)){
 									foreach($servicios as $servicio){
 							?>
 										<div class="servicio-ej">
