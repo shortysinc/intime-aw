@@ -65,7 +65,7 @@ session_start();
 								<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
 								<p><?php echo $usuario->getCorreo() ?></p>
 								<p><?php echo $solicitud->getComentario() ?></p>
-								<p><?php echo $solicitud->getFecha() ?></p>
+								<p><?php echo $solicitud->getFechaFormateada() ?></p>
 								<form action="solicitudes.php" method="post" accept-charset="utf-8">
 									<button type="submit" name="solicitud" value="aceptar">
 										Aceptar
