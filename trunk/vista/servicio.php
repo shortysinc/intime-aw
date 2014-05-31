@@ -28,7 +28,7 @@
 			$BDDServicio = new MysqlServicio();
 			$BDDUsuario = new MysqlUsuario();
 			$servicio = $BDDServicio->conseguirServicio($id_servicio);
-			$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdServicio());
+			$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
 			$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
 		}
 		//$resultadoMedia= $BDD->notamedia($idservicio);

@@ -11,8 +11,10 @@ class MysqlUsuario extends Mysql {
 		$pst->bind_param("s", $id);
 		$pst->execute();
 		$pst->bind_result($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
-		$pst->fetch();
-		$usuario = new Usuario($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
+		$usuario = NULL;
+		if($pst->fetch()){
+			$usuario = new Usuario($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
+		}
 		$this->cerrar();
 		$pst->close();
 		return $usuario;
