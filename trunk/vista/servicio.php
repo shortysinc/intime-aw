@@ -28,8 +28,11 @@
 			$BDDServicio = new MysqlServicio();
 			$BDDUsuario = new MysqlUsuario();
 			$servicio = $BDDServicio->conseguirServicio($id_servicio);
-			$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
-			$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
+			if(isset($servicio)){
+				$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
+				$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
+			}
+			
 		}
 		//$resultadoMedia= $BDD->notamedia($idservicio);
 	?>
@@ -41,16 +44,8 @@
 		?>
 		<div id="main-content">
 			<div id="templatemo">
-				<div class="busqueda">
-					<form method="post" action="busqueda.php" accept-charset="utf-8">
-						<label>Buscar</label>
-						<input type="text" name="nombrebusq" size="50">
-						<button type="submit" name="submit" value="Enviar">
-							Enviar
-						</button>
-						<a href="busqueda.php">Busqueda avanzada</a>
-					</form>
-				</div>
+				<div class="cuerpo">
+				<?php if(isset($servicio)){ ?>
 				<div class="encabezado">
 					 <img src="images/slide3.jpg" > 
 					<!--Foto servicio -->
@@ -184,7 +179,11 @@
 					}
 					?>
 				</div>
-				<!--comentarios ejemplo-->
+				<?php 
+				}else{
+					echo "<h1>Servicio inexistente</h1>";
+				} ?>
+				</div>
 			</div> <!-- /#sTop -->
 			<?php include 'footer.php'
 			?>

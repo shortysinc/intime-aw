@@ -15,9 +15,11 @@ class MysqlServicio extends Mysql {
 		$pst = $this->conexion->prepare("select * from servicio where id_servicio = ?");
 		$pst->bind_param("i", $id);
 		$pst->execute();
-		$resultado = $pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto); 
-		$pst->fetch();
-		$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$resultado = $pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$servicio = NULL;
+		if($pst->fetch()){
+			$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);	
+		}
 	
 		$pst->close();
 		$this->cerrar();

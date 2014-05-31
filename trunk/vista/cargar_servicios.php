@@ -14,7 +14,9 @@
 ?>	
 				<tr class "fila-servicios">
 				 	<td class="columna-foto">
-						<a class="descripcion-servicios" href="trabajo.php"><img src="images/slide3.jpg" alt="Aqui iria una imagen"/></a>
+						<a class="descripcion-servicios" href="<?php echo "servicio.php?id_servicio=".$servicio->getIdServicio() ?>">
+							<img src="images/servicio/service_defect.png"/>
+						</a>
 					</td>
 					<td class="columna-servicios">
 						<h3><a href="<?php echo "servicio.php?id_servicio=".$servicio->getIdServicio() ?>">
