@@ -58,7 +58,7 @@ session_start();
 							<div class="cuerpo" id="servicios">
 								<ul class = "lista-categorias">
 									<?php 
-										if($resultadoCategorias != NULL){
+										if(isset($resultadoCategorias)){
 											foreach($resultadoCategorias as $row){
 									?>	
 											<li id="elem-categoria">

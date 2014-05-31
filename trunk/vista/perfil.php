@@ -57,7 +57,7 @@
 				<div class="perfil">
 					<?php
 						echo'<h1>'.$usuario->getNombre()." ".$usuario->getApellidos().'</h1>';
-						if ($usuario->getFoto() != NULL){
+						if (isset($usuario->getFoto())){
 					?>
 								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>
 					<?php
@@ -75,7 +75,7 @@
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
 						<?php
-							if($servicios != NULL){
+							if(isset($servicios)){
 								foreach($servicios as $servicio){?>
 									<div class="servicio-ej">
 										<?php 

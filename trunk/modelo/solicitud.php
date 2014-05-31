@@ -33,7 +33,9 @@ class Solicitud {
 	}
 	
 	public function getFecha(){
-		return $this->fecha;
+		
+		$date = new DateTime($this->fecha);
+		return $date->format('d/m/Y H:i');
 	}
 	
 	public function getComentario(){
