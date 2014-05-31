@@ -58,12 +58,16 @@ session_start();
 							<div class="cuerpo" id="servicios">
 								<ul class = "lista-categorias">
 									<?php 
-										foreach($resultadoCategorias as $row){
+										if($resultadoCategorias != NULL){
+											foreach($resultadoCategorias as $row){
 									?>	
-										<li id="elem-categoria">
-											<a href="#" onclick="mostrarServicios(<?php echo "'".$row['id_categoria']."'"?>)"><?php echo $row['categoria'] ?></a>
-										</li>		
+											<li id="elem-categoria">
+												<a href="#" onclick="mostrarServicios(<?php echo "'".$row['id_categoria']."'"?>)"><?php echo $row['categoria'] ?></a>
+											</li>		
 									<?php	
+											}
+										}else{
+											echo "<h3>Aún no tenemos ninguna categoría disponible<h3>";
 										}
 									?>
 								</ul>

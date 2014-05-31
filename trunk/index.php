@@ -29,7 +29,7 @@ session_start();
 								<form method="post" action="controlador/login.php" accept-charset="utf-8">
 									<div class="u-login">
 										<label>Usuario</label>
-										<input type="text" name="correo"/>
+										<input type="email" name="correo"/>
 										<a id="crear-cuenta" href="vista/crear_cuenta.php">Crear cuenta</a>
 									</div>
 									<div class="p-login">
