@@ -35,7 +35,7 @@
 				<div class ="busq-ej">
 					<?php
 						echo'<a href=trabajo.php?id='.$servicios[$i]->getIdServicio().'><h3>'.$servicios[$i]->getNombre().'</h3></a>';
-						echo'<a href=perfil.php?id='.$user->getId().'><h4>'.$user->getNombre()." ".$user->getApellidos().'</h4></a>';
+						echo'<a href=perfil.php?id_usuario='.$user->getId().'><h4>'.$user->getNombre()." ".$user->getApellidos().'</h4></a>';
 					?>
 					<div class="busq-foto">
 						<?php
