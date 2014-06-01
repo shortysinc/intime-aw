@@ -243,6 +243,8 @@ textarea .mensaje { position: relative;}
 .descripcion p{padding-left:10px;}
 .valoraciones{margin-top:-90px;padding-left:60%;font-size:40px;}
 .solicitud{padding-left:35%;}
+span.h2-solicitud{display:block; width: 35%}
+span#combobox-estado{float:left; display: block; width: 25%}
 .comentarios h2{padding-left:5px;}
 .comentarios img{border: 1px solid black; border-radius: 80px;height:90px;width:90px;}
 .comentario-ej{margin-bottom:30px;}
