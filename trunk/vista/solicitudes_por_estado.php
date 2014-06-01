@@ -24,6 +24,7 @@
 		if($solicitudes != NULL)
 			foreach ($solicitudes as $solicitud) {
 				if($solicitud->getEstado() == $_GET['estado'] || $_GET['estado'] == 3){
+					$i++;
 					$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
 					$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
 ?>		
@@ -35,14 +36,24 @@
 						<p><?php echo $usuario->getCorreo() ?></p>
 						<p><?php echo $solicitud->getComentario() ?></p>
 						<p><?php echo $solicitud->getFechaFormateada() ?></p>
-						<form action="solicitudes.php" method="post" accept-charset="utf-8">
-							<button type="submit" name="solicitud" value="aceptar">
-								Aceptar
-							</button>
-							<button type="submit" name="solicitud" value="denegar">
-								Denegar
-							</button>
-						</form>
+<?php
+						if($solicitud->getEstado() == 1){
+							echo "<p class='solicitud-aceptada'>Aceptada</p>";
+						}else if($solicitud->getEstado() == 2){
+							echo "<p class='solicitud-rechazada'>Rechazada</p>";
+						}else{
+?>
+							<form action="solicitudes.php" method="post" accept-charset="utf-8">
+								<button type="submit" name="solicitud" value="aceptar">
+									Aceptar
+								</button>
+								<button type="submit" name="solicitud" value="denegar">
+									Denegar
+								</button>
+							</form>
+<?php
+						}
+?>
 					</div>
 <?php
 				}
@@ -64,24 +75,22 @@
 				if($solicitud->getEstado() == $_GET['estado'] || $_GET['estado'] == 3){
 					$i++;
 					$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
-					$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
 ?>
 					<div class="solicitud">
 						<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
 							<h5><?php echo $servicio->getNombre() ?></h5>
 						</a>
-						<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
-						<p><?php echo $usuario->getCorreo() ?></p>
 						<p><?php echo $solicitud->getComentario() ?></p>
 						<p><?php echo $solicitud->getFechaFormateada() ?></p>
-						<form action="solicitudes.php" method="post" accept-charset="utf-8">
-							<button type="submit" name="solicitud" value="aceptar">
-								Aceptar
-							</button>
-							<button type="submit" name="solicitud" value="denegar">
-								Denegar
-							</button>
-						</form>
+<?php
+						if($solicitud->getEstado() == 0){
+							echo "<p>Pendiente</p>";
+						}else if($solicitud->getEstado()== 1){
+							echo "<p class='solicitud-aceptada'>Aceptada</p>";
+						}else{
+							echo "<p class='solicitud-rechazada'>Rechazada</p>";
+						}
+?>
 					</div>
 <?php
 				}

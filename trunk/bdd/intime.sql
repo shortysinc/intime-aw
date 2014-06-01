@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-05-2014 a las 22:41:51
+-- Tiempo de generación: 01-06-2014 a las 17:30:07
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -146,8 +146,8 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
 
 INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`) VALUES
 (2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates'),
-(3, 27, 4, 0, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés'),
-(4, 42, 2, 0, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?');
+(3, 27, 4, 1, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés'),
+(4, 42, 2, 2, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?');
 
 -- --------------------------------------------------------
 

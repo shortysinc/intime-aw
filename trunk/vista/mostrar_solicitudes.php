@@ -42,5 +42,5 @@
 	<div id="tipo-solicitudes">
 	</div>
 	<script>
-		cambiarOpcion(0);
+		cambiarOpcion(<?php echo $_GET['tipo'] ?>);
 	</script>
