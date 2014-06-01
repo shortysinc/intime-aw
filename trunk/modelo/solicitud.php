@@ -35,6 +35,26 @@ class Solicitud {
 		return $cadena;
 	}
 	
+	/**
+	 * Comprueba si la solicitud representada por su id está dentro del array de solicitudes.
+	 * @param $id: id de la solicitud
+	 * @param $solicitudes: array de solicitudes en el que se quiere buscar la solicitud representada por el parámetro $id
+	 */
+	public static function estaDentro($id, $solicitudes){
+		$len = count($solicitudes);
+		$encontrada = false;
+		$i = 0;
+		while (!$encontrada && $i < $len) {
+			$solicitud = $solicitudes[$i];
+			if($solicitud->getIdSolicitud() == $id){
+				$encontrada = true;
+			}
+			$i++;
+		}
+		
+		return $encontrada;
+	}
+	
 	public function getIdSolicitud(){
 		return $this->id_solicitud;
 	}

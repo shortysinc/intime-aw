@@ -43,12 +43,12 @@
 							echo "<p class='solicitud-rechazada'>Rechazada</p>";
 						}else{
 ?>
-							<form action="solicitudes.php" method="post" accept-charset="utf-8">
-								<button type="submit" name="solicitud" value="aceptar">
+							<form action="../controlador/aceptar_rechazar_solicitud.php" method="post" accept-charset="utf-8">
+								<button type="submit" name="aceptar" value="<?php echo $solicitud->getIdSolicitud() ?>">
 									Aceptar
 								</button>
-								<button type="submit" name="solicitud" value="denegar">
-									Denegar
+								<button type="submit" name="rechazar" value="<?php echo $solicitud->getIdSolicitud() ?>">
+									Rechazar
 								</button>
 							</form>
 <?php
