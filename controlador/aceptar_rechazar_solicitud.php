@@ -16,14 +16,18 @@
 			//Comprobar si la solicitud que se quiere aceptar esta, de verdad, pendiente de aceptar por el usuario logueado
 			$solicitudes = $BDD->conseguirSolicitudesRecibidasPendientes($usuario_log->getId());
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
-				$BDD->aceptarSolicitud($id_solicitud);
+				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);
+				$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
+					 1, $solicitud->getFecha(), $solicitud->getComentario(), $solicitud->getVista());
 			}
 		}else if($_POST['rechazar']){
 			$id_solicitud = $_POST['rechazar'];
 			//Comprobar si la solicitud que se quiere rechazar esta, de verdad, pendiente de rechazar por el usuario logueado
 			$solicitudes = $BDD->conseguirSolicitudesRecibidasPendientes($usuario_log->getId());
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
-				$BDD->rechazarSolicitud($id_solicitud);
+				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);
+				$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
+					 2, $solicitud->getFecha(), $solicitud->getComentario(), $solicitud->getVista());
 			}
 		}
 	}

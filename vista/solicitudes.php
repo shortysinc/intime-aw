@@ -1,7 +1,20 @@
 <?php
+require_once '../controlador/op_base_datos_usuario.php';
 require_once '../modelo/usuario.php';
+require_once '../modelo/solicitud.php';
 session_start();
+
 require_once '../controlador/comprobar_login.php';
+
+$usuario = $_SESSION['usuario'];
+$BDD = new MysqlUsuario();
+$resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION["usuario"]->getId());
+
+foreach ($resultadoSolicitudes as $solicitud) {
+	$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
+		 $solicitud->getEstado(), $solicitud->getFecha(), $solicitud->getComentario(), 1);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="es">

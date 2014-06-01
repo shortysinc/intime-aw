@@ -94,6 +94,30 @@ class MysqlUsuario extends Mysql {
 		
 		return $resultado;
 	}
+	 
+	 /**
+	  * Obtiene la solicitud dada por su id de la bdd
+	  * @param id_solicitud
+	  * @return la solicitud conseguida
+	  */
+	 public function conseguirSolicitudPorId($id_solicitud){
+	 	$this->conectar();
+		$args = array($id_solicitud);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_solicitud = ?");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$solicitud = NULL;
+		if($pst->fetch()){
+			$solicitud = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		}
+		 
+		$pst->close();
+		$this->cerrar();
+		return $solicitud;
+	 }
+	 
 	 /**
 	 * Obtiene todas las solicitudes que le han hecho al usuario pasado por parámetro
 	 * @param $id_usuario 
@@ -102,14 +126,39 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesRecibidas($id_usuario){
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
+			solicitud.fecha, solicitud.comentario, solicitud.vista FROM solicitud join servicio where servicio.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio order by solicitud.fecha DESC");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene todas las solicitudes no vistas que le han hecho al usuario cuyo id es el pasado por parámetro
+	 * @param $id_usuario
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudesRecibidasNoVistas($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
+			solicitud.fecha, solicitud.comentario, solicitud.vista FROM solicitud join servicio where servicio.id_usuario = ? 
+			and solicitud.id_servicio = servicio.id_servicio and solicitud.vista = 0 order by solicitud.fecha DESC");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$resultado = NULL;
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
 		}
 		
 		$pst->close();
@@ -127,14 +176,14 @@ class MysqlUsuario extends Mysql {
 		$args = array($id_usuario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
+			solicitud.fecha, solicitud.comentario, solicitud.vista FROM solicitud join servicio where servicio.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and solicitud.estado = 0 order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
 		}
 		
 		$pst->close();
@@ -152,10 +201,10 @@ class MysqlUsuario extends Mysql {
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_usuario = ?");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
 		}
 		 
 		$pst->close();
@@ -163,35 +212,16 @@ class MysqlUsuario extends Mysql {
 		return $resultado;
 	}
 	
-	/**
-	 * Actualiza el estado de una solicitud a aceptada
-	 * @param $id_solicitud: id de la solicitud que queremos cambiar el estado
-	 */
-	public function aceptarSolicitud($id_solicitud){
+	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista){
 		$this->conectar();
-		$args = array($id_solicitud);
+		$args = array($id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista, $id_solicitud);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("UPDATE solicitud SET estado = 1 WHERE id_solicitud = ? ");
-		$pst->bind_param("i", $args[0]);
+		$pst = $this->conexion->prepare("UPDATE solicitud SET id_usuario=?, id_servicio=?, estado=?,
+			fecha=?, comentario=?, vista=? WHERE id_solicitud=?");
+		$pst->bind_param("iiissii", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
 		$pst->execute();
-		
 		$pst->close();
-		$this->cerrar();
-	} 
-	
-	/**
-	 * Actualiza el estado de una solicitud a rechazada
-	 * @param $id_solicitud: id de la solicitud que queremos cambiar el estado
-	 */
-	public function rechazarSolicitud($id_solicitud){
-		$this->conectar();
-		$args = array($id_solicitud);
-		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("UPDATE solicitud SET estado = 2 WHERE id_solicitud = ? ");
-		$pst->bind_param("i", $args[0]);
-		$pst->execute();
 		
-		$pst->close();
 		$this->cerrar();
 	}
 	

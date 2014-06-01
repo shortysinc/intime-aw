@@ -5,6 +5,8 @@
 	require_once '../modelo/servicio.php';
 	require_once '../modelo/solicitud.php';
 	session_start();
+	
+	require_once '../controlador/comprobar_login.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,11 +25,9 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 <?php
-	require_once '../controlador/comprobar_login.php';
-	
 	$usuario = $_SESSION['usuario'];
 	$BDD = new MysqlUsuario();
-	$resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidas($_SESSION["usuario"]->getId());
+	$resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION["usuario"]->getId());
 	$num_solicitudes = count($resultadoSolicitudes);
 	$BDD = new MysqlServicio();
 	$servicios = $BDD->conseguirServiciosByUserId($usuario->getId());
@@ -65,11 +65,11 @@
 						<?php
 							}else if($num_solicitudes == 1){
 						?>
-								<a  href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
+								<a href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
 						<?php
 							}else {
 						?>
-								<a  href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
+								<a href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
 						<?php	
 							}
 						?>
