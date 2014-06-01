@@ -7,7 +7,7 @@ class MysqlUsuario extends Mysql {
 	
 	public function conseguirUsuarioById($id){
 		$this->conectar();
-		$pst = $this->conexion->prepare("select * from usuario where id_usuario=? ");
+		$pst = $this->conexion->prepare("select * from usuario where id_usuario = ?");
 		$pst->bind_param("s", $id);
 		$pst->execute();
 		$pst->bind_result($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
@@ -118,6 +118,31 @@ class MysqlUsuario extends Mysql {
 	}
 	
 	/**
+	 * Obtiene todas las solicitudes que le han hecho al usuario pasado por parámetro y estan pendientes de aceptar o rechazar
+	 * @param $id_usuario 
+	 * @return las solicitudes pendientes obtenidas
+	 */
+	public function conseguirSolicitudesRecibidasPendientes($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
+			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
+			and solicitud.id_servicio = servicio.id_servicio and solicitud.estado = 0 order by solicitud.fecha DESC");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$resultado = NULL;
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
 	 * Obtiene todas las solicitudes enviadas por el usuario cuyo id es el que se pasa por parámetro
 	 * @param $id_usuario: id del usuario del cual se quieren obtener sus solicitudes enviadas
 	 * @return las solicitudes obtenidas
@@ -139,11 +164,42 @@ class MysqlUsuario extends Mysql {
 	}
 	
 	/**
+	 * Actualiza el estado de una solicitud a aceptada
+	 * @param $id_solicitud: id de la solicitud que queremos cambiar el estado
+	 */
+	public function aceptarSolicitud($id_solicitud){
+		$this->conectar();
+		$args = array($id_solicitud);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("UPDATE solicitud SET estado = 1 WHERE id_solicitud = ? ");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		
+		$pst->close();
+		$this->cerrar();
+	} 
+	
+	/**
+	 * Actualiza el estado de una solicitud a rechazada
+	 * @param $id_solicitud: id de la solicitud que queremos cambiar el estado
+	 */
+	public function rechazarSolicitud($id_solicitud){
+		$this->conectar();
+		$args = array($id_solicitud);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("UPDATE solicitud SET estado = 2 WHERE id_solicitud = ? ");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		
+		$pst->close();
+		$this->cerrar();
+	}
+	
+	/**
 	 * Obtiene la valoracion de un servicio con el id pasado por parámetro.
 	 * @return el servicio de la base de datos.
 	 */ 
 	 public function conseguirValoraciones($id) {
-
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
 		$pst->bind_param("i", $id);
