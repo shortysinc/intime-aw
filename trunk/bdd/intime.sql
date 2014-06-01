@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2014 a las 17:30:07
+-- Tiempo de generación: 01-06-2014 a las 23:46:21
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -135,6 +135,7 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
   `estado` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
   `comentario` varchar(500) NOT NULL,
+  `vista` int(1) NOT NULL,
   PRIMARY KEY (`id_solicitud`),
   KEY `id_usuario` (`id_usuario`,`id_servicio`),
   KEY `id_servicio` (`id_servicio`)
@@ -144,10 +145,10 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`) VALUES
-(2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates'),
-(3, 27, 4, 1, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés'),
-(4, 42, 2, 2, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?');
+INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`, `vista`) VALUES
+(2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates', 0),
+(3, 27, 4, 0, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés', 0),
+(4, 42, 2, 2, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?', 0);
 
 -- --------------------------------------------------------
 

@@ -5,16 +5,18 @@ class Solicitud {
 		   $id_servicio,
 		   $estado,
 		   $fecha,
-		   $comentario;
+		   $comentario,
+		   $vista;
 	const dateFormat = 'd/m/Y H:i';
 	
-	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario){
+	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista){
 		$this->id_solicitud = $id_solicitud;
 		$this->id_usuario = $id_usuario;
 	    $this->id_servicio = $id_servicio;
    	    $this->estado = $estado;
 		$this->fecha = $fecha;
 		$this->comentario = $comentario;
+		$this->vista = $vista;
 	}
 	
 	/**
@@ -84,5 +86,9 @@ class Solicitud {
 	
 	public function getComentario(){
 		return $this->comentario;
+	}
+	
+	public function getVista(){
+		return $this->vista;
 	}
 }
