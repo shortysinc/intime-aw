@@ -10,66 +10,37 @@
 	
 	$BDDUsuario = new MysqlUsuario();
 	$BDDServicio = new MysqlServicio();
-	
-	if(isset($_GET['tipo']) && $_GET['tipo'] == 0){ 
-	?>
-	<h2>Recibidas</h2>
-	<?php
-		$solicitudes = $BDDUsuario->conseguirSolicitudesRecibidas($_SESSION['usuario']->getId());
-		if(isset($solicitudes)){
-			foreach ($solicitudes as $solicitud) {
-				$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
-				$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
-	?>
-			<div class="solicitud">
-				<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
-					<h5><?php echo $servicio->getNombre() ?></h5>
-				</a>
-				<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
-				<p><?php echo $usuario->getCorreo() ?></p>
-				<p><?php echo $solicitud->getComentario() ?></p>
-				<p><?php echo $solicitud->getFechaFormateada() ?></p>
-				<form action="solicitudes.php" method="post" accept-charset="utf-8">
-					<button type="submit" name="solicitud" value="aceptar">
-						Aceptar
-					</button>
-					<button type="submit" name="solicitud" value="denegar">
-						Denegar
-					</button>
-				</form>
-			</div>
-	<?php }
-				}else{
-					echo "<div class='solicitud'>";
-					echo "<h4>Ninguna solicitud recibida<h4>";
-					echo "</div>";
-				}
-	}else if(isset($_GET['tipo']) && $_GET['tipo'] == 1){
-		$solicitudes = $BDDUsuario->conseguirSolicitudesEnviadas($_SESSION['usuario']->getId());
-		if(isset($solicitudes)){
-			foreach ($solicitudes as $solicitud) {
-				$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
-				$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
-	?>
-				<h2>Enviadas</h2>
-				<div class="solicitud">
-					<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
-						<h5><?php echo $servicio->getNombre() ?></h5>
-					</a>
-					<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>">
-						<?php echo $usuario->getNombre() ?>
-					</a>
-					<p><?php echo $usuario->getCorreo() ?></p>
-					<p><?php echo $solicitud->getComentario() ?></p>
-					<p> Enviado: <?php echo $solicitud->getFechaFormateada() ?> </p>
-					<p>Estado: Pendiente</p>
-				</div>
-<?php 
-			}
-		}else{
-			echo "<div class='solicitud'>";
-			echo "<h4>Ninguna solicitud enviada<h4>";
-			echo "</div>";
-		}
-	} 
 ?>
+	<script>
+		function cambiarOpcion(tipo){
+			var selectBox = document.getElementById("estado");
+		    var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+		    console.log(tipo);
+		    $("#tipo-solicitudes").load("solicitudes_por_estado.php?tipo="+tipo+"&estado="+selectedValue);
+		}
+	</script>
+<?php
+	//solicitudes recibidas
+	if(isset($_GET['tipo']) && $_GET['tipo'] == 0){
+?>
+		<span class="h2-solicitud"><h2>Recibidas</h2></span>
+<?php
+	}else if(isset($_GET['tipo']) && $_GET['tipo'] == 1){
+?>
+		<span class="h2-solicitud"><h2>Enviadas</h2></span>
+<?php
+	}
+?>
+	<span id="combobox-estado">
+		<select id="estado" onchange="cambiarOpcion(<?php echo $_GET['tipo'] ?>)">
+		  <option value="0">Pendientes</option>
+		  <option value="1">Aceptadas</option>
+		  <option value="2">Rechazadas</option>
+		  <option value="3">Todas</option>
+		</select>
+	</span>
+	<div id="tipo-solicitudes">
+	</div>
+	<script>
+		cambiarOpcion(0);
+	</script>

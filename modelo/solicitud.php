@@ -17,6 +17,24 @@ class Solicitud {
 		$this->comentario = $comentario;
 	}
 	
+	/**
+	 * Convierte el entero que representa el estado de una solicitud a cadena.
+	 * @param $estado
+	 * @return el estado parseado a cadena si el número está definido como estado. Null en caso contrario.
+	 */
+	public static function parsearEstado($estado){
+		$cadena = NULL;
+		if($estado == 0){
+			$cadena = "Pendiente";
+		}else if($estado == 1){
+			$cadena = "Aceptada";
+		}else if($estado == 2){
+			$cadena = "Rechazada";
+		}
+		
+		return $cadena;
+	}
+	
 	public function getIdSolicitud(){
 		return $this->id_solicitud;
 	}

@@ -49,11 +49,11 @@ require_once '../controlador/comprobar_login.php';
 							<a href="#" onclick="mostrarSolicitudesEnviadas()"> Enviadas</a>
 							<script>
 								function mostrarSolicitudesRecibidas(){
-									$("#solicitudes").load("mostrar_solicitudes.php?tipo=0");
+									$("#solicitudes").load("mostrar_solicitudes.php?tipo="+0);
 								}
 								
 								function mostrarSolicitudesEnviadas(){
-									$("#solicitudes").load("mostrar_solicitudes.php?tipo=1");
+									$("#solicitudes").load("mostrar_solicitudes.php?tipo="+1);
 								}
 							</script>
 							<div id="solicitudes">
