@@ -65,6 +65,7 @@
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
 									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar User</a></td>";
+									echo "<td><a href='../vista/editarperfil.php?id=$id';>Editar User</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
