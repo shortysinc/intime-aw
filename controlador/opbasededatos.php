@@ -29,15 +29,4 @@ class Mysql{
 		}
 	}
 	
-	public function mostrar_todos_servicios(){
-		$this->conectar();
-		$pst = $this->conexion->prepare("select * from servicio");
-		$pst->execute();
-		$pst->bind_result($result); $pst->fetch();
-		$pst->close();
-		$this->cerrar();
-		
-		return $resultado;
-	} 
-	
 }

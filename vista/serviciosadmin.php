@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <?php
-require_once '../controlador/opbasededatos.php';
+	require_once '../controlador/op_base_datos_servicio.php';
+	require_once '../modelo/servicio.php';
 ?>
 <html lang="es">
 	<head>
@@ -50,7 +51,7 @@ require_once '../controlador/opbasededatos.php';
 						<div class="lista-admin">
 							<table>
 								<?php
-								$BDD = new Mysql();
+								$BDD = new MysqlServicio();
 								$resultado = $BDD->mostrar_todos_servicios();
 								echo "LISTA DE USUARIOS";
 								echo "<table border='1' cellpadding='2' cellspacing='2'";

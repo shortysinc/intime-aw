@@ -167,5 +167,15 @@ class MysqlServicio extends Mysql {
 		
 		return $nota;
 	}
+	public function mostrar_todos_servicios(){
+		$this->conectar();
+		$pst = $this->conexion->prepare("select * from servicio");
+		$pst->execute();
+		$resultado = $pst->get_result();
+		$pst->close();
+		$this->cerrar();
+		
+		return $resultado;
+	} 
 }
 	

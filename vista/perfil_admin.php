@@ -1,5 +1,5 @@
 <?php 
-	require_once '../controlador/opbasededatos.php';
+	require_once '../controlador/op_base_datos_admin.php';
 	require_once '../modelo/admin.php';
 	session_start();
 ?>
