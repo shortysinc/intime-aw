@@ -2,6 +2,8 @@
 <?php
 	require_once '../controlador/op_base_datos_usuario.php';
 	require_once '../modelo/usuario.php';
+	require_once '../modelo/admin.php';
+	session_start();
 ?>
 <html lang="es">
 	<head>
@@ -25,7 +27,7 @@
 		  </script>
 	</head>
 	<body>
-		<?php include "sidebaradmin.php"
+		<?php include "sidebar.php";
 		?>
 		<div id="main-content">
 			<div id="templatemo">
