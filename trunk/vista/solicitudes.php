@@ -10,9 +10,11 @@ $usuario = $_SESSION['usuario'];
 $BDD = new MysqlUsuario();
 $resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION["usuario"]->getId());
 
-foreach ($resultadoSolicitudes as $solicitud) {
-	$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
-		 $solicitud->getEstado(), $solicitud->getFecha(), $solicitud->getComentario(), 1);
+if(isset($resultadoSolicitudes)){
+	foreach ($resultadoSolicitudes as $solicitud) {
+		$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
+			 $solicitud->getEstado(), $solicitud->getFecha(), $solicitud->getComentario(), 1);
+	}
 }
 
 ?>

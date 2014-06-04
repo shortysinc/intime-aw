@@ -4,7 +4,13 @@
 		require_once '../modelo/usuario.php';
 		require_once '../controlador/op_base_datos_usuario.php';
 		session_start();
-		$usuario=$_SESSION['usuario'];
+		//$usuario=$_GET['usuario'];
+		if(isset($_GET['id'])){
+			$BDD = new MysqlUsuario($_GET['id']);
+			$usuario = $BDD->conseguirUsuarioById($_GET['id']);
+		}
+		
+		if(isset($usuario)){
 	?>
 	<head>
 		<title>inTime / Editar Perfil</title>
@@ -86,3 +92,4 @@
 		<!-- /#main-content-->
 	</body>
 </html>
+<?php } ?>
