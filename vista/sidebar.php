@@ -1,6 +1,6 @@
 <?php
 $dir = $_SERVER["REQUEST_URI"];
-$array = split("/", $dir);
+$array = explode("/", $dir);
 $n = count($array);
 ?>
 	<div id="main-sidebar">
