@@ -15,6 +15,8 @@ session_start();
 		<link rel="stylesheet" href="vista/css/font-awesome.min.css">
 		<link rel="stylesheet" href="vista/css/templatemo_misc.css">
 		<link rel="stylesheet" href="vista/css/templatemo_style.css">
+		
+		<link href="/vista/images/logo.png" rel="icon" type="image/x-icon" />
 	</head>
 	<body>
 
