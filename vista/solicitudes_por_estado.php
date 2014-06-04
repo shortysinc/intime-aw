@@ -21,7 +21,7 @@
 		$estado = $estado != NULL ? $estado.="s" : $estado="Todas";
 		echo "<h3>".$estado."</h3>";
 		$i = 0;
-		if($solicitudes != NULL)
+		if(isset($solicitudes))
 			foreach ($solicitudes as $solicitud) {
 				if($solicitud->getEstado() == $_GET['estado'] || $_GET['estado'] == 3){
 					$i++;
@@ -70,7 +70,7 @@
 		$estado = $estado != NULL ? $estado.="s" : $estado="Todas";
 		echo "<h3>".$estado."</h3>";
 		$i = 0;
-		if($solicitudes != NULL)
+		if(isset($solicitudes))
 			foreach ($solicitudes as $solicitud) {
 				if($solicitud->getEstado() == $_GET['estado'] || $_GET['estado'] == 3){
 					$i++;
