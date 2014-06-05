@@ -52,7 +52,7 @@
 				</div>
 				<div class="servicio">
 					<div class="autor">
-						<img src="images/team1.jpg" >
+						<img src="images/usuario/<?php echo $usuario->getFoto()?>" >
 						<div class="nombretrabajo">
 							<a href="perfil.php">
 								<h3>
