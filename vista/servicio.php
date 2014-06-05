@@ -75,7 +75,9 @@
 							<p>
 								Nota Media : 4,3
 							</p>
-							<a href="editarservicio.php"><h5>Editar</h5></a>
+							<?php
+								echo'<a href="editarservicio.php?id_servicio='.$servicio->getIdServicio().'"><h5>Editar Servicio</h5></a>';
+						?>
 						</div>
 					</div>
 					<div class="descripcion">

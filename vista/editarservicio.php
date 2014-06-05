@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+	<?php
+	
+		require_once '../modelo/usuario.php';
+		require_once '../controlador/op_base_datos_usuario.php';
+		require_once '../modelo/servicio.php';
+		require_once '../controlador/op_base_datos_servicio.php';
+		session_start();
+	if(isset($_GET['id_servicio'])){
+			$BDD = new MysqlServicio($_GET['id_servicio']);
+			$servicio = $BDD->conseguirServicio($_GET['id_servicio']);
+		}
+	?>
+
 	<head>
 		<title>inTime / Crear un servicio</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
@@ -31,9 +44,10 @@
 					<!-- /#row -->
 					<div class="cuerpo">
 						<div class="contact-form" id="crear-cuenta-form">
-							<form action="trabajo.php" method="post" accept-charset="utf-8">
+							<form action=<?php echo '"../controlador/editservice.php?id_servicio='.$servicio->getIdServicio().'"'?> method="post" enctype="multipart/form-data" accept-charset="utf-8">
+							
 								<div class="col-md-4">
-									<label for="nombreserv" class="required">Nuevo nombre del servicio:</label>
+									<label for="nombreserv" >Nuevo nombre del servicio:</label>
 									<input name="nombreserv" type="text" id="nombreserv" maxlength="40" />
 								</div>
 								<div class="col-md-4">
@@ -42,7 +56,7 @@
 								</div>
 								<!-- /.col-md-4 -->
 								<div class="col-md-8">
-									<label for="foto" class="required">Nueva imagen del servicio:</label>
+									<label for="foto" >Nueva imagen del servicio:</label>
 									<input name="foto" type="file" id="foto" maxlength="40"/>
 								</div>
 								<!-- /.col-md-4 -->

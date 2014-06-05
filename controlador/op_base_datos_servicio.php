@@ -177,5 +177,30 @@ class MysqlServicio extends Mysql {
 		
 		return $resultado;
 	} 
+	public function editarServicio($id,$nombreserv,$descrpserv,$foto){
+		$this->conectar();
+		$args = array($nombreserv,$descrpserv);
+		$this->escapaBd($args);
+		if ($nombreserv!=null){
+			$pst = $this->conexion->prepare("update servicio set nombre_servicio=? WHERE id_servicio = ?");
+			$pst->bind_param("ss",$args[0],$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($descrpserv!=null){
+			$pst = $this->conexion->prepare("update servicio set descripcion=? WHERE id_servicio = ?");
+			$pst->bind_param("ss",$args[1],$id);
+			$pst->execute();
+			$pst->close();
+		}
+		if ($foto!=null){
+			$pst = $this->conexion->prepare("update servicio set foto_servicio=? WHERE id_servicio = ?");
+			$pst->bind_param("ss",$foto,$id);
+			$pst->execute();
+			$pst->close();
+		}
+		
+		$this->cerrar();
+	}
 }
 	
