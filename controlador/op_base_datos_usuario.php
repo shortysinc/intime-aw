@@ -289,4 +289,14 @@ class MysqlUsuario extends Mysql {
 		}
 		$this->cerrar();
 	}
+	
+	public function crearsolicitud($id_login,$id_servicio,$peticion){
+		$this->conectar();
+		$args = array($peticion);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha,comentario,vista) values (?,?,0,now(),?,0)");
+		$pst->bind_param("sss",$id_login,$id_servicio,$args[0]);
+		$pst->execute();
+		$pst->close();
+	}
 }

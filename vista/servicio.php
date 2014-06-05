@@ -106,7 +106,7 @@
 							
 					?>
 					<div class="solicitud">
-						<form action=""method="get" accept-charset="utf-8">
+						<form action=<?php echo '"../controlador/nuevasolicitud.php?id_servicio='.$id_servicio.'"'?> method="post" enctype="multipart/form-data" accept-charset="utf-8">
 							<label>Solicitar servicio</label>
 							<p>
 								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>
