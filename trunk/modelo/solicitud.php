@@ -1,4 +1,5 @@
 <?php
+require_once '../controlador/formato_fecha.php';
 class Solicitud {
 	public $id_solicitud,
 		   $id_usuario,
@@ -7,7 +8,6 @@ class Solicitud {
 		   $fecha,
 		   $comentario,
 		   $vista;
-	const dateFormat = 'd/m/Y H:i';
 	
 	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista){
 		$this->id_solicitud = $id_solicitud;
@@ -81,7 +81,7 @@ class Solicitud {
 	public function getFechaFormateada(){
 		
 		$date = new DateTime($this->fecha);
-		return $date->format(Solicitud::dateFormat);
+		return $date->format(FormatoFecha::dateFormat);
 	}
 	
 	public function getComentario(){

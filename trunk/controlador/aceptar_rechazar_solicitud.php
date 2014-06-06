@@ -14,6 +14,7 @@
 		if(isset($_POST['aceptar'])){
 			$id_solicitud = $_POST['aceptar'];
 			//Comprobar si la solicitud que se quiere aceptar esta, de verdad, pendiente de aceptar por el usuario logueado
+			//Es decir, si el usuario tiene permisos para aceptar o rechazar esa solicitud
 			$solicitudes = $BDD->conseguirSolicitudesRecibidasPendientes($usuario_log->getId());
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
 				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);

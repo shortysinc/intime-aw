@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2014 a las 23:46:21
+-- Tiempo de generación: 06-06-2014 a las 15:31:42
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -96,6 +96,32 @@ CREATE TABLE IF NOT EXISTS `horario` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `respuesta`
+--
+
+CREATE TABLE IF NOT EXISTS `respuesta` (
+  `id_respuesta` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_solicitud` int(11) NOT NULL,
+  `comentario` varchar(300) NOT NULL,
+  `fecha` datetime NOT NULL,
+  PRIMARY KEY (`id_respuesta`),
+  KEY `id_usuario` (`id_usuario`,`id_solicitud`),
+  KEY `id_solicitud` (`id_solicitud`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Volcado de datos para la tabla `respuesta`
+--
+
+INSERT INTO `respuesta` (`id_respuesta`, `id_usuario`, `id_solicitud`, `comentario`, `fecha`) VALUES
+(1, 40, 3, 'Perfecto. ¿Que te parece si quedamos mañana?', '2014-05-31 09:19:00'),
+(2, 27, 3, 'Vale, perfecto. Mañana pues.', '2014-05-31 10:22:00'),
+(3, 27, 2, 'Esta semana nom puedo. ¿Qué te parece la semana que viene?', '2014-05-13 16:04:00');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `servicio`
 --
 
@@ -146,9 +172,9 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
 --
 
 INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`, `vista`) VALUES
-(2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates', 0),
-(3, 27, 4, 0, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés', 0),
-(4, 42, 2, 2, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?', 0);
+(2, 40, 2, 0, '2014-05-13 15:00:00', 'Estoy interesado en las clases de pilates', 1),
+(3, 27, 4, 0, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés', 1),
+(4, 42, 2, 2, '2014-05-30 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?', 1);
 
 -- --------------------------------------------------------
 
@@ -219,6 +245,13 @@ ALTER TABLE `favoritos`
 --
 ALTER TABLE `horario`
   ADD CONSTRAINT `horario_ibfk_1` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `respuesta`
+--
+ALTER TABLE `respuesta`
+  ADD CONSTRAINT `respuesta_ibfk_2` FOREIGN KEY (`id_solicitud`) REFERENCES `solicitud` (`id_solicitud`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `respuesta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `servicio`

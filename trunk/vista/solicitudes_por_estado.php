@@ -29,9 +29,9 @@
 					$usuario = $BDDUsuario->conseguirUsuarioById($solicitud->getIdUsuario());
 ?>		
 					<div class="solicitud">
-						<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
-							<h5><?php echo $servicio->getNombre() ?></h5>
-						</a>
+						<p><a class="nombre-servicio" href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
+							<?php echo $servicio->getNombre() ?>
+						</a></p>
 						<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
 						<p><?php echo $usuario->getCorreo() ?></p>
 						<p><?php echo $solicitud->getComentario() ?></p>
@@ -77,9 +77,9 @@
 					$servicio = $BDDServicio->conseguirServicio($solicitud->getIdServicio());
 ?>
 					<div class="solicitud">
-						<a href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
-							<h5><?php echo $servicio->getNombre() ?></h5>
-						</a>
+						<p><a class="nombre-servicio" href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
+							<?php echo $servicio->getNombre() ?>
+						</a></p>
 						<p><?php echo $solicitud->getComentario() ?></p>
 						<p><?php echo $solicitud->getFechaFormateada() ?></p>
 <?php
@@ -91,6 +91,25 @@
 							echo "<p class='solicitud-rechazada'>Rechazada</p>";
 						}
 ?>
+						<div id="dialogo">
+							<a id="mostrar-ocultar" href="#" onclick="mostrarDialogo()">Mostrar diálogo</a>
+							<ul id="lista-respuestas">
+							</ul>
+						</div>
+						<script>
+							var mostrar = true;
+							function mostrarDialogo() {
+								if(mostrar){
+									$("#lista-respuestas").load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>");	
+									$("#mostrar-ocultar").text("Ocultar diálogo");
+									mostrar = false;
+								}else {
+									$("#lista-respuestas").html("");
+									$("#mostrar-ocultar").text("Mostrar diálogo");
+									mostrar = true;
+								}
+							}
+						</script>
 					</div>
 <?php
 				}
