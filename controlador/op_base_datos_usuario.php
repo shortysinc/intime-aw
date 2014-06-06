@@ -226,13 +226,38 @@ class MysqlUsuario extends Mysql {
 	}
 	
 	/**
+	 * Obtiene las respuestas a una solicitud
+	 * @param id_solicitud id de la solicitud de la cual se quieren obtener sus respuestas
+	 * @return las respuestas obtenidas de la bdd
+	 */
+	public function conseguirRespuestasASolicitud($idSolicitud){
+		$this->conectar();
+		$args = array($idSolicitud);
+		$pst = $this->conexion->prepare("SELECT * FROM `respuesta` WHERE id_solicitud = ?");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_respuesta, $id_usuario, $id_solicitud, $comentario, $fecha);
+		$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Respuesta($id_respuesta, $id_usuario, $id_solicitud, $comentario, $fecha);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
 	 * Obtiene la valoracion de un servicio con el id pasado por parámetro.
-	 * @return el servicio de la base de datos.
+	 * @param id de la valoracion que se quiere obtener
+	 * @return la valoración obtenida de la bdd.
 	 */ 
 	 public function conseguirValoraciones($id) {
 		$this->conectar();
+		$args = array($id);
 		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
-		$pst->bind_param("i", $id);
+		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_valoracion, $id_servicio, $id_usuario, $nota, $opinion);
 		$resultado = NULL;
