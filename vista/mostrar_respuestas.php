@@ -9,9 +9,15 @@
 	
 	$usuario = $_SESSION['usuario'];
 	
-	if( isset($_GET['id_solicitud']) ){
+	if( isset($_GET['id_solicitud'], $_GET['tipo']) ){
 		$BDD = new MysqlUsuario();
-		$solicitudes = $BDD->conseguirSolicitudesEnviadas($usuario->getId());
+		$solicitudes = NULL;
+		//solicitudes recibidas
+		if($_GET['tipo'] == 0){
+			$solicitudes = $BDD->conseguirSolicitudesRecibidas($usuario->getId());
+		}else if($_GET['tipo'] == 1){
+			$solicitudes = $BDD->conseguirSolicitudesEnviadas($usuario->getId());
+		}
 		//Comprobar si las respuestas que quiere ver el usuario son para él de verdad. Es decir, si el usuario tiene permisos para
 		//ver esas respuestas
 		if(Solicitud::estaDentro($_GET['id_solicitud'], $solicitudes)){
@@ -19,16 +25,18 @@
 			$respuestas = $BDD->conseguirRespuestasASolicitud($_GET['id_solicitud']);
 			if(isset($respuestas)){
 				foreach ($respuestas as $respuesta) {
-					$usuarioResponde = $BDD->conseguirUsuarioById($respuesta->getIdUsuario());
-	?>				
-					<li>
-						<h4><?php echo $usuarioResponde->getNombre() ?></h4>
-						<p><?php echo $respuesta->getComentario() ?></p>
-						<p><?php echo $respuesta->getFechaFormateada() ?></p>
-					</li>
-<?php
+					$usuarioResponde = $BDD->conseguirUsuarioById($respuesta->getIdUsuario());				
+					echo "<li>";
+						if($usuario->getId() == $respuesta->getIdUsuario())	{
+							echo "<h4>Tú</h4>";
+						}else{
+							echo "<h4>".$usuarioResponde->getNombre()."</h4>";
+						}				
+						echo "<p>".$respuesta->getComentario()."</p>";
+						echo "<p>".$respuesta->getFechaFormateada()."</p>";
+					echo "</li>";
+
 				}
 			}
 		}
 	}
-?>
