@@ -25,6 +25,7 @@
 ?>
 		<span class="h2-solicitud"><h2>Recibidas</h2></span>
 <?php
+	//solicitudes enviadas
 	}else if(isset($_GET['tipo']) && $_GET['tipo'] == 1){
 ?>
 		<span class="h2-solicitud"><h2>Enviadas</h2></span>
