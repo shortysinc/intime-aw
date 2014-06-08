@@ -56,7 +56,7 @@
 					<div class="autor">
 						<img src="images/usuario/<?php echo $usuario->getFoto()?>" >
 						<div class="nombretrabajo">
-							<a href="perfil.php">
+							<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>">
 								<h3>
 									<?php
 										echo $usuario->getNombre();

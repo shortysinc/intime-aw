@@ -14,7 +14,7 @@ $n = count($array);
 		</div> 
 		<ul class="main-menu">
 			<li class="services">
-				<a href='vistamostrar_servicios.php'>servicios</a>
+				<a href='vista/mostrar_servicios.php'>servicios</a>
 			</li>
 			<li class="about">
 				<a href="vista/sobrenosotros.php">sobre nosotros</a>

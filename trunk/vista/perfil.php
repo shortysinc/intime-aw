@@ -9,6 +9,9 @@
 		
 		if (isset($_SESSION['usuario'])){
 			$usuario_logueado = $_SESSION['usuario'];
+		}
+		
+		if(isset($_GET['id_usuario'])){
 			$id = $_GET['id_usuario'];
 			
 			$BDD = new MysqlUsuario();
@@ -68,8 +71,10 @@
 					<div class="infouser">
 						<?php
 							echo"<p>".$usuario->getCorreo()."</p>";
-							if (($usuario->getId()==$usuario_logueado->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
-								echo'<a href="editarperfil.php?id='.$usuario->getId().'"><h5>Editar perfil</h5></a>';
+							if(isset($_usuario_logueado)){
+								if (($usuario->getId()==$usuario_logueado->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
+									echo'<a href="editarperfil.php"><h5>Editar perfil</h5></a>';
+								}
 							}
 						?>
 					</div>

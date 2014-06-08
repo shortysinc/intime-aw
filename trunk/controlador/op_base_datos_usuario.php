@@ -10,10 +10,12 @@ class MysqlUsuario extends Mysql {
 		$pst = $this->conexion->prepare("select * from usuario where id_usuario = ?");
 		$pst->bind_param("s", $id);
 		$pst->execute();
-		$pst->bind_result($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
+		$pst->bind_result($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt, 
+			$vio_sol_recibidas, $vio_sol_enviadas);
 		$usuario = NULL;
 		if($pst->fetch()){
-			$usuario = new Usuario($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt);
+			$usuario = new Usuario($id_usuario, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt, 
+				$vio_sol_recibidas, $vio_sol_enviadas);
 		}
 		$this->cerrar();
 		$pst->close();
@@ -21,7 +23,7 @@ class MysqlUsuario extends Mysql {
 	}
 	
 	/**
-	 * Inserta un usuario en la bdd. 
+	 * Inserta un usuario en la bdd cuando se registra. 
 	 * @return El número de error al intentar introducir el usuario. 0 si no hay error.
 	 */
 	public function insertarUsuarioRegistro($correo, $nombre, $apellidos, $direccion, $pass) {
@@ -64,18 +66,16 @@ class MysqlUsuario extends Mysql {
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto,
-							$pass, $salt);
+							$pass, $salt, $vio_sol_recibidas, $vio_sol_enviadas);
 		$pst->fetch();
 		$usuario = new Usuario($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto,
-							$pass, $salt);
+							$pass, $salt, $vio_sol_recibidas, $vio_sol_enviadas);
 		
 		$pst->close();
 		$this->cerrar();
 		
 		$pass = hash('sha512', $args[1].$usuario->getSalt());
 		$password = $usuario->getPass();
-		//var_dump('pass introducida', $pass);
-		//var_dump('pass real', $password);
 		if ($password === $pass){
 			return $usuario;
 			
