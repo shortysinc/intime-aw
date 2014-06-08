@@ -57,6 +57,7 @@ class Solicitud {
 		return $encontrada;
 	}
 	
+	
 	public function getIdSolicitud(){
 		return $this->id_solicitud;
 	}
