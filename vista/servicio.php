@@ -25,6 +25,8 @@
 	<?php
 		if(isset($_GET['id_servicio'])){
 			$id_servicio = $_GET['id_servicio'];
+			//El id_servicio se guarda en la sesion para que un usuario no pueda enviarse una solicitud a sí mismo
+			$_SESSION['id_servicio'] = $id_servicio;
 			$BDDServicio = new MysqlServicio();
 			$BDDUsuario = new MysqlUsuario();
 			$servicio = $BDDServicio->conseguirServicio($id_servicio);
@@ -106,12 +108,12 @@
 							
 					?>
 					<div class="solicitud">
-						<form action=<?php echo '"../controlador/nuevasolicitud.php?id_servicio='.$id_servicio.'"'?> method="post" enctype="multipart/form-data" accept-charset="utf-8">
+						<form action="../controlador/nuevasolicitud.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 							<label>Solicitar servicio</label>
 							<p>
 								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>
 							</p>
-							<button type="submit" name="submit" value="Enviar">
+							<button id="button-enviar-solicitud" type="submit" name="submit" value="Enviar">
 								Enviar
 							</button>
 						</form>
@@ -151,7 +153,7 @@
 					 		
 					?>
 					<div class="comment-form">
-						<form action="" method="get" accept-charset="utf-8">
+						<form action="" method="post" accept-charset="utf-8">
 							<label>Enviar comentario y/o valoracion</label>
 							<p>
 								<textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>

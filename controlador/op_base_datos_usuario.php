@@ -212,6 +212,29 @@ class MysqlUsuario extends Mysql {
 		return $resultado;
 	}
 	
+	/**
+	 * Obtiene todas las solicitudes que han sido enviadas por el usuario y están pendientes de confirmar
+	 * @param $id_usuario
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudesEnviadasPendientes($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud where id_usuario = ? and estado = 0 order by solicitud.fecha DESC ");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$resultado = NULL;
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
 	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista){
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista, $id_solicitud);
@@ -315,13 +338,27 @@ class MysqlUsuario extends Mysql {
 		$this->cerrar();
 	}
 	
-	public function crearsolicitud($id_login,$id_servicio,$peticion){
+	/**
+	 * Inserta una solicitud en la bdd
+	 * @param $id_usuario: el id del usuario que solicita
+	 * 		  $id_servicio: el id del servicio que se solicita
+	 * 		  $comentario:
+	 * @return el id de la solicitud que se ha insertado si todo ha ido bien. 0 en caso de que la consulta no haya generado ningún id. False
+	 * en caso de que falle la conexion.
+	 */
+	public function insertarSolicitud($id_usuario, $id_servicio, $comentario){
 		$this->conectar();
-		$args = array($peticion);
+		$args = array($id_usuario, $id_servicio, $comentario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha,comentario,vista) values (?,?,0,now(),?,0)");
-		$pst->bind_param("sss",$id_login,$id_servicio,$args[0]);
+		$pst->bind_param("iis", $args[0], $args[1], $args[2]);
 		$pst->execute();
+		
+		$id = mysqli_insert_id($this->conexion);
+		
 		$pst->close();
+		$this->cerrar();
+		
+		return $id;
 	}
 }
