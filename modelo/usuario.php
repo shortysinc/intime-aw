@@ -12,6 +12,8 @@
 		private $foto;
 		private $pass;
 		private $salt;
+		private $vio_sol_recibidas;
+		private $vio_sol_enviadas;
 		
 		public function __construct($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt) {
 			$this->id = $id;
@@ -58,6 +60,14 @@
 		
 		public function getSalt(){
 			return $this->salt;
+		}
+		
+		public function getVioSolRecibidas(){
+			return $this->vio_sol_recibidas;
+		}
+		
+		public function getVioSolEnviadas(){
+			return $this->vio_sol_enviadas;
 		}
 		
 	}

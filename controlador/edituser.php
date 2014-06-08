@@ -2,7 +2,8 @@
 	require_once '../modelo/usuario.php';
 	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
-	$usuario=$_SESSION['usuario'];
+	
+	$usuario = $_SESSION['usuario'];
 	$id = $_GET['id_usuario'];
 	$BDDuser=new MysqlUsuario();
 	if	(($usuario->getId()==$id)||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
