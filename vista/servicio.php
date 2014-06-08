@@ -195,3 +195,13 @@
 		<!-- /#main-content -->
 	</body>
 </html>
+<script>
+<?php
+	if(isset($_SESSION['error'])){
+?>
+		alert("<?php echo $_SESSION['error'] ?>");
+<?php 
+		unset($_SESSION['error']);
+	}
+?>
+</script>

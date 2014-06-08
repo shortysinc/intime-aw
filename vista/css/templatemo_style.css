@@ -247,7 +247,7 @@ p.solicitud-aceptada{color: green;}
 p.solicitud-rechazada{color: red;}
 span.h2-solicitud{display:block; width: 35%}
 span#combobox-estado{float:left; display: block; width: 25%}
-ul#lista-respuestas {list-style:none;}
+ul.lista-respuestas {list-style:none;}
 a.nombre-servicio {font-size: 20px; font-weight: bold;}
 .comentarios h2{padding-left:5px;}
 .comentarios img{border: 1px solid black; border-radius: 80px;height:90px;width:90px;}

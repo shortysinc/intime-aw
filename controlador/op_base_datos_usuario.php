@@ -248,28 +248,6 @@ class MysqlUsuario extends Mysql {
 		$this->cerrar();
 	}
 	
-	/**
-	 * Obtiene las respuestas a una solicitud
-	 * @param id_solicitud id de la solicitud de la cual se quieren obtener sus respuestas
-	 * @return las respuestas obtenidas de la bdd
-	 */
-	public function conseguirRespuestasASolicitud($idSolicitud){
-		$this->conectar();
-		$args = array($idSolicitud);
-		$pst = $this->conexion->prepare("SELECT * FROM `respuesta` WHERE id_solicitud = ?");
-		$pst->bind_param("i", $args[0]);
-		$pst->execute();
-		$pst->bind_result($id_respuesta, $id_usuario, $id_solicitud, $comentario, $fecha);
-		$resultado = NULL;
-		
-		while($pst->fetch()){
-			$resultado[] = new Respuesta($id_respuesta, $id_usuario, $id_solicitud, $comentario, $fecha);
-		}
-		
-		$pst->close();
-		$this->cerrar();
-		return $resultado;
-	}
 	
 	/**
 	 * Obtiene la valoracion de un servicio con el id pasado por parámetro.

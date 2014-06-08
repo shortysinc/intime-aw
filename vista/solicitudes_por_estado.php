@@ -55,8 +55,8 @@
 						}					
 ?>
 						<div id="dialogo">
-							<a id="mostrar-ocultar" href="#" onclick="mostrarDialogo(0)">Mostrar diálogo</a>
-							<ul id="lista-respuestas">
+							<a id="mostrar-ocultar<?php echo $i ?>" href="#" onclick="mostrarDialogo(0, <?php echo $i ?>)">Mostrar diálogo</a>
+							<ul id="lista-respuestas<?php echo $i ?>" class="lista-respuestas">
 							</ul>
 						</div>
 					</div>
@@ -97,8 +97,8 @@
 						}
 ?>
 						<div id="dialogo">
-							<a id="mostrar-ocultar" href="#" onclick="mostrarDialogo(1)">Mostrar diálogo</a>
-							<ul id="lista-respuestas">
+							<a id="mostrar-ocultar<?php echo $i ?>" href="#" onclick="mostrarDialogo(1,<?php echo $i ?>)">Mostrar diálogo</a>
+							<ul id="lista-respuestas<?php echo $i ?>" class="lista-respuestas">
 							</ul>
 						</div>
 					</div>
@@ -114,14 +114,14 @@
 ?>
 <script>
 	var mostrar = true;
-	function mostrarDialogo(tipo) {
+	function mostrarDialogo(tipo, num) {
 		if(mostrar){
-			$("#lista-respuestas").load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
-			$("#mostrar-ocultar").text("Ocultar diálogo");
+			$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
+			$("#mostrar-ocultar"+num).text("Ocultar diálogo");
 			mostrar = false;
 		}else {
-			$("#lista-respuestas").html("");
-			$("#mostrar-ocultar").text("Mostrar diálogo");
+			$("#lista-respuestas"+num).html("");
+			$("#mostrar-ocultar"+num).text("Mostrar diálogo");
 			mostrar = true;
 		}
 	}

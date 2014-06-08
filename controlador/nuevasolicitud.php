@@ -32,10 +32,12 @@
 		//Si no hay ninguna solicitud pendiente para ese servicio del usuario
 		if(!$encontrado){
 			$id_solicitud = $BDD->insertarSolicitud($login->getId(),$id_servicio,$peticion);
+			unset($_SESSION['id_servicio']);
+			
+			header ("location: ../vista/solicitudes.php");	
+		}else {
+			$_SESSION['error'] = "Ya has solicitado este servicio y está pendiente";
+			header("location: ../vista/servicio.php?id_servicio=$id_servicio");
 		}
 		
-		unset($_SESSION['id_servicio']);
-		
 	}
-	
-	header ("location: ../vista/solicitudes.php");
