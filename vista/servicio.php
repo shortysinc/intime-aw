@@ -33,6 +33,8 @@
 			if(isset($servicio)){
 				$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
 				$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
+				$resuldescrip = $servicio->getDescripcion();
+				$resulmedia = $BDDServicio->notamedia($id_servicio);
 			}
 			
 		}
@@ -66,16 +68,26 @@
 						<div class="valoraciones">
 							<p>
 								<?php
-									if(isset($resultadoValoracion)){
-										foreach ($resultadoValoracion as $row) {
-											echo $row["nota"];									
+								echo 'Valoración: ??';
+								/*if (isset($resultadoValoracion)) {
+									foreach ($resultadoValoracion as $row) {
+										if ($row["nota"] <= 0) {
+											echo 'No hay puntuación';
+										} else {
+											echo 'Valoracion: ' . $row["nota"];
 										}
+
 									}
-									
+								}*/
 								?>
 							</p>
 							<p>
-								Nota Media : 4,3
+								<!--Nota Media : 4,3-->
+								<?php
+								echo 'Nota Media: '.$resulmedia;
+								
+								?>
+								
 							</p>
 							<?php
 								echo'<a href="editarservicio.php?id_servicio='.$servicio->getIdServicio().'"><h5>Editar Servicio</h5></a>';
@@ -85,13 +97,9 @@
 					<div class="descripcion">
 						<h2>Descripción</h2>
 						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec nulla sed augue pretium dignissim.
-							Praesent consectetur ante sit amet elementum fringilla. Curabitur vitae neque justo. Ut luctus, tortor sed
-							ultrices porta, arcu neque vestibulum sapien, sit amet venenatis quam eros eu neque. Nulla quis ligula ultricies,
-							dapibus libero ac, laoreet est. Sed condimentum id mauris id congue. Nulla dictum massa sit amet porttitor
-							rhoncus. Curabitur eu ultricies lorem. Donec diam leo, accumsan id tincidunt ut, lacinia id dolor. Nunc eget
-							imperdiet dui, a elementum eros. Cras arcu eros, viverra nec fermentum et, dignissim et metus. Pellentesque at
-							laoreet nibh. Quisque vitae felis massa. Nam lacus arcu, consequat sed ultrices sed, elementum sed leo
+							<?php
+								echo $resuldescrip;
+							?>
 						</p>
 					</div>
 					<?php
