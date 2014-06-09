@@ -12,8 +12,8 @@
 		private $foto;
 		private $pass;
 		private $salt;
-		private $vio_sol_recibidas;
-		private $vio_sol_enviadas;
+		private $vio_sol_recibidas; //cuando vió por última vez las solicitudes recibidas
+		private $vio_sol_enviadas; //cuando vió por última vez las solicitudes enviadas
 		
 		public function __construct($id, $correo, $nombre, $apellidos, $direccion, $horas, $foto, $pass, $salt) {
 			$this->id = $id;

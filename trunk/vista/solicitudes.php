@@ -1,21 +1,9 @@
 <?php
 require_once '../controlador/op_base_datos_usuario.php';
 require_once '../modelo/usuario.php';
-require_once '../modelo/solicitud.php';
 session_start();
 
 require_once '../controlador/comprobar_login.php';
-
-$usuario = $_SESSION['usuario'];
-$BDD = new MysqlUsuario();
-$resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION["usuario"]->getId());
-
-if(isset($resultadoSolicitudes)){
-	foreach ($resultadoSolicitudes as $solicitud) {
-		$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
-			 $solicitud->getEstado(), $solicitud->getFecha(), $solicitud->getComentario(), 1);
-	}
-}
 
 ?>
 <!DOCTYPE html>
@@ -59,22 +47,34 @@ if(isset($resultadoSolicitudes)){
 					</div>
 					<div class="cuerpo">
 						<div class="sol-rec">
-							<a href="#" onclick="mostrarSolicitudesRecibidas()">Recibidas</a>
+							<a href="#" onclick="mostrarSolicitudes(0)">Recibidas</a>
 							<a>|</a>
-							<a href="#" onclick="mostrarSolicitudesEnviadas()"> Enviadas</a>
+							<a href="#" onclick="mostrarSolicitudes(1)"> Enviadas</a>
 							<script>
-								function mostrarSolicitudesRecibidas(){
-									$("#solicitudes").load("mostrar_solicitudes.php?tipo="+0);
-								}
-								
-								function mostrarSolicitudesEnviadas(){
-									$("#solicitudes").load("mostrar_solicitudes.php?tipo="+1);
+								function mostrarSolicitudes(tipo, estado){
+									if(!estado){
+										$("#solicitudes").load("mostrar_solicitudes.php?tipo="+tipo);
+									}else {
+										$("#solicitudes").load("mostrar_solicitudes.php?tipo="+tipo+"&estado="+estado);
+									}
 								}
 							</script>
 							<div id="solicitudes">
 							</div>
 							<script>
-								mostrarSolicitudesRecibidas();
+								<?php 
+								if(isset($_GET['tipo'])){
+									if(isset($_GET['estado'])){
+								?>
+										mostrarSolicitudes(<?php echo $_GET['tipo'] ?>, <?php echo $_GET['estado'] ?>);
+								<?php	
+									}else{
+								?>
+										mostrarSolicitudes(<?php echo $_GET['tipo'] ?>);
+								<?php
+									}
+								}
+								?>	
 							</script>
 						</div>
 					</div>

@@ -11,7 +11,7 @@
 	$BDDUsuario = new MysqlUsuario();
 	$BDDServicio = new MysqlServicio();
 	
-	if(!isset($_GET['tipo'], $_GET['estado'])  || ($_GET['estado'] < 0  && $_GET['estado'] > 3) ){
+	if(!isset($_GET['tipo']) || !isset($_GET['estado'])  || ($_GET['estado'] < 0  && $_GET['estado'] > 3) ){
 		//Si ocurre esto no se muestra nada
 		
 	//Solicitudes recibidas
@@ -68,6 +68,22 @@
 			echo "<h4>Ninguna solicitud enviada ".Solicitud::parsearEstado($_GET['estado'])."<h4>";
 			echo "</div>";
 		}
+?>			
+			<script>
+				var mostrar = true;
+				function mostrarDialogo(tipo, num) {
+					if(mostrar){
+						$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
+						$("#mostrar-ocultar"+num).text("Ocultar diálogo");
+						mostrar = false;
+					}else {
+						$("#lista-respuestas"+num).html("");
+						$("#mostrar-ocultar"+num).text("Mostrar diálogo");
+						mostrar = true;
+					}
+				}
+			</script>
+<?php
 	//Solicitudes enviadas
 	}else if($_GET['tipo'] == 1){
 		$solicitudes = $BDDUsuario->conseguirSolicitudesEnviadas($_SESSION['usuario']->getId());
@@ -110,19 +126,21 @@
 			echo "<h4>Ninguna solicitud enviada ".Solicitud::parsearEstado($_GET['estado'])."<h4>";
 			echo "</div>";
 		}
+?>
+		<script>
+			var mostrar = true;
+			function mostrarDialogo(tipo, num) {
+				if(mostrar){
+					$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
+					$("#mostrar-ocultar"+num).text("Ocultar diálogo");
+					mostrar = false;
+				}else {
+					$("#lista-respuestas"+num).html("");
+					$("#mostrar-ocultar"+num).text("Mostrar diálogo");
+					mostrar = true;
+				}
+			}
+		</script>
+<?php
 	}
 ?>
-<script>
-	var mostrar = true;
-	function mostrarDialogo(tipo, num) {
-		if(mostrar){
-			$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
-			$("#mostrar-ocultar"+num).text("Ocultar diálogo");
-			mostrar = false;
-		}else {
-			$("#lista-respuestas"+num).html("");
-			$("#mostrar-ocultar"+num).text("Mostrar diálogo");
-			mostrar = true;
-		}
-	}
-</script>

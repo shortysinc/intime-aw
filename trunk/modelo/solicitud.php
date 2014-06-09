@@ -6,17 +6,15 @@ class Solicitud {
 		   $id_servicio,
 		   $estado,
 		   $fecha,
-		   $comentario,
-		   $vista;
+		   $comentario;
 	
-	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista){
+	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario){
 		$this->id_solicitud = $id_solicitud;
 		$this->id_usuario = $id_usuario;
 	    $this->id_servicio = $id_servicio;
    	    $this->estado = $estado;
 		$this->fecha = $fecha;
 		$this->comentario = $comentario;
-		$this->vista = $vista;
 	}
 	
 	/**
@@ -87,9 +85,5 @@ class Solicitud {
 	
 	public function getComentario(){
 		return $this->comentario;
-	}
-	
-	public function getVista(){
-		return $this->vista;
 	}
 }

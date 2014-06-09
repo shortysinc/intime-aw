@@ -19,7 +19,7 @@
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
 				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);
 				$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
-					 1, $solicitud->getFecha(), $solicitud->getComentario(), $solicitud->getVista());
+					 1, $solicitud->getFecha(), $solicitud->getComentario());
 			}
 		}else if($_POST['rechazar']){
 			$id_solicitud = $_POST['rechazar'];
@@ -28,7 +28,7 @@
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
 				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);
 				$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
-					 2, $solicitud->getFecha(), $solicitud->getComentario(), $solicitud->getVista());
+					 2, $solicitud->getFecha(), $solicitud->getComentario());
 			}
 		}
 	}

@@ -54,6 +54,38 @@ class MysqlUsuario extends Mysql {
 	}
 	
 	/**
+	 * Actualiza las fechas del usuario en la que vio por última vez las solicitudes recibidas pendientes
+	 * @param id_usuario: el usuario con el id pasado por parámetro
+	 */
+	public function actualizarVioSolicitudRecibida($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$pst = $this->conexion->prepare("UPDATE usuario SET vio_sol_recibidas=now() 
+			WHERE id_usuario=?");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->close();
+		
+		$this->cerrar();
+	}
+	
+	/**
+	 * Actualiza las fecha del usuario en la que vio por última vez las solicitudes enviadas pendientes 
+	 * @param id_usuario: el usuario con el id pasado por parámetro
+	 */
+	public function actualizarVioSolicitudEnviada($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$pst = $this->conexion->prepare("UPDATE usuario SET vio_sol_enviadas=now() 
+			WHERE id_usuario=?");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->close();
+		
+		$this->cerrar();
+	}
+	
+	/**
 	 * Obtiene el usuario especificado por su correo y por su contraseña de la bdd
 	 * @return el usuario
 	 */
@@ -107,10 +139,10 @@ class MysqlUsuario extends Mysql {
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$solicitud = NULL;
 		if($pst->fetch()){
-			$solicitud = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+			$solicitud = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		 
 		$pst->close();
@@ -126,14 +158,14 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesRecibidas($id_usuario){
 		$this->conectar();
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.comentario, solicitud.vista FROM solicitud join servicio where servicio.id_usuario = ? 
+			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio order by solicitud.fecha DESC");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		
 		$pst->close();
@@ -151,14 +183,15 @@ class MysqlUsuario extends Mysql {
 		$args = array($id_usuario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.comentario, solicitud.vista FROM solicitud join servicio where servicio.id_usuario = ? 
-			and solicitud.id_servicio = servicio.id_servicio and solicitud.vista = 0 order by solicitud.fecha DESC");
+			solicitud.fecha, solicitud.comentario FROM solicitud join servicio join usuario where 
+			servicio.id_usuario = ? and servicio.id_usuario = usuario.id_usuario and solicitud.id_servicio = servicio.id_servicio 
+			and solicitud.fecha > usuario.vio_sol_recibidas order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		
 		$pst->close();
@@ -176,14 +209,14 @@ class MysqlUsuario extends Mysql {
 		$args = array($id_usuario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.comentario, solicitud.vista FROM solicitud join servicio where servicio.id_usuario = ? 
+			solicitud.fecha, solicitud.comentario FROM solicitud join servicio where servicio.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and solicitud.estado = 0 order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		
 		$pst->close();
@@ -198,15 +231,69 @@ class MysqlUsuario extends Mysql {
 	 */
 	public function conseguirSolicitudesEnviadas($id_usuario){
 		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_usuario = ?");
-		$pst->bind_param("i", $id_usuario);
+		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		 
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene las solicitudes del usuario, cuyo id se pasa por parámetro, aceptadas y no vistas por él.
+	 * @param $id_usuario: id del usuario del cual se quieren obtener sus solicitudes aceptadas no vistas
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudesAceptadasNovistas($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
+			solicitud.fecha, solicitud.comentario FROM solicitud natural join usuario where id_usuario = ? 
+			and estado = 1 and fecha > vio_sol_enviadas order by solicitud.fecha DESC");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene las solicitudes del usuario, cuyo id se pasa por parámetro, rechazadas y no vistas por él.
+	 * @param $id_usuario: id del usuario del cual se quieren obtener sus solicitudes rechazadas no vistas
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolicitudesRechazadasNovistas($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
+			solicitud.fecha, solicitud.comentario FROM solicitud natural join usuario where id_usuario = ? 
+			and estado = 2 and fecha > vio_sol_enviadas order by solicitud.fecha DESC");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
+		}
+		
 		$pst->close();
 		$this->cerrar();
 		return $resultado;
@@ -221,13 +308,13 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($id_usuario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("SELECT * FROM solicitud where id_usuario = ? and estado = 0 order by solicitud.fecha DESC ");
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud where id_usuario = ? and estado = 0 order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		$resultado = NULL;
 		while($pst->fetch()){
-			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista);
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario);
 		}
 		
 		$pst->close();
@@ -235,13 +322,13 @@ class MysqlUsuario extends Mysql {
 		return $resultado;
 	}
 	
-	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista){
+	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario){
 		$this->conectar();
-		$args = array($id_usuario, $id_servicio, $estado, $fecha, $comentario, $vista, $id_solicitud);
+		$args = array($id_usuario, $id_servicio, $estado, $fecha, $comentario, $id_solicitud);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("UPDATE solicitud SET id_usuario=?, id_servicio=?, estado=?,
-			fecha=?, comentario=?, vista=? WHERE id_solicitud=?");
-		$pst->bind_param("iiissii", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6]);
+			fecha=?, comentario=? WHERE id_solicitud=?");
+		$pst->bind_param("iiissi", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5]);
 		$pst->execute();
 		$pst->close();
 		
@@ -328,7 +415,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $comentario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha,comentario,vista) values (?,?,0,now(),?,0)");
+		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha,comentario) values (?,?,0,now(),?)");
 		$pst->bind_param("iis", $args[0], $args[1], $args[2]);
 		$pst->execute();
 		

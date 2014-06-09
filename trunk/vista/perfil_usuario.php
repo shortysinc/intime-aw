@@ -27,8 +27,14 @@
 <?php
 	$usuario = $_SESSION['usuario'];
 	$BDD = new MysqlUsuario();
-	$resultadoSolicitudes = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION["usuario"]->getId());
-	$num_solicitudes = count($resultadoSolicitudes);
+	$solRecibidasNoVistas = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION['usuario']->getId());
+	$solAceptadasNoVistas = $BDD->conseguirSolicitudesAceptadasNovistas($_SESSION['usuario']->getId());
+	$solRechazadasNoVistas = $BDD->conseguirSolicitudesRechazadasNovistas($_SESSION['usuario']->getId());
+
+	$num_sol_recibidas = count($solRecibidasNoVistas);
+	$num_sol_aceptadas = count($solAceptadasNoVistas);
+	$num_sol_rechazadas = count($solRechazadasNoVistas);
+
 	$BDD = new MysqlServicio();
 	$servicios = $BDD->conseguirServiciosByUserId($usuario->getId());
 ?>
@@ -56,27 +62,26 @@
 						<h1><?php echo $usuario->getNombre()." ".$usuario->getApellidos(); ?></h1>
 					</div>
 					<div class="cuerpo">
-						<h3 id="solicitud">
 						<?php
-							if($num_solicitudes == 0){
-						?>
-								<?php echo "No tienes ninguna solicitud pendiente"?>
+							if($num_sol_recibidas == 1){
+								echo "<h3 id='solicitud'><a href='solicitudes.php?tipo=0&estado=0'>Tienes ".$num_sol_recibidas." solicitud pendiente de aceptar</a></h3>";
+							}else if($num_sol_recibidas > 1){
+								echo "<h3 id='solicitud'><a href='solicitudes.php?tipo=0&estado=0'>Tienes ".$num_sol_recibidas." solicitudes pendientes de aceptar</a></h3>";
+							}
+						
+							if($num_sol_aceptadas == 1){
+								echo "<h3><a class='solicitud-aceptada' href='solicitudes.php?tipo=1&estado=1'>Una solicitud enviada ha sido aceptada</a></h3>";
 								
-						<?php
-							}else if($num_solicitudes == 1){
-						?>
-								<a href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitud pendiente"?></a>
-						<?php
-							}else {
-						?>
-								<a href="solicitudes.php"><?php echo "Tienes ".$num_solicitudes." solicitudes pendientes"?></a>
-						<?php	
+							}else if($num_sol_aceptadas > 1){
+								echo "<h3><a class='solicitud-aceptada' href='solicitudes.php?tipo=1&estado=1>Varias solicitudes enviadas han sido aceptadas</a></h3>";
+							}
+							
+							if($num_sol_rechazadas == 1){
+								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2'>Una solicitud enviada ha sido rechazada</a></h3>";
+							}else if($num_sol_rechazadas > 1){
+								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2>Varias solicitudes enviadas han sido rechazadas</a></h3>";
 							}
 						?>
-						</h3>
-						
-						<!--<h3>Tienes 4 solicitudes pendientes de usuarios requiriendo tus servicios</h3>-->
-						<h3><a>2 usuarios han respondido a tu peticion de servicio</a></h3>
 						<div class="lista-serv">
 							<h3>Lista de servicios del usuario:</h3>
 							<?php
