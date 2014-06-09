@@ -73,7 +73,7 @@ class MysqlServicio extends Mysql {
 	 
 	 public function notamedia($idservicio){
 		$this->conectar();
-		$pst=$this->conexion->prepare("SELECT avg(nota) from valoracion_servicio,servicio where servicio.id_servicio=? and servicio.id_servicio=valoracion_servicio.id_servicio");
+		$pst=$this->conexion->prepare("SELECT ROUND(avg(nota),1) from valoracion_servicio,servicio where servicio.id_servicio=? and servicio.id_servicio=valoracion_servicio.id_servicio");
 		$pst->bind_param("s",$idservicio);
 		$pst->execute();
 		$pst->bind_result($nota);
