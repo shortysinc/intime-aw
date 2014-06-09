@@ -3,6 +3,8 @@
 
 body { font: 14px/1.85em 'Open Sans', Arial, Helvetice Neue, sans-serif; color: #777777; font-weight: 300px; font-style: normal; -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */ -webkit-text-size-adjust: 100%; }
 
+
+
 a, a:hover, a:focus { text-decoration: none; -webkit-transition: all 150ms ease-in; -moz-transition: all 150ms ease-in; -o-transition: all 150ms ease-in; transition: all 150ms ease-in; }
 
 h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-serif; }
@@ -243,8 +245,13 @@ textarea .mensaje { position: relative;}
 .descripcion p{padding-left:10px;}
 .valoraciones{margin-top:-90px;padding-left:60%;font-size:40px;}
 .solicitud{padding-left:35%;}
+a.solicitud-rechazada{color:red;}
+a.solicitud-rechazada:hover {color: rgb(150,0,0);}
+a.solicitud-aceptada{color: green}
+a.solicitud-aceptada:hover{color: rgb(0,80,0);}
 p.solicitud-aceptada{color: green;}
 p.solicitud-rechazada{color: red;}
+
 span.h2-solicitud{display:block; width: 35%}
 span#combobox-estado{float:left; display: block; width: 25%}
 ul.lista-respuestas {list-style:none;}
