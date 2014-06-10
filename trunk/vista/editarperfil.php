@@ -36,48 +36,48 @@
 							<!-- section-title -->
 						</div>
 						<!-- col-md-12 -->
-					</div>
-					<!-- /#row -->
-					<div class="cuerpo">
-						<div class="contact-form" id="form">
-							<form action="../controlador/edituser.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
-								
-								<!-- /.col-md-4 -->
-								<div class="col-md-8">
-									<label for="email" >Nuevo correo electrónico:</label>
-									<input name="email" type="text" id="email" maxlength="40"/>
-								</div>
-								<div class="col-md-8">
-									<label for="foto" >Nueva imagen de perfil:</label>
-									<input name="foto" type="file" id="foto" maxlength="40"/>
-								</div>
-								<div class="col-md-8">
-									<label for="nombre" >Nuevo nombre:</label>
-									<input name="nombre" type="text" id="nombre" maxlength="40"/>
-								</div>
-								<div class="col-md-8">
-									<label for="apellidos" >Nuevo apellidos:</label>
-									<input name="apellidos" type="text" id="apellidos" maxlength="125"/>
-								</div>
-								<div class="col-md-8">
-									<label for="direccion" >Nueva direccion:</label>
-									<input name="direccion" type="text" id="direccion" maxlength="40"/>
-								</div>
-								<div class="col-md-8">
-									<label for="pass" >Nuevo contraseña:</label>
-									<input name="pass" type="text" id="pass" maxlength="40"/>
-								</div>
-								<!-- /.col-md-12 -->
-								<div class="col-md-12">
-										<!--<a ="#" class="largeButton contactBgColor">Send Message</a>-->
-										<button class="largeButton submitBgColor" type="submit" value="Enviar">
-											Enviar
-										</button>
-								</div>
-								<!-- /.col-md-12 -->
-							</form>
+						<div class="cuerpo">
+							<div class="contact-form" id="form">
+								<form action="../controlador/edituser.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+									
+									<!-- /.col-md-4 -->
+									<div class="col-md-8">
+										<label for="email" >Nuevo correo electrónico:</label>
+										<input name="email" type="text" id="email" maxlength="40"/>
+									</div>
+									<div class="col-md-8">
+										<label for="foto" >Nueva imagen de perfil:</label>
+										<input name="foto" type="file" id="foto" maxlength="40"/>
+									</div>
+									<div class="col-md-8">
+										<label for="nombre" >Nuevo nombre:</label>
+										<input name="nombre" type="text" id="nombre" maxlength="40"/>
+									</div>
+									<div class="col-md-8">
+										<label for="apellidos" >Nuevo apellidos:</label>
+										<input name="apellidos" type="text" id="apellidos" maxlength="125"/>
+									</div>
+									<div class="col-md-8">
+										<label for="direccion" >Nueva direccion:</label>
+										<input name="direccion" type="text" id="direccion" maxlength="40"/>
+									</div>
+									<div class="col-md-8">
+										<label for="pass" >Nuevo contraseña:</label>
+										<input name="pass" type="text" id="pass" maxlength="40"/>
+									</div>
+									<!-- /.col-md-12 -->
+									<div class="col-md-12">
+											<!--<a ="#" class="largeButton contactBgColor">Send Message</a>-->
+											<button class="largeButton submitBgColor" type="submit" value="Enviar">
+												Enviar
+											</button>
+									</div>
+								</form>
+								<!-- /.contatc-form -->
+							</div>
+							<!-- /#cuerpo -->
 						</div>
-					<!-- /.contatc-form -->
+					<!-- /#row -->
 					</div>
 				</div>
 				<!-- /#section-content -->
