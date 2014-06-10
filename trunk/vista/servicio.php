@@ -66,25 +66,21 @@
 								</h3></a>
 						</div>
 						<div class="valoraciones">
-							<p>
-								<?php
-								echo 'Valoración: ??';
-								/*if (isset($resultadoValoracion)) {
-									foreach ($resultadoValoracion as $row) {
-										if ($row["nota"] <= 0) {
-											echo 'No hay puntuación';
-										} else {
-											echo 'Valoracion: ' . $row["nota"];
-										}
-
-									}
-								}*/
-								?>
-							</p>
+							
 							<p>
 								<!--Nota Media : 4,3-->
 								<?php
-								echo 'Nota Media: '.$resulmedia;
+								//echo 'Nota Media: ' . $resulmedia;
+								if ($resulmedia <= 0) 
+								{
+									echo 'No se ha puntuado.';
+								} 
+								else 
+								{
+									echo 'Nota Media: '.$resulmedia;
+								}
+								
+								
 								
 								?>
 								
@@ -96,11 +92,12 @@
 					</div>
 					<div class="descripcion">
 						<h2>Descripción</h2>
-						<p>
-							<?php
-								echo $resuldescrip;
-							?>
-						</p>
+							<p>
+								<?php
+								
+									echo $resuldescrip;
+								?>
+							</p>
 					</div>
 					<?php
 						if(isset($_SESSION['login_admin']) && $_SESSION['login_admin'] ) {//Si es admin
