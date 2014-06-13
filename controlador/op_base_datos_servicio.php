@@ -174,20 +174,24 @@ class MysqlServicio extends Mysql {
 	 */
 	public function conseguirComentServicio($idservicio,$iduser){
 		$this->conectar();
-		$pst=$this->conexion->prepare("select opinion from valoracion_servicio, servicio where 
+		$pst=$this->conexion->prepare("select opinion, nota from valoracion_servicio natural join servicio where 
 									   (valoracion_servicio.id_servicio= ? and 
 									   servicio.id_servicio=?) and 
 									   (valoracion_servicio.id_usuario=? 
 									   and servicio.id_usuario=? )");
 		$pst->bind_param("ssss",$idservicio, $idservicio,$iduser, $iduser);
 		$pst->execute();
-		$pst->bind_result($opinion);
-		$pst->fetch();
+		$pst->bind_result($opinion, $nota);
+		$resultado = NULL;
+		
+		while ($pst->fetch()) {
+			$resultado[] = array('opinion'=>$opinion, 'nota'=>$nota);
+		}
 		
 		$pst->close();
 		$this->cerrar();
 		
-		return $opinion;
+		return $resultado;
 	}
 	
 	
