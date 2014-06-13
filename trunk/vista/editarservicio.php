@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
-	<?php
+<?php
+
+	require_once '../modelo/usuario.php';
+	require_once '../controlador/op_base_datos_usuario.php';
+	require_once '../modelo/servicio.php';
+	require_once '../controlador/op_base_datos_servicio.php';
+	session_start();
 	
-		require_once '../modelo/usuario.php';
-		require_once '../controlador/op_base_datos_usuario.php';
-		require_once '../modelo/servicio.php';
-		require_once '../controlador/op_base_datos_servicio.php';
-		session_start();
+	require_once '../controlador/comprobar_login.php';
+	
 	if(isset($_GET['id_servicio'])){
-			$BDD = new MysqlServicio($_GET['id_servicio']);
-			$servicio = $BDD->conseguirServicio($_GET['id_servicio']);
-		}
-	?>
+		$BDDservice=new MysqlServicio();
+		$id_servicio = $_GET['id_servicio'];
+		$servicio = $BDDservice->conseguirServicio($id_servicio);
+		
+		//Si el campo id_usuario del servicio es el mismo que el id del usuario que esta logueado entonces puede editar
+		if( isset($servicio) && $servicio->getIdUsuario() == $_SESSION['usuario']->getId()){
+			//El id del servicio se guarda en la sesion para que el usuario no pueda editar un servicio que no sea suyo
+			$_SESSION['id_servicio'] = $id_servicio;
+?>
 
 	<head>
 		<title>inTime / Crear un servicio</title>
@@ -43,8 +51,8 @@
 					</div>
 					<!-- /#row -->
 					<div class="cuerpo">
-						<div class="contact-form" id="crear-cuenta-form">
-							<form action=<?php echo '"../controlador/editservice.php?id_servicio='.$servicio->getIdServicio().'"'?> method="post" enctype="multipart/form-data" accept-charset="utf-8">
+						<div class="contact-form">
+							<form action="../controlador/editservice.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 							
 								<div class="col-md-4">
 									<label for="nombreserv" >Nuevo nombre del servicio:</label>
@@ -81,3 +89,7 @@
 		<!-- /#main-content-->
 	</body>
 </html>
+<?php
+		}
+	}
+?>
