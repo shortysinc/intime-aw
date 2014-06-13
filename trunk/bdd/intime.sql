@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-06-2014 a las 14:44:45
+-- Tiempo de generación: 13-06-2014 a las 22:44:36
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -219,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `valoracion_servicio` (
   `id_usuario` int(11) NOT NULL,
   `nota` int(11) NOT NULL,
   `opinion` varchar(500) NOT NULL,
+  `fecha` datetime NOT NULL,
   PRIMARY KEY (`id_valoracion`),
   KEY `id_servicio` (`id_servicio`,`id_usuario`),
   KEY `id_usuario` (`id_usuario`)
@@ -228,8 +229,8 @@ CREATE TABLE IF NOT EXISTS `valoracion_servicio` (
 -- Volcado de datos para la tabla `valoracion_servicio`
 --
 
-INSERT INTO `valoracion_servicio` (`id_valoracion`, `id_servicio`, `id_usuario`, `nota`, `opinion`) VALUES
-(1, 2, 27, 6, 'que guay!');
+INSERT INTO `valoracion_servicio` (`id_valoracion`, `id_servicio`, `id_usuario`, `nota`, `opinion`, `fecha`) VALUES
+(1, 2, 27, 6, 'que guay!', '0000-00-00 00:00:00');
 
 --
 -- Restricciones para tablas volcadas
