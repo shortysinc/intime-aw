@@ -178,7 +178,7 @@
 					 		
 					?>
 					<div class="comment-form">
-						<form action="" method="post" accept-charset="utf-8">
+						<form action="../controlador/insertarvaloracion.php" method="post" accept-charset="utf-8">
 							<label>Enviar comentario y/o valoracion</label>
 							<p>
 								<textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>

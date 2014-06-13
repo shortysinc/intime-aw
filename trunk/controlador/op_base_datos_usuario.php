@@ -426,4 +426,19 @@ class MysqlUsuario extends Mysql {
 		
 		return $id;
 	}
+	
+		public function insertarvaloracion($comentario,$valoracion,$id_servicio,$id_user){
+		$this->conectar();
+		$args = array($id_servicio,$id_user,$valoracion,$comentario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("insert into valoracion_servicio(id_servicio,id_usuario,nota,opinion,fecha) values (?,?,?,?,now())");
+		$pst->bind_param("ssss", $args[0], $args[1], $args[2], $args[3]);
+		$pst->execute();
+		$id = mysqli_insert_id($this->conexion);
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $id;
+	}
 }
