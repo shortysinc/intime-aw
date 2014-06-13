@@ -139,7 +139,13 @@
 						</div>
 						<div class="coment-nota">
 							<p>
-								Nota: 3,1
+								<?php
+								if(isset($comentServicio)){
+										foreach ($comentServicio as $row) {
+											echo $row["nota"]."<br>";
+										}
+									}
+								?>
 							</p>
 						</div>
 						<div class="coment">
@@ -149,7 +155,7 @@
 								 
 								 if(isset($comentServicio)){
 										foreach ($comentServicio as $row) {
-											echo $row["opinion"]."\n";
+											echo "Opinión: ".$row["opinion"]."<br>";
 										}
 									}
 								
