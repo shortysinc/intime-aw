@@ -1,5 +1,9 @@
 <?php
 require_once '../controlador/formato_fecha.php';
+
+/**
+ * clase que sirve de etidad para una solicitud
+ */
 class Solicitud {
 	public $id_solicitud,
 		   $id_usuario,
