@@ -146,15 +146,14 @@
 							<p>
 								<?php
 								 //Aqui va lo de los comentarios sobre el servicio.
-								 /*if(isset($comentServicio)){
+								 
+								 if(isset($comentServicio)){
 										foreach ($comentServicio as $row) {
-											echo $row["opinion"];									
+											echo $row["opinion"]."\n";
 										}
 									}
-								 */
-								 //echo $comentServicio;
-								$row=$comentServicio->fetch_array(MYSQLI_ASSOC);
-								echo  $row["opinion"];			
+								
+										
 								?>
 							</p>
 						</div>
