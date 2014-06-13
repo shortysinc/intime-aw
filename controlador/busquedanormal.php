@@ -14,12 +14,12 @@
 			$BDDserv = new MysqlServicio();
 			$servicios=$BDDserv->busquedaavanzada($corte,$login->getId());
 			if ($_POST["consulta"]=="red"){
-				if (null!=$servicios[0]->getIdUser()){
+				if (null!=$servicios[0]->getIdUsuario()){
 					$iteracionarray=array();
 					$sumaarray=array();
-					$sumaarray=$BDDserv->busquedaavanzada($corte,$servicios[0]->getIdUser());
+					$sumaarray=$BDDserv->busquedaavanzada($corte,$servicios[0]->getIdUsuario());
 					for ($i=1;$i<count($servicios);$i=$i+1){
-						$iteracionarray=$BDDserv->busquedaavanzada($corte,$servicios[$i]->getIdUser()); 
+						$iteracionarray=$BDDserv->busquedaavanzada($corte,$servicios[$i]->getIdUsuario()); 
 						$sumaarray=array_merge((array)$sumaarray,(array)$iteracionarray);
 					}
 					$servicios=array();
@@ -30,7 +30,7 @@
 		$lenght=count($servicios);
 		for ($i=0;$i<$lenght;$i=$i+1){
 			$BDDuser=new MysqlUsuario();
-			$user=$BDDuser->conseguirUsuarioById($servicios[$i]->getIdUser());
+			$user=$BDDuser->conseguirUsuarioById($servicios[$i]->getIdUsuario());
 		?>
 				<div class ="busq-ej">
 					<?php

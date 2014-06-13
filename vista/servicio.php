@@ -25,8 +25,6 @@
 	<?php
 		if(isset($_GET['id_servicio'])){
 			$id_servicio = $_GET['id_servicio'];
-			//El id_servicio se guarda en la sesion para que un usuario no pueda enviarse una solicitud a sí mismo
-			$_SESSION['id_servicio'] = $id_servicio;
 			$BDDServicio = new MysqlServicio();
 			$BDDUsuario = new MysqlUsuario();
 			$servicio = $BDDServicio->conseguirServicio($id_servicio);
@@ -86,7 +84,13 @@
 								
 							</p>
 							<?php
+							//Si es admin o es un usuario registrado y es su servicio entonces puede editar
+							if( isset($_SESSION['login_admin']) && $_SESSION['login_admin'] ||
+								(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario'] && 
+									isset($servicio) && $_SESSION['usuario']->getId() == $servicio->getIdUsuario()) ){
+										
 								echo'<a href="editarservicio.php?id_servicio='.$servicio->getIdServicio().'"><h5>Editar Servicio</h5></a>';
+							}
 						?>
 						</div>
 					</div>
@@ -155,6 +159,8 @@
 					 		//no se hace nada
 							
 						}else { //Mostramos el formulario de valoración
+							//El id_servicio se guarda en la sesion para que un usuario no pueda enviarse una solicitud a sí mismo
+							$_SESSION['id_servicio'] = $id_servicio;
 					 		
 					?>
 					<div class="comment-form">
