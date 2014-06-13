@@ -335,29 +335,6 @@ class MysqlUsuario extends Mysql {
 		$this->cerrar();
 	}
 	
-	
-	/**
-	 * Obtiene la valoracion de un servicio con el id pasado por parámetro.
-	 * @param id de la valoracion que se quiere obtener
-	 * @return la valoración obtenida de la bdd.
-	 */ 
-	 public function conseguirValoraciones($id) {
-		$this->conectar();
-		$args = array($id);
-		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
-		$pst->bind_param("i", $args[0]);
-		$pst->execute();
-		$pst->bind_result($id_valoracion, $id_servicio, $id_usuario, $nota, $opinion);
-		$resultado = NULL;
-		while($pst->fetch()){
-			$resultado[] = array('id_valoracion' => $id_valoracion, 'id_servicio' => $id_servicio, 'id_usuario' => $id_usuario,
-				'nota' => $nota, 'opinion' => $opinion);
-		}
-		$pst->close();
-		$this->cerrar();
-		return $resultado;
-
-	}
 	 
 	 public function editarUsuario($id,$correo,$foto,$nombre,$apellidos,$direccion,$pass,$salt){
 		$this->conectar();
@@ -419,21 +396,6 @@ class MysqlUsuario extends Mysql {
 		$pst->bind_param("iis", $args[0], $args[1], $args[2]);
 		$pst->execute();
 		
-		$id = mysqli_insert_id($this->conexion);
-		
-		$pst->close();
-		$this->cerrar();
-		
-		return $id;
-	}
-	
-		public function insertarvaloracion($comentario,$valoracion,$id_servicio,$id_user){
-		$this->conectar();
-		$args = array($id_servicio,$id_user,$valoracion,$comentario);
-		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("insert into valoracion_servicio(id_servicio,id_usuario,nota,opinion,fecha) values (?,?,?,?,now())");
-		$pst->bind_param("ssss", $args[0], $args[1], $args[2], $args[3]);
-		$pst->execute();
 		$id = mysqli_insert_id($this->conexion);
 		
 		$pst->close();
