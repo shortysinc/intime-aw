@@ -22,7 +22,7 @@
 ?>
 
 	<head>
-		<title>inTime / Crear un servicio</title>
+		<title>inTime</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
 		<meta name="description" content="Sonic is one-page responsive free template using Bootstrap. This layout is suitable for creative portfolio showcase." />
 		<meta charset="utf-8">

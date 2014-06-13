@@ -71,6 +71,11 @@ class MysqlServicio extends Mysql {
 		return $ret;
 	}
 	 
+	 /**
+	  * Obtiene la nota media del servicio cuyo id se pasa por parámetro
+	  * @param $idServicio
+	  * @return la nota media para ese servicio
+	  */
 	 public function notamedia($idservicio){
 		$this->conectar();
 		$pst=$this->conexion->prepare("SELECT ROUND(avg(nota),1) from valoracion_servicio,servicio where servicio.id_servicio=? and servicio.id_servicio=valoracion_servicio.id_servicio");
@@ -211,19 +216,19 @@ class MysqlServicio extends Mysql {
 		$this->escapaBd($args);
 		if ($nombreserv!=null){
 			$pst = $this->conexion->prepare("update servicio set nombre_servicio=? WHERE id_servicio = ?");
-			$pst->bind_param("ss",$args[0],$id);
+			$pst->bind_param("si",$args[0],$id);
 			$pst->execute();
 			$pst->close();
 		}
 		if ($descrpserv!=null){
 			$pst = $this->conexion->prepare("update servicio set descripcion=? WHERE id_servicio = ?");
-			$pst->bind_param("ss",$args[1],$id);
+			$pst->bind_param("si",$args[1],$id);
 			$pst->execute();
 			$pst->close();
 		}
 		if ($foto!=null){
 			$pst = $this->conexion->prepare("update servicio set foto_servicio=? WHERE id_servicio = ?");
-			$pst->bind_param("ss",$foto,$id);
+			$pst->bind_param("si",$foto,$id);
 			$pst->execute();
 			$pst->close();
 		}
