@@ -33,6 +33,8 @@
 				$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
+				$comentServicio = $BDDServicio->conseguirComentServicio($id_servicio, $servicio->getIdUsuario());
+				$nombreServicio= $servicio->getNombre();
 			}
 			
 		}
@@ -49,6 +51,10 @@
 				<div class="cuerpo">
 				<?php if(isset($servicio)){ ?>
 				<div class="encabezado">
+					<h2><?php 
+							echo $nombreServicio;
+						
+						?></h2>
 					 <img src="images/slide3.jpg" > 
 					<!--Foto servicio -->
 				</div>
@@ -66,20 +72,12 @@
 						<div class="valoraciones">
 							
 							<p>
-								<!--Nota Media : 4,3-->
 								<?php
-								//echo 'Nota Media: ' . $resulmedia;
-								if ($resulmedia <= 0) 
-								{
-									echo 'No se ha puntuado.';
-								} 
-								else 
-								{
-									echo 'Nota Media: '.$resulmedia;
-								}
-								
-								
-								
+									if ($resulmedia <= 0) {
+										echo 'No se ha puntuado.';
+									} else {
+										echo 'Nota Media: ' . $resulmedia;
+									}
 								?>
 								
 							</p>
@@ -146,7 +144,18 @@
 						</div>
 						<div class="coment">
 							<p>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc facilisis arcu quis auctor congue. Donec a nulla eleifend, accumsan ipsum vitae, porttitor purus. Nulla sapien enim, mollis eget dignissim nec, porta sed sem. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et venenatis mi, nec mattis purus.
+								<?php
+								 //Aqui va lo de los comentarios sobre el servicio.
+								 /*if(isset($comentServicio)){
+										foreach ($comentServicio as $row) {
+											echo $row["opinion"];									
+										}
+									}
+								 */
+								 //echo $comentServicio;
+								$row=$comentServicio->fetch_array(MYSQLI_ASSOC);
+								echo  $row["opinion"];			
+								?>
 							</p>
 						</div>
 					</div>

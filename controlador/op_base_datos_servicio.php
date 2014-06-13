@@ -167,6 +167,30 @@ class MysqlServicio extends Mysql {
 		
 		return $nota;
 	}
+	
+	/*
+	 * NUEVO
+	 * Obtiene los comentarios de los usuarios que han valorado el servicio
+	 */
+	public function conseguirComentServicio($idservicio,$iduser){
+		$this->conectar();
+		$pst=$this->conexion->prepare("select opinion from valoracion_servicio, servicio where 
+									   (valoracion_servicio.id_servicio= ? and 
+									   servicio.id_servicio=?) and 
+									   (valoracion_servicio.id_usuario=? 
+									   and servicio.id_usuario=? )");
+		$pst->bind_param("ssss",$idservicio, $idservicio,$iduser, $iduser);
+		$pst->execute();
+		$pst->bind_result($opinion);
+		$pst->fetch();
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $opinion;
+	}
+	
+	
 	public function mostrar_todos_servicios(){
 		$this->conectar();
 		$pst = $this->conexion->prepare("select * from servicio");
