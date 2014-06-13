@@ -1,8 +1,10 @@
 <?php
 	require_once '../modelo/usuario.php';
 	require_once '../modelo/servicio.php';
+	require_once '../modelo/valoracion.php';
 	require_once '../controlador/op_base_datos_servicio.php';
 	require_once '../controlador/op_base_datos_usuario.php';
+	require_once '../controlador/op_base_datos_valoracion.php';
 	session_start();
 ?>
 <!DOCTYPE html>
@@ -27,10 +29,11 @@
 			$id_servicio = $_GET['id_servicio'];
 			$BDDServicio = new MysqlServicio();
 			$BDDUsuario = new MysqlUsuario();
+			$BDDValoracion = new MysqlValoracion();
 			$servicio = $BDDServicio->conseguirServicio($id_servicio);
 			if(isset($servicio)){
 				$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
-				$resultadoValoracion= $BDDUsuario->conseguirValoraciones($id_servicio);
+				$valoraciones= $BDDValoracion->conseguirValoraciones($id_servicio);
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
 				$comentServicio = $BDDServicio->conseguirComentServicio($id_servicio, $servicio->getIdUsuario());
@@ -140,9 +143,9 @@
 						<div class="coment-nota">
 							<p>
 								<?php
-								if(isset($comentServicio)){
-										foreach ($comentServicio as $row) {
-											echo $row["nota"]."<br>";
+								if(isset($valoraciones)){
+										foreach ($valoraciones as $valoracion) {
+											echo $valoracion->getNota()."<br>";
 										}
 									}
 								?>
@@ -153,9 +156,9 @@
 								<?php
 								 //Aqui va lo de los comentarios sobre el servicio.
 								 
-								 if(isset($comentServicio)){
-										foreach ($comentServicio as $row) {
-											echo "Opinión: ".$row["opinion"]."<br>";
+								 if(isset($valoraciones)){
+										foreach ($valoraciones as $valoracion) {
+											echo "Opinión: ".$valoracion->getOpinion();
 										}
 									}
 								
