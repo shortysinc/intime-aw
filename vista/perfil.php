@@ -73,7 +73,7 @@
 							echo"<p>".$usuario->getCorreo()."</p>";
 							if(isset($usuario_logueado)){
 								if (($usuario->getId()==$usuario_logueado->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
-									echo'<a href="editarperfil.php"><h5>Editar perfil</h5></a>';
+									echo'<a href="editarperfil.php?id_usuario='.$usuario->getId().'"><h5>Editar Perfil</h5></a>';
 								}
 							}
 						?>

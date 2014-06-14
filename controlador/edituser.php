@@ -3,10 +3,12 @@
 	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
 	
-	$usuario = $_SESSION['usuario'];
-	$id = $_GET['id_usuario'];
-	$BDDuser=new MysqlUsuario();
-	if	(($usuario->getId()==$id)||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
+	if(isset($_SESSION['id_usuario'])){
+		$BDDuser=new MysqlUsuario();
+		$id_usuario = $_SESSION['id_usuario'];
+		$usuario = $BDDuser->conseguirUsuarioById($id_usuario);
+	
+	if	(($usuario->getId()==$id_usuario)||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
 		if (isset($_REQUEST['email'])){
 			$email=$_REQUEST['email'];	
 		}else{
@@ -41,6 +43,8 @@
 			$pass=null;
 			$salt=null;
 		}
-		$BDDuser->editarUsuario($id,$email,$foto,$nombre,$apellidos,$direccion,$pass,$salt);
+		$BDDuser->editarUsuario($id_usuario,$email,$foto,$nombre,$apellidos,$direccion,$pass,$salt);
+		unset($_SESSION['id_usuario']);
+		header("Location: ../vista/perfil.php?id_usuario=".$id_usuario);
 	}
-	header("Location: ../vista/perfil.php?id_usuario=".$id);
+}
