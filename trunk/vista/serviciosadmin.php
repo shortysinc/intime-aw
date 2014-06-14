@@ -65,6 +65,7 @@
 							        echo "<td>".$row["id_usuario"]."</td>";
 							        echo "<td>".$row["nombre_servicio"]."</td>";
 									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar Servicio</a></td>";
+									echo "<td><a href='../vista/editarservicio.php?id_servicio=$id';>Editar Servicio</a></td>";
 							        echo "</tr>";
 								}
 								$resultado->free(); 

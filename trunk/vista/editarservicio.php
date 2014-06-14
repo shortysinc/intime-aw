@@ -16,9 +16,8 @@
 		$servicio = $BDDservice->conseguirServicio($id_servicio);
 		
 		//Si el campo id_usuario del servicio es el mismo que el id del usuario que esta logueado entonces puede editar
-		if( isset($servicio) && $servicio->getIdUsuario() == $_SESSION['usuario']->getId()){
-			//El id del servicio se guarda en la sesion para que el usuario no pueda editar un servicio que no sea suyo
-			$_SESSION['id_servicio'] = $id_servicio;
+		if(((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)) || (isset($servicio) && $servicio->getIdUsuario() == $_SESSION['usuario']->getId())){
+		
 ?>
 
 	<head>

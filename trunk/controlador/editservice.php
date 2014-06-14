@@ -4,16 +4,14 @@
 	require_once 'op_base_datos_servicio.php';
 	session_start();
 	
-	
 	require_once '../controlador/comprobar_login_usuario_admin.php';
 	
-	if(isset($_SESSION['id_servicio'])){
-		$BDDservice=new MysqlServicio();
-		$id_servicio = $_SESSION['id_servicio'];
-		$servicio = $BDDservice->conseguirServicio($id_servicio);
-		
-		//Si el campo id_usuario del servicio es el mismo que el id del usuario que esta logueado entonces puede editar
-		if( isset($servicio) && $servicio->getIdUsuario() == $_SESSION['usuario']->getId()){
+	if (isset($_GET['id_servicio'])) {
+	$BDDservice = new MysqlServicio();
+	$id_servicio = $_GET['id_servicio'];
+	$servicio = $BDDservice -> conseguirServicio($id_servicio);
+
+	if (((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) || (isset($servicio) && $servicio->getIdUsuario() == $_SESSION['usuario']->getId())) {
 			
 			if (isset($_REQUEST['nombreserv'])){
 				$nombreserv=$_REQUEST['nombreserv'];	
@@ -35,8 +33,11 @@
 			$BDDservice->editarServicio($id_servicio,$nombreserv,$descrpserv,$foto);
 			
 			unset($_SESSION['id_servicio']);
-			
+			if ((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) {
+			header('location:../vista/serviciosadmin.php');
+			} 
+			else {
 			header("Location: ../vista/servicio.php?id_servicio=".$id_servicio);
-		}
+			}
 	}
-	
+}	
