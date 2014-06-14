@@ -60,10 +60,11 @@
 								echo "<tr><td>ID Servicio</td><td>ID Usuario Ofertante</td><td>Nombre del Servicio</td>";
 								while ($row = mysqli_fetch_array($resultado)) {
 								$id = $row['id_servicio'];
+								$id_usuario = $row['id_usuario'];
 							        echo "<tr>";
 							        echo "<td>".$row["id_servicio"]."</td>";
-							        echo "<td>".$row["id_usuario"]."</td>";
-							        echo "<td>".$row["nombre_servicio"]."</td>";
+							        echo "<td><a href='../vista/perfil.php?id_usuario=$id_usuario';>".$row["id_usuario"]."</a></td>";
+							        echo "<td><a href='../vista/servicio.php?id_servicio=$id';>".$row["nombre_servicio"]."</a></td>";
 									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar Servicio</a></td>";
 									echo "<td><a href='../vista/editarservicio.php?id_servicio=$id';>Editar Servicio</a></td>";
 							        echo "</tr>";
