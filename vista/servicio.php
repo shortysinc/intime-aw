@@ -37,6 +37,11 @@
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
 				$nombreServicio= $servicio->getNombre();
+				
+				//Realmente esta mierda es del usuario que valora el servicio
+				$nombreUserValora = $BDDUsuario->conseguirUsuarioById(40)->getNombre();
+				$fotoUserValora = $BDDUsuario->conseguirUsuarioById(40)->getFoto();
+				$fotoUserDefault = "usuario/user_defect.png";
 			}
 			
 		}
@@ -135,9 +140,10 @@
 					<!--comentarios ejemplo-->
 					<h2>Comentarios y valoraciones</h2>
 					<div class ="comentario-ej">
-						<a href="perfil_usuario.php"><h4>Perfil del usuario</h4></a>
+						<a href="perfil_usuario.php"><h4><?php echo $nombreUserValora ?></h4></a>
 						<div class="coment-foto">
-							<img src="images/team2.jpg">
+							<!--<img src="images/team2.jpg">-->
+							<img src="images/<?php if (!isset($fotoUserValora)) {echo 'logo.png';}else{ echo 'usuario/'.$fotoUserValora;}?>"/>
 						</div>
 						<div class="coment-nota">
 							<p>
