@@ -10,6 +10,7 @@
 <?php
 		if(isset($servicios)){
 			foreach($servicios as $servicio){
+				$nota = $BDD->notamedia($servicio->getIdServicio());
 ?>	
 				<tr class "fila-servicios">
 				 	<td class="columna-foto">
@@ -23,7 +24,7 @@
 							</a>
 						</h3>
 						<p><?php echo $servicio->getDescripcion()?></p>
-						<span id="nota-servicio">Nota: <span id="negrita">9.8</span></span>
+						<span id="nota-servicio">Nota: <span id="negrita"><?php echo $nota ?></span></span>
 						<span id="horas-servicio"><span id="negrita">1 h</span></span>
 					</td>
 				</tr>	

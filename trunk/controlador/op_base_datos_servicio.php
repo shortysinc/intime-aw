@@ -141,10 +141,10 @@ class MysqlServicio extends Mysql {
 	 */
 	public function conseguirServiciosByUserId($id){
 		$this->conectar();
-		$i=0;
-		$ret=array();
+		$args = array($id);
+		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("select * from servicio where id_usuario = ?");
-		$pst->bind_param("i", $id);
+		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		$resultado = NULL;
@@ -180,7 +180,48 @@ class MysqlServicio extends Mysql {
 	 */
 	public function conseguirServiciosAceptadosNoRealizados($id_usuario){
 		$this->conectar();
-		$pst = $this->conexion->prepare();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT servicio.id_servicio, servicio.id_usuario, servicio.id_categoria, 
+			servicio.nombre_servicio, servicio.descripcion, servicio.horas, servicio.foto_servicio 
+			FROM servicio join solicitud WHERE solicitud.id_usuario = ? and solicitud.id_servicio = servicio.id_servicio and fin > NOW()
+			order by inicio");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		}
+		
+		$this->cerrar();
+		$pst->close();
+		
+		return $resultado;
+	}
+	
+	public function conseguirServiciosAceptadosRealizados($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT servicio.id_servicio, servicio.id_usuario, servicio.id_categoria, 
+			servicio.nombre_servicio, servicio.descripcion, servicio.horas, servicio.foto_servicio 
+			FROM servicio join solicitud WHERE solicitud.id_usuario = ? and solicitud.id_servicio = servicio.id_servicio and fin <= NOW()
+			order by inicio");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		}
+		
+		$this->cerrar();
+		$pst->close();
+		
+		return $resultado;
 	}
 	
 	public function mostrar_todos_servicios(){

@@ -5,7 +5,7 @@
 	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
 	
-	require_once '../controlador/comprobar_login.php';
+	require_once '../controlador/comprobar_login_usuario_admin.php';
 	
 	$usuario = $_SESSION['usuario'];
 ?>
