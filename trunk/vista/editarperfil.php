@@ -7,7 +7,16 @@
 	
 	require_once '../controlador/comprobar_login_usuario_admin.php';
 	
-	$usuario = $_SESSION['usuario'];
+	if(isset($_GET['id_usuario'])){
+		$BDDuser=new MysqlUsuario();
+		$id_usuario = $_GET['id_usuario'];
+		$usuario = $BDDuser->conseguirUsuarioById($id_usuario);
+		
+		//Si el campo id_usuario del servicio es el mismo que el id del usuario que esta logueado entonces puede editar
+		if( isset($usuario) && $usuario->getId() == $_SESSION['usuario']->getId()){
+			//El id del servicio se guarda en la sesion para que el usuario no pueda editar un servicio que no sea suyo
+			$_SESSION['id_usuario'] = $id_usuario;
+			
 ?>
 	<head>
 		<title>inTime / Editar Perfil</title>
@@ -88,4 +97,8 @@
 		</div>
 		<!-- /#main-content-->
 	</body>
+	<?php
+		}
+	}
+?>
 </html>
