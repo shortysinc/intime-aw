@@ -36,7 +36,7 @@
 	$num_sol_rechazadas = count($solRechazadasNoVistas);
 
 	$BDD = new MysqlServicio();
-	$servicios_realizados = $BDD->conseguirServiciosAceptadosRealizados($usuario->getId());
+	$servicios_realizados = $BDD->conseguirServiciosSolicitudAceptadosRealizados($usuario->getId());
 	$servicios_proximos = $BDD->conseguirServiciosAceptadosNoRealizados($usuario->getId());
 ?>
 	<body>
@@ -117,7 +117,9 @@
 							<h3>Realizados</h3>
 							<?php
 								if(isset($servicios_realizados)){
-									foreach($servicios_realizados as $servicio){
+									foreach($servicios_realizados as $row){
+										$servicio = $row['servicio'];
+										$solicitud = $row['solicitud'];
 							?>
 										<div class="servicio-ej">
 											<?php 
@@ -135,6 +137,9 @@
 											<div class="serv-desc">
 											<?php
 												echo"<p>".$servicio->getDescripcion()."</p>";
+											?>
+											<?php
+												echo "<p>Finalizado: ".$solicitud->getFinFormateada()."</p>";
 											?>
 											</div>
 										</div>
