@@ -37,7 +37,6 @@
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
 				$nombreServicio= $servicio->getNombre();
-				$nombreUserValora = $BDDUsuario->conseguirUsuarioById(40)->getNombre();
 				$fotoservice= $usuario->getFoto();
 			}
 			
@@ -160,9 +159,7 @@
 							<div class="coment-nota">
 								<p>
 									<?php
-									/*if(isset($valoraciones)){
-											foreach ($valoraciones as $valoracion) {*/
-												echo "Nota: ".$consultavalnota."<br>"."  Fecha: ".$consultavalFecha."<br>"."<br>";
+										echo "Nota: ".$consultavalnota."<br>"."  Fecha: ".$consultavalFecha."<br>"."<br>";
 										
 									?>
 								</p>
