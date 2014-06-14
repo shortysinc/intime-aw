@@ -7,7 +7,7 @@ require_once '../controlador/comprobar_login_usuario_admin.php';
 
 if (isset($_GET['id_usuario'])) {
 	$BDDuser = new MysqlUsuario();
-	$id_usuario = $_SESSION['id_usuario'];
+	$id_usuario = $_GET['id_usuario'];
 	$usuario = $BDDuser -> conseguirUsuarioById($id_usuario);
 
 	if (((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) || (isset($usuario) && $usuario -> getId() == $id_usuario)) {
