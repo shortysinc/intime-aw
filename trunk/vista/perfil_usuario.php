@@ -60,7 +60,8 @@
 								</div>
 							</div>
 						</div>
-						<h1><?php echo $usuario->getNombre()." ".$usuario->getApellidos(); ?></h1>
+						<h1 id = 'nombre-principal'><?php echo $usuario->getNombre()." ".$usuario->getApellidos(); ?></h1>
+						<h2>Mis servicios comprados</h2>
 					</div>
 					<div class="cuerpo">
 						<?php
@@ -89,6 +90,7 @@
 								if(isset($servicios_proximos)){
 									foreach($servicios_proximos as $row){
 										$servicio = $row['servicio'];
+										$solicitud = $row['solicitud'];
 							?>			
 										<div class="servicio-ej">
 											<?php 
@@ -98,14 +100,15 @@
 											<?php
 												$nota = $BDD->notamedia($servicio->getIdServicio());
 												if (!empty($nota))
-													echo"<p>Nota: ".$nota."</p>";
+													echo"<p><span class='explicacion'>Nota: ".$nota."</span></p>";
 												else
 													echo"<p>No valorado</p>";
 											?>
 											</div>
 											<div class="serv-desc">
 											<?php
-												echo"<p>".$servicio->getDescripcion()."</p>";
+												echo"<p><span class='explicacion'>".$servicio->getDescripcion()."</span></p>";
+												echo "<p><span class='verde'>Inicio: ".$solicitud->getInicioFormateada()."</span>  - <span class='rojo'>Fin: ".$solicitud->getFinFormateada()."</span></p>";
 											?>
 											</div>
 										</div>
@@ -138,8 +141,6 @@
 											<div class="serv-desc">
 											<?php
 												echo"<p>".$servicio->getDescripcion()."</p>";
-											?>
-											<?php
 												echo "<p>Finalizado: ".$solicitud->getFinFormateada()."</p>";
 											?>
 											</div>
