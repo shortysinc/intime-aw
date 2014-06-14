@@ -27,9 +27,9 @@
 <?php
 	$usuario = $_SESSION['usuario'];
 	$BDD = new MysqlUsuario();
-	$solRecibidasNoVistas = $BDD->conseguirSolicitudesRecibidasNoVistas($_SESSION['usuario']->getId());
-	$solAceptadasNoVistas = $BDD->conseguirSolicitudesAceptadasNovistas($_SESSION['usuario']->getId());
-	$solRechazadasNoVistas = $BDD->conseguirSolicitudesRechazadasNovistas($_SESSION['usuario']->getId());
+	$solRecibidasNoVistas = $BDD->conseguirSolicitudesRecibidasNoVistas($usuario->getId());
+	$solAceptadasNoVistas = $BDD->conseguirSolicitudesAceptadasNovistas($usuario->getId());
+	$solRechazadasNoVistas = $BDD->conseguirSolicitudesRechazadasNovistas($usuario->getId());
 
 	$num_sol_recibidas = count($solRecibidasNoVistas);
 	$num_sol_aceptadas = count($solAceptadasNoVistas);

@@ -10,14 +10,18 @@ class Solicitud {
 		   $id_servicio,
 		   $estado,
 		   $fecha,
+		   $inicio,
+		   $fin,
 		   $comentario;
 	
-	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $comentario){
+	public function __construct($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario){
 		$this->id_solicitud = $id_solicitud;
 		$this->id_usuario = $id_usuario;
 	    $this->id_servicio = $id_servicio;
    	    $this->estado = $estado;
 		$this->fecha = $fecha;
+		$this->inicio = $inicio;
+		$this->fin = $fin;
 		$this->comentario = $comentario;
 	}
 	
@@ -77,13 +81,29 @@ class Solicitud {
 	}
 	
 	public function getFecha(){
-		
 		return $this->fecha;
 	}
 	
+	public function getInicio(){
+		return $this->inicio;
+	}
+	
+	public function getFin(){
+		return $this->fin;
+	}
+	
 	public function getFechaFormateada(){
-		
 		$date = new DateTime($this->fecha);
+		return $date->format(FormatoFecha::dateFormat);
+	}
+	
+	public function getInicioFormateada(){
+		$date = new DateTime($this->inicio);
+		return $date->format(FormatoFecha::dateFormat);
+	}
+	
+	public function getFinFormateada(){
+		$date = new DateTime($this->fin);
 		return $date->format(FormatoFecha::dateFormat);
 	}
 	

@@ -173,32 +173,15 @@ class MysqlServicio extends Mysql {
 		return $nota;
 	}
 	
-	/*
-	 * NUEVO
-	 * Obtiene los comentarios de los usuarios que han valorado el servicio
+	/**
+	 * Obtiene los servicios que ha solicitado el usuario y que le han aceptado pero no están realizados
+	 * @param $id_usuario id del usuario del que se quiren obtener éstos servicios.
+	 * @return un array con los servicios
 	 */
-	public function conseguirComentServicio($idservicio,$iduser){
+	public function conseguirServiciosAceptadosNoRealizados($id_usuario){
 		$this->conectar();
-		$pst=$this->conexion->prepare("select opinion, nota from valoracion_servicio natural join servicio where 
-									   (valoracion_servicio.id_servicio= ? and 
-									   servicio.id_servicio=?) and 
-									   (valoracion_servicio.id_usuario=? 
-									   and servicio.id_usuario=? )");
-		$pst->bind_param("ssss",$idservicio, $idservicio,$iduser, $iduser);
-		$pst->execute();
-		$pst->bind_result($opinion, $nota);
-		$resultado = NULL;
-		
-		while ($pst->fetch()) {
-			$resultado[] = array('opinion'=>$opinion, 'nota'=>$nota);
-		}
-		
-		$pst->close();
-		$this->cerrar();
-		
-		return $resultado;
+		$pst = $this->conexion->prepare();
 	}
-	
 	
 	public function mostrar_todos_servicios(){
 		$this->conectar();
