@@ -10,7 +10,7 @@ if (isset($_GET['id_usuario'])) {
 	$id_usuario = $_GET['id_usuario'];
 	$usuario = $BDDuser -> conseguirUsuarioById($id_usuario);
 
-	if (((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) || (isset($usuario) && $usuario -> getId() == $id_usuario)) {
+	if (((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) || ($_SESSION['usuario']->getId() == $id_usuario)) {
 		if (isset($_REQUEST['email'])) {
 			$email = $_REQUEST['email'];
 		} else {
