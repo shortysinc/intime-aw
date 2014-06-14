@@ -246,6 +246,8 @@ textarea .mensaje { position: relative;}
 .valoraciones{margin-top:-90px;padding-left:60%;font-size:40px;}
 .solicitud{padding-left:35%;}
 a.solicitud-rechazada{color:red;}
+span.verde{color: green;}
+span.rojo {color: red;}
 a.solicitud-rechazada:hover {color: rgb(150,0,0);}
 a.solicitud-aceptada{color: green}
 a.solicitud-aceptada:hover{color: rgb(0,80,0);}
@@ -313,7 +315,11 @@ td.columna-servicios h3 {padding-left: 0px;}
 ul.lista-categorias {display:block; float:left; list-style:none;  width: 20%; margin-right: 5%; margin-bottom: 5%;}
 span#nota-servicio { display: block; text-align: left; margin-left: 15px;}
 span#horas-servicio { display: block; text-align: right; margin-right: 15px;}
-span#negrita {font-weight: bold;}
+span.negrita {font-weight: bold;}
+span.verde {color: green;}
+span.rojo {color: red;}
+span.explicacion {font-size: 16px; font-weight: bold;}
+#nombre-principal {font-weight: bold; text-align: center;}
 
 
 li#elem-categoria {width: 100%; margin-top: 5%;}

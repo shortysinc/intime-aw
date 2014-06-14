@@ -13,7 +13,6 @@
 		
 		if(isset($_GET['id_usuario'])){
 			$id = $_GET['id_usuario'];
-			
 			$BDD = new MysqlUsuario();
 			$usuario = $BDD->conseguirUsuarioById($id);
 			$BDD = new MysqlServicio();
@@ -71,10 +70,10 @@
 					<div class="infouser">
 						<?php
 							echo"<p>".$usuario->getCorreo()."</p>";
-							if(isset($usuario_logueado)){
-								if (($usuario->getId()==$usuario_logueado->getId())||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){
-									echo'<a href="editarperfil.php?id_usuario='.$usuario->getId().'"><h5>Editar Perfil</h5></a>';
-								}
+							//Si el servicio pertenece al usuario logueado o si es administrador
+							if ((isset($usuario_logueado) && $usuario->getId()==$usuario_logueado->getId())
+								||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']))){
+								echo'<a href="editarperfil.php?id_usuario='.$usuario->getId().'"><h5>Editar Perfil</h5></a>';
 							}
 						?>
 					</div>
