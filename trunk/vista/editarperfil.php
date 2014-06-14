@@ -5,7 +5,6 @@
 	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
 	
-	//require_once '../controlador/comprobar_login.php';
 	require_once '../controlador/comprobar_login_usuario_admin.php';
 	
 	if(isset($_GET['id_usuario'])){
@@ -14,13 +13,11 @@
 		$usuario = $BDDuser->conseguirUsuarioById($id_usuario);
 		
 		//Si el campo id_usuario del servicio es el mismo que el id del usuario que esta logueado entonces puede editar
-		if(((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)) || (isset($usuario) && $usuario->getId() == $_SESSION['usuario']->getId())){
-			//El id del servicio se guarda en la sesion para que el usuario no pueda editar un servicio que no sea suyo
-			$_SESSION['id_usuario'] = $id_usuario;
+		if(((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)) || (isset($usuario) && $usuario->getId() == $id_usuario)){
 			
 ?>
 	<head>
-		<title>inTime / Editar Perfil</title>
+		<title>inTime</title>
 		<meta name="keywords" content="sonic, responsive, free template, fluid layout, bootstrap, templatemo" />
 		<meta name="description" content="Sonic is one-page responsive free template using Bootstrap. This layout is suitable for creative portfolio showcase." />
 		<meta charset="utf-8">
@@ -48,7 +45,7 @@
 						<!-- col-md-12 -->
 						<div class="cuerpo">
 							<div class="contact-form" id="form">
-								<form action="../controlador/edituser.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+								<form action="../controlador/edituser.php?id_usuario=<?php echo $id_usuario ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 									
 									<!-- /.col-md-4 -->
 									<div class="col-md-8">
