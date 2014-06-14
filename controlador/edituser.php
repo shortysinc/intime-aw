@@ -3,6 +3,9 @@
 	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
 	
+	
+	require_once '../controlador/comprobar_login_usuario_admin.php';
+	
 	if(isset($_SESSION['id_usuario'])){
 		$BDDuser=new MysqlUsuario();
 		$id_usuario = $_SESSION['id_usuario'];
@@ -45,6 +48,11 @@
 		}
 		$BDDuser->editarUsuario($id_usuario,$email,$foto,$nombre,$apellidos,$direccion,$pass,$salt);
 		unset($_SESSION['id_usuario']);
+		if((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)){
+		header('location:../vista/usuariosadmin.php');
+		}
+		else{
 		header("Location: ../vista/perfil.php?id_usuario=".$id_usuario);
+		}
 	}
 }
