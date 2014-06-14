@@ -174,25 +174,29 @@ class MysqlServicio extends Mysql {
 	}
 	
 	/**
-	 * Obtiene los servicios que ha solicitado el usuario y que le han aceptado pero no están realizados
+	 * Obtiene los servicios que ha solicitado el usuario y que le han aceptado pero no están realizados junto con las solicitudes
 	 * @param $id_usuario id del usuario del que se quiren obtener éstos servicios.
-	 * @return un array con los servicios
+	 * @return un array que contiene otro array con los servicios con los servicios que han sido aceptados y que no han sido realizados
+	 * 		   junto con la solicitud del usuario para cada servicio
 	 */
-	public function conseguirServiciosAceptadosNoRealizados($id_usuario){
+	public function conseguirServiciosSolicitudAceptadosNoRealizados($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("SELECT servicio.id_servicio, servicio.id_usuario, servicio.id_categoria, 
-			servicio.nombre_servicio, servicio.descripcion, servicio.horas, servicio.foto_servicio 
-			FROM servicio join solicitud WHERE solicitud.id_usuario = ? and solicitud.id_servicio = servicio.id_servicio and fin > NOW()
+		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
+			and solicitud.id_servicio = servicio.id_servicio and fin > NOW()
 			order by inicio");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto,
+						  $id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
 		$resultado = NULL;
 		
 		while($pst->fetch()){
-			$resultado[] = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+			$resultado[] = array (
+				'servicio' => new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto), 
+				'solicitud' => new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario)
+			);
 		}
 		
 		$this->cerrar();
@@ -204,7 +208,7 @@ class MysqlServicio extends Mysql {
 	/**
 	 * Obtiene los servicios realizados al usuario cuyo id es el que se pasa por parámetro junto con sus solicitudes.
 	 * @param $id_usuario
-	 * @return un array que contiene otro array con los servicios que ha sido realizados junto con la solicitud del usuario 
+	 * @return un array que contiene otro array con los servicios que han sido realizados junto con la solicitud del usuario 
 	 * 		   para cada servicio realizado
 	 */
 	public function conseguirServiciosSolicitudAceptadosRealizados($id_usuario){
@@ -213,7 +217,7 @@ class MysqlServicio extends Mysql {
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and fin <= NOW()
-			order by inicio");
+			order by fin");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_servicio_, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto,

@@ -37,7 +37,7 @@
 
 	$BDD = new MysqlServicio();
 	$servicios_realizados = $BDD->conseguirServiciosSolicitudAceptadosRealizados($usuario->getId());
-	$servicios_proximos = $BDD->conseguirServiciosAceptadosNoRealizados($usuario->getId());
+	$servicios_proximos = $BDD->conseguirServiciosSolicitudAceptadosNoRealizados($usuario->getId());
 ?>
 	<body>
 		<?php include "sidebar.php"
@@ -87,7 +87,8 @@
 							<h3>Próximos</h3>
 							<?php
 								if(isset($servicios_proximos)){
-									foreach($servicios_proximos as $servicio){
+									foreach($servicios_proximos as $row){
+										$servicio = $row['servicio'];
 							?>			
 										<div class="servicio-ej">
 											<?php 
