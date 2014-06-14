@@ -4,7 +4,8 @@
 	require_once 'op_base_datos_servicio.php';
 	session_start();
 	
-	require_once 'comprobar_login.php';
+	
+	require_once '../controlador/comprobar_login_usuario_admin.php';
 	
 	if(isset($_SESSION['id_servicio'])){
 		$BDDservice=new MysqlServicio();

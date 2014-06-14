@@ -5,6 +5,7 @@
 	require_once '../controlador/op_base_datos_usuario.php';
 	session_start();
 	
+	//require_once '../controlador/comprobar_login.php';
 	require_once '../controlador/comprobar_login_usuario_admin.php';
 	
 	if(isset($_GET['id_usuario'])){
@@ -13,7 +14,7 @@
 		$usuario = $BDDuser->conseguirUsuarioById($id_usuario);
 		
 		//Si el campo id_usuario del servicio es el mismo que el id del usuario que esta logueado entonces puede editar
-		if( isset($usuario) && $usuario->getId() == $_SESSION['usuario']->getId()){
+		if(((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true)) || (isset($usuario) && $usuario->getId() == $_SESSION['usuario']->getId())){
 			//El id del servicio se guarda en la sesion para que el usuario no pueda editar un servicio que no sea suyo
 			$_SESSION['id_usuario'] = $id_usuario;
 			
