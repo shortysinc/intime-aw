@@ -19,7 +19,6 @@ session_start();
 		<link href="/vista/images/logo.png" rel="icon" type="image/x-icon" />
 	</head>
 	<body>
-
 		<?php include "vista/sidebar.php"
 		?>
 		<div id="main-content">

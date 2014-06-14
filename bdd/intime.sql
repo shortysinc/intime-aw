@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2014 a las 23:22:28
+-- Tiempo de generación: 14-06-2014 a las 14:10:12
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -178,6 +178,8 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
   `id_servicio` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
   `fecha` datetime NOT NULL,
+  `inicio` datetime NOT NULL,
+  `fin` datetime NOT NULL,
   `comentario` varchar(500) NOT NULL,
   PRIMARY KEY (`id_solicitud`),
   KEY `id_usuario` (`id_usuario`,`id_servicio`),
@@ -188,10 +190,10 @@ CREATE TABLE IF NOT EXISTS `solicitud` (
 -- Volcado de datos para la tabla `solicitud`
 --
 
-INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `comentario`) VALUES
-(2, 40, 2, 0, '2014-05-19 15:00:00', 'Estoy interesado en las clases de pilates'),
-(3, 27, 4, 2, '2014-05-30 23:00:00', 'Me interesaría recibir una clase de inglés'),
-(4, 42, 2, 2, '2014-05-15 23:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?');
+INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, `fecha`, `inicio`, `fin`, `comentario`) VALUES
+(2, 40, 2, 0, '2014-05-17 10:00:00', '2014-05-19 15:00:00', '2014-05-19 16:00:00', 'Estoy interesado en las clases de pilates'),
+(3, 27, 4, 2, '2014-05-23 14:07:00', '2014-05-30 19:00:00', '2014-05-30 20:00:00', 'Me interesaría recibir una clase de inglés'),
+(4, 42, 2, 2, '2014-05-13 17:23:00', '2014-05-15 18:00:00', '2014-05-15 19:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?');
 
 -- --------------------------------------------------------
 
@@ -220,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `correo`, `nombre`, `apellidos`, `direccion`, `horas_usuario`, `foto_usuario`, `pass`, `salt`, `vio_sol_recibidas`, `vio_sol_enviadas`) VALUES
-(27, 'pepe@gmail.com', 'pepe', '', 'domicilio', 1, '27.png', '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00', '2014-06-13 15:09:34', '2014-06-13 15:09:36'),
+(27, 'pepe@gmail.com', 'pepe', '', 'domicilio', 1, '27.png', '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00', '2014-04-01 15:09:34', '2014-04-01 15:09:36'),
 (40, 'fede@gmail.com', 'Federico', '', 'domicilio', 0, NULL, '9c3e0cc29995e78efb45ccdddc29b58fb96f15c3619147bfbcac15be14b8547c8a22e7e309620e1647e070cdb5afbf8240ad8e994899af320dd1eaa9384170c1', '8a375802e50aae308ae0d539b62b4dcd259be13c8aab825c930511838b1e354c51665059db44d0aa6d0f44adf645c607d4a3da9d89ede539eed8633cde43b681', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (42, 'cr7@gmail.com', 'cristiano ronaldo', '', 'Pozuelo', 0, NULL, '29049634bfb7b74f61782ea14e565a7d83439faab9ce5ac89fff416c9c21b143276989a3074acdeea943da9a380992a548781844bbdc29a5be95731e039044d4', '9bcd18417c5e633a30194565c4729f14ef1273a25212d557dd90934a4f6a5af1abbbff661a690505115bc0a8ff0826dab0e2437eb5ef85e6be13b8138768b31d', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
@@ -240,14 +242,16 @@ CREATE TABLE IF NOT EXISTS `valoracion_servicio` (
   PRIMARY KEY (`id_valoracion`),
   KEY `id_servicio` (`id_servicio`,`id_usuario`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `valoracion_servicio`
 --
 
 INSERT INTO `valoracion_servicio` (`id_valoracion`, `id_servicio`, `id_usuario`, `nota`, `opinion`, `fecha`) VALUES
-(1, 2, 27, 6, 'que guay!', '0000-00-00 00:00:00');
+(1, 2, 27, 6, 'que guay!', '0000-00-00 00:00:00'),
+(2, 4, 27, 5, 'Gran servicio', '2014-06-14 00:38:23'),
+(3, 4, 27, 5, 'aaaaa', '2014-06-14 00:57:23');
 
 --
 -- Restricciones para tablas volcadas

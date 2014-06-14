@@ -36,7 +36,6 @@
 				$valoraciones= $BDDValoracion->conseguirValoraciones($id_servicio);
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
-				$comentServicio = $BDDServicio->conseguirComentServicio($id_servicio, $servicio->getIdUsuario());
 				$nombreServicio= $servicio->getNombre();
 			}
 			
