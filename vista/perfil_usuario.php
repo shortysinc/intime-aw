@@ -36,7 +36,8 @@
 	$num_sol_rechazadas = count($solRechazadasNoVistas);
 
 	$BDD = new MysqlServicio();
-	$servicios = $BDD->conseguirServiciosByUserId($usuario->getId());
+	$servicios_realizados = $BDD->conseguirServiciosAceptadosRealizados($usuario->getId());
+	$servicios_proximos = $BDD->conseguirServiciosAceptadosNoRealizados($usuario->getId());
 ?>
 	<body>
 		<?php include "sidebar.php"
@@ -82,12 +83,12 @@
 								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2>Varias solicitudes enviadas han sido rechazadas</a></h3>";
 							}
 						?>
-						<div class="lista-serv">
-							<h3>Lista de servicios del usuario:</h3>
+						<div class="lista-serv" id="proximos">
+							<h3>Próximos</h3>
 							<?php
-								if(isset($servicios)){
-									foreach($servicios as $servicio){
-							?>
+								if(isset($servicios_proximos)){
+									foreach($servicios_proximos as $servicio){
+							?>			
 										<div class="servicio-ej">
 											<?php 
 												echo '<a href="servicio.php?id_servicio='.$servicio->getIdServicio().'"><h4>'.$servicio->getNombre().'</h4></a>';
@@ -109,6 +110,36 @@
 										</div>
 							<?php 
 									} 
+								}
+							?>
+						</div>
+						<div class="lista-serv" id="realizados">
+							<h3>Realizados</h3>
+							<?php
+								if(isset($servicios_realizados)){
+									foreach($servicios_realizados as $servicio){
+							?>
+										<div class="servicio-ej">
+											<?php 
+												echo '<a href="servicio.php?id_servicio='.$servicio->getIdServicio().'"><h4>'.$servicio->getNombre().'</h4></a>';
+											?>
+											<div class="serv-nota">
+											<?php
+												$nota = $BDD->notamedia($servicio->getIdServicio());
+												if (!empty($nota))
+													echo"<p>Nota: ".$nota."</p>";
+												else
+													echo"<p>No valorado</p>";
+											?>
+											</div>
+											<div class="serv-desc">
+											<?php
+												echo"<p>".$servicio->getDescripcion()."</p>";
+											?>
+											</div>
+										</div>
+							<?php
+									}
 								}
 							?>
 						</div>

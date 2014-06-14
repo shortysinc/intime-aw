@@ -299,6 +299,10 @@ a.nombre-servicio {font-size: 20px; font-weight: bold;}
 .serv-nota{float:right;}
 .serv-desc{padding-left:50px;}
 .servicio-ej{margin-bottom:50px;}
+div#realizados h3 {padding-left: 0px;}
+div#proximos{margin-bottom: 10%;}
+div#proximos h3 {padding-left: 0px;}
+div.lista-serv .servicio-ej {margin-left: 5%}
 
 .panel-servicios {position: relative; margin-bottom:50px;min-height:300px; width: 100%; }
 
