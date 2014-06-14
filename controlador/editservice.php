@@ -31,7 +31,7 @@
 			else{
 				$foto=null;
 			}
-			$BDDservice->editarServicio($id,$nombreserv,$descrpserv,$foto);
+			$BDDservice->editarServicio($id_servicio,$nombreserv,$descrpserv,$foto);
 			
 			unset($_SESSION['id_servicio']);
 			
