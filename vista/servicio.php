@@ -145,7 +145,7 @@
 								<?php
 								if(isset($valoraciones)){
 										foreach ($valoraciones as $valoracion) {
-											echo $valoracion->getNota()."<br>";
+											echo "Nota: ".$valoracion->getNota()."<br>"."  Fecha: ".$valoracion->getFechaFormateada()."<br>"."<br>";
 										}
 									}
 								?>
@@ -158,7 +158,7 @@
 								 
 								 if(isset($valoraciones)){
 										foreach ($valoraciones as $valoracion) {
-											echo "Opinión: ".$valoracion->getOpinion();
+											echo "Opinión: ".$valoracion->getOpinion()."<br>"."<br>";
 										}
 									}
 								
