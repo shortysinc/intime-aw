@@ -37,11 +37,8 @@
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
 				$nombreServicio= $servicio->getNombre();
-				
-				//Realmente esta mierda es del usuario que valora el servicio
 				$nombreUserValora = $BDDUsuario->conseguirUsuarioById(40)->getNombre();
-				$fotoUserValora = $BDDUsuario->conseguirUsuarioById(40)->getFoto();
-				$fotoUserDefault = "usuario/user_defect.png";
+				$fotoservice= $usuario->getFoto();
 			}
 			
 		}
@@ -67,7 +64,7 @@
 				</div>
 				<div class="servicio">
 					<div class="autor">
-						<img src="images/usuario/<?php echo $usuario->getFoto()?>" >
+						<img src="images/usuario/<?php if (isset($fotoservice)) {echo $usuario->getFoto();} else {echo "user_defect.png" ;}?>" >
 						<div class="nombretrabajo">
 							<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>">
 								<h3>
@@ -140,37 +137,57 @@
 					<!--comentarios ejemplo-->
 					<h2>Comentarios y valoraciones</h2>
 					<div class ="comentario-ej">
-						<a href="perfil_usuario.php"><h4><?php echo $nombreUserValora ?></h4></a>
-						<div class="coment-foto">
-							<!--<img src="images/team2.jpg">-->
-							<img src="images/<?php if (!isset($fotoUserValora)) {echo 'logo.png';}else{ echo 'usuario/'.$fotoUserValora;}?>"/>
-						</div>
-						<div class="coment-nota">
-							<p>
-								<?php
-								if(isset($valoraciones)){
-										foreach ($valoraciones as $valoracion) {
-											echo "Nota: ".$valoracion->getNota()."<br>"."  Fecha: ".$valoracion->getFechaFormateada()."<br>"."<br>";
-										}
-									}
-								?>
-							</p>
-						</div>
-						<div class="coment">
-							<p>
-								<?php
-								 //Aqui va lo de los comentarios sobre el servicio.
-								 
-								 if(isset($valoraciones)){
-										foreach ($valoraciones as $valoracion) {
-											echo "Opinión: ".$valoracion->getOpinion()."<br>"."<br>";
-										}
-									}
-								
+					<!-- ************************************************* -->
+					<!--Aqui es donde pongo los comentarios y valoraciones -->
+					<!-- ************************************************* -->
+					
+					
+					<?php
+					
+					for ($i=0; $i < count($valoraciones) ; $i++) 
+					{
+						
+					 $consultanombre=$BDDUsuario->conseguirUsuarioById($valoraciones[$i]->getIdUsuario())->getNombre();
+					 $consultafoto=$BDDUsuario->conseguirUsuarioById($valoraciones[$i]->getIdUsuario())->getFoto();
+					 $consultavalnota= $valoraciones[$i]->getNota();
+					 $consultavalopinion=$valoraciones[$i]->getOpinion();
+					 $consultavalFecha=$valoraciones[$i]->getFechaFormateada();
+					 ?>
+							<a href="perfil_usuario.php"><h4><?php echo $consultanombre ?></h4></a>
+							<div class="coment-foto">
+								<img src="images/<?php if (!isset($consultafoto)) {echo 'logo.png';}else{ echo 'usuario/'.$consultafoto;}?>"/>
+							</div>
+							<div class="coment-nota">
+								<p>
+									<?php
+									/*if(isset($valoraciones)){
+											foreach ($valoraciones as $valoracion) {*/
+												echo "Nota: ".$consultavalnota."<br>"."  Fecha: ".$consultavalFecha."<br>"."<br>";
 										
-								?>
-							</p>
-						</div>
+									?>
+								</p>
+							</div>
+							<div class="coment">
+								<p>
+									<?php
+									 //Aqui va lo de los comentarios sobre el servicio.
+									 
+									 if(isset($valoraciones)){
+											foreach ($valoraciones as $valoracion) {
+												echo "Opinión: ".$consultavalopinion."<br>"."<br>";
+											}
+										}
+									
+											
+									?>
+								</p>
+							</div>
+					<?php
+					}
+					?>					
+					<!-- ************************************************* -->
+					<!--               Aquí tengo que terminar             -->
+					<!-- ************************************************* -->
 					</div>
 					<?php
 						if ( isset($_SESSION['login_admin']) && $_SESSION['login_admin'] ) {//Si es admin
