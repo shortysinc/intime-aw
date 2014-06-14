@@ -260,7 +260,7 @@ a.nombre-servicio {font-size: 20px; font-weight: bold;}
 .comentarios img{border: 1px solid black; border-radius: 80px;height:90px;width:90px;}
 .comentario-ej{margin-bottom:30px;}
 .coment-foto{float:left;padding-left:10px;height:80px;}
-.coment{padding-left:15px;width:80%;margin:auto;}
+.coment{padding-left:15px;width:80%;margin:auto;min-height: 100px;}
 .coment-nota{float:right;font-size:20px;}
 .comment-ej h4{padding-left:10px;}
 .comment-form{padding-left:35%;}
@@ -283,7 +283,7 @@ a.nombre-servicio {font-size: 20px; font-weight: bold;}
 .lista-admin th{height:50px;}
 /*Nuevo*/
 
-.cuerpo {padding-left: 5px; min-height: 400px;}
+.cuerpo { min-height: 400px;}
 .cuerpo#servicios{float: left;	 width: 100%}
 .contacto {float: left; width: 50%; height: 175px;}
 .contacto img {float: left;border: 0px solid black; border-radius: 80px; height: 150px; width: 150px;}
