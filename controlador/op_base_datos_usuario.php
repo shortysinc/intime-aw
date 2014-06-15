@@ -157,8 +157,7 @@ class MysqlUsuario extends Mysql {
 	 */
 	public function conseguirSolicitudesRecibidas($id_usuario){
 		$this->conectar();
-		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado,
-			solicitud.fecha, solicitud.inicio, solicitud.fin, solicitud.comentario FROM solicitud join servicio 
+		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud join servicio 
 			where servicio.id_usuario = ? and solicitud.id_servicio = servicio.id_servicio order by solicitud.fecha DESC");
 		$pst->bind_param("i", $id_usuario);
 		$pst->execute();
@@ -182,8 +181,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($id_usuario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.inicio, solicitud.fin, solicitud.comentario FROM solicitud join servicio join usuario where 
+		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud join servicio join usuario where 
 			servicio.id_usuario = ? and servicio.id_usuario = usuario.id_usuario and solicitud.id_servicio = servicio.id_servicio 
 			and solicitud.fecha > usuario.vio_sol_recibidas order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
@@ -208,8 +206,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($id_usuario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.inicio, solicitud.fin, solicitud.comentario FROM solicitud join servicio 
+		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud join servicio 
 			where servicio.id_usuario = ? and solicitud.id_servicio = servicio.id_servicio and solicitud.estado = 0 
 			order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
@@ -257,8 +254,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($id_usuario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
-			solicitud.fecha, solicitud.inicio, solicitud.fin, solicitud.comentario FROM solicitud natural join usuario 
+		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud natural join usuario 
 			where id_usuario = ? and estado = 1 and fecha > vio_sol_enviadas
 			order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
@@ -316,6 +312,34 @@ class MysqlUsuario extends Mysql {
 		$pst->execute();
 		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
 		$resultado = NULL;
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
+	 * Obtiene aquellas solicitudes del usuario cuyo servicio se ha llevado a cabo pero que no están registradas en la tabla
+	 * servicio_realizado
+	 * @param $id_usuario: id del usuario del cual se quiren obtener esas solicitudes
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolRealizadasNoEnServicioRealizado($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud 
+			WHERE NOT EXISTS(SELECT id_solicitud FROM servicio_realizado 
+				WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud) and solicitud.id_usuario = ? and 
+				solicitud.fin <= NOW() and solicitud.estado = 1 ");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
+		$resultado = NULL;
+		
 		while($pst->fetch()){
 			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
 		}

@@ -23,10 +23,11 @@ class MysqlValoracion extends Mysql {
 	 * @param id de la valoracion que se quiere obtener
 	 * @return la valoración obtenida de la bdd.
 	 */ 
-	 public function conseguirValoraciones($id) {
+	 public function conseguirValoraciones($id_servicio) {
 		$this->conectar();
-		$args = array($id);
-		$pst = $this->conexion->prepare("SELECT * FROM valoracion_servicio WHERE id_servicio = ?");
+		$args = array($id_servicio);
+		$pst = $this->conexion->prepare("SELECT valoracion_servicio.* FROM valoracion_servicio NATURAL JOIN servicio_realizado 
+			JOIN solicitud WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud and solicitud.id_servicio = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_valoracion, $id_servicio, $id_usuario, $nota, $opinion, $fecha);
