@@ -1,6 +1,8 @@
 <?php
 	require_once '../controlador/op_base_datos_usuario.php';
 	require_once '../controlador/op_base_datos_servicio.php';
+	require_once '../controlador/op_base_datos_respuesta.php';
+	require_once '../modelo/respuesta.php';
 	require_once '../modelo/usuario.php';
 	require_once '../modelo/solicitud.php';
 	session_start();
@@ -11,9 +13,7 @@
 	$BDDUsuario = new MysqlUsuario();
 	$BDDServicio = new MysqlServicio();
 	
-?>
-	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
-<?php
+
 	if(!isset($_GET['tipo']) || !isset($_GET['estado'])  || ($_GET['estado'] < 0  && $_GET['estado'] > 3) ){
 		//Si ocurre esto no se muestra nada
 		
@@ -55,15 +55,26 @@
 								</button>
 							</form>
 <?php
-						}					
+						}			
+						$BDDRespuesta = new MysqlRespuesta();
+						$respuestas = $BDDRespuesta->conseguirRespuestasASolicitud($solicitud->getIdSolicitud());
+						if(isset($respuestas)){
 ?>
-						<div id="dialogo">
-							<a id="mov<?php echo $solicitud->getIdSolicitud() ?>" class="mostrar-ocultar" onclick="mostrarDialogo(0, <?php echo $solicitud->getIdSolicitud() ?>)">Mostrar diálogo</a>
-							<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
-							</ul>
+							<div id="dialogo">
+								<a id="mov<?php echo $solicitud->getIdSolicitud() ?>" class="mostrar-ocultar" onclick="mostrarDialogo(0, <?php echo $solicitud->getIdSolicitud() ?>)">Mostrar diálogo</a>
+								<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
+								</ul>
+							</div>
 						</div>
-					</div>
 <?php
+						}else{
+?>
+							<form method="post" onclick="enviarRespuesta()" action="../controlador/enviar_respuesta.php" accept-charset="UTF-8">
+								<textarea name="respuesta" cols="25" rows="4" placeholder="Escribe tu respuesta"></textarea><br />
+								<button type="submit">Enviar</button>
+							</form>
+<?php
+						}
 				}
 			}
 		if($i==0){
@@ -71,19 +82,7 @@
 			echo "<h4>Ninguna solicitud enviada ".Solicitud::parsearEstado($_GET['estado'])."<h4>";
 			echo "</div>";
 		}
-?>			
-			<script>
-				function mostrarDialogo(tipo, num) {
-					if($("#mov"+num).text()=='Mostrar diálogo'){
-						$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
-						$("#mov"+num).text("Ocultar diálogo");
-					}else {
-						$("#lista-respuestas"+num).html("");
-						$("#mov"+num).text("Mostrar diálogo");
-					}
-				}
-			</script>
-<?php
+
 	//Solicitudes enviadas
 	}else if($_GET['tipo'] == 1){
 		$solicitudes = $BDDUsuario->conseguirSolicitudesEnviadas($_SESSION['usuario']->getId());
@@ -111,14 +110,19 @@
 						}else{
 							echo "<p class='solicitud-rechazada'>Rechazada</p>";
 						}
+						
+						$BDDRespuesta = new MysqlRespuesta();
+						$respuestas = $BDDRespuesta->conseguirRespuestasASolicitud($solicitud->getIdSolicitud());
+						if(isset($respuestas)){
 ?>
-						<div id="dialogo">
-							<a id="mov<?php echo $solicitud->getIdSolicitud()?>" class="mostrar-ocultar" onclick="mostrarDialogo(1,<?php echo $solicitud->getIdSolicitud() ?>)">Mostrar diálogo</a>
-							<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
-							</ul>
+							<div id="dialogo">
+								<a id="mov<?php echo $solicitud->getIdSolicitud()?>" class="mostrar-ocultar" onclick="mostrarDialogo(1,<?php echo $solicitud->getIdSolicitud() ?>)">Mostrar diálogo</a>
+								<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
+								</ul>
+							</div>
 						</div>
-					</div>
 <?php
+						}
 				}
 			}
 		if($i==0){
@@ -127,20 +131,17 @@
 			echo "</div>";
 		}
 ?>
-		<script>
-			var mostrar = true;
-			function mostrarDialogo(tipo, num) {
-				if(mostrar){
-					$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
-					$("#mov"+num).text("Ocultar diálogo");
-					mostrar = false;
-				}else {
-					$("#lista-respuestas"+num).html("");
-					$("#mov"+num).text("Mostrar diálogo");
-					mostrar = true;
-				}
-			}
-		</script>
 <?php
 	}
 ?>
+<script>
+	function mostrarDialogo(tipo, num) {
+		if($("#mov"+num).text()=='Mostrar diálogo'){
+			$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud="+num+"&tipo="+tipo);	
+			$("#mov"+num).text("Ocultar diálogo");
+		}else {
+			$("#lista-respuestas"+num).html("");
+			$("#mov"+num).text("Mostrar diálogo");
+		}
+	}
+</script>

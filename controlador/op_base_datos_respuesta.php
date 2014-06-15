@@ -36,7 +36,7 @@ class MysqlRespuesta extends Mysql {
 	public function conseguirRespuestasASolicitud($idSolicitud){
 		$this->conectar();
 		$args = array($idSolicitud);
-		$pst = $this->conexion->prepare("SELECT * FROM `respuesta` WHERE id_solicitud = ?");
+		$pst = $this->conexion->prepare("SELECT * FROM respuesta WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_respuesta, $id_usuario, $id_solicitud, $comentario, $fecha);
