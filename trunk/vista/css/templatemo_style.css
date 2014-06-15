@@ -298,7 +298,7 @@ a.nombre-servicio {font-size: 20px; font-weight: bold;}
 .perfil h4{padding-left:50px;}
 .infouser {float:right;padding-right:25%;font-size:30px;}
 .perfil{margin-bottom:50px;min-height:600px;}
-.serv-nota{float:right;}
+.serv-nota{float:right; font-size: 18px; font-weight: bold;}
 .serv-desc{padding-left:50px;}
 .servicio-ej{margin-bottom:50px;}
 div#realizados h3 {padding-left: 0px;}
@@ -318,8 +318,8 @@ span#horas-servicio { display: block; text-align: right; margin-right: 15px;}
 span.negrita {font-weight: bold;}
 span.verde {color: green;}
 span.rojo {color: red;}
-span.explicacion {font-size: 16px; font-weight: bold;}
-#nombre-principal {font-weight: bold; text-align: center;}
+span.explicacion {font-size: 14px;}
+#nombre-principal {font-weight: bold;}
 
 
 li#elem-categoria {width: 100%; margin-top: 5%;}

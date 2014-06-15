@@ -76,10 +76,13 @@ class MysqlServicio extends Mysql {
 	  * @param $idServicio
 	  * @return la nota media para ese servicio
 	  */
-	 public function notamedia($idservicio){
+	 public function notamedia($id_servicio){
 		$this->conectar();
-		$pst=$this->conexion->prepare("SELECT ROUND(avg(nota),1) from valoracion_servicio,servicio where servicio.id_servicio=? and servicio.id_servicio=valoracion_servicio.id_servicio");
-		$pst->bind_param("s",$idservicio);
+		$args = array($id_servicio);
+		$this->escapaBd($args);
+		$pst=$this->conexion->prepare("SELECT ROUND(avg(nota),1) FROM valoracion_servicio NATURAL JOIN servicio_realizado 
+			JOIN solicitud WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud and solicitud.id_servicio = ?");
+		$pst->bind_param("i",$args[0]);
 		$pst->execute();
 		$pst->bind_result($nota);
 		$pst->fetch();
@@ -184,7 +187,7 @@ class MysqlServicio extends Mysql {
 		$args = array($id_usuario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
-			and solicitud.id_servicio = servicio.id_servicio and fin > NOW()
+			and solicitud.id_servicio = servicio.id_servicio and estado = 1 and fin > NOW()
 			order by inicio");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -216,7 +219,7 @@ class MysqlServicio extends Mysql {
 		$args = array($id_usuario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
-			and solicitud.id_servicio = servicio.id_servicio and fin <= NOW()
+			and solicitud.id_servicio = servicio.id_servicio and estado = 1 and fin <= NOW()
 			order by fin");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();

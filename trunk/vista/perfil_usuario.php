@@ -1,6 +1,7 @@
 <?php 
 	require_once '../controlador/op_base_datos_usuario.php';
 	require_once '../controlador/op_base_datos_servicio.php';
+	require_once '../controlador/op_base_datos_servicio_realizado.php';
 	require_once '../modelo/usuario.php';
 	require_once '../modelo/servicio.php';
 	require_once '../modelo/solicitud.php';
@@ -30,6 +31,13 @@
 	$solRecibidasNoVistas = $BDD->conseguirSolicitudesRecibidasNoVistas($usuario->getId());
 	$solAceptadasNoVistas = $BDD->conseguirSolicitudesAceptadasNovistas($usuario->getId());
 	$solRechazadasNoVistas = $BDD->conseguirSolicitudesRechazadasNovistas($usuario->getId());
+	$solicitudesRealizadas = $BDD->conseguirSolRealizadasNoEnServicioRealizado($usuario->getId());
+	$BDDs_r = new MysqlServicioRealizado();
+	if(isset($solicitudesRealizadas)){
+		foreach ($solicitudesRealizadas as $solicitud) {
+			$BDDs_r->insertarServicioRealizado($solicitud->getIdSolicitud());
+		}
+	}
 
 	$num_sol_recibidas = count($solRecibidasNoVistas);
 	$num_sol_aceptadas = count($solAceptadasNoVistas);
@@ -60,8 +68,7 @@
 								</div>
 							</div>
 						</div>
-						<h1 id = 'nombre-principal'><?php echo $usuario->getNombre()." ".$usuario->getApellidos(); ?></h1>
-						<h2>Mis servicios comprados</h2>
+						<h1 id='nombre-principal'><?php echo $usuario->getNombre()." ".$usuario->getApellidos(); ?></h1>
 					</div>
 					<div class="cuerpo">
 						<?php
@@ -84,8 +91,9 @@
 								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2>Varias solicitudes enviadas han sido rechazadas</a></h3>";
 							}
 						?>
+						<h2>Mis servicios comprados</h2>
 						<div class="lista-serv" id="proximos">
-							<h3>Próximos</h3>
+							<h3><span class="verde">Próximos</span></h3>
 							<?php
 								if(isset($servicios_proximos)){
 									foreach($servicios_proximos as $row){
@@ -100,7 +108,7 @@
 											<?php
 												$nota = $BDD->notamedia($servicio->getIdServicio());
 												if (!empty($nota))
-													echo"<p><span class='explicacion'>Nota: ".$nota."</span></p>";
+													echo"<p>Nota: ".$nota."</p>";
 												else
 													echo"<p>No valorado</p>";
 											?>
