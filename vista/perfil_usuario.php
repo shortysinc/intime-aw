@@ -190,24 +190,25 @@
 			?>
 		</div>
 		<!-- /#main-content-->
-		<?php
-		if(isset($_SESSION["mensaje"])){
-		?>
-			<script>
-				alert("<?php echo $_SESSION['mensaje'] ?>");
-			</script>
-		<?php
-			unset($_SESSION["mensaje"]);
-		}
 		
-		if(isset($_SESSION["error"])){
-		?>
-			<script>
-				alert("<?php echo $_SESSION['error'] ?> ");
-			</script>
-		<?php	
-		}
-				unset($_SESSION["error"]);
-		?>
 	</body>
 </html>
+<?php
+	if(isset($_SESSION["mensaje"])){
+	?>
+		<script>
+			alert("<?php echo $_SESSION['mensaje'] ?>");
+		</script>
+	<?php
+		unset($_SESSION["mensaje"]);
+	}
+	
+	if(isset($_SESSION["error"])){
+	?>
+		<script>
+			alert("<?php echo $_SESSION['error'] ?> ");
+		</script>
+	<?php	
+	}
+			unset($_SESSION["error"]);
+	?>

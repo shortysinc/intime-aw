@@ -383,10 +383,10 @@ class MysqlUsuario extends Mysql {
 	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario){
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario, $id_solicitud);
-		//var_dump($args);
+		var_dump($args);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("UPDATE solicitud SET id_usuario=?, id_servicio=?, estado=?,
-			fecha=?, inicio=?, fin=? comentario=? WHERE id_solicitud=?");
+			fecha=?, inicio=?, fin=?, comentario=? WHERE id_solicitud=?");
 		$pst->bind_param("iiissssi", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7]);
 		$pst->execute();
 		$pst->close();
