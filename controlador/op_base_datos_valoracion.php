@@ -3,11 +3,11 @@ require_once '../controlador/op_base_datos.php';
 
 class MysqlValoracion extends Mysql {
 	
-	public function insertarvaloracion($comentario,$valoracion,$id_servicio,$id_usuario){
+	public function insertarvaloracion($id_ser_realizado,$id_usuario,$nota,$opinion){
 		$this->conectar();
-		$args = array($id_servicio,$id_usuario,$valoracion,$comentario);
+		$args = array($id_ser_realizado,$id_usuario,$nota,$opinion);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("insert into valoracion_servicio(id_servicio,id_usuario,nota,opinion,fecha) values (?,?,?,?,now())");
+		$pst = $this->conexion->prepare("insert into valoracion_servicio(id_ser_realizado,id_usuario,nota,opinion,fecha) values (?,?,?,?,now())");
 		$pst->bind_param("iiis", $args[0], $args[1], $args[2], $args[3]);
 		$pst->execute();
 		$id = mysqli_insert_id($this->conexion);
@@ -39,5 +39,6 @@ class MysqlValoracion extends Mysql {
 		$this->cerrar();
 		return $resultado;
 	}
+
 	
 }

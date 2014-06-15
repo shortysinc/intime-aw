@@ -1,5 +1,5 @@
 <?php
-require_once '../controlador/formato_fecha.php';
+require_once 'formato_fecha.php';
 
 /**
  * Clase que sirve de entidad para una valoracion

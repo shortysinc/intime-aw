@@ -25,6 +25,7 @@
 		<link rel="stylesheet" href="css/templatemo_misc.css">
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
+	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 <?php
 	$usuario = $_SESSION['usuario'];
 	$BDD = new MysqlUsuario();
@@ -146,13 +147,35 @@
 													echo"<p>No valorado</p>";
 											?>
 											</div>
-											<div class="serv-desc">
-											<?php
-												echo"<p>".$servicio->getDescripcion()."</p>";
-												echo "<p>Finalizado: ".$solicitud->getFinFormateada()."</p>";
-											?>
+												<div class="serv-desc">
+												<?php
+													echo"<p>".$servicio->getDescripcion()."</p>";
+													echo "<p>Finalizado: ".$solicitud->getFinFormateada()."</p>";
+													
+													$BDDServicioRealizado = new  MysqlServicioRealizado();
+													if(!$BDDServicioRealizado->estaValorado($solicitud->getIdSolicitud())){
+												?>
+													<p>
+														<a id="mov<?php echo $solicitud->getIdSolicitud()?>" class="mostrar-ocultar" onclick="mostrarFormularioValoracion(<?php echo $solicitud->getIdSolicitud()?>)" >Valóralo</a>
+													</p>
+												<div id = "val<?php echo $solicitud->getIdSolicitud()?>" class="comment-form">
+												</div>
+												<?php
+													}
+												?>
 											</div>
 										</div>
+										<script>
+											function mostrarFormularioValoracion(num){
+												if($("#mov"+num).text()=='Valóralo'){
+													$("#val"+num).load("mostrar_formulario_valoracion.php?id_solicitud="+num);
+													$("#mov"+num).text("Ocultar");
+												}else{
+													$("#val"+num).html("");
+													$("#mov"+num).text("Valóralo");
+												}
+											}
+										</script>
 							<?php
 									}
 								}
@@ -167,5 +190,24 @@
 			?>
 		</div>
 		<!-- /#main-content-->
+		<?php
+		if(isset($_SESSION["mensaje"])){
+		?>
+			<script>
+				alert("<?php echo $_SESSION['mensaje'] ?>");
+			</script>
+		<?php
+			unset($_SESSION["mensaje"]);
+		}
+		
+		if(isset($_SESSION["error"])){
+		?>
+			<script>
+				alert("<?php echo $_SESSION['error'] ?> ");
+			</script>
+		<?php	
+		}
+				unset($_SESSION["error"]);
+		?>
 	</body>
 </html>

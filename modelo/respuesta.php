@@ -1,5 +1,5 @@
 <?php
-require_once '../controlador/formato_fecha.php';
+require_once 'formato_fecha.php';
 
 class Respuesta {
 	public $id_respuesta, 

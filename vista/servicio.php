@@ -54,10 +54,10 @@
 				<div class="cuerpo">
 				<?php if(isset($servicio)){ ?>
 				<div class="encabezado">
-					<h2><?php 
+					<h1><?php 
 							echo $nombreServicio;
 						
-						?></h2>
+						?></h1>
 					 <img src="images/slide3.jpg" > 
 					<!--Foto servicio -->
 				</div>
@@ -79,7 +79,7 @@
 									if ($resulmedia <= 0) {
 										echo 'No se ha puntuado.';
 									} else {
-										echo 'Nota Media: ' . $resulmedia;
+										echo 'Nota Media: ' .'<span class="negrita">'.$resulmedia.'</span>';
 									}
 								?>
 								
@@ -142,15 +142,14 @@
 					
 					
 					<?php
-					
-					for ($i=0; $i < count($valoraciones) ; $i++) 
-					{
+					if(isset($valoraciones)){
+					foreach ($valoraciones as $valoracion) {
 						
-					 $consultanombre=$BDDUsuario->conseguirUsuarioById($valoraciones[$i]->getIdUsuario())->getNombre();
-					 $consultafoto=$BDDUsuario->conseguirUsuarioById($valoraciones[$i]->getIdUsuario())->getFoto();
-					 $consultavalnota= $valoraciones[$i]->getNota();
-					 $consultavalopinion=$valoraciones[$i]->getOpinion();
-					 $consultavalFecha=$valoraciones[$i]->getFechaFormateada();
+					 $consultanombre=$BDDUsuario->conseguirUsuarioById($valoracion->getIdUsuario())->getNombre();
+					 $consultafoto=$BDDUsuario->conseguirUsuarioById($valoracion->getIdUsuario())->getFoto();
+					 $consultavalnota= $valoracion->getNota();
+					 $consultavalopinion= $valoracion->getOpinion();
+					 $consultavalFecha=$valoracion->getFechaFormateada();
 					 ?>
 							<a href="perfil_usuario.php"><h4><?php echo $consultanombre ?></h4></a>
 							<div class="coment-foto">
@@ -168,67 +167,18 @@
 								<p>
 									<?php
 									 //Aqui va lo de los comentarios sobre el servicio.
-									 
-									 if(isset($valoraciones)){
-											foreach ($valoraciones as $valoracion) {
-												echo "Opinión: ".$consultavalopinion."<br>"."<br>";
-											}
-										}
-									
-											
+										echo "Opinión: ".$consultavalopinion."<br>"."<br>";
 									?>
 								</p>
 							</div>
 					<?php
+					}
 					}
 					?>					
 					<!-- ************************************************* -->
 					<!--               Aquí tengo que terminar             -->
 					<!-- ************************************************* -->
 					</div>
-					<?php
-						if ( isset($_SESSION['login_admin']) && $_SESSION['login_admin'] ) {//Si es admin
-							//No hacemos nada
-							
-						} else if( (!isset($_SESSION['login_usuario']) || !$_SESSION['login_usuario'])  //Si no es usuario registrado
-							|| ($_SESSION['usuario']->getId() == $usuario->getId()))  { // o el id del usuario logueado es distinto del id del usuario que ofrece el servicio 
-					 		//no se hace nada
-							
-						}else { //Mostramos el formulario de valoración
-							//El id_servicio se guarda en la sesion para que un usuario no pueda enviarse una solicitud a sí mismo
-							$_SESSION['id_servicio'] = $id_servicio;
-					 		
-					?>
-					<div class="comment-form">
-						<form action="../controlador/insertarvaloracion.php" method="post" accept-charset="utf-8">
-							<label>Enviar comentario y/o valoracion</label>
-							<p>
-								<textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
-							</p>
-							<p>
-								<label>Valorar servicio:</label>
-								<select name="valoracion">
-									<option value="6">0</option>
-									<option value="1">1</option>
-									<option value="2">2</option>
-									<option value="3">3</option>
-									<option value="4">4</option>
-									<option value="5" selected>5</option>
-									<option value="6">6</option>
-									<option value="7">7</option>
-									<option value="8">8</option>
-									<option value="9">9</option>
-									<option value="10">10</option>
-								</select>
-							</p>
-							<button type="submit" name="submit" value="Enviar">
-								Enviar
-							</button>
-						</form>
-					</div>
-					<?php
-					}
-					?>
 				</div>
 				<?php 
 				}else{

@@ -350,11 +350,40 @@ class MysqlUsuario extends Mysql {
 	}
 	
 	/**
+	 * Obtiene aquellas solicitudes del usuario cuyo servicio se ha llevado a cabo y están registradas en la tabla
+	 * servicio_realizado
+	 * @param $id_usuario: id del usuario del cual se quiren obtener esas solicitudes
+	 * @return las solicitudes obtenidas
+	 */
+	public function conseguirSolRealizadas($id_usuario){
+		$this->conectar();
+		$args = array($id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud 
+			WHERE EXISTS(SELECT id_solicitud FROM servicio_realizado 
+				WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud) and solicitud.id_usuario = ? and 
+				solicitud.fin <= NOW() and solicitud.estado = 1");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
+		$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Solicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		return $resultado;
+	}
+	
+	/**
 	 * Actualiza la solicitud en la base de datos
 	 */
 	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario){
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario, $id_solicitud);
+		//var_dump($args);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("UPDATE solicitud SET id_usuario=?, id_servicio=?, estado=?,
 			fecha=?, inicio=?, fin=? comentario=? WHERE id_solicitud=?");

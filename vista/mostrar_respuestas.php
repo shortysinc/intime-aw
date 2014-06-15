@@ -10,6 +10,9 @@
 	
 	$usuario = $_SESSION['usuario'];
 	
+?>
+	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
+<?php
 	if( isset($_GET['id_solicitud'], $_GET['tipo']) ){
 		$BDDUsuario = new MysqlUsuario();
 		$solicitudes = NULL;

@@ -99,11 +99,8 @@ class MysqlServicio extends Mysql {
 	 */
 	public function conseguirTodasLasCategorias() {
 		$this->conectar();
-		//var_dump("conexion", $this->conexion);
 		$pst = $this->conexion->prepare("select * from categoria order by categoria");
-		//var_dump("preparado", $pst);
 		$pst->execute();
-		//var_dump("ejecutado", $pst);
 		$pst->bind_result($id, $categoria);
 		$resultado = NULL;
 		
@@ -188,7 +185,7 @@ class MysqlServicio extends Mysql {
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and estado = 1 and fin > NOW()
-			order by inicio");
+			order by inicio DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto,
@@ -220,7 +217,7 @@ class MysqlServicio extends Mysql {
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and estado = 1 and fin <= NOW()
-			order by fin");
+			order by fin DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_servicio_, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto,
