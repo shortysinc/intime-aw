@@ -7,7 +7,7 @@
 	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
 	<body>
 		<div id="dialogo">
-			<a id="mostrar-ocultar" href="#" onclick="mostrarDialogo()">Mostrar diálogo</a>
+			<a id="mostrar-ocultar-dialogo" href="#" onclick="mostrarDialogo()">Mostrar diálogo</a>
 			<ul id="lista-comentarios">
 				
 			</ul>
@@ -17,11 +17,11 @@
 			function mostrarDialogo() {
 				if(mostrar){
 					$("#lista-comentarios").load("comentarios.php");
-					$("#mostrar-ocultar").text("Ocultar diálogo");
+					$("#mostrar-ocultar-dialogo").text("Ocultar diálogo");
 					mostrar = false;
 				}else {
 					$("#lista-comentarios").html("<ul id='lista-comentarios'></ul>");
-					$("#mostrar-ocultar").text("Mostrar diálogo");
+					$("#mostrar-ocultar-dialogo").text("Mostrar diálogo");
 					mostrar = true;
 				}
 			}

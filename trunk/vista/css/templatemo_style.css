@@ -234,7 +234,7 @@ textarea .mensaje { position: relative;}
 
 
 .encabezado{height: 400px;}
-.encabezado h2{padding-left:40%;}
+.encabezado h1{text-align: center; font-size: 45px}
 .encabezado img{height:400px;width: 100%;}
 
 .autor  {padding-left: 45px;} 
@@ -243,7 +243,7 @@ textarea .mensaje { position: relative;}
 .nombretrabajo{margin-left:-30px}
 .descripcion p{padding-left:40px;}
 .descripcion h2{padding-top:5%; padding-left: 5px;}
-.valoraciones{margin-top:-90px;padding-left:60%;font-size:40px;}
+.valoraciones{margin-top:-90px;padding-left:60%;font-size:35px;}
 .solicitud{padding-left:35%;}
 a.solicitud-rechazada{color:red;}
 span.verde{color: green;}
@@ -265,7 +265,7 @@ a.nombre-servicio {font-size: 20px; font-weight: bold;}
 .coment{padding-left:15px;width:80%;margin:auto;min-height: 100px;}
 .coment-nota{float:right;font-size:20px;}
 .comment-ej h4{padding-left:10px;}
-.comment-form{padding-left:35%;}
+.comment-form{margin-left:10	%;}
 
 .lista{min-height:800px;margin-top:-100px;}
 .lista h3,h4{padding-left:10px;}
@@ -320,6 +320,7 @@ span.verde {color: green;}
 span.rojo {color: red;}
 span.explicacion {font-size: 14px;}
 #nombre-principal {font-weight: bold;}
+a.mostrar-ocultar:hover {cursor:pointer}
 
 
 li#elem-categoria {width: 100%; margin-top: 5%;}

@@ -22,7 +22,6 @@
 		$len = count($solicitudes);
 		$i=0;
 		$encontrado = FALSE;
-		var_dump($solicitudes);
 		while($i < $len & !$encontrado){
 			if($solicitudes[$i]->getIdServicio() == $id_servicio){
 				$encontrado = TRUE;

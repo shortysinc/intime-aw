@@ -11,6 +11,9 @@
 	$BDDUsuario = new MysqlUsuario();
 	$BDDServicio = new MysqlServicio();
 	
+?>
+	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
+<?php
 	if(!isset($_GET['tipo']) || !isset($_GET['estado'])  || ($_GET['estado'] < 0  && $_GET['estado'] > 3) ){
 		//Si ocurre esto no se muestra nada
 		
@@ -55,8 +58,8 @@
 						}					
 ?>
 						<div id="dialogo">
-							<a id="mostrar-ocultar<?php echo $i ?>" href="#" onclick="mostrarDialogo(0, <?php echo $i ?>)">Mostrar diálogo</a>
-							<ul id="lista-respuestas<?php echo $i ?>" class="lista-respuestas">
+							<a id="mov<?php echo $solicitud->getIdSolicitud() ?>" class="mostrar-ocultar" onclick="mostrarDialogo(0, <?php echo $solicitud->getIdSolicitud() ?>)">Mostrar diálogo</a>
+							<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
 							</ul>
 						</div>
 					</div>
@@ -70,16 +73,13 @@
 		}
 ?>			
 			<script>
-				var mostrar = true;
 				function mostrarDialogo(tipo, num) {
-					if(mostrar){
+					if($("#mov"+num).text()=='Mostrar diálogo'){
 						$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
-						$("#mostrar-ocultar"+num).text("Ocultar diálogo");
-						mostrar = false;
+						$("#mov"+num).text("Ocultar diálogo");
 					}else {
 						$("#lista-respuestas"+num).html("");
-						$("#mostrar-ocultar"+num).text("Mostrar diálogo");
-						mostrar = true;
+						$("#mov"+num).text("Mostrar diálogo");
 					}
 				}
 			</script>
@@ -113,8 +113,8 @@
 						}
 ?>
 						<div id="dialogo">
-							<a id="mostrar-ocultar<?php echo $i ?>" href="#" onclick="mostrarDialogo(1,<?php echo $i ?>)">Mostrar diálogo</a>
-							<ul id="lista-respuestas<?php echo $i ?>" class="lista-respuestas">
+							<a id="mov<?php echo $solicitud->getIdSolicitud()?>" class="mostrar-ocultar" onclick="mostrarDialogo(1,<?php echo $solicitud->getIdSolicitud() ?>)">Mostrar diálogo</a>
+							<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
 							</ul>
 						</div>
 					</div>
@@ -132,11 +132,11 @@
 			function mostrarDialogo(tipo, num) {
 				if(mostrar){
 					$("#lista-respuestas"+num).load("mostrar_respuestas.php?id_solicitud=<?php echo $solicitud->getIdSolicitud();?>+&tipo="+tipo);	
-					$("#mostrar-ocultar"+num).text("Ocultar diálogo");
+					$("#mov"+num).text("Ocultar diálogo");
 					mostrar = false;
 				}else {
 					$("#lista-respuestas"+num).html("");
-					$("#mostrar-ocultar"+num).text("Mostrar diálogo");
+					$("#mov"+num).text("Mostrar diálogo");
 					mostrar = true;
 				}
 			}

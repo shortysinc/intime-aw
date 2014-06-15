@@ -1,5 +1,5 @@
 <?php
-require_once '../controlador/formato_fecha.php';
+require_once 'formato_fecha.php';
 
 /**
  * clase que sirve de etidad para una solicitud
