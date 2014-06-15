@@ -18,8 +18,13 @@
 			$solicitudes = $BDD->conseguirSolicitudesRecibidasPendientes($usuario_log->getId());
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
 				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);
-				$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
+				$now = new DateTime();
+				if($solicitud->getInicio() > $now){
+					$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
 					 1, $solicitud->getFecha(), $solicitud->getInicio(), $solicitud->getFin(), $solicitud->getComentario());
+				}else{
+					$_SESSION['mensaje'] = "Ya no puedes aceptar la solicitud, la fecha ha pasado";
+				}
 			}
 		}else if($_POST['rechazar']){
 			$id_solicitud = $_POST['rechazar'];
