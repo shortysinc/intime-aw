@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-06-2014 a las 15:17:57
+-- Tiempo de generación: 15-06-2014 a las 17:01:37
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -159,22 +159,17 @@ CREATE TABLE IF NOT EXISTS `servicio_realizado` (
   `id_ser_realizado` int(11) NOT NULL AUTO_INCREMENT,
   `id_solicitud` int(11) NOT NULL,
   PRIMARY KEY (`id_ser_realizado`),
+  UNIQUE KEY `id_solicitud_2` (`id_solicitud`),
   KEY `id_solicitud` (`id_solicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `servicio_realizado`
 --
 
 INSERT INTO `servicio_realizado` (`id_ser_realizado`, `id_solicitud`) VALUES
-(1, 3),
-(5, 3),
 (6, 3),
-(7, 3),
-(8, 3),
-(9, 3),
-(10, 3),
-(11, 3);
+(5, 6);
 
 -- --------------------------------------------------------
 
@@ -204,7 +199,7 @@ INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, 
 (2, 40, 2, 0, '2014-05-17 10:00:00', '2014-05-19 15:00:00', '2014-05-19 16:00:00', 'Estoy interesado en las clases de pilates'),
 (3, 27, 4, 1, '2014-05-23 14:07:00', '2014-05-30 19:00:00', '2014-05-30 20:00:00', 'Me interesaría recibir una clase de inglés'),
 (4, 42, 2, 2, '2014-05-13 17:23:00', '2014-05-15 18:00:00', '2014-05-15 19:00:00', 'Me intersan tus clases de pilates. ¿Cuándo quedaríamos?'),
-(6, 27, 4, 1, '2014-06-11 21:30:00', '2014-06-15 13:05:00', '2014-06-15 14:05:00', 'Quiero una clase de inglés');
+(6, 27, 4, 1, '2014-06-11 21:30:00', '2014-06-15 13:56:00', '2014-06-15 16:56:00', 'Quiero una clase de inglés');
 
 -- --------------------------------------------------------
 
@@ -253,14 +248,7 @@ CREATE TABLE IF NOT EXISTS `valoracion_servicio` (
   PRIMARY KEY (`id_valoracion`),
   KEY `id_ser_realizado` (`id_ser_realizado`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
-
---
--- Volcado de datos para la tabla `valoracion_servicio`
---
-
-INSERT INTO `valoracion_servicio` (`id_valoracion`, `id_ser_realizado`, `id_usuario`, `nota`, `opinion`, `fecha`) VALUES
-(4, 1, 27, 9, 'Gran servicio', '2014-06-14 00:38:23');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
 -- Restricciones para tablas volcadas
@@ -310,8 +298,8 @@ ALTER TABLE `solicitud`
 -- Filtros para la tabla `valoracion_servicio`
 --
 ALTER TABLE `valoracion_servicio`
-  ADD CONSTRAINT `valoracion_servicio_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `valoracion_servicio_ibfk_1` FOREIGN KEY (`id_ser_realizado`) REFERENCES `servicio_realizado` (`id_ser_realizado`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `valoracion_servicio_ibfk_1` FOREIGN KEY (`id_ser_realizado`) REFERENCES `servicio_realizado` (`id_ser_realizado`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `valoracion_servicio_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
