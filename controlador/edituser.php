@@ -45,7 +45,7 @@ if (isset($_GET['id_usuario'])) {
 			$salt = null;
 		}
 		$BDDuser -> editarUsuario($id_usuario, $email, $foto, $nombre, $apellidos, $direccion, $pass, $salt);
-		unset($_SESSION['id_usuario']);
+		
 		if ((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) {
 			header('location:../vista/usuariosadmin.php');
 		} else {

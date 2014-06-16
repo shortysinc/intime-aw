@@ -1,12 +1,12 @@
 <?php
-	require_once '../modelo/servicio.php';
-	require_once '../modelo/usuario.php';
-	require_once 'op_base_datos_servicio.php';
-	session_start();
+require_once '../modelo/servicio.php';
+require_once '../modelo/usuario.php';
+require_once 'op_base_datos_servicio.php';
+session_start();
 	
-	require_once '../controlador/comprobar_login_usuario_admin.php';
+require_once '../controlador/comprobar_login_usuario_admin.php';
 	
-	if (isset($_GET['id_servicio'])) {
+if (isset($_GET['id_servicio'])) {
 	$BDDservice = new MysqlServicio();
 	$id_servicio = $_GET['id_servicio'];
 	$servicio = $BDDservice -> conseguirServicio($id_servicio);
@@ -32,12 +32,10 @@
 			}
 			$BDDservice->editarServicio($id_servicio,$nombreserv,$descrpserv,$foto);
 			
-			unset($_SESSION['id_servicio']);
 			if ((isset($_SESSION['login_admin'])) && ($_SESSION['login_admin'] == true)) {
-			header('location:../vista/serviciosadmin.php');
-			} 
-			else {
-			header("Location: ../vista/servicio.php?id_servicio=".$id_servicio);
+				header('location:../vista/serviciosadmin.php');
+			} else {
+				header("Location: ../vista/servicio.php?id_servicio=".$id_servicio);
 			}
 	}
 }	

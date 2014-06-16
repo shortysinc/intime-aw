@@ -51,7 +51,7 @@
 					<!-- /#row -->
 					<div class="cuerpo">
 						<div class="contact-form">
-							<form action="../controlador/editservice.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+							<form action="../controlador/editservice.php?id_servicio=<?php echo $id_servicio ?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 							
 								<div class="col-md-4">
 									<label for="nombreserv" >Nuevo nombre del servicio:</label>
