@@ -50,7 +50,7 @@
 									<!-- /.col-md-4 -->
 									<div class="col-md-8">
 										<label for="email" >Nuevo correo electrónico:</label>
-										<input name="email" type="text" id="email" maxlength="40"/>
+										<input name="email" placeholder="<?php echo $usuario->getCorreo();?>" type="text" id="email" maxlength="40"/>
 									</div>
 									<div class="col-md-8">
 										<label for="foto" >Nueva imagen de perfil:</label>
@@ -58,19 +58,19 @@
 									</div>
 									<div class="col-md-8">
 										<label for="nombre" >Nuevo nombre:</label>
-										<input name="nombre" type="text" id="nombre" maxlength="40"/>
+										<input name="nombre" placeholder="<?php echo $usuario->getNombre();?>" type="text" id="nombre" maxlength="40"/>
 									</div>
 									<div class="col-md-8">
 										<label for="apellidos" >Nuevo apellidos:</label>
-										<input name="apellidos" type="text" id="apellidos" maxlength="125"/>
+										<input name="apellidos" placeholder="<?php echo $usuario->getApellidos();?>" type="text" id="apellidos" maxlength="125"/>
 									</div>
 									<div class="col-md-8">
 										<label for="direccion" >Nueva direccion:</label>
-										<input name="direccion" type="text" id="direccion" maxlength="40"/>
+										<input name="direccion" placeholder="<?php echo $usuario->getDireccion();?>" type="text" id="direccion" maxlength="40"/>
 									</div>
 									<div class="col-md-8">
 										<label for="pass" >Nuevo contraseña:</label>
-										<input name="pass" type="text" id="pass" maxlength="40"/>
+										<input name="pass" placeholder="Introduzca su nueva contraseña" type="text" id="pass" maxlength="40"/>
 									</div>
 									<!-- /.col-md-12 -->
 									<div class="col-md-12">
