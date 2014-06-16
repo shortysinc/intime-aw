@@ -45,7 +45,9 @@
 		public function getApellidos(){
 			return $this->apellidos;
 		}
-		
+		public function getDireccion(){
+			return $this->direccion;
+		}
 		public function getHoras(){
 			return $this->horas;
 		}

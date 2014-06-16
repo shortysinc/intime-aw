@@ -55,11 +55,11 @@
 							
 								<div class="col-md-4">
 									<label for="nombreserv" >Nuevo nombre del servicio:</label>
-									<input name="nombreserv" type="text" id="nombreserv" maxlength="40" />
+									<input name="nombreserv" placeholder="<?php echo $servicio->getNombre();?>" type="text" id="nombreserv" maxlength="40" />
 								</div>
 								<div class="col-md-4">
 									<label for="descrpserv">Nueva descripcion:</label>
-									<textarea name="descrpserv" rows="4" cols="50" placeholder="Describe tu servicio"></textarea>
+									<textarea name="descrpserv" placeholder="<?php echo $servicio->getDescripcion();?>" rows="4" cols="50" placeholder="Describe tu servicio"></textarea>
 								</div>
 								<!-- /.col-md-4 -->
 								<div class="col-md-8">
