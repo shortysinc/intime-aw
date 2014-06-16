@@ -54,7 +54,9 @@ class MysqlServicio extends Mysql {
 		$this->conectar();
 		$ret = array();
 		$i=0;
-		$pst =  $this->conexion->prepare("select distinct servicio.id_servicio,servicio.id_usuario,id_categoria,nombre_servicio,descripcion,horas,foto_servicio from servicio,valoracion_servicio where valoracion_servicio.id_servicio=servicio.id_servicio and servicio.id_usuario<>? and valoracion_servicio.id_usuario=? and nota>=? ");
+			$pst =  $this->conexion->prepare("select distinct servicio.id_servicio,servicio.id_usuario,id_categoria,nombre_servicio,descripcion,horas,foto_servicio
+			from servicio,solicitud,servicio_realizado,valoracion_servicio where servicio.id_servicio=solicitud.id_servicio and solicitud.id_solicitud=servicio_realizado.id_solicitud 
+			and servicio_realizado.id_ser_realizado=valoracion_servicio.id_ser_realizado and servicio.id_usuario<>? and valoracion_servicio.id_usuario=? and nota>=?");
 		$pst->bind_param("sss",$id,$id,$corte);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
