@@ -58,4 +58,8 @@ class Servicio {
 	public function getDescripcion() {
 		return $this->descripcion;
 	}
+	
+	public function getHoras() {
+		return $this->horas;
+	}
 }

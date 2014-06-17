@@ -233,11 +233,11 @@ textarea .mensaje { position: relative;}
 @media (max-width: 581px) { .slider-caption { display: none; } }
 
 
-.encabezado{height: 400px;}
+.encabezado{height: 375px;}
 .encabezado h1{text-align: center; font-size: 45px}
 .encabezado img{height:400px;width: 100%;}
 
-.autor  {padding-left: 45px;} 
+.autor  {padding-left: 45px;padding-top: 35px;} 
 .autor img{border: 1px solid black; border-radius: 400px;height: 200px;width: 200px;}
 
 .nombretrabajo{margin-left:-30px}
@@ -368,6 +368,44 @@ span.lista-categorias a:hover { text-decoration: underline;}
 	color: white;
 }
 .circle-text div{
+	position: absolute;
+	width: 100%;
+	padding-top: 35%;
+	line-height: 1em;
+	margin-top: -0.5em;
+	text-align: center;
+	color: white;
+	font-size: 45px;
+}
+.horas-servicio {
+	position: absolute;
+	width: 10%;
+	margin-left: 65%;
+
+}
+.horas-servicio:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    background: #90EE90; 
+    -moz-border-radius: 50%; 
+    -webkit-border-radius: 50%; 
+    border-radius: 50%;
+    border: 1px solid black;
+}
+.horas-servicio p {
+	position: absolute;
+	float: left;
+	width: 100%;
+	padding-top: 73%;
+	line-height: 1em;
+	margin-top: -0.5em;
+	text-align: center;
+	color: white;
+}
+.horas-servicio div{
 	position: absolute;
 	width: 100%;
 	padding-top: 35%;
