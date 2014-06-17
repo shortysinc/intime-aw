@@ -38,6 +38,7 @@
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
 				$nombreServicio= $servicio->getNombre();
 				$fotoservice= $usuario->getFoto();
+				$horasServicio = $servicio->getHoras();
 			}
 			
 		}
@@ -62,16 +63,19 @@
 					<!--Foto servicio -->
 				</div>
 				<div class="servicio">
+					<div class="horas-servicio">
+						<div class="contador-servicio">
+							<?php echo $horasServicio ?>
+						</div>
+						<p>Horas</p>
+					</div>
 					<div class="autor">
 						<img src="images/usuario/<?php if (isset($fotoservice)) {echo $usuario->getFoto();} else {echo "user_defect.png" ;}?>" >
-						<div class="nombretrabajo">
+							<div class="nombretrabajo">
 							<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>">
-								<h3>
-									<?php
-										echo $usuario->getNombre();
-									?>				
-								</h3></a>
+								<h3><?php echo $usuario->getNombre();?></h3></a>
 						</div>
+					
 						<div class="valoraciones">
 							
 							<p>
