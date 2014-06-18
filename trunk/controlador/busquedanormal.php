@@ -14,7 +14,7 @@
 			$BDDserv = new MysqlServicio();
 			$servicios=$BDDserv->busquedaavanzada($corte,$login->getId());
 			if ($_POST["consulta"]=="red"){
-				if (null!=$servicios[0]->getIdUsuario()){
+				if (count($servicios)!=0){
 					$iteracionarray=array();
 					$sumaarray=array();
 					$sumaarray=$BDDserv->busquedaavanzada($corte,$servicios[0]->getIdUsuario());
