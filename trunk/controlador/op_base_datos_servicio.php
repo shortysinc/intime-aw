@@ -239,6 +239,8 @@ class MysqlServicio extends Mysql {
 		return $resultado;
 	}
 	
+	
+	
 	public function mostrar_todos_servicios(){
 		$this->conectar();
 		$pst = $this->conexion->prepare("select * from servicio");

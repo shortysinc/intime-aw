@@ -65,7 +65,6 @@
 								<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
 								</ul>
 							</div>
-						</div>
 <?php
 						}else{
 ?>
@@ -75,13 +74,16 @@
 							</form>
 <?php
 						}
+?>
+					</div>
+<?php
 				}
 			}
-		if($i==0){
-			echo "<div class='solicitud'>";
-			echo "<h4>Ninguna solicitud enviada ".Solicitud::parsearEstado($_GET['estado'])."<h4>";
-			echo "</div>";
-		}
+			if($i==0){
+				echo "<div class='solicitud'>";
+				echo "<h4>Ninguna solicitud enviada ".Solicitud::parsearEstado($_GET['estado'])."<h4>";
+				echo "</div>";
+			}
 
 	//Solicitudes enviadas
 	}else if($_GET['tipo'] == 1){
@@ -120,7 +122,7 @@
 								<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
 								</ul>
 							</div>
-						</div>
+					</div>
 <?php
 						}
 				}

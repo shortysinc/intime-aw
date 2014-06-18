@@ -8,6 +8,7 @@
 	session_start();
 	
 	require_once '../controlador/comprobar_login.php';
+	
 ?>
 
 <!DOCTYPE html>
@@ -26,30 +27,20 @@
 		<link rel="stylesheet" href="css/templatemo_style.css">
 	</head>
 	<script src="jquery/jquery-2.1.0.min.js" type="text/javascript"></script>
-<?php
-	$usuario = $_SESSION['usuario'];
-	$BDD = new MysqlUsuario();
-	$solRecibidasNoVistas = $BDD->conseguirSolicitudesRecibidasNoVistas($usuario->getId());
-	$solAceptadasNoVistas = $BDD->conseguirSolicitudesAceptadasNovistas($usuario->getId());
-	$solRechazadasNoVistas = $BDD->conseguirSolicitudesRechazadasNovistas($usuario->getId());
-	$solicitudesRealizadas = $BDD->conseguirSolRealizadasNoEnServicioRealizado($usuario->getId());
-	$BDDs_r = new MysqlServicioRealizado();
-	if(isset($solicitudesRealizadas)){
-		foreach ($solicitudesRealizadas as $solicitud) {
-			$BDDs_r->insertarServicioRealizado($solicitud->getIdSolicitud());
-		}
-	}
-
-	$num_sol_recibidas = count($solRecibidasNoVistas);
-	$num_sol_aceptadas = count($solAceptadasNoVistas);
-	$num_sol_rechazadas = count($solRechazadasNoVistas);
-
-	$BDD = new MysqlServicio();
-	$servicios_realizados = $BDD->conseguirServiciosSolicitudAceptadosRealizados($usuario->getId());
-	$servicios_proximos = $BDD->conseguirServiciosSolicitudAceptadosNoRealizados($usuario->getId());
-?>
 	<body>
-		<?php include "sidebar.php"
+		<?php include "sidebar.php";
+		
+			$solRecibidasNoVistas = $BDD->conseguirSolicitudesRecibidasNoVistas($usuario->getId());
+			$solAceptadasNoVistas = $BDD->conseguirSolicitudesAceptadasNovistas($usuario->getId());
+			$solRechazadasNoVistas = $BDD->conseguirSolicitudesRechazadasNovistas($usuario->getId());
+			
+			$num_sol_recibidas = count($solRecibidasNoVistas);
+			$num_sol_aceptadas = count($solAceptadasNoVistas);
+			$num_sol_rechazadas = count($solRechazadasNoVistas);
+		
+			$BDD = new MysqlServicio();
+			$servicios_realizados = $BDD->conseguirServiciosSolicitudAceptadosRealizados($usuario->getId());
+			$servicios_proximos = $BDD->conseguirServiciosSolicitudAceptadosNoRealizados($usuario->getId());
 		?>
 		<div id="main-content">
 			<div id="templatemo">

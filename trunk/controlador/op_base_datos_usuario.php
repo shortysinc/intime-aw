@@ -1,5 +1,6 @@
 <?php
 require_once '../controlador/op_base_datos.php';
+require_once '../modelo/solicitud.php';
 /**
  * Para hacer las consultas relativas a la tabla de usuario
  */
@@ -383,11 +384,21 @@ class MysqlUsuario extends Mysql {
 	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario){
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario, $id_solicitud);
-		var_dump($args);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("UPDATE solicitud SET id_usuario=?, id_servicio=?, estado=?,
 			fecha=?, inicio=?, fin=?, comentario=? WHERE id_solicitud=?");
 		$pst->bind_param("iiissssi", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7]);
+		$pst->execute();
+		$pst->close();
+		
+		$this->cerrar();
+	}
+	
+	public function actualizarHorasUsuario($id_usuario, $horas){
+		$this->conectar();
+		$args = array($horas, $id_usuario);
+		$pst = $this->conexion->prepare("UPDATE usuario SET horas_usuario = ? WHERE id_usuario = ?");
+		$pst->bind_param("ii", $args[0], $args[1]);
 		$pst->execute();
 		$pst->close();
 		
