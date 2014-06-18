@@ -46,4 +46,8 @@ class Servicio {
 	public function getHoras() {
 		return $this->horas;
 	}
+	
+	public function getFoto(){
+		return $this->foto;
+	}
 }
