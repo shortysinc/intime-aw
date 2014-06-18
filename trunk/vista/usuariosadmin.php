@@ -43,7 +43,7 @@
 							$id = $row['id_usuario'];
 							        echo "<tr>";
 							        echo "<td>".$row["id_usuario"]."</td>";
-							         echo "<td><a href='../vista/perfil.php?id_usuario=$id';>".$row["nombre"]."</a></td>";
+							        echo "<td><a href='../vista/perfil.php?id_usuario=$id';>".$row["nombre"]."</a></td>";
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
