@@ -55,11 +55,15 @@
 				<div class="cuerpo">
 				<?php if(isset($servicio)){ ?>
 				<div class="encabezado">
-					<h1><?php 
-							echo $nombreServicio;
-						
-						?></h1>
-					 <img src="images/slide3.jpg" > 
+					<?php 
+							echo "<h1>".$nombreServicio."</h1>";
+							if ($servicio->getFoto()!=NULL)	{
+								echo "<img src='images/servicio/".$servicio->getFoto()."'";
+							}
+							ELSE{
+								echo '<img src="images/servicio/service_defect.png">';	
+							}
+					?>
 					<!--Foto servicio -->
 				</div>
 				<div class="servicio">
