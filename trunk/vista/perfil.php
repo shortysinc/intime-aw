@@ -13,10 +13,10 @@
 		
 		if(isset($_GET['id_usuario'])){
 			$id = $_GET['id_usuario'];
-			$BDD = new MysqlUsuario();
-			$usuario = $BDD->conseguirUsuarioById($id);
-			$BDD = new MysqlServicio();
-			$servicios = $BDD->conseguirServiciosByUserId($id);
+			$BDDuser = new MysqlUsuario();
+			$user = $BDDuser->conseguirUsuarioById($id);
+			$BDDserv = new MysqlServicio();
+			$servicios = $BDDserv->conseguirServiciosByUserId($id);
 		}
 	?>
 	<head>
@@ -58,26 +58,26 @@
 				<!-------------------------------------------PERFIL----------------------------------------->
 				<div class="perfil">
 					<?php
-						if(isset($usuario)) {
-						echo'<h1>'.$usuario->getNombre()." ".$usuario->getApellidos().'</h1>';
-						if ($usuario->getFoto() != NULL){
+						if(isset($user)) {
+						echo'<h1>'.$user->getNombre()." ".$user->getApellidos().'</h1>';
+						if ($user->getFoto() != NULL){
 					?>
-								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$usuario->getFoto() ?>'></a>
+								<a href='perfil_usuario.php'><img src='<?php echo "images/usuario/".$user->getFoto() ?>'></a>
 					<?php
 							}else
 								echo '<img src="images/usuario/user_defect.png">';
 					?>
 					<div class="infouser">
 						<?php
-							echo"<p>".$usuario->getCorreo()."</p>";
+							echo"<p>".$user->getCorreo()."</p>";
 							//Si el servicio pertenece al usuario logueado o si es administrador
-							if ((isset($usuario_logueado) && $usuario->getId()==$usuario_logueado->getId())
+							if ((isset($usuario_logueado) && $user->getId()==$usuario_logueado->getId())
 								||((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']))){
-								echo'<a href="editarperfil.php?id_usuario='.$usuario->getId().'"><h5>Editar Perfil</h5></a>';
+								echo'<a href="editarperfil.php?id_usuario='.$user->getId().'"><h5>Editar Perfil</h5></a>';
 							}
 						?>
 					</div>
-					<h3><?php echo "Dirección: ".$usuario->getDireccion() ?></h3>
+					<h3><?php echo "Dirección: ".$user->getDireccion() ?></h3>
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
 						<?php
@@ -89,7 +89,7 @@
 										?>
 										<div class="serv-nota">
 										<?php
-											$nota=$BDD->notamedia($servicio->getIdServicio());
+											$nota=$BDDserv->notamedia($servicio->getIdServicio());
 											if (!empty($nota))
 												echo"<p>Nota: ".$nota."</p>";
 											else

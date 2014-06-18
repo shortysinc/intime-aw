@@ -32,12 +32,12 @@
 			$BDDValoracion = new MysqlValoracion();
 			$servicio = $BDDServicio->conseguirServicio($id_servicio);
 			if(isset($servicio)){
-				$usuario = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
+				$user = $BDDUsuario->conseguirUsuarioById($servicio->getIdUsuario());
 				$valoraciones= $BDDValoracion->conseguirValoraciones($id_servicio);
 				$resuldescrip = $servicio->getDescripcion();
 				$resulmedia = $BDDServicio->notamedia($id_servicio);
 				$nombreServicio= $servicio->getNombre();
-				$fotoservice= $usuario->getFoto();
+				$fotoservice= $user->getFoto();
 				$horasServicio = $servicio->getHoras();
 			}
 			
@@ -70,10 +70,10 @@
 						<p>Horas</p>
 					</div>
 					<div class="autor">
-						<img src="images/usuario/<?php if (isset($fotoservice)) {echo $usuario->getFoto();} else {echo "user_defect.png" ;}?>" >
+						<img src="images/usuario/<?php if (isset($fotoservice)) {echo $user->getFoto();} else {echo "user_defect.png" ;}?>" >
 							<div class="nombretrabajo">
-							<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>">
-								<h3><?php echo $usuario->getNombre();?></h3></a>
+							<a href="perfil.php?id_usuario=<?php echo $user->getId() ?>">
+								<h3><?php echo $user->getNombre();?></h3></a>
 						</div>
 					
 						<div class="valoraciones">
@@ -116,7 +116,7 @@
 							//No se hace nada
 							
 						// si id del usuario logueado es distinto del id del usuario que ofrece el servicio
-						}else if (($_SESSION['usuario']->getId() == $usuario->getId()))  { 
+						}else if (($_SESSION['usuario']->getId() == $user->getId()))  { 
 							//No hacemos nada
 						}else {
 							
