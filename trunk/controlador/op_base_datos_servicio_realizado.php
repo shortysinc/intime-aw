@@ -46,7 +46,7 @@ class MysqlServicioRealizado extends Mysql {
 		$args = array($id_solicitud);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio_realizado WHERE id_solicitud = ?");
-		$pst->bind_param("i", $args[0], $cobrado);
+		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_ser_realizado, $id_solicitud, $cobrado);
 		$resultado = NULL;
