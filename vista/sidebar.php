@@ -97,7 +97,7 @@ $n = count($array);
 							}
 						?>
 						<p>
-							<?php echo $usuario->getNombre() ?>
+							<?php echo $usuario->getNombre();?>
 						</p>
 						<li class="requests">
 							<a href="solicitudes.php">Solicitudes</a>
@@ -130,6 +130,7 @@ $n = count($array);
 							<p>Horas</p>
 						</div>
 						<img src="images/admin.jpg" >
+						<p> Administrador </p>
 						<li class="user-list">
 							<a href="usuariosadmin.php">Lista Usuarios</a>
 						</li>
