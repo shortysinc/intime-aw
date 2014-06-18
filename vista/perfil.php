@@ -77,6 +77,7 @@
 							}
 						?>
 					</div>
+					<h3><?php echo "Dirección: ".$usuario->getDireccion() ?></h3>
 					<div class="lista-serv">
 						<h3>Lista de servicios del usuario:</h3>
 						<?php

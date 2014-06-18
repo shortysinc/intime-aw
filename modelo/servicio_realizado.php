@@ -2,11 +2,13 @@
 
 class ServicioRealizado{
 	private $id_ser_realizado,
-			$id_solicitud;
+			$id_solicitud,
+			$cobrado;
 			
-	public function __construct($id_ser_realizado, $id_solicitud) {
+	public function __construct($id_ser_realizado, $id_solicitud, $cobrado) {
 		$this->id_ser_realizado = $id_ser_realizado;
-		$this->id_solicitud = $id_solicitud;	
+		$this->id_solicitud = $id_solicitud;
+		$this->cobrado = $cobrado;
 	}
 	
 	public function getIdSerRealizado(){
