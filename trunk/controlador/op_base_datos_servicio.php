@@ -276,5 +276,50 @@ class MysqlServicio extends Mysql {
 		
 		$this->cerrar();
 	}
+	
+	
+	public function insertarCategoria($categoria){
+		$this->conectar();
+		$args = array($categoria);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("insert into categoria(categoria) values  (?)");
+		$pst->bind_param("s",$args[0]);
+		$pst->execute();
+		$id = mysqli_insert_id($this->conexion);
+		$pst->close();
+		$this->cerrar();
+		
+		return $id;
+	}
+	
+	public function conseguirIdCategoria($categoria){
+		$this->conectar();
+		$args = array($categoria);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("select id_categoria from categoria where categoria=?");
+		$pst->bind_param("s",$args[0]);
+		$pst->execute();
+		$pst->bind_result($id_categoria);
+		$pst->fetch();
+		$pst->close();
+		$this->cerrar();
+		return $id_categoria;
+	}
+	
+	public function crearservicio($iduser,$idcategoria,$nombre,$descripcion,$horas){
+		$this->conectar();
+		$args = array($iduser,$idcategoria,$nombre,$descripcion,$horas);
+		$this->escapaBd($args);
+	
+		$pst = $this->conexion->prepare("insert into servicio(id_usuario,id_categoria,nombre_servicio,descripcion,horas) values (?,?,?,?,?)");
+		$pst->bind_param("iissi",$args[0],$args[1],$args[2],$args[3],$args[4]);
+		$pst->execute();
+		$id = mysqli_insert_id($this->conexion);
+		$pst->close();
+		$this->cerrar();
+		
+		return $id;
+	}
+	
 }
 	

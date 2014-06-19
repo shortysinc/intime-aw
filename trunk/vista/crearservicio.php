@@ -23,23 +23,27 @@ session_start();
 					<!-- /#row -->
 					<div class="cuerpo">
 						<div class="contact-form" id="crear-cuenta-form">
-							<form action="index.php" method="post" accept-charset="utf-8">
+							<form action="../controlador/createservice.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 								<div class="col-md-4">
 									<label for="nombreserv" class="required">Nombre del servicio:</label>
 									<input name="nombreserv" type="text" id="nombreserv" maxlength="40" required/>
 								</div>
 								<div class="col-md-4">
-									<label for="descrpserv">Descripcion:</label>
-									<textarea name="descrpserv" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
+									<label for="descrpserv" class="required">Descripcion:</label>
+									<textarea name="descrpserv" rows="4" cols="50" placeholder="Describe tu servicio" required></textarea>
 								</div>
-								<div class="col-md-8">
+								<div class="col-md-4">
 									<label for="categoria" class="required">Categoría:</label>
 									<input name="categoria" type="text" id="categoria" maxlength="60" required/>
 								</div>
 								<!-- /.col-md-4 -->
-								<div class="col-md-8">
-									<label for="foto" class="required">Imagen del servicio:</label>
-									<input name="foto" type="file" id="foto" maxlength="40" required/>
+								<div class="col-md-4">
+									<label for="foto">Imagen del servicio:</label>
+									<input name="foto" type="file" id="foto" maxlength="40" />
+								</div>
+								<div class="col-md-4">
+									<label for="horaserv" class="required">Horas que cuesta:</label>
+									<input name="horaserv" type="text" id="horaserv" maxlength="40" required/>
 								</div>
 								<!-- /.col-md-4 -->
 								<div class="col-md-12">
