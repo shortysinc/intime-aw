@@ -19,7 +19,7 @@
 							<div class="nombrecorreo">
 								<h1>Emilio Chico Muñoz</h1>
 								<p>
-									emichico@estumail.ucm.es
+									emichico@ucm.es
 								</p>
 							</div>
 						</div>
@@ -28,7 +28,7 @@
 							<div class="nombrecorreo">
 								<h1>Jorge Rivas Cordova</h1>
 								<p>
-									jrcordova@estumail.ucm.es
+									jrcordova@ucm.es
 								</p>
 							</div>
 						</div>
@@ -37,7 +37,7 @@
 							<div class="nombrecorreo">
 								<h1>Héctor Gálvez Bernal</h1>
 								<p>
-									hegalvez@estumail.ucm.es
+									hegalvez@ucm.es
 								</p>
 							</div>
 						</div>
@@ -46,7 +46,7 @@
 							<div class="nombrecorreo">
 								<h1>Antonio Núñez Guerrero</h1>
 								<p>
-									anguerrero@estumail.ucm.es
+									anguerrero@ucm.es
 								</p>
 							</div>
 						</div>
@@ -55,7 +55,7 @@
 							<div class="nombrecorreo">
 								<h1>Eduardo Pelayo de Sancho</h1>
 								<p>
-									epelayo@estumail.ucm.es
+									epelayo@ucm.es
 								</p>
 							</div>
 						</div>
