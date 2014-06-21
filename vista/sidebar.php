@@ -29,8 +29,9 @@ $n = count($array);
 			require_once '../controlador/op_base_datos_usuario.php';
 			require_once '../controlador/op_base_datos_servicio_realizado.php';
 			require_once '../controlador/op_base_datos_servicio.php';
+			require_once '../modelo/usuario.php';
 			require_once '../modelo/servicio.php';
-			require_once '../modelo/servicio_realizado.php'; 
+			require_once '../modelo/servicio_realizado.php';
 			
 			if(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario']){
 				//USUARIO REGISTRADO
@@ -107,6 +108,9 @@ $n = count($array);
 						</li>
 						<li class="profile">
 							<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>">Mi Perfil</a>
+						</li>
+						<li class="favorites">
+							<a href="favoritos.php">Favoritos</a>
 						</li>
 						<li class="new-job">
 							<a href="crearservicio.php">Crear Servicio</a>

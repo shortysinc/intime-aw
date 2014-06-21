@@ -76,8 +76,8 @@ class MysqlServicioRealizado extends Mysql {
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto,
 			$id_ser_realizado, $id_solicitud, $cobrado);
-		
 		$resultado = NULL;
+		
 		while($pst->fetch()){
 			$resultado[] = array('servicio' => new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto), 
 				'servicio_realizado' => new ServicioRealizado($id_ser_realizado, $id_solicitud, $cobrado));
@@ -88,6 +88,7 @@ class MysqlServicioRealizado extends Mysql {
 		
 		return $resultado;
 	}
+	
 	
 	/**
 	 * Comprueba si un servicio realizado esta valorado a partir del id_solicitud
