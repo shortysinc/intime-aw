@@ -15,7 +15,14 @@
 				<tr class "fila-servicios">
 				 	<td class="columna-foto">
 						<a class="descripcion-servicios" href="<?php echo "servicio.php?id_servicio=".$servicio->getIdServicio() ?>">
-							<img src="images/servicio/service_defect.png"/>
+							<?php 
+							if ($servicio->getFoto()!=NULL)	{
+								echo "<img src='images/servicio/".$servicio->getFoto()."'";
+							}
+							ELSE{
+								echo '<img src="images/servicio/service_defect.png">';	
+							}
+					?>
 						</a>
 					</td>
 					<td class="columna-servicios">
@@ -25,7 +32,7 @@
 						</h3>
 						<p><?php echo $servicio->getDescripcion()?></p>
 						<span id="nota-servicio">Nota: <span class="negrita"><?php echo $nota ?></span></span>
-						<span id="horas-servicio"><span class="negrita">1 h</span></span>
+						<span id="horas-servicio"><span class="negrita"><?php echo $servicio->getHoras()?> h</span></span>
 					</td>
 				</tr>	
 <?php
