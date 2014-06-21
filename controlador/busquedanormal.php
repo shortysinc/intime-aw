@@ -18,8 +18,16 @@
 					$iteracionarray=array();
 					$sumaarray=array();
 					$sumaarray=$BDDserv->busquedaavanzada($corte,$servicios[0]->getIdUsuario());
+					$usuariosarray=array();
+					for($i=0;$i<count($sumaarray);$i=$i+1){
+						$usuariosarray[$i]=$servicios[0]->getIdUsuario();
+					}
 					for ($i=1;$i<count($servicios);$i=$i+1){
-						$iteracionarray=$BDDserv->busquedaavanzada($corte,$servicios[$i]->getIdUsuario()); 
+						$iteracionarray=$BDDserv->busquedaavanzada($corte,$servicios[$i]->getIdUsuario());
+						$lenghtuser=count($usuariosarray);
+						for($j=$lenghtuser;$j<$lenghtuser+count($iteracionarray);$j=$j+1){
+							$usuariosarray[$j]=$servicios[$i]->getIdUsuario();
+						}
 						$sumaarray=array_merge((array)$sumaarray,(array)$iteracionarray);
 					}
 					$servicios=array();
@@ -50,8 +58,11 @@
 							if ((isset($_POST["consulta"]))&&(!$_POST["consulta"]=="red")){
 								$nota=$BDDserv->conseguirNota($servicios[$i]->getIdServicio(),$login->getId());
 								echo"<p>".$nota."</p>";
-							}else
-							{
+							}else if ((isset($_POST["consulta"]))&&($_POST["consulta"]=="red")){
+								$BDDuser=new MysqlUsuario();
+								$user=$BDDuser->conseguirUsuarioById($usuariosarray[$i]);
+								echo"<p>Votado positivamente por: <a href=../vista/perfil.php?id_usuario=".$usuariosarray[$i].">".$user->getNombre()."</a></p>";
+							}else{
 								$nota=$BDDserv->notamedia($servicios[$i]->getIdServicio());
 								echo"<p>".$nota."</p>";
 							} 
