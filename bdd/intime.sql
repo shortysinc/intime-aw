@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2014 a las 02:38:26
+-- Tiempo de generación: 21-06-2014 a las 17:21:27
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -53,17 +53,21 @@ CREATE TABLE IF NOT EXISTS `categoria` (
   `categoria` varchar(20) NOT NULL,
   PRIMARY KEY (`id_categoria`),
   UNIQUE KEY `categoria` (`categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `categoria`
 --
 
 INSERT INTO `categoria` (`id_categoria`, `categoria`) VALUES
+(6, 'Aire libre'),
+(7, 'Danza'),
 (3, 'Deportes'),
 (4, 'Hogar'),
 (2, 'Idiomas'),
-(1, 'Jardineria');
+(1, 'Jardineria'),
+(8, 'Pintura'),
+(5, 'Religión');
 
 -- --------------------------------------------------------
 
@@ -79,7 +83,14 @@ CREATE TABLE IF NOT EXISTS `favoritos` (
   PRIMARY KEY (`id_favorito`),
   KEY `id_servicio` (`id_servicio`),
   KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+
+--
+-- Volcado de datos para la tabla `favoritos`
+--
+
+INSERT INTO `favoritos` (`id_favorito`, `id_servicio`, `id_usuario`, `fecha`) VALUES
+(10, 2, 43, '2014-06-21 16:47:31');
 
 -- --------------------------------------------------------
 
@@ -134,21 +145,27 @@ CREATE TABLE IF NOT EXISTS `servicio` (
   `nombre_servicio` varchar(50) NOT NULL,
   `descripcion` varchar(1000) DEFAULT NULL,
   `horas` int(11) NOT NULL,
-  `foto_servicio` blob,
+  `foto_servicio` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_servicio`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `servicio`
 --
 
 INSERT INTO `servicio` (`id_servicio`, `id_usuario`, `id_categoria`, `nombre_servicio`, `descripcion`, `horas`, `foto_servicio`) VALUES
-(1, 27, 2, 'Clase de alemán', 'Doy clases de alemán.', 1, NULL),
+(1, 27, 2, 'Clase de alemán', 'Doy clases de alemán.', 1, '1.png'),
 (2, 27, 3, 'Clases de pilates', 'Doy clases de pilates', 1, NULL),
 (3, 27, 1, 'Corto césped', 'Corto el césped de tu jardín', 2, NULL),
-(4, 40, 2, 'Clases de inglés', 'Clases de inglés del mejor profesor que puedas tener', 1, NULL);
+(4, 40, 2, 'Clases de inglés', 'Clases de inglés del mejor profesor que puedas tener', 1, '4.png'),
+(5, 43, 5, 'Catequesis', 'Doy catequesis a gente de cualquier edad, con la finalidad de vivir la fe de manera mas viva en nuestros corazones', 2, '5.png'),
+(6, 44, 4, 'Fontanero', 'Me ofrezco para realizar pequeños apaños en lo referente a fontaneria,sanitarios y otros elementos relacionados', 1, '6.png'),
+(7, 44, 6, 'Karting', 'Doy clases de uso y puesta a punto de karts para carreras. No es necesario tener tu propio Kart. ', 3, '7.png'),
+(8, 45, 7, 'Baila como un torbellino', 'Aprende a bailar como si la vida te fuera en ello. Lo unico que necesitar es tiempo. Garantizo exprimirte el 100%, para conseguir todo el ritmo que hay en ti.', 1, NULL),
+(9, 46, 8, 'Pintura barroca', 'Enseño a pintar. Domino la pintura barroca, pero estaria dispuesto a enseñar a pintar cualquier estilo.', 5, '9.png'),
+(10, 46, 7, 'Ballet', 'Enseño a bailar ballet. Tengo experiencia en grandes ballets nacionales. Imprescindible traer tu propio tutu.', 2, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,7 +240,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `vio_sol_enviadas` datetime NOT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=47 ;
 
 --
 -- Volcado de datos para la tabla `usuario`
@@ -232,7 +249,11 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 INSERT INTO `usuario` (`id_usuario`, `correo`, `nombre`, `apellidos`, `direccion`, `horas_usuario`, `foto_usuario`, `pass`, `salt`, `vio_sol_recibidas`, `vio_sol_enviadas`) VALUES
 (27, 'pepe@gmail.com', 'pepe', '', 'Calle de prueba', 0, '27.png', '56c2f3d20b0867820237bc2795066ff50c9752aa35eeac038514a6338ce03726f1d5e9303d4603abf8330f41db59bee23640e34cd755b193c6d4bff582a075ea', 'd866feb98913640d819915305ea2487caeccb9d8b3aba528c5f6adbdd0025fb056273a32fd8a7993b6625f1c25b830700dddb0bbf19455ad7529132b76b6dc00', '2014-06-16 01:37:52', '2014-06-16 01:28:41'),
 (40, 'fede@gmail.com', 'Federico', '', 'domicilio', 2, '40.png', '9c3e0cc29995e78efb45ccdddc29b58fb96f15c3619147bfbcac15be14b8547c8a22e7e309620e1647e070cdb5afbf8240ad8e994899af320dd1eaa9384170c1', '8a375802e50aae308ae0d539b62b4dcd259be13c8aab825c930511838b1e354c51665059db44d0aa6d0f44adf645c607d4a3da9d89ede539eed8633cde43b681', '2014-06-18 01:53:24', '2014-06-18 01:52:35'),
-(42, 'cr7@gmail.com', 'cristiano ronaldo', '', 'Pozuelo', 0, NULL, '29049634bfb7b74f61782ea14e565a7d83439faab9ce5ac89fff416c9c21b143276989a3074acdeea943da9a380992a548781844bbdc29a5be95731e039044d4', '9bcd18417c5e633a30194565c4729f14ef1273a25212d557dd90934a4f6a5af1abbbff661a690505115bc0a8ff0826dab0e2437eb5ef85e6be13b8138768b31d', '0000-00-00 00:00:00', '2014-04-01 01:20:34');
+(42, 'cr7@gmail.com', 'cristiano ronaldo', '', 'Pozuelo', 0, NULL, '29049634bfb7b74f61782ea14e565a7d83439faab9ce5ac89fff416c9c21b143276989a3074acdeea943da9a380992a548781844bbdc29a5be95731e039044d4', '9bcd18417c5e633a30194565c4729f14ef1273a25212d557dd90934a4f6a5af1abbbff661a690505115bc0a8ff0826dab0e2437eb5ef85e6be13b8138768b31d', '0000-00-00 00:00:00', '2014-04-01 01:20:34'),
+(43, 'juan@mail.com', 'Juan', 'Perez Fernandez', 'av/ falsa 123 ', 0, '43.png', '572fdb3e5ce64e18844096bd1d0a036232b518ae6ddd2553847ab631320543292e8748b8288efa36b586baa0d9f96b78905db0f1c3fbb69347ee83f0502ca638', 'd2da9d445cbc1aefc4b8a4ffa045d761751e6f3dca6ad7980cafcdcfe0f675baade5c84a2a8cc25357c3335804af8baedcf94e39bb0a453526f85c0db8829b4c', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(44, 'mario@mail.com', 'Mario', 'Mario', 'av/ tuberia nº3', 0, '44.png', '58913f7cc4145173719326f2b7677387c390df3da64cfd48b50f976b2e8cf6490e8a70864ea83f9a0c7910be5428b4eb451ba8c7fdca6c6f133e25a8dfa4b6f1', '98a1bc16ddd901572a4d08f4ac77ed86021e80d3983123fae27a429f00d8e0c67c714811973545ff50a9391d15650b3f9af9cd60176894fe8feafa316ec7d38e', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(45, 'bobby@mail.com', 'Bobby', 'Raffell', 'c/ rasputin nº231', 0, '45.png', '5d6c0641c827a0c62d88e173c51b4e3e247f3a8c98ade7a7669b2c932d082adb7e39465ba8d435b4495909e2c834da2204c4e628b0d672e4b9abfc2c0e038a25', '42d01b2dc0f7b4e00220c362a787e85171c02521aac860e0becc2407efc7a54fd8a53803a420d3c0fda685c6e893a854f7863c6eed9f57433c90b2c4c02a79e2', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(46, 'carlos@mail.com', 'Carlos', 'Navarro Hernandez', 'c/ fake 12345', 0, NULL, '65df7531f2e47ffad5525a37d4850b30a1b5345900ad38d8c77fc29e9df0d42cca1256f0d96b609d076773b9fc88c8f43ec8205f4c95ec516f58af9fc0e643c2', '4c81f10051923d34520a058722b3b7b11a856c1c8087103cfbdfba70c780f3262914e981feabdf30269b97a472360ffaabdc6dac4fbb96388c5931342f295ccd', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
