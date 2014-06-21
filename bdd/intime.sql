@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2014 a las 17:21:27
+-- Tiempo de generación: 21-06-2014 a las 18:34:58
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -60,14 +60,11 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 --
 
 INSERT INTO `categoria` (`id_categoria`, `categoria`) VALUES
-(6, 'Aire libre'),
-(7, 'Danza'),
 (3, 'Deportes'),
 (4, 'Hogar'),
 (2, 'Idiomas'),
 (1, 'Jardineria'),
-(8, 'Pintura'),
-(5, 'Religión');
+(5, 'Otros');
 
 -- --------------------------------------------------------
 
@@ -149,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `servicio` (
   PRIMARY KEY (`id_servicio`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -162,10 +159,11 @@ INSERT INTO `servicio` (`id_servicio`, `id_usuario`, `id_categoria`, `nombre_ser
 (4, 40, 2, 'Clases de inglés', 'Clases de inglés del mejor profesor que puedas tener', 1, '4.png'),
 (5, 43, 5, 'Catequesis', 'Doy catequesis a gente de cualquier edad, con la finalidad de vivir la fe de manera mas viva en nuestros corazones', 2, '5.png'),
 (6, 44, 4, 'Fontanero', 'Me ofrezco para realizar pequeños apaños en lo referente a fontaneria,sanitarios y otros elementos relacionados', 1, '6.png'),
-(7, 44, 6, 'Karting', 'Doy clases de uso y puesta a punto de karts para carreras. No es necesario tener tu propio Kart. ', 3, '7.png'),
-(8, 45, 7, 'Baila como un torbellino', 'Aprende a bailar como si la vida te fuera en ello. Lo unico que necesitar es tiempo. Garantizo exprimirte el 100%, para conseguir todo el ritmo que hay en ti.', 1, NULL),
-(9, 46, 8, 'Pintura barroca', 'Enseño a pintar. Domino la pintura barroca, pero estaria dispuesto a enseñar a pintar cualquier estilo.', 5, '9.png'),
-(10, 46, 7, 'Ballet', 'Enseño a bailar ballet. Tengo experiencia en grandes ballets nacionales. Imprescindible traer tu propio tutu.', 2, NULL);
+(7, 44, 3, 'Karting', 'Doy clases de uso y puesta a punto de karts para carreras. No es necesario tener tu propio Kart. ', 3, '7.png'),
+(8, 45, 3, 'Baila como un torbellino', 'Aprende a bailar como si la vida te fuera en ello. Lo unico que necesitar es tiempo. Garantizo exprimirte el 100%, para conseguir todo el ritmo que hay en ti.', 1, NULL),
+(9, 46, 5, 'Pintura barroca', 'Enseño a pintar. Domino la pintura barroca, pero estaria dispuesto a enseñar a pintar cualquier estilo.', 5, '9.png'),
+(10, 46, 3, 'Ballet', 'Enseño a bailar ballet. Tengo experiencia en grandes ballets nacionales. Imprescindible traer tu propio tutu.', 2, NULL),
+(12, 46, 5, 'oTRO', 'ASDASD', 2, NULL);
 
 -- --------------------------------------------------------
 

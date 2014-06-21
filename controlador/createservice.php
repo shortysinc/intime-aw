@@ -12,11 +12,8 @@
 	$loginuser=$_SESSION['usuario'];
 	
 	$BDDservice = new MysqlServicio();
-	$idcategoria=$BDDservice->conseguirIdCategoria($categoria);
-	if ($idcategoria==null)
-		$idcategoria=$BDDservice->insertarCategoria($categoria);
 
-	$id_servicio=$BDDservice->crearservicio($loginuser->getId(),$idcategoria,$nombre,$descripcion,$horas);
+	$id_servicio=$BDDservice->crearservicio($loginuser->getId(),$categoria,$nombre,$descripcion,$horas);
 	
 	if(isset($_FILES['foto'])&& !empty($_FILES['foto']["name"])){	
 		move_uploaded_file($_FILES['foto']['tmp_name'],"../vista/images/servicio/".$id_servicio.".png");
