@@ -67,8 +67,7 @@ $n = count($array);
 						$horas += $servicio->getHoras();
 						$BDDs_r->cobrarServicio($servicio_realizado->getIdSerRealizado());
 					}
-					$horas += $usuario->getHoras();
-					$BDD->actualizarHorasUsuario($usuario->getId(), $horas);
+					$BDD->actualizarHorasUsuario($usuario->getId(), $horas + $usuario->getHoras());
 				}
 				
 				$usuario = $BDD->conseguirUsuarioById($usuario->getId());
