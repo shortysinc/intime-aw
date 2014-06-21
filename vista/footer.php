@@ -34,6 +34,9 @@
 					</p>
 				</div>
 				<!-- /.col-md-6 -->
+				<div class="col-md-6 credits">
+							<p>Template by <a rel="nofollow" href="http://www.templatemo.com/preview/templatemo_394_sonic">Sonic</a></p>
+                </div> <!-- /.col-md-6 -->
 			</div>
 			<!-- /.row -->
 		</div>
