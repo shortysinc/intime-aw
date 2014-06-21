@@ -126,6 +126,8 @@
 							<p>
 								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>
 							</p>
+							<input type="text" id="datetimepicker" placeholder="Fecha y Hora para servicio"/>
+						
 							<button id="button-enviar-solicitud" type="submit" name="submit" value="Enviar">
 								Enviar
 							</button>
@@ -194,6 +196,28 @@
 		</div>
 		<!-- /#main-content -->
 	</body>
+<link rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"/>
+<script type="text/javascript" src="./jquery/jquery.js"></script>
+<script type="text/javascript" src="./jquery/jquery.datetimepicker.js"></script>
+<script> $('#datetimepicker').datetimepicker({
+		 lang:'es',
+		 i18n:{
+		  de:{
+		   months:[
+		    'Enero','Febrero','Marzo','Abril',
+		    'Mayo','Junio','Julio','Agosto',
+		    'Septiembre','Octubre','Noviembre','Diciembre',
+		   ],
+		   dayOfWeek:[
+		    "Do", "Lu", "Ma", "Mi", 
+		    "Ju", "Vi", "Sa",
+		   ]
+		  }
+		 },
+		 timepicker:true,
+		 dayOfWeekStart: 1,
+		 format:'d-m-Y H:i',
+});</script>
 </html>
 <script>
 <?php
