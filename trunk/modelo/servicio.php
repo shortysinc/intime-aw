@@ -19,6 +19,26 @@ class Servicio {
 	    $this->foto = $foto;
 	}
 	
+	/**
+	 * Comprueba si el servicio representada por su id está dentro del array de servicios.
+	 * @param $id: id del servicio
+	 * @param $solicitudes: array de servicios en el que se quiere buscar el servicio representado por el parámetro $id
+	 */
+	public static function estaDentro($id, $servicios){
+		$len = count($servicios);
+		$encontrado = false;
+		$i = 0;
+		while (!$encontrado && $i < $len) {
+			$servicio = $servicios[$i];
+			if($servicio->getIdServicio() == $id){
+				$encontrado = true;
+			}
+			$i++;
+		}
+		
+		return $encontrado;
+	}
+	
 	public function getIdServicio(){
 		
 		return $this->id_servicio;

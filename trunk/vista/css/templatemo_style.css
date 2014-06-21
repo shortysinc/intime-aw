@@ -96,6 +96,9 @@ li.new-job a.active { color: #99FF99; }
 li.log-out a { border-color: #FFFF66; }
 li.log-out.active { color: #FFFF66; }
 
+li.favorites a {border-color: #38e395; }
+li.favorites a.active{color: #38e395; }
+
 li.user-list a { border-color: #00FF99; }
 li.user-list a.active { color: #00FF99; }
 

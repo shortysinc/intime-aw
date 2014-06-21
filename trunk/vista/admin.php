@@ -1,6 +1,12 @@
+<?php
+	require_once '../modelo/usuario.php';
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
-	<?php include "head.php";?>
+	<?php
+	include "head.php";
+	?>
 	<body>
 		<?php include "sidebar.php"
 		?>

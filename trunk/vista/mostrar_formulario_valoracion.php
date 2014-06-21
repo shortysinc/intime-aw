@@ -8,7 +8,7 @@ if(isset($_GET['id_solicitud'])){
 ?>
 
 <form action="../controlador/insertarvaloracion.php?id_solicitud=<?php echo $_GET['id_solicitud'] ?>" method="post" accept-charset="utf-8">
-	<label>Enviar comentario y/o valoracion</label>
+	<label>Enviar comentario y/o valoración</label>
 	<p>
 		<textarea name="comentario" rows="4" cols="50" placeholder="Escribe un comentario"></textarea>
 	</p>

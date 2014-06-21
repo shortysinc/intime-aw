@@ -15,8 +15,7 @@ class MysqlRespuesta extends Mysql {
 		$args = array($id_usuario, $id_solicitud, $comentario);
 		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("INSERT INTO respuesta(id_usuario, id_solicitud, comentario, fecha) values (?,?,?,now())");
-		$pst->bind_param("iis", 
-		$args[0], $args[1], $args[2]);
+		$pst->bind_param("iis", $args[0], $args[1], $args[2]);
 		$pst->execute();
 		
 		$error = $pst->errno;

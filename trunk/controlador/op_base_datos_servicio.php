@@ -239,7 +239,74 @@ class MysqlServicio extends Mysql {
 		return $resultado;
 	}
 	
+	/**
+	 * Obtiene los servicios favoritos del usuario con id el que se pasa por parámetro
+	 * @param id_usuario
+	 * @return los servicios obtenidos
+	 */
+	public function conseguirServiciosFavoritos($id_usuario){
+		$this->conectar();
+		$pst = $this->conexion->prepare("SELECT servicio.* FROM favoritos join servicio 
+			WHERE favoritos.id_usuario = ? and favoritos.id_servicio = servicio.id_servicio
+			order by favoritos.fecha desc");
+		$pst->bind_param("i", $id_usuario);
+		$pst->execute();
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+			
+			$resultado = NULL;
+		
+		while($pst->fetch()){
+			$resultado[] = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		}
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $resultado;
+	}
 	
+	/**
+	 * Inserta un servicio favorito en la tabla de favoritos
+	 * @param $id_servicio, $id_usuario
+	 * @return 0 si no ha habido error al insertar, un número mayor que 0 si ha habido error
+	 */
+	public function insertarServicioFavorito($id_usuario, $id_servicio){
+		$this->conectar();
+		$args = array($id_servicio, $id_usuario);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("INSERT INTO favoritos (id_servicio, id_usuario, fecha) VALUES (?, ?, now())");
+		$pst->bind_param("ii", $args[0], $args[1]);
+		$pst->execute();
+		
+		$error = $pst->errno;
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $error;
+	}
+	
+	/**
+	 * Elimina un servicio favorito de la tabla de favoritos
+	 * @param $id_servicio, $id_usuario
+	 * @return 0 si no ha habido error al eliminar, un número mayor que 0 si ha habido error
+	 */
+	public function eliminarServicioFavorito($id_servicio){
+		$this->conectar();
+		$args = array($id_servicio);
+		$this->escapaBd($args);
+		$pst = $this->conexion->prepare("DELETE FROM favoritos WHERE id_servicio = ?");
+		$pst->bind_param("i", $args[0]);
+		$pst->execute();
+		
+		$error = $pst->errno;
+		
+		$pst->close();
+		$this->cerrar();
+		
+		return $error;
+		
+	}
 	
 	public function mostrar_todos_servicios(){
 		$this->conectar();

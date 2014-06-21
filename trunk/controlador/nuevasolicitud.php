@@ -11,6 +11,7 @@
 	
 	//Guardando el id del servicio en la sesión nos aseguramos de que el usuario no envie una solicitud a su propio servicio
 	if(isset($_SESSION['id_servicio'], $_POST['solicitud'])){
+		echo "entro en el servicio";
 		$id_servicio = $_SESSION['id_servicio'];
 		$login = $_SESSION['usuario'];
 		$peticion = $_POST['solicitud'];
