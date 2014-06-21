@@ -197,7 +197,7 @@
 		<!-- /#main-content -->
 	</body>
 <link rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"/>
-<script type="text/javascript" src="./jquery/jquery.js"></script>
+<script type="text/javascript" src="./jquery/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="./jquery/jquery.datetimepicker.js"></script>
 <script> $('#datetimepicker').datetimepicker({
 		 lang:'es',
