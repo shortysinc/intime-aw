@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-06-2014 a las 18:34:58
+-- Tiempo de generación: 21-06-2014 a las 18:55:09
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `servicio` (
   PRIMARY KEY (`id_servicio`),
   KEY `id_usuario` (`id_usuario`),
   KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -162,8 +162,7 @@ INSERT INTO `servicio` (`id_servicio`, `id_usuario`, `id_categoria`, `nombre_ser
 (7, 44, 3, 'Karting', 'Doy clases de uso y puesta a punto de karts para carreras. No es necesario tener tu propio Kart. ', 3, '7.png'),
 (8, 45, 3, 'Baila como un torbellino', 'Aprende a bailar como si la vida te fuera en ello. Lo unico que necesitar es tiempo. Garantizo exprimirte el 100%, para conseguir todo el ritmo que hay en ti.', 1, NULL),
 (9, 46, 5, 'Pintura barroca', 'Enseño a pintar. Domino la pintura barroca, pero estaria dispuesto a enseñar a pintar cualquier estilo.', 5, '9.png'),
-(10, 46, 3, 'Ballet', 'Enseño a bailar ballet. Tengo experiencia en grandes ballets nacionales. Imprescindible traer tu propio tutu.', 2, NULL),
-(12, 46, 5, 'oTRO', 'ASDASD', 2, NULL);
+(10, 46, 3, 'Ballet', 'Enseño a bailar ballet. Tengo experiencia en grandes ballets nacionales. Imprescindible traer tu propio tutu.', 2, NULL);
 
 -- --------------------------------------------------------
 

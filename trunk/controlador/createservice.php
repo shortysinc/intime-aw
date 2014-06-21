@@ -12,7 +12,9 @@
 	$loginuser=$_SESSION['usuario'];
 	
 	$BDDservice = new MysqlServicio();
+	$nombrecategoria=$BDDservice->conseguirCategoria($categoria);
 
+	if ($nombrecategoria!=NULL){
 	$id_servicio=$BDDservice->crearservicio($loginuser->getId(),$categoria,$nombre,$descripcion,$horas);
 	
 	if(isset($_FILES['foto'])&& !empty($_FILES['foto']["name"])){	
@@ -22,3 +24,5 @@
 	}
 	
 	header("location: ../vista/servicio.php?id_servicio=".$id_servicio);
+	}
+	else{ header("location: ../vista/crearservicio.php");}
