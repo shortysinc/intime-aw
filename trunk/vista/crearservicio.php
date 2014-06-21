@@ -34,10 +34,16 @@ session_start();
 								</div>
 								<div class="col-md-4">
 									<label for="categoria" class="required">Categoría:</label>
-									<input name="categoria" type="text" id="categoria" maxlength="60" required/>
+									<select name="categoria" class="required" required>
+										<option value="1">Jardinería</option>
+										<option value="2">Idiomas</option>
+										<option value="3">Deportes</option>
+										<option value="4">Hogar</option>
+										<option value="5">Otros</option>
+									</select>
 								</div>
 								<!-- /.col-md-4 -->
-								<div class="col-md-4">
+								<div class="col-md-8">
 									<label for="foto">Imagen del servicio:</label>
 									<input name="foto" type="file" id="foto" maxlength="40" />
 								</div>
