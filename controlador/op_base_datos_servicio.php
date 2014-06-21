@@ -347,32 +347,18 @@ class MysqlServicio extends Mysql {
 	}
 	
 	
-	public function insertarCategoria($categoria){
+	public function conseguirCategoria($categoria){
 		$this->conectar();
 		$args = array($categoria);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("insert into categoria(categoria) values  (?)");
-		$pst->bind_param("s",$args[0]);
+		$pst = $this->conexion->prepare("select categoria from categoria where id_categoria=?");
+		$pst->bind_param("i",$args[0]);
 		$pst->execute();
-		$id = mysqli_insert_id($this->conexion);
-		$pst->close();
-		$this->cerrar();
-		
-		return $id;
-	}
-	
-	public function conseguirIdCategoria($categoria){
-		$this->conectar();
-		$args = array($categoria);
-		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("select id_categoria from categoria where categoria=?");
-		$pst->bind_param("s",$args[0]);
-		$pst->execute();
-		$pst->bind_result($id_categoria);
+		$pst->bind_result($categoria);
 		$pst->fetch();
 		$pst->close();
 		$this->cerrar();
-		return $id_categoria;
+		return $categoria;
 	}
 	
 	public function crearservicio($iduser,$idcategoria,$nombre,$descripcion,$horas){
