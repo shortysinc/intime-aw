@@ -126,8 +126,9 @@
 							<p>
 								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>
 							</p>
-							<input type="text" id="datetimepicker" placeholder="Fecha y Hora para servicio"/>
-						
+							
+							<input type="text" id="hora_inicio" placeholder="Fecha y Hora para servicio"/>
+							
 							<button id="button-enviar-solicitud" type="submit" name="submit" value="Enviar">
 								Enviar
 							</button>
@@ -199,7 +200,8 @@
 <link rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"/>
 <script type="text/javascript" src="./jquery/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="./jquery/jquery.datetimepicker.js"></script>
-<script> $('#datetimepicker').datetimepicker({
+
+<script> $('#hora_inicio').datetimepicker({
 		 lang:'es',
 		 i18n:{
 		  de:{
@@ -217,6 +219,7 @@
 		 timepicker:true,
 		 dayOfWeekStart: 1,
 		 format:'d-m-Y H:i',
+		 minDate:'-1970/01/02',
 });</script>
 </html>
 <script>
