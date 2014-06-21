@@ -114,14 +114,14 @@
 						} else if ( (!isset($_SESSION['login_usuario']) || !$_SESSION['login_usuario']) ) { //Si no es usuario registrado
 							//No se hace nada
 							
-						// si id del usuario logueado es distinto del id del usuario que ofrece el servicio
+						// si id del usuario logueado es igual al id del usuario que ofrece el servicio
 						}else if (($_SESSION['usuario']->getId() == $user->getId()))  { 
 							//No hacemos nada
 						}else {
 							
 					?>
 					<div class="solicitud">
-						<form action="../controlador/nuevasolicitud.php" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+						<form action="../controlador/nuevasolicitud.php?id_servicio=<?php echo $id_servicio?>" method="post" enctype="multipart/form-data" accept-charset="utf-8">
 							<label>Solicitar servicio</label>
 							<p>
 								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>

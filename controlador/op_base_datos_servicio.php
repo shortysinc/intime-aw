@@ -10,22 +10,24 @@ class MysqlServicio extends Mysql {
 	 * Obtiene un servicio con el id pasado por parámetro.
 	 * @return el servicio de la base de datos.
 	 */ 
-	 public function conseguirServicio($id) {
+	 public function conseguirServicio($id_servicio) {
 		$this->conectar();
+		$args = array($id_servicio);
+		$this->escapaBd($args);
 		$pst = $this->conexion->prepare("select * from servicio where id_servicio = ?");
-		$pst->bind_param("i", $id);
+		$pst->bind_param("i", $args[0]);
 		$pst->execute();
-		$resultado = $pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
-		$servicio = NULL;
+		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
+		$resultado = NULL;
+		
 		if($pst->fetch()){
-			$servicio = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);	
+			$resultado = new Servicio($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		}
-	
+		
 		$pst->close();
 		$this->cerrar();
-		unset($resultado);
 	
-		return $servicio;
+		return $resultado;
 	}
 	 
 	 public function busqueda($nombre){
