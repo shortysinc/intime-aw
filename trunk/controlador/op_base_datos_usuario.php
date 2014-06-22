@@ -31,7 +31,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($correo, $nombre, $apellidos, $direccion, $pass);
 		//Escapamos los datos obtenidos del formulario
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		
 		//Crea una salt al azar
 		$salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
@@ -94,7 +94,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($correo, $pass);
 		//Escapamos los datos obtenidos del formulario
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst =  $this->conexion->prepare("select * from usuario where correo = ?");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();
@@ -139,7 +139,7 @@ class MysqlUsuario extends Mysql {
 	 public function conseguirSolicitudPorId($id_solicitud){
 	 	$this->conectar();
 		$args = array($id_solicitud);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -184,7 +184,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesRecibidasNoVistas($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud join servicio join usuario where 
 			servicio.id_usuario = ? and servicio.id_usuario = usuario.id_usuario and solicitud.id_servicio = servicio.id_servicio 
 			and solicitud.fecha > usuario.vio_sol_recibidas order by solicitud.fecha DESC");
@@ -209,7 +209,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesRecibidasPendientes($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud join servicio 
 			where servicio.id_usuario = ? and solicitud.id_servicio = servicio.id_servicio and solicitud.estado = 0 
 			order by solicitud.fecha DESC");
@@ -234,7 +234,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesEnviadas($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_usuario = ? order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -257,7 +257,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesAceptadasNovistas($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.* FROM solicitud natural join usuario 
 			where id_usuario = ? and estado = 1 and fecha > vio_sol_enviadas
 			order by solicitud.fecha DESC");
@@ -283,7 +283,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesRechazadasNovistas($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT solicitud.id_solicitud, solicitud.id_usuario, solicitud.id_servicio, solicitud.estado, 
 			solicitud.fecha, solicitud.inicio, solicitud.fin, solicitud.comentario FROM solicitud natural join usuario
 			where id_usuario = ? and estado = 2 and fecha > vio_sol_enviadas
@@ -310,7 +310,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolicitudesEnviadasPendientes($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud where id_usuario = ? and estado = 0 order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -334,7 +334,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolRealizadasNoEnServicioRealizado($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud 
 			WHERE NOT EXISTS(SELECT id_solicitud FROM servicio_realizado 
 				WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud) and solicitud.id_usuario = ? and 
@@ -362,7 +362,7 @@ class MysqlUsuario extends Mysql {
 	public function conseguirSolRealizadas($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM solicitud 
 			WHERE EXISTS(SELECT id_solicitud FROM servicio_realizado 
 				WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud) and solicitud.id_usuario = ? and 
@@ -387,7 +387,7 @@ class MysqlUsuario extends Mysql {
 	public function actualizarSolicitud($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario){
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario, $id_solicitud);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("UPDATE solicitud SET id_usuario=?, id_servicio=?, estado=?,
 			fecha=?, inicio=?, fin=?, comentario=? WHERE id_solicitud=?");
 		$pst->bind_param("iiissssi", $args[0], $args[1], $args[2], $args[3], $args[4], $args[5], $args[6], $args[7]);
@@ -412,7 +412,7 @@ class MysqlUsuario extends Mysql {
 	 public function editarUsuario($id,$correo,$foto,$nombre,$apellidos,$direccion,$pass,$salt){
 		$this->conectar();
 		$args = array($correo,$nombre,$apellidos,$direccion,$pass);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		if ($correo!=null){
 			$pst = $this->conexion->prepare("update usuario set correo=? WHERE id_usuario = ?");
 			$pst->bind_param("ss",$args[0],$id);
@@ -466,7 +466,7 @@ class MysqlUsuario extends Mysql {
 	public function insertarSolicitud($id_usuario, $id_servicio, $inicio, $fin, $comentario){
 		$this->conectar();
 		$args = array($id_usuario, $id_servicio, $inicio, $fin, $comentario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha, inicio, fin, comentario) 
 			values (?,?,0,now(),?,?,?)");
 		$pst->bind_param("iisss", $args[0], $args[1], $args[2], $args[3], $args[4]);

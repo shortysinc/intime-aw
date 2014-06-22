@@ -13,7 +13,7 @@ class MysqlRespuesta extends Mysql {
 	public function insertarRespuesta($id_usuario, $id_solicitud, $comentario){
 		$this->conectar();
 		$args = array($id_usuario, $id_solicitud, $comentario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("INSERT INTO respuesta(id_usuario, id_solicitud, comentario, fecha) values (?,?,?,now())");
 		$pst->bind_param("iis", $args[0], $args[1], $args[2]);
 		$pst->execute();
@@ -35,6 +35,7 @@ class MysqlRespuesta extends Mysql {
 	public function conseguirRespuestasASolicitud($idSolicitud){
 		$this->conectar();
 		$args = array($idSolicitud);
+		$this->escapaBdYDesinfecta($idSolicitud);
 		$pst = $this->conexion->prepare("SELECT * FROM respuesta WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();

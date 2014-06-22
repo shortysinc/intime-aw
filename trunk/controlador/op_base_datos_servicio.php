@@ -13,7 +13,7 @@ class MysqlServicio extends Mysql {
 	 public function conseguirServicio($id_servicio) {
 		$this->conectar();
 		$args = array($id_servicio);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("select * from servicio where id_servicio = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -33,10 +33,9 @@ class MysqlServicio extends Mysql {
 	 public function busqueda($nombre){
 		$this->conectar();
 		$args = array($nombre);
-		$ret = array();
 		$i=0;
 		//Escapamos los datos obtenidos del formulario
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$args[0]="%".$args[0]."%";
 		$pst =  $this->conexion->prepare("select * from servicio where nombre_servicio like ? ");
 		$pst->bind_param("s", $args[0]);
@@ -54,12 +53,15 @@ class MysqlServicio extends Mysql {
 	 
 	 public function busquedaavanzada($corte,$id){
 		$this->conectar();
+		$args = array($id, $corte);
 		$ret = array();
+		//Escapamos los datos obtenidos del formulario
+		$this->escapaBdYDesinfecta($args);
 		$i=0;
 			$pst =  $this->conexion->prepare("select distinct servicio.id_servicio,servicio.id_usuario,id_categoria,nombre_servicio,descripcion,horas,foto_servicio
 			from servicio,solicitud,servicio_realizado,valoracion_servicio where servicio.id_servicio=solicitud.id_servicio and solicitud.id_solicitud=servicio_realizado.id_solicitud 
 			and servicio_realizado.id_ser_realizado=valoracion_servicio.id_ser_realizado and servicio.id_usuario<>? and valoracion_servicio.id_usuario=? and nota>=?");
-		$pst->bind_param("sss",$id,$id,$corte);
+		$pst->bind_param("sss",$args[0],$args[0],$args[1]);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		
@@ -83,7 +85,7 @@ class MysqlServicio extends Mysql {
 	 public function notamedia($id_servicio){
 		$this->conectar();
 		$args = array($id_servicio);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst=$this->conexion->prepare("SELECT ROUND(avg(nota),1) FROM valoracion_servicio NATURAL JOIN servicio_realizado 
 			JOIN solicitud WHERE servicio_realizado.id_solicitud = solicitud.id_solicitud and solicitud.id_servicio = ?");
 		$pst->bind_param("i",$args[0]);
@@ -125,8 +127,10 @@ class MysqlServicio extends Mysql {
 	 */
 	public function conseguirServiciosPorCategoria($id) {
 		$this->conectar();
+		$args = array($id);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio where id_categoria = ?");
-		$pst->bind_param("i", $id);
+		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_servicio, $id_usuario, $id_categoria, $nombre, $descripcion, $horas, $foto);
 		$resultado = NULL;
@@ -146,7 +150,7 @@ class MysqlServicio extends Mysql {
 	public function conseguirServiciosByUserId($id){
 		$this->conectar();
 		$args = array($id);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("select * from servicio where id_usuario = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -186,7 +190,7 @@ class MysqlServicio extends Mysql {
 	public function conseguirServiciosSolicitudAceptadosNoRealizados($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and estado = 1 and fin > NOW()
 			order by inicio DESC");
@@ -218,7 +222,7 @@ class MysqlServicio extends Mysql {
 	public function conseguirServiciosSolicitudAceptadosRealizados($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio join solicitud WHERE solicitud.id_usuario = ? 
 			and solicitud.id_servicio = servicio.id_servicio and estado = 1 and fin <= NOW()
 			order by fin DESC");
@@ -275,7 +279,7 @@ class MysqlServicio extends Mysql {
 	public function insertarServicioFavorito($id_usuario, $id_servicio){
 		$this->conectar();
 		$args = array($id_servicio, $id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("INSERT INTO favoritos (id_servicio, id_usuario, fecha) VALUES (?, ?, now())");
 		$pst->bind_param("ii", $args[0], $args[1]);
 		$pst->execute();
@@ -296,7 +300,7 @@ class MysqlServicio extends Mysql {
 	public function eliminarServicioFavorito($id_servicio){
 		$this->conectar();
 		$args = array($id_servicio);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("DELETE FROM favoritos WHERE id_servicio = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -323,7 +327,7 @@ class MysqlServicio extends Mysql {
 	public function editarServicio($id,$nombreserv,$descrpserv,$foto){
 		$this->conectar();
 		$args = array($nombreserv,$descrpserv);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		if ($nombreserv!=null){
 			$pst = $this->conexion->prepare("update servicio set nombre_servicio=? WHERE id_servicio = ?");
 			$pst->bind_param("si",$args[0],$id);
@@ -350,7 +354,7 @@ class MysqlServicio extends Mysql {
 	public function conseguirCategoria($categoria){
 		$this->conectar();
 		$args = array($categoria);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("select categoria from categoria where id_categoria=?");
 		$pst->bind_param("i",$args[0]);
 		$pst->execute();
@@ -364,7 +368,7 @@ class MysqlServicio extends Mysql {
 	public function crearservicio($iduser,$idcategoria,$nombre,$descripcion,$horas){
 		$this->conectar();
 		$args = array($iduser,$idcategoria,$nombre,$descripcion,$horas);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 	
 		$pst = $this->conexion->prepare("insert into servicio(id_usuario,id_categoria,nombre_servicio,descripcion,horas) values (?,?,?,?,?)");
 		$pst->bind_param("iissi",$args[0],$args[1],$args[2],$args[3],$args[4]);

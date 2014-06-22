@@ -21,7 +21,7 @@ class Mysql{
 	/**
 	 * @param $args: array con todos los elementos que se quieren escapar pasado por referencia.
 	 */
-	private function escapaBd(&$args) {
+	private function escapaBdYDesinfecta(&$args) {
 		$numElems = count($args);
 	
 		for($i=0; $i < $numElems; $i++){

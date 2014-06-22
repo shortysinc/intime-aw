@@ -1,14 +1,14 @@
 div#reloj {
 	float: left;
-	margin-left: -5%;
-	margin-top: 5%;
+	margin-left: 5%;
+	margin-top: 4%;
 }
 
 div#reloj span.cuad {
 	border-radius: 5px;
 	padding: 1px 3px 3px 2px;
 	color: #ffffff;
-	background: #000000;
+	background: #38a9e3;
 	font-size: 30px;
 }
 

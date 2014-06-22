@@ -61,13 +61,13 @@
 								echo "<h3><a class='solicitud-aceptada' href='solicitudes.php?tipo=1&estado=1'>Una solicitud enviada ha sido aceptada</a></h3>";
 								
 							}else if($num_sol_aceptadas > 1){
-								echo "<h3><a class='solicitud-aceptada' href='solicitudes.php?tipo=1&estado=1>Varias solicitudes enviadas han sido aceptadas</a></h3>";
+								echo "<h3><a class='solicitud-aceptada' href='solicitudes.php?tipo=1&estado=1'>Varias solicitudes enviadas han sido aceptadas</a></h3>";
 							}
 							
 							if($num_sol_rechazadas == 1){
 								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2'>Una solicitud enviada ha sido rechazada</a></h3>";
 							}else if($num_sol_rechazadas > 1){
-								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2>Varias solicitudes enviadas han sido rechazadas</a></h3>";
+								echo "<h3><a class='solicitud-rechazada' href='solicitudes.php?tipo=1&estado=2'>Varias solicitudes enviadas han sido rechazadas</a></h3>";
 							}
 						?>
 						<h2>Mis servicios comprados</h2>
@@ -83,48 +83,65 @@
 										//Diferencia de horas
 										$dif = $fecha_fin * 3600 - $now * 3600;
 										//Si la diferencia de horas es menor que 24 se muestra el temporizador
-										if($dif > 24){
+										if($dif > 0){
 											$fecha_fin = $fecha_fin * 1000;
 									?>
 									<div id="fecha">
 										<h2>Tiempo que queda para el siguiente:</h2>
 										<div id="reloj">
+											<span id="dias" class="cuad"> </span>
+											<span class="separador">d</span>
 											<span id="horas" class="cuad"> </span>
-											<span class="separador">:</span>
+											<span class="separador">h</span>
 											<span id="minutos" class="cuad"> </span>
-											<span class="separador">:</span>
+											<span class="separador">m</span>
 											<span id="segundos" class="cuad"> </span>
+											<span class="separador">s</span>
 										</div>
 									</div>
 									<script>
 										var dateFin = new Date(<?php echo $fecha_fin ?>);
-										
-										setInterval( function mostrarReloj() {
-											var dateNow = new Date();
-											console.log(dateFin.getMilliseconds());
-											var date = new Date(dateFin.getTime() - dateNow.getTime());
-											console.log(dateFin);
-											console.log(dateNow);
-											var horas = date.getHours();
-											var minutos = date.getMinutes();
-											var segundos = date.getSeconds();
-											if(horas >= 0 && horas <= 9){
-												horas = '0' + horas;
-											}
-											if(minutos >= 0 && minutos <= 9){
-												minutos = '0' + minutos;
-											}
-											if(segundos >= 0 && segundos <= 9){
-												segundos = '0' + segundos;
-											}
-											
-											document.getElementById("horas").innerHTML = horas;
-											document.getElementById("minutos").innerHTML = minutos;
-											document.getElementById("segundos").innerHTML = segundos;
-											
-											}, 1000);
+										$(document).ready(function(){
+											var dateFin = new Date(<?php echo $fecha_fin ?>);
+											setInterval( function mostrarReloj() {
+												var dateNow = new Date();
+												var faltan = dateFin.getTime() - dateNow.getTime();
+												
+												if(faltan <= 0){
+													location.reload(true);
+												
+												}else{
+													var segundos = Math.round(faltan/1000);
+													var minutos = Math.floor(segundos/60);
+													var segundos_s = segundos%60;
+													var horas = Math.floor(minutos/60);
+													var minutos_s = minutos%60;
+													var dias = Math.floor(horas/24);
+													var horas_s = horas%24;
+													
+													if(horas_s < 10){
+														horas_s = '0' + horas_s;
+													}
+													if(minutos_s < 10){
+														minutos_s = '0' + minutos_s;
+													}
+													if(segundos_s < 10){
+														segundos_s = '0' + segundos_s;
+													}
+													
+													document.getElementById("dias").innerHTML = dias;
+													document.getElementById("horas").innerHTML = horas_s;
+													document.getElementById("minutos").innerHTML = minutos_s;
+													document.getElementById("segundos").innerHTML = segundos_s;
+												}
+												
+												}, 1000);
+											});
 
 									</script>
+									</br>
+									</br>
+									</br>
 									</br>
 							
 							<?php		
@@ -156,6 +173,7 @@
 							<?php 
 									} 
 								}
+
 							?>
 						</div>
 						<div class="lista-serv" id="realizados">

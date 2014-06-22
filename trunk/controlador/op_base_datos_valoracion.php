@@ -6,7 +6,7 @@ class MysqlValoracion extends Mysql {
 	public function insertarvaloracion($id_ser_realizado,$id_usuario,$nota,$opinion){
 		$this->conectar();
 		$args = array($id_ser_realizado,$id_usuario,$nota,$opinion);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("insert into valoracion_servicio(id_ser_realizado,id_usuario,nota,opinion,fecha) values (?,?,?,?,now())");
 		$pst->bind_param("iiis", $args[0], $args[1], $args[2], $args[3]);
 		$pst->execute();
