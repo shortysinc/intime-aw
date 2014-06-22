@@ -72,7 +72,7 @@
 <?php
 						}else{
 ?>
-							<form method="post" onclick="enviarRespuesta()" action="../controlador/enviar_respuesta.php" accept-charset="UTF-8">
+							<form method="post" action="../controlador/enviar_respuesta.php?id_solicitud=<?php echo $solicitud->getIdSolicitud() ?>" accept-charset="UTF-8">
 								<textarea name="respuesta" cols="25" rows="4" placeholder="Escribe tu respuesta"></textarea><br />
 								<button type="submit">Enviar</button>
 							</form>

@@ -101,8 +101,6 @@ $n = count($array);
 							}
 						}
 					}
-				
-				
 				$usuario = $BDD->conseguirUsuarioById($usuario->getId());
 				$_SESSION['usuario'] = $usuario;
 	
