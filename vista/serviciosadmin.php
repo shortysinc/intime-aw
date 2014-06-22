@@ -37,7 +37,7 @@
 								$BDD = new MysqlServicio();
 								$resultado = $BDD->mostrar_todos_servicios();
 								echo "<h1>LISTA DE USUARIOS</h1>";
-								echo "<table border='1' cellpadding='2' cellspacing='2'";
+								echo "<table border='1' cellpadding='2' cellspacing='2'>";
 								echo "<tr><td>ID Servicio</td><td>ID Usuario Ofertante</td><td>Nombre del Servicio</td>";
 								while ($row = mysqli_fetch_array($resultado)) {
 								$id = $row['id_servicio'];
