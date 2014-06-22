@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', Arial, Helvetice Neue, sans-s
 
 #main-content, .full-width-slider { width: 83%; }
 
-.section-content { padding: 0 7%; margin-bottom: 100px; height: 200%;}
+.section-content { padding: 0 7%; height: 200%;}
 
 .section-title { border-top: 4px solid; margin-bottom: 80px; }
 .section-title h2 {display: inline-block; padding: 20px 51px; color: white; text-transform: uppercase; font-weight: 300; margin: 0; font-size: 20px; }
