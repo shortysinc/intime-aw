@@ -85,7 +85,7 @@ session_start();
 				</div>
 				<!-- /.WELCOME -->
 				<!-- /.main-slider -->
-			</div>
+			
 			<!-- /.templatemo -->
 			<?php include 'vista/footer.php'
 			?>

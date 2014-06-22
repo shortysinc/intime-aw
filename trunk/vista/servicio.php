@@ -63,7 +63,7 @@
 					<?php 
 							echo "<h1>".$nombreServicio."</h1>";
 							if ($servicio->getFoto()!=NULL)	{
-								echo "<img src='images/servicio/".$servicio->getFoto()."'";
+								echo "<img src='images/servicio/".$servicio->getFoto()."'>";
 							}
 							ELSE{
 								echo '<img src="images/servicio/service_defect.png">';	
