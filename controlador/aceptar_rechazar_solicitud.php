@@ -18,8 +18,11 @@
 			$solicitudes = $BDD->conseguirSolicitudesRecibidasPendientes($usuario_log->getId());
 			if(Solicitud::estaDentro($id_solicitud, $solicitudes)){
 				$solicitud = $BDD->conseguirSolicitudPorId($id_solicitud);
-				$now = new DateTime();
-				if($solicitud->getInicio() > $now){
+				$fecha_ini = strtotime($solicitud->getInicio());
+				$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+				
+				//Si la fecha de inicio es mayor q la fecha actual
+				if($fecha_ini > $fecha_actual){
 					$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
 					 1, $solicitud->getFecha(), $solicitud->getInicio(), $solicitud->getFin(), $solicitud->getComentario());
 				}else{

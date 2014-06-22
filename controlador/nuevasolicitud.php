@@ -45,18 +45,28 @@
 						$fecha_inicio = $_POST['hora_inicio'];
 						$fecha_fin = date('Y-m-d H:i:s', strtotime($fecha_inicio." + ".$horas." hours"));
 						$fecha_inicio = date('Y-m-d H:i:s', strtotime($fecha_inicio));
-						//Inserto la solicitud
-						$id_solicitud = $BDD->insertarSolicitud($login->getId(),$id_servicio, $fecha_inicio, $fecha_fin, $peticion);
 						
+						$usuario = $BDD->conseguirUsuarioById($_SESSION['usuario']->getId());
+						//Si el usuario dispone de suficientes horas para solicitar el servicio
+						if($usuario->getHoras() >= $servicio->getHoras()){
+							//Inserto la solicitud
+							$id_solicitud = $BDD->insertarSolicitud($login->getId(),$id_servicio, $fecha_inicio, $fecha_fin, $peticion);
+							header ("location: ../vista/solicitudes.php?tipo=1&estado=0");
+						}else {
+							$_SESSION['error'] = "No dispones de suficientes horas";
+							header("location: ../vista/servicio.php?id_servicio=$id_servicio");
+						}
+					}else{
+						$_SESSION['error'] = "Fecha no válida";
+						header("location: ../vista/servicio.php?id_servicio=$id_servicio");
 					}
+				} else{
+					$_SESSION['error'] = "Fecha no válida";
 				}
-				header ("location: ../vista/solicitudes.php?tipo=1&estado=0");
 			}else {
 				$_SESSION['error'] = "Ya has solicitado este servicio y está pendiente";
 				header("location: ../vista/servicio.php?id_servicio=$id_servicio");
 			}
-		
 		}
-
 		unset($_SESSION['id_servicio']);
 	}
