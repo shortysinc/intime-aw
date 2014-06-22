@@ -62,6 +62,7 @@
 					}
 				} else{
 					$_SESSION['error'] = "Fecha no válida";
+					header("location: ../vista/servicio.php?id_servicio=$id_servicio");
 				}
 			}else {
 				$_SESSION['error'] = "Ya has solicitado este servicio y está pendiente";
