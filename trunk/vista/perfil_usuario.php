@@ -103,7 +103,9 @@
 										var dateFin = new Date(<?php echo $fecha_fin ?>);
 										$(document).ready(function(){
 											var dateFin = new Date(<?php echo $fecha_fin ?>);
-											setInterval( function mostrarReloj() {
+											
+											
+											var  mostrarReloj = function() {
 												var dateNow = new Date();
 												var faltan = dateFin.getTime() - dateNow.getTime();
 												
@@ -134,8 +136,9 @@
 													document.getElementById("minutos").innerHTML = minutos_s;
 													document.getElementById("segundos").innerHTML = segundos_s;
 												}
-												
-												}, 1000);
+											}
+											mostrarReloj();
+											setInterval( mostrarReloj , 1000);
 											});
 
 									</script>
