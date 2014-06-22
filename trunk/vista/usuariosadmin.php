@@ -32,7 +32,6 @@
 					</div>
 					<div class="panel-admin">
 						<div class="lista-admin">
-							<table>
 							<?php
 							$BDD = new MysqlUsuario();
 							$resultado = $BDD->mostrar_todos_usuarios();
@@ -43,12 +42,12 @@
 							$id = $row['id_usuario'];
 							        echo "<tr>";
 							        echo "<td>".$row["id_usuario"]."</td>";
-							        echo "<td><a href='../vista/perfil.php?id_usuario=$id';>".$row["nombre"]."</a></td>";
+							        echo "<td><a href='../vista/perfil.php?id_usuario=$id'>".$row["nombre"]."</a></td>";
 							        echo "<td>".$row["correo"]."</td>";
 							        echo "<td>".$row["direccion"]."</td>";
 							        echo "<td>".$row["horas_usuario"]."</td>";
-									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar User</a></td>";
-									echo "<td><a href='../vista/editarperfil.php?id_usuario=$id';>Editar User</a></td>";
+									echo "<td><a href =# onClick='javascript:ConfirmDelete($id)'‌​>Borrar User</a></td>";
+									echo "<td><a href='../vista/editarperfil.php?id_usuario=$id'>Editar User</a></td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
