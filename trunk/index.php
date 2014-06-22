@@ -78,7 +78,9 @@ session_start();
 				<div class="welcome-text">
 					<h2>Bienvenido a inTime</h2>
 					<p>
-						Tu Banco de Tiempo
+						Intime es una web de intercambio de servicios por tiempo. 
+						Nuestra moneda es el tiempo. Creemos que es una herramienta útil con el fin de crear una comunidad en la que todo el mundo, independientemente de su situación económica y sin intermediación del dinero pueda beneficiarse de los servicios de los demás. 
+						Ofrecemos un sistema de intercambio más justo y menos clasista que el dinero, y en el que todo el mundo contribuya aportando su “granito de arena”, ofreciendo al resto de usuarios los servicios que mejor sabe hacer.
 					</p>
 				</div>
 				<!-- /.WELCOME -->
