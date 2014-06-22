@@ -104,7 +104,9 @@
 									isset($servicio) && $_SESSION['usuario']->getId() == $servicio->getIdUsuario()) ){
 										
 								echo'<a href="editarservicio.php?id_servicio='.$servicio->getIdServicio().'"><h5>Editar Servicio</h5></a>';
-							}else {
+								
+							//Si es usuario registrado pero no es su servicio ni tampoco es admin entonces puede guardar en favoritos
+							}if(isset($_SESSION['login_usuario']) && $_SESSION['login_usuario'] ) {
 								$favoritos = $BDDServicio->conseguirServiciosFavoritos($_SESSION['usuario']->getId());
 								//Si el servicio está en favoritos
 								if(Servicio::estaDentro($servicio->getIdServicio(), $favoritos)){
@@ -112,6 +114,7 @@
 								}else{
 									echo '<a href="../controlador/agregar_favorito.php?id_servicio='.$servicio->getIdServicio().'"><h5>Añadir a favoritos</h5></a>';
 								}
+								
 							}
 						?>
 						</div>
