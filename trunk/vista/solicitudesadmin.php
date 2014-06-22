@@ -50,8 +50,10 @@
 							        echo "<td>Pendiente</td>";}
 							        else if($row["estado"] == 1){
 							        echo "<td>Aceptada</td>";}
-							        else {
+							        else if ($row["estado"] == 2){
 							        echo "<td>Rechazada</td>";}
+							        else{
+							        echo "<td>Caducada</td>";}
 							        echo "<td>".$row["fecha"]."</td>";
 									echo "<td>".$row["inicio"]."</td>";
 									echo "<td>".$row["fin"]."</td>";
