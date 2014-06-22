@@ -10,4 +10,5 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/templatemo_misc.css">
 	<link rel="stylesheet" href="css/templatemo_style.css">
+	<link rel="stylesheet" href="css/reloj.css">
 </head>

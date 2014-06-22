@@ -72,9 +72,63 @@
 						?>
 						<h2>Mis servicios comprados</h2>
 						<div class="lista-serv" id="proximos">
-							<h3><span class="verde">Próximos</span></h3>
 							<?php
 								if(isset($servicios_proximos)){
+									$siguiente = $servicios_proximos[count($servicios_proximos)-1]['solicitud'];
+									$fecha_fin = strtotime($siguiente->getInicio());
+							?>
+									<h3><span class="verde">Próximos</span></h3>
+									<?php 
+										$now = strtotime(date("d-m-Y H:i:00",time()));
+										//Diferencia de horas
+										$dif = $fecha_fin * 3600 - $now * 3600;
+										//Si la diferencia de horas es menor que 24 se muestra el temporizador
+										if($dif > 24){
+											$fecha_fin = $fecha_fin * 1000;
+									?>
+									<div id="fecha">
+										<h2>Tiempo que queda para el siguiente:</h2>
+										<div id="reloj">
+											<span id="horas" class="cuad"> </span>
+											<span class="separador">:</span>
+											<span id="minutos" class="cuad"> </span>
+											<span class="separador">:</span>
+											<span id="segundos" class="cuad"> </span>
+										</div>
+									</div>
+									<script>
+										var dateFin = new Date(<?php echo $fecha_fin ?>);
+										
+										setInterval( function mostrarReloj() {
+											var dateNow = new Date();
+											console.log(dateFin.getMilliseconds());
+											var date = new Date(dateFin.getTime() - dateNow.getTime());
+											console.log(dateFin);
+											console.log(dateNow);
+											var horas = date.getHours();
+											var minutos = date.getMinutes();
+											var segundos = date.getSeconds();
+											if(horas >= 0 && horas <= 9){
+												horas = '0' + horas;
+											}
+											if(minutos >= 0 && minutos <= 9){
+												minutos = '0' + minutos;
+											}
+											if(segundos >= 0 && segundos <= 9){
+												segundos = '0' + segundos;
+											}
+											
+											document.getElementById("horas").innerHTML = horas;
+											document.getElementById("minutos").innerHTML = minutos;
+											document.getElementById("segundos").innerHTML = segundos;
+											
+											}, 1000);
+
+									</script>
+									</br>
+							
+							<?php		
+							}
 									foreach($servicios_proximos as $row){
 										$servicio = $row['servicio'];
 										$solicitud = $row['solicitud'];
