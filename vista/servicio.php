@@ -178,7 +178,7 @@
 					 ?>
 							<a href="perfil_usuario.php"><h4><?php echo $consultanombre ?></h4></a>
 							<div class="coment-foto">
-								<img src="images/<?php if (!isset($consultafoto)) {echo 'logo.png';}else{ echo 'usuario/'.$consultafoto;}?>"/>
+								<img src="images/<?php if (!isset($consultafoto)) {echo 'usuario/user_defect.png';}else{ echo 'usuario/'.$consultafoto;}?>"/>
 							</div>
 							<div class="coment-nota">
 								<p>
