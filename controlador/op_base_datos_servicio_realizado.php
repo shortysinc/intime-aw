@@ -44,7 +44,6 @@ class MysqlServicioRealizado extends Mysql {
 	public function conseguirServicioRealizadoPorIdSol($id_solicitud){
 		$this->conectar();
 		$args = array($id_solicitud);
-		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio_realizado WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
