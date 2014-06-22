@@ -21,11 +21,14 @@ class Mysql{
 	 /**
 	 * @param $args: array con todos los elementos que se quieren escapar pasado por referencia.
 	 */
-	protected function escapaBd(&$args) {
+	protected function escapaBdYDesinfecta(&$args) {
 		$numElems = count($args);
 	
 		for($i=0; $i < $numElems; $i++){
+			//Escapamos
 			$args[$i] = mysqli_real_escape_string($this->conexion, $args[$i]);
+			//Desinfectamos de html
+			$args[$i] = htmlspecialchars_decode(trim(strip_tags(stripslashes($args[$i]))));
 		}
 	}
 		 

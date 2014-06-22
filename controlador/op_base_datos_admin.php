@@ -7,7 +7,7 @@ class MysqlAdmin extends Mysql{
 		$this->conectar();
 		$args = array($correo, $pass);
 		//Escapamos los datos obtenidos del formulario
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("select * from admin where correo = ?");
 		$pst->bind_param("s", $args[0]);
 		$pst->execute();

@@ -9,7 +9,7 @@ class MysqlServicioRealizado extends Mysql {
 	public function cobrarServicio($id_ser_realizado){
 		$this->conectar();
 		$args = array($id_ser_realizado);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("UPDATE servicio_realizado SET cobrado = 1 WHERE id_ser_realizado = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -24,7 +24,7 @@ class MysqlServicioRealizado extends Mysql {
 	public function insertarServicioRealizado($id_solicitud){
 		$this->conectar();
 		$args = array($id_solicitud);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("insert into servicio_realizado(id_solicitud, cobrado) values (?, 0)");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -44,7 +44,7 @@ class MysqlServicioRealizado extends Mysql {
 	public function conseguirServicioRealizadoPorIdSol($id_solicitud){
 		$this->conectar();
 		$args = array($id_solicitud);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT * FROM servicio_realizado WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
@@ -68,7 +68,7 @@ class MysqlServicioRealizado extends Mysql {
 	public function conseguirSerRealizadosNoCobrados($id_usuario){
 		$this->conectar();
 		$args = array($id_usuario);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT servicio.*, servicio_realizado.* FROM servicio_realizado natural join 
 			solicitud join servicio WHERE solicitud.id_servicio = servicio.id_servicio and servicio.id_usuario = ? and 
 			servicio_realizado.cobrado = 0 ");
@@ -97,7 +97,7 @@ class MysqlServicioRealizado extends Mysql {
 	public function estaValorado($id_solicitud){
 		$this->conectar();
 		$args = array($id_solicitud);
-		$this->escapaBd($args);
+		$this->escapaBdYDesinfecta($args);
 		$pst = $this->conexion->prepare("SELECT id_solicitud FROM servicio_realizado natural join valoracion_servicio WHERE id_solicitud = ?");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
