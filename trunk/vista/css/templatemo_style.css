@@ -105,6 +105,9 @@ li.user-list a.active { color: #00FF99; }
 li.service-list a { border-color: #A347FF; }
 li.service-list.active { color: #A347FF; }
 
+li.solicitud-list a { border-color: #e3387c; }
+li.solicitud-list.active { color: #e3387c; }
+
 li.requests-list a { border-color: #A347FF; }
 li.requests-list.active { color: #A347FF; }
 

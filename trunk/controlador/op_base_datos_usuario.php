@@ -116,7 +116,10 @@ class MysqlUsuario extends Mysql {
 			return NULL;
 		}
 	}
-	 
+	 /**
+	 * Obtiene todos los usuarios
+	 * @return usuarios
+	 */
 	 public function mostrar_todos_usuarios(){
 		$this->conectar();
 		$pst = $this->conexion->prepare("select * from usuario");
@@ -475,5 +478,20 @@ class MysqlUsuario extends Mysql {
 		$this->cerrar();
 		
 		return $id;
+	}
+	
+	 /**
+	 * Obtiene todos las solicitudes
+	 * @return solicitudes
+	 */
+	 public function mostrar_todas_solicitudes(){
+		$this->conectar();
+		$pst = $this->conexion->prepare("select * from solicitud");
+		$pst->execute();
+		$resultado = $pst->get_result();
+		$pst->close();
+		$this->cerrar();
+		
+		return $resultado;
 	}
 }

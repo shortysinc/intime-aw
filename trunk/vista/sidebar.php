@@ -171,6 +171,9 @@ $n = count($array);
 						<li class="service-list">
 							<a href="serviciosadmin.php">Lista Servicios</a>
 						</li>
+						<li class="solicitud-list">
+							<a href="solicitudesadmin.php">Lista Solicitudes</a>
+						</li>
 						<li class="log-out">
 							<a href="../controlador/logout.php">Salir</a>
 						</li>
