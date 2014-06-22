@@ -27,7 +27,7 @@
 												Enviar
 											</button>
 										</form>
-										<?php if (isset($_SESSION['login_usuario'])){ ?>
+										<?php if ((isset($_SESSION['login_usuario'])) || ((isset($_SESSION['login_admin']))&& ($_SESSION['login_admin']==true))){ ?>
 											<div class="avanzada">
 												<form method="post" action="busqueda.php" accept-charset="utf-8">
 													<label>Busqueda por confianza: </label>
