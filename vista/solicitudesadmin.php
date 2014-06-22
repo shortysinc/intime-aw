@@ -32,7 +32,6 @@
 					</div>
 					<div class="panel-admin">
 						<div class="lista-admin">
-							<table>
 							<?php
 							$BDD = new MysqlUsuario();
 							$resultado = $BDD->mostrar_todas_solicitudes();
@@ -44,8 +43,8 @@
 							$id_usuario = $row['id_usuario'];
 							        echo "<tr>";
 							        echo "<td>".$row["id_solicitud"]."</td>";
-							        echo "<td><a href='../vista/perfil.php?id_usuario=$id_usuario';>".$row["id_usuario"]."</a></td>";
-							        echo "<td><a href='../vista/servicio.php?id_servicio=$id_servicio';>".$row["id_servicio"]."</a></td>";
+							        echo "<td><a href='../vista/perfil.php?id_usuario=$id_usuario'>".$row["id_usuario"]."</a></td>";
+							        echo "<td><a href='../vista/servicio.php?id_servicio=$id_servicio'>".$row["id_servicio"]."</a></td>";
 							        if($row["estado"] == 0){
 							        echo "<td>Pendiente</td>";}
 							        else if($row["estado"] == 1){
