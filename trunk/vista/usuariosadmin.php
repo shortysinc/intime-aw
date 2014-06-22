@@ -37,7 +37,7 @@
 							$BDD = new MysqlUsuario();
 							$resultado = $BDD->mostrar_todos_usuarios();
 							echo "<h1>LISTA DE USUARIOS</h1>";
-							echo "<table border='1' cellpadding='2' cellspacing='2'";
+							echo "<table border='1' cellpadding='2' cellspacing='2'>";
 							echo "<tr><td>ID</td><td>Nombre</td><td>Correo</td><td>Direccion</td><td>Horas</td>";
 							while ($row = mysqli_fetch_array($resultado)) {
 							$id = $row['id_usuario'];

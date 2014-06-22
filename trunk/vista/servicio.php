@@ -216,7 +216,7 @@
 		</div>
 		<!-- /#main-content -->
 	</body>
-<link> rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"</link>
+<link rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"></link>
 <script type="text/javascript" src="./jquery/jquery-2.1.0.min.js"></script>
 <script type="text/javascript" src="./jquery/jquery.datetimepicker.js"></script>
 

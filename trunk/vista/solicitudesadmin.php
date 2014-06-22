@@ -37,7 +37,7 @@
 							$BDD = new MysqlUsuario();
 							$resultado = $BDD->mostrar_todas_solicitudes();
 							echo "<h1>LISTA DE SOLICITUDES</h1>";
-							echo "<table border='1' cellpadding='2' cellspacing='2'";
+							echo "<table border='1' cellpadding='2' cellspacing='2'>";
 							echo "<tr><td>ID solicitud</td><td>ID Usuario</td><td>ID Servicio</td><td>Estado</td><td>Fecha de Envio</td><td>Fecha de Inicio</td><td>Fecha de Fin</td><td>Comentario</td>";
 							while ($row = mysqli_fetch_array($resultado)) {
 							$id_servicio = $row['id_servicio'];
