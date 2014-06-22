@@ -61,11 +61,11 @@
 		</div>
 		<!-- /#main-content -->
 	</body>
-	<script type="text/javascript">
+	<script>
  	     function ConfirmDelete(ID)
   		    {
         	    if (confirm("¿Seguro que desea borrar el Servicio " + ID +" ?"))
        	          location.href='../controlador/deleteservice.php?id=' + ID;
   		    }
-		  </script>
+	 </script>
 </html>

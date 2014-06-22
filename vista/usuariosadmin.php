@@ -62,11 +62,11 @@
 		</div>
 		<!-- /#main-content -->
 	</body>
-	<script type="text/javascript">
+		<script>
  	     function ConfirmDelete(ID)
   		    {
         	    if (confirm("¿Seguro que desea borrar el Usuario " + ID +" ?"))
        	          location.href='../controlador/deleteuser.php?id=' + ID;
   		    }
-		  </script>
+		 </script>
 </html>
