@@ -35,20 +35,27 @@
 							<table>
 							<?php
 							$BDD = new MysqlUsuario();
-							$resultado = $BDD->mostrar_todos_usuarios();
-							echo "<h1>LISTA DE USUARIOS</h1>";
+							$resultado = $BDD->mostrar_todas_solicitudes();
+							echo "<h1>LISTA DE SOLICITUDES</h1>";
 							echo "<table border='1' cellpadding='2' cellspacing='2'";
-							echo "<tr><td>ID</td><td>Nombre</td><td>Correo</td><td>Direccion</td><td>Horas</td>";
+							echo "<tr><td>ID solicitud</td><td>ID Usuario</td><td>ID Servicio</td><td>Estado</td><td>Fecha de Envio</td><td>Fecha de Inicio</td><td>Fecha de Fin</td><td>Comentario</td>";
 							while ($row = mysqli_fetch_array($resultado)) {
-							$id = $row['id_usuario'];
+							$id_servicio = $row['id_servicio'];
+							$id_usuario = $row['id_usuario'];
 							        echo "<tr>";
-							        echo "<td>".$row["id_usuario"]."</td>";
-							        echo "<td><a href='../vista/perfil.php?id_usuario=$id';>".$row["nombre"]."</a></td>";
-							        echo "<td>".$row["correo"]."</td>";
-							        echo "<td>".$row["direccion"]."</td>";
-							        echo "<td>".$row["horas_usuario"]."</td>";
-									echo "<td><a href = '#' onClick='javascript:ConfirmDelete($id)'‌​>Borrar User</a></td>";
-									echo "<td><a href='../vista/editarperfil.php?id_usuario=$id';>Editar User</a></td>";
+							        echo "<td>".$row["id_solicitud"]."</td>";
+							        echo "<td><a href='../vista/perfil.php?id_usuario=$id_usuario';>".$row["id_usuario"]."</a></td>";
+							        echo "<td><a href='../vista/servicio.php?id_servicio=$id_servicio';>".$row["id_servicio"]."</a></td>";
+							        if($row["estado"] == 0){
+							        echo "<td>Pendiente</td>";}
+							        else if($row["estado"] == 1){
+							        echo "<td>Aceptada</td>";}
+							        else {
+							        echo "<td>Rechazada</td>";}
+							        echo "<td>".$row["fecha"]."</td>";
+									echo "<td>".$row["inicio"]."</td>";
+									echo "<td>".$row["fin"]."</td>";
+									echo "<td>".$row["comentario"]."</td>";
 							        echo "</tr>";
 							}
 							$resultado->free();
@@ -62,11 +69,4 @@
 		</div>
 		<!-- /#main-content -->
 	</body>
-	<script type="text/javascript">
- 	     function ConfirmDelete(ID)
-  		    {
-        	    if (confirm("¿Seguro que desea borrar el Usuario " + ID +" ?"))
-       	          location.href='../controlador/deleteuser.php?id=' + ID;
-  		    }
-		  </script>
 </html>
