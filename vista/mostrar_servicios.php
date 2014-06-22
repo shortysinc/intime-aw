@@ -26,11 +26,11 @@ session_start();
 								<div class="buscador">
 									<form method="post" action="busqueda.php" accept-charset="utf-8">
 										<label>Buscar</label>
-										<input type="text" size="50">
+										<input type="text" name="nombrebusq" size="50">
 										<button type="submit" name="submit" value="Enviar">
 											Enviar
 										</button>
-										<a href="">Búsqueda avanzada</a>
+										<a href="busqueda.php">Búsqueda avanzada</a>
 									</form>
 								</div>
 

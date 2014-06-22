@@ -39,6 +39,24 @@
 		?>
 		<div id="main-content">
 			<div id="templatemo">
+				<div class="section-content">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="section-title">
+								<div class="buscador">
+									<form method="post" action="busqueda.php" accept-charset="utf-8">
+										<label>Buscar</label>
+										<input type="text" name="nombrebusq" size="50">
+										<button type="submit" name="submit" value="Enviar">
+											Enviar
+										</button>
+										<a href="busqueda.php">Búsqueda avanzada</a>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<div class="cuerpo">
 				<?php if(isset($servicio)){ ?>
 				<div class="encabezado">
