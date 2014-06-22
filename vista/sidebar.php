@@ -70,6 +70,39 @@ $n = count($array);
 					$BDD->actualizarHorasUsuario($usuario->getId(), $horas + $usuario->getHoras());
 				}
 				
+				//Hacer que caduquen las solicitudes pendientes cuya fecha inicio haya pasado
+				$solicitudesPendientes = $BDD->conseguirSolicitudesEnviadasPendientes($usuario->getId());
+				if(isset($solicitudesPendientes)){
+					foreach ($solicitudesPendientes as $solicitud){
+						$fecha_ini = strtotime($solicitud->getInicio());
+						$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+						
+						//Si la fecha de inicio es mayor q la fecha actual
+						if($fecha_ini <= $fecha_actual){
+							$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(),
+								$solicitud->getIdServicio(), 3, $solicitud->getFecha(), $solicitud->getInicio(), $solicitud->getFin(), 
+								$solicitud->getComentario());
+						}
+					}
+				}
+				
+				//Hacer que caduquen las solicitudes recibidas cuya fecha de inicio haya pasado
+				$solicitudesRecibidas = $BDD->conseguirSolicitudesRecibidas($usuario->getId());
+					if(isset($solicitudesRecibidas)){
+						foreach($solicitudesRecibidas as $solicitud){
+							$fecha_ini = strtotime($solicitud->getInicio());
+							$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+							
+							//Si la fecha de inicio es mayor q la fecha actual
+							if($fecha_ini <= $fecha_actual){
+								$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(),
+									$solicitud->getIdServicio(), 3, $solicitud->getFecha(), $solicitud->getInicio(), $solicitud->getFin(), 
+									$solicitud->getComentario());
+							}
+						}
+					}
+				
+				
 				$usuario = $BDD->conseguirUsuarioById($usuario->getId());
 				$_SESSION['usuario'] = $usuario;
 	

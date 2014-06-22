@@ -21,13 +21,15 @@
 				$fecha_ini = strtotime($solicitud->getInicio());
 				$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
 				
-				//Si la fecha de inicio es mayor q la fecha actual
+				//Si la fecha de inicio es mayor que la fecha actual
 				if($fecha_ini > $fecha_actual){
 					$BDD->actualizarSolicitud($solicitud->getIdSolicitud(), $solicitud->getIdUsuario(), $solicitud->getIdServicio(),
 					 1, $solicitud->getFecha(), $solicitud->getInicio(), $solicitud->getFin(), $solicitud->getComentario());
 				}else{
 					$_SESSION['mensaje'] = "Ya no puedes aceptar la solicitud, la fecha ha pasado";
 				}
+			}else {
+				$_SESSION['mensaje'] = "No puedes aceptar la solicitud";
 			}
 		}else if($_POST['rechazar']){
 			$id_solicitud = $_POST['rechazar'];

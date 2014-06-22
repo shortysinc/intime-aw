@@ -37,7 +37,7 @@
 						</a></p>
 						<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
 						<p><?php echo $usuario->getCorreo() ?></p>
-						<p><?php echo $solicitud->getComentario() ?></p>
+						<p><span class="negrita"><?php echo $solicitud->getComentario() ?></span></p>
 						<p><span class='verde'>Inicio: <?php echo $solicitud->getInicioFormateada() ?></span>  - <span class='rojo'>Fin: <?php echo $solicitud->getFinFormateada() ?></span></p>
 						<p><?php echo "Enviada: ".$solicitud->getFechaFormateada() ?></p>
 						
@@ -46,6 +46,8 @@
 							echo "<p class='solicitud-aceptada'>Aceptada</p>";
 						}else if($solicitud->getEstado() == 2){
 							echo "<p class='solicitud-rechazada'>Rechazada</p>";
+						}else if($solicitud->getEstado() == 3){
+							echo "<p class='solicitud-caducada'>Caducada</p>";
 						}else{
 ?>
 							<form action="../controlador/aceptar_rechazar_solicitud.php" method="post" accept-charset="utf-8">
@@ -104,7 +106,7 @@
 						<p><a class="nombre-servicio" href="servicio.php?id_servicio=<?php echo $servicio->getIdServicio(); ?>">
 							<?php echo $servicio->getNombre() ?>
 						</a></p>
-						<p><?php echo $solicitud->getComentario() ?></p>
+						<p><span class="negrita"><?php echo $solicitud->getComentario() ?></span></p>
 						<p><span class='verde'>Inicio: <?php echo $solicitud->getInicioFormateada() ?></span>  - <span class='rojo'>Fin: <?php echo $solicitud->getFinFormateada() ?></span></p>
 						<p><?php echo "Enviada: ".$solicitud->getFechaFormateada() ?></p>
 <?php
@@ -112,6 +114,8 @@
 							echo "<p>Pendiente</p>";
 						}else if($solicitud->getEstado()== 1){
 							echo "<p class='solicitud-aceptada'>Aceptada</p>";
+						}else if ($solicitud->getEstado()){
+							echo "<p class='solicitud-caducada'>Caducada</p>";
 						}else{
 							echo "<p class='solicitud-rechazada'>Rechazada</p>";
 						}
