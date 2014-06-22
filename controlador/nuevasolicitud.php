@@ -9,7 +9,7 @@
 	
 	require_once 'comprobar_login.php';
 	
-	if(isset($_GET['id_servicio'], $_POST['solicitud'])){
+	if(isset($_GET['id_servicio'], $_POST['solicitud'], $_POST['hora_inicio'])){
 		$id_servicio = $_GET['id_servicio'];
 		$login = $_SESSION['usuario'];
 		$peticion = $_POST['solicitud'];
@@ -33,14 +33,30 @@
 			}
 			//Si no hay ninguna solicitud pendiente para ese servicio del usuario
 			if(!$encontrado){
-				$id_solicitud = $BDD->insertarSolicitud($login->getId(),$id_servicio,$peticion);
-				unset($_SESSION['id_servicio']);
-				
-				header ("location: ../vista/solicitudes.php");	
+				//Si la fecha que me pasan tiene un formato correcto
+				if (strtotime ($_POST['hora_inicio'])){
+					$fecha_ini = strtotime($_POST['hora_inicio']);
+					$fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
+					
+					//Si la fecha que me pasan  es mayor que la fecha actual
+					if($fecha_ini > $fecha_actual){
+						$fecha_inicio = $_POST['hora_inicio'];
+						$horas = $servicio->getHoras();
+						$fecha_inicio = $_POST['hora_inicio'];
+						$fecha_fin = date('Y-m-d H:i:s', strtotime($fecha_inicio." + ".$horas." hours"));
+						$fecha_inicio = date('Y-m-d H:i:s', strtotime($fecha_inicio));
+						//Inserto la solicitud
+						$id_solicitud = $BDD->insertarSolicitud($login->getId(),$id_servicio, $fecha_inicio, $fecha_fin, $peticion);
+						
+					}
+				}
+				header ("location: ../vista/solicitudes.php?tipo=1&estado=0");
 			}else {
 				$_SESSION['error'] = "Ya has solicitado este servicio y está pendiente";
 				header("location: ../vista/servicio.php?id_servicio=$id_servicio");
 			}
 		
 		}
+
+		unset($_SESSION['id_servicio']);
 	}

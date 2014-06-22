@@ -127,7 +127,7 @@
 								<textarea name="solicitud" rows="4" cols="50" placeholder="Escribe una solicitud para este servicio"></textarea>
 							</p>
 							
-							<input type="text" id="hora_inicio" placeholder="Fecha y Hora para servicio"/>
+							<input type="text" id="hora_inicio" name="hora_inicio" placeholder="Fecha y Hora para servicio"/>
 							
 							<button id="button-enviar-solicitud" type="submit" name="submit" value="Enviar">
 								Enviar
@@ -145,8 +145,6 @@
 					<!-- ************************************************* -->
 					<!--Aqui es donde pongo los comentarios y valoraciones -->
 					<!-- ************************************************* -->
-					
-					
 					<?php
 					if(isset($valoraciones)){
 					foreach ($valoraciones as $valoracion) {

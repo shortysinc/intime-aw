@@ -38,7 +38,9 @@
 						<a href="perfil.php?id_usuario=<?php echo $usuario->getId() ?>"><?php echo $usuario->getNombre() ?></a>
 						<p><?php echo $usuario->getCorreo() ?></p>
 						<p><?php echo $solicitud->getComentario() ?></p>
-						<p><?php echo $solicitud->getFechaFormateada() ?></p>
+						<p><span class='verde'>Inicio: <?php echo $solicitud->getInicioFormateada() ?></span>  - <span class='rojo'>Fin: <?php echo $solicitud->getFinFormateada() ?></span></p>
+						<p><?php echo "Enviada: ".$solicitud->getFechaFormateada() ?></p>
+						
 <?php
 						if($solicitud->getEstado() == 1){
 							echo "<p class='solicitud-aceptada'>Aceptada</p>";
@@ -103,7 +105,8 @@
 							<?php echo $servicio->getNombre() ?>
 						</a></p>
 						<p><?php echo $solicitud->getComentario() ?></p>
-						<p><?php echo $solicitud->getFechaFormateada() ?></p>
+						<p><span class='verde'>Inicio: <?php echo $solicitud->getInicioFormateada() ?></span>  - <span class='rojo'>Fin: <?php echo $solicitud->getFinFormateada() ?></span></p>
+						<p><?php echo "Enviada: ".$solicitud->getFechaFormateada() ?></p>
 <?php
 						if($solicitud->getEstado() == 0){
 							echo "<p>Pendiente</p>";
@@ -122,9 +125,12 @@
 								<ul id="lista-respuestas<?php echo $solicitud->getIdSolicitud() ?>" class="lista-respuestas">
 								</ul>
 							</div>
-					</div>
 <?php
 						}
+?>
+					</div>
+						
+<?php
 				}
 			}
 		if($i==0){

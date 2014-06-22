@@ -455,15 +455,18 @@ class MysqlUsuario extends Mysql {
 	 * @param $id_usuario: el id del usuario que solicita
 	 * 		  $id_servicio: el id del servicio que se solicita
 	 * 		  $comentario:
+	 * 		  $inicio: la fecha de inicio de la solicitud (fecha en la que empieza el servicio contratado)
+	 * 		  $fin: la fecha de fin de la solicitud (fecha en la que acaba el servicio contratado)
 	 * @return el id de la solicitud que se ha insertado si todo ha ido bien. 0 en caso de que la consulta no haya generado ningún id. False
-	 * en caso de que falle la conexion.
+	 * 		   en caso de que falle la conexion.
 	 */
-	public function insertarSolicitud($id_usuario, $id_servicio, $comentario){
+	public function insertarSolicitud($id_usuario, $id_servicio, $inicio, $fin, $comentario){
 		$this->conectar();
-		$args = array($id_usuario, $id_servicio, $comentario);
+		$args = array($id_usuario, $id_servicio, $inicio, $fin, $comentario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha,comentario) values (?,?,0,now(),?)");
-		$pst->bind_param("iis", $args[0], $args[1], $args[2]);
+		$pst = $this->conexion->prepare("insert into solicitud(id_usuario,id_servicio,estado,fecha, inicio, fin, comentario) 
+			values (?,?,0,now(),?,?,?)");
+		$pst->bind_param("iisss", $args[0], $args[1], $args[2], $args[3], $args[4]);
 		$pst->execute();
 		
 		$id = mysqli_insert_id($this->conexion);
