@@ -232,7 +232,7 @@ class MysqlUsuario extends Mysql {
 		$this->conectar();
 		$args = array($id_usuario);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_usuario = ?");
+		$pst = $this->conexion->prepare("SELECT * FROM solicitud WHERE id_usuario = ? order by solicitud.fecha DESC");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		$pst->bind_result($id_solicitud, $id_usuario, $id_servicio, $estado, $fecha, $inicio, $fin, $comentario);
