@@ -3,10 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-06-2014 a las 16:37:21
+-- Tiempo de generación: 22-06-2014 a las 16:49:17
 -- Versión del servidor: 5.6.16
 -- Versión de PHP: 5.5.9
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
@@ -20,40 +21,12 @@ SET time_zone = "+00:00";
 -- Base de datos: `intime`
 --
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `admin`
---
-
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(40) NOT NULL,
-  `pass` char(128) NOT NULL,
-  `salt` char(128) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `correo_admin` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
 --
 -- Volcado de datos para la tabla `admin`
 --
 
 INSERT INTO `admin` (`id`, `correo`, `pass`, `salt`) VALUES
 (1, 'admin@admin.com', 'cffcede585c94a629ba29a5ce9be9de3728d413747fa0e333e353bd1fe09dea964a31cae7f99021db65e0f4f3df80c4c7ecbfc6a14117ef1bc2325adb236d42f', '438aff7512921a23f3a97d0705d62dc08758e5240568bf1d097eaa147ce7f6a0f7e788eac68178ea2f64962d4ef7ae36fa1cc780fe73c011380b0d5f680a7d5d');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `categoria`
---
-
-CREATE TABLE IF NOT EXISTS `categoria` (
-  `id_categoria` int(11) NOT NULL AUTO_INCREMENT,
-  `categoria` varchar(20) NOT NULL,
-  PRIMARY KEY (`id_categoria`),
-  UNIQUE KEY `categoria` (`categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Volcado de datos para la tabla `categoria`
@@ -66,22 +39,6 @@ INSERT INTO `categoria` (`id_categoria`, `categoria`) VALUES
 (1, 'Jardineria'),
 (5, 'Otros');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `favoritos`
---
-
-CREATE TABLE IF NOT EXISTS `favoritos` (
-  `id_favorito` int(11) NOT NULL AUTO_INCREMENT,
-  `id_servicio` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY (`id_favorito`),
-  KEY `id_servicio` (`id_servicio`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
-
 --
 -- Volcado de datos para la tabla `favoritos`
 --
@@ -90,23 +47,6 @@ INSERT INTO `favoritos` (`id_favorito`, `id_servicio`, `id_usuario`, `fecha`) VA
 (10, 2, 43, '2014-06-21 16:47:31'),
 (11, 8, 46, '2014-06-22 12:09:14'),
 (12, 1, 44, '2014-06-22 12:25:17');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `respuesta`
---
-
-CREATE TABLE IF NOT EXISTS `respuesta` (
-  `id_respuesta` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_solicitud` int(11) NOT NULL,
-  `comentario` varchar(300) NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY (`id_respuesta`),
-  KEY `id_usuario` (`id_usuario`,`id_solicitud`),
-  KEY `id_solicitud` (`id_solicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `respuesta`
@@ -121,25 +61,6 @@ INSERT INTO `respuesta` (`id_respuesta`, `id_usuario`, `id_solicitud`, `comentar
 (11, 40, 22, 'si. si puedes.', '2014-06-22 15:45:31'),
 (12, 43, 32, 'Ven a mi hijo.', '2014-06-22 16:30:12'),
 (13, 27, 33, 'No puedo lo siento, no me funciona el cortacesped.', '2014-06-22 16:36:11');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `servicio`
---
-
-CREATE TABLE IF NOT EXISTS `servicio` (
-  `id_servicio` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_categoria` int(11) NOT NULL,
-  `nombre_servicio` varchar(50) NOT NULL,
-  `descripcion` varchar(1000) DEFAULT NULL,
-  `horas` int(11) NOT NULL,
-  `foto_servicio` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id_servicio`),
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_categoria` (`id_categoria`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=16 ;
 
 --
 -- Volcado de datos para la tabla `servicio`
@@ -158,21 +79,6 @@ INSERT INTO `servicio` (`id_servicio`, `id_usuario`, `id_categoria`, `nombre_ser
 (10, 46, 3, 'Ballet', 'Enseño a bailar ballet. Tengo experiencia en grandes ballets nacionales. Imprescindible traer tu propio tutu.', 2, NULL),
 (14, 42, 3, 'Aprende el dribling de los campeones', 'Aprende de futbol conmigo. Resultados 100% garantizados en solo una clase. No te arrepentiras.', 1, '14.png'),
 (15, 47, 1, 'Arreglo setos.', 'Arreglo cualquier tipo de seto o maceta. Tambien estaria dispuesto a podar arboles', 2, '15.png');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `servicio_realizado`
---
-
-CREATE TABLE IF NOT EXISTS `servicio_realizado` (
-  `id_ser_realizado` int(11) NOT NULL AUTO_INCREMENT,
-  `id_solicitud` int(11) NOT NULL,
-  `cobrado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id_ser_realizado`),
-  UNIQUE KEY `id_solicitud_2` (`id_solicitud`),
-  KEY `id_solicitud` (`id_solicitud`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=43 ;
 
 --
 -- Volcado de datos para la tabla `servicio_realizado`
@@ -196,26 +102,6 @@ INSERT INTO `servicio_realizado` (`id_ser_realizado`, `id_solicitud`, `cobrado`)
 (40, 30, 1),
 (41, 31, 0),
 (42, 32, 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `solicitud`
---
-
-CREATE TABLE IF NOT EXISTS `solicitud` (
-  `id_solicitud` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_servicio` int(11) NOT NULL,
-  `estado` int(11) NOT NULL,
-  `fecha` datetime NOT NULL,
-  `inicio` datetime NOT NULL,
-  `fin` datetime NOT NULL,
-  `comentario` varchar(500) NOT NULL,
-  PRIMARY KEY (`id_solicitud`),
-  KEY `id_usuario` (`id_usuario`,`id_servicio`),
-  KEY `id_servicio` (`id_servicio`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=34 ;
 
 --
 -- Volcado de datos para la tabla `solicitud`
@@ -245,28 +131,6 @@ INSERT INTO `solicitud` (`id_solicitud`, `id_usuario`, `id_servicio`, `estado`, 
 (32, 45, 5, 2, '2014-06-22 13:29:47', '2014-06-22 14:00:00', '2014-06-22 16:00:00', 'Necesito algo asi, estoy perdido en la vida.'),
 (33, 43, 3, 2, '2014-06-22 16:34:20', '2014-06-22 17:00:00', '2014-06-22 19:00:00', 'Cortame el cesped pepe. Por favor.');
 
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuario`
---
-
-CREATE TABLE IF NOT EXISTS `usuario` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
-  `correo` varchar(40) NOT NULL,
-  `nombre` varchar(20) NOT NULL,
-  `apellidos` varchar(40) NOT NULL,
-  `direccion` varchar(80) NOT NULL,
-  `horas_usuario` int(11) NOT NULL,
-  `foto_usuario` varchar(20) DEFAULT NULL,
-  `pass` char(128) NOT NULL,
-  `salt` char(128) NOT NULL,
-  `vio_sol_recibidas` datetime NOT NULL,
-  `vio_sol_enviadas` datetime NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `correo` (`correo`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=48 ;
-
 --
 -- Volcado de datos para la tabla `usuario`
 --
@@ -280,24 +144,6 @@ INSERT INTO `usuario` (`id_usuario`, `correo`, `nombre`, `apellidos`, `direccion
 (45, 'bobby@mail.com', 'Bobby', 'Raffell', 'c/ rasputin nº231', 2, '45.png', '5d6c0641c827a0c62d88e173c51b4e3e247f3a8c98ade7a7669b2c932d082adb7e39465ba8d435b4495909e2c834da2204c4e628b0d672e4b9abfc2c0e038a25', '42d01b2dc0f7b4e00220c362a787e85171c02521aac860e0becc2407efc7a54fd8a53803a420d3c0fda685c6e893a854f7863c6eed9f57433c90b2c4c02a79e2', '2014-06-22 12:19:29', '2014-06-22 16:31:01'),
 (46, 'carlos@mail.com', 'Carlos', 'Navarro Hernandez', 'c/ fake 12345', 1, NULL, '65df7531f2e47ffad5525a37d4850b30a1b5345900ad38d8c77fc29e9df0d42cca1256f0d96b609d076773b9fc88c8f43ec8205f4c95ec516f58af9fc0e643c2', '4c81f10051923d34520a058722b3b7b11a856c1c8087103cfbdfba70c780f3262914e981feabdf30269b97a472360ffaabdc6dac4fbb96388c5931342f295ccd', '2014-06-22 12:21:43', '2014-06-22 12:23:07'),
 (47, 'javi@mail.com', 'Javier', 'Jimenez Fernandez', 'c/ la dorada 1.', 1, NULL, '8be489e549a8c5391e839445a377c752fde1b9500260852abcd3027e8160f1b695b9816c5e8ceea6b87746dd75895112b834e3c5dcf95f6284acb942065344c0', 'b47487dd2e27525d5fc681b692be1b65c4b135d1707c6d1fb62154f9647c33bf161af44c07824a9876030b29821d5173649ee0768904b2f18e5c8288ca7f3ede', '2014-06-22 15:48:43', '2014-06-22 15:58:38');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `valoracion_servicio`
---
-
-CREATE TABLE IF NOT EXISTS `valoracion_servicio` (
-  `id_valoracion` int(11) NOT NULL AUTO_INCREMENT,
-  `id_ser_realizado` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  `nota` int(11) NOT NULL,
-  `opinion` varchar(500) NOT NULL,
-  `fecha` datetime NOT NULL,
-  PRIMARY KEY (`id_valoracion`),
-  KEY `id_ser_realizado` (`id_ser_realizado`),
-  KEY `id_usuario` (`id_usuario`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Volcado de datos para la tabla `valoracion_servicio`
@@ -317,51 +163,7 @@ INSERT INTO `valoracion_servicio` (`id_valoracion`, `id_ser_realizado`, `id_usua
 (11, 40, 44, 7, 'Me siento bastante mejor despues de esto', '2014-06-22 16:20:43'),
 (12, 41, 43, 8, 'Apasionante, Este hombre vive por lo que mas le gusta, y eso es la pintura.', '2014-06-22 16:28:19'),
 (13, 42, 45, 8, 'Justo lo que necesitaba. gracias', '2014-06-22 16:31:22');
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `favoritos`
---
-ALTER TABLE `favoritos`
-  ADD CONSTRAINT `favoritos_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `favoritos_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `respuesta`
---
-ALTER TABLE `respuesta`
-  ADD CONSTRAINT `respuesta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `respuesta_ibfk_2` FOREIGN KEY (`id_solicitud`) REFERENCES `solicitud` (`id_solicitud`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `servicio`
---
-ALTER TABLE `servicio`
-  ADD CONSTRAINT `servicio_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `servicio_ibfk_2` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id_categoria`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `servicio_realizado`
---
-ALTER TABLE `servicio_realizado`
-  ADD CONSTRAINT `servicio_realizado_ibfk_1` FOREIGN KEY (`id_solicitud`) REFERENCES `solicitud` (`id_solicitud`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `solicitud`
---
-ALTER TABLE `solicitud`
-  ADD CONSTRAINT `solicitud_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `solicitud_ibfk_2` FOREIGN KEY (`id_servicio`) REFERENCES `servicio` (`id_servicio`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `valoracion_servicio`
---
-ALTER TABLE `valoracion_servicio`
-  ADD CONSTRAINT `valoracion_servicio_ibfk_1` FOREIGN KEY (`id_ser_realizado`) REFERENCES `servicio_realizado` (`id_ser_realizado`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `valoracion_servicio_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`) ON DELETE CASCADE ON UPDATE CASCADE;
+SET FOREIGN_KEY_CHECKS=1;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
