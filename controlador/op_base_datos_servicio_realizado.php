@@ -25,7 +25,7 @@ class MysqlServicioRealizado extends Mysql {
 		$this->conectar();
 		$args = array($id_solicitud);
 		$this->escapaBd($args);
-		$pst = $this->conexion->prepare("insert into servicio_realizado(id_solicitud, cobrado) values (?, 1)");
+		$pst = $this->conexion->prepare("insert into servicio_realizado(id_solicitud, cobrado) values (?, 0)");
 		$pst->bind_param("i", $args[0]);
 		$pst->execute();
 		//$id = mysqli_insert_id($this->conexion);
