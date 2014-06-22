@@ -33,6 +33,7 @@ class MysqlServicio extends Mysql {
 	 public function busqueda($nombre){
 		$this->conectar();
 		$args = array($nombre);
+		$ret=array();
 		$i=0;
 		//Escapamos los datos obtenidos del formulario
 		$this->escapaBdYDesinfecta($args);
