@@ -87,7 +87,7 @@ $n = count($array);
 				}
 				
 				//Hacer que caduquen las solicitudes recibidas cuya fecha de inicio haya pasado
-				$solicitudesRecibidas = $BDD->conseguirSolicitudesRecibidas($usuario->getId());
+				$solicitudesRecibidas = $BDD->conseguirSolicitudesRecibidasPendientes($usuario->getId());
 					if(isset($solicitudesRecibidas)){
 						foreach($solicitudesRecibidas as $solicitud){
 							$fecha_ini = strtotime($solicitud->getInicio());
