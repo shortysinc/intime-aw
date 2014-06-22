@@ -31,7 +31,7 @@ require_once '../controlador/comprobar_login.php';
 								</div>
 							</div>
 						</div>
-						<h1>Solicitudes</h2>
+						<h1>Solicitudes</h1>
 					</div>
 					<div class="cuerpo">
 						<div class="sol-rec">

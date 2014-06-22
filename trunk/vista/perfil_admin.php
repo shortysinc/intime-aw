@@ -33,7 +33,7 @@
 								</div>
 							</div>
 						</div>
-						<h1>Bienvenido Admin</h2>
+						<h1>Bienvenido Admin</h1>
 					</div>
 					<div class="cuerpo">
 				</div>
