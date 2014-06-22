@@ -58,9 +58,9 @@
 			</div>
 			<?php include 'footer.php'
 			?>
+			</div>
 		</div>
 		<!-- /#main-content -->
-	</body>
 		<script>
  	     function ConfirmDelete(ID)
   		    {
@@ -68,4 +68,5 @@
        	          location.href='../controlador/deleteuser.php?id=' + ID;
   		    }
 		 </script>
+	</body>
 </html>
