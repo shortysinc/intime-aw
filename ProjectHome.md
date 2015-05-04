@@ -1,0 +1,1 @@
+Aplicación web para un banco de tiempo (sistema de intercambio de servicios por tiempo en vez de por dinero). Los distintos usuarios podrán ofertar servicios y éstos podrán ser demandados por otros usuarios. Una vez realizados los servicios el tiempo se le añadirá al usuario que ha ofrecido el servicio y se le restarán al usuario que ha demandado el servicio.
